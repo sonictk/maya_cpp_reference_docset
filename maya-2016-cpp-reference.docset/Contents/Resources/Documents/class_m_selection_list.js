@@ -1,0 +1,37 @@
+var class_m_selection_list =
+[
+    [ "MergeStrategy", "class_m_selection_list.html#a2c76c3f8b54a741ba9fdbfe6b5e0ee5c", [
+      [ "kMergeNormal", "class_m_selection_list.html#a2c76c3f8b54a741ba9fdbfe6b5e0ee5cae05c98447368025f36e540e462724d18", null ],
+      [ "kXORWithList", "class_m_selection_list.html#a2c76c3f8b54a741ba9fdbfe6b5e0ee5ca3a0570bd44a3245270b3e7b94934f3f1", null ],
+      [ "kRemoveFromList", "class_m_selection_list.html#a2c76c3f8b54a741ba9fdbfe6b5e0ee5ca7cb7dd787f22a4dab08af6fe7c408534", null ]
+    ] ],
+    [ "MSelectionList", "class_m_selection_list.html#adae902bca07afd56013ece6b3f1dfbe2", null ],
+    [ "MSelectionList", "class_m_selection_list.html#aef9274c69441f6ed9d1b04320ff4a802", null ],
+    [ "~MSelectionList", "class_m_selection_list.html#a08cbb30b6db9df0b0ae61cba928ce91c", null ],
+    [ "clear", "class_m_selection_list.html#ad5522f028dde0080b753279426415a4a", null ],
+    [ "isEmpty", "class_m_selection_list.html#a8174b25717a6f860d40f2ca259442df5", null ],
+    [ "length", "class_m_selection_list.html#a99dd6a54b909ede1d11702fe58977e2a", null ],
+    [ "getDependNode", "class_m_selection_list.html#a72d8cd9c78fd234dcf68cd2fb70bc432", null ],
+    [ "getDagPath", "class_m_selection_list.html#a16dda1a34d5f10be257d8421ac6deabd", null ],
+    [ "getPlug", "class_m_selection_list.html#a4cdb668fdd6feafe9b296a80cfca26f0", null ],
+    [ "add", "class_m_selection_list.html#a23929aeafb29672f2652128eac9c4dec", null ],
+    [ "add", "class_m_selection_list.html#a1f5d28c99a9cde9991314e6c943ed5f1", null ],
+    [ "add", "class_m_selection_list.html#ae803d854d28b033ee8bdf30056fe9ad2", null ],
+    [ "add", "class_m_selection_list.html#a5b89deb36895c9f72643789c5aedb12e", null ],
+    [ "add", "class_m_selection_list.html#a9ec811ffefa8ad806d818b77bc2d274c", null ],
+    [ "remove", "class_m_selection_list.html#af05b9926a5e8e7b8e7a9e98a13c839b6", null ],
+    [ "replace", "class_m_selection_list.html#a45e954a9ccdeffcdcf45b93415ea4691", null ],
+    [ "replace", "class_m_selection_list.html#aee800f13b85aae93a48bd0bb4b06fde7", null ],
+    [ "replace", "class_m_selection_list.html#a5f91db371743baee3ae70fdc9fbcd2c0", null ],
+    [ "hasItem", "class_m_selection_list.html#a8ccfcfbdcebf501f9667ee617419892c", null ],
+    [ "hasItem", "class_m_selection_list.html#a04301bd17bbe534b8dc9223b6034b6ca", null ],
+    [ "hasItem", "class_m_selection_list.html#a9537e8b3a1e1b119dff39b1829ebb900", null ],
+    [ "hasItemPartly", "class_m_selection_list.html#a425aec173c651f6ae8c71e8d13809e44", null ],
+    [ "toggle", "class_m_selection_list.html#ab2d8735e2e26695b1878da72b8f86f4f", null ],
+    [ "operator=", "class_m_selection_list.html#adb6d0cabad0cfece5772c18ff5bda3e8", null ],
+    [ "merge", "class_m_selection_list.html#a92c9d648de48c0e6535fc814d32bb72c", null ],
+    [ "merge", "class_m_selection_list.html#ab9b2a0aafede71ba65ea8764c537954c", null ],
+    [ "getSelectionStrings", "class_m_selection_list.html#aaf17bbe390ab271a23cf4eca69e3f81e", null ],
+    [ "getSelectionStrings", "class_m_selection_list.html#a76b6746bd5a8f26b409b315d15f6212e", null ],
+    [ "className", "class_m_selection_list.html#a774cd5d8fbebe8e7ed82a5aa587d1f04", null ]
+];
