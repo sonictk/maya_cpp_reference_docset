@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>viewRenderOverride/viewRenderOverrideUserOperation.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          viewRenderOverride/viewRenderOverrideUserOperation.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,447 +73,2548 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>viewRenderOverride/viewRenderOverrideUserOperation.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          viewRenderOverride/viewRenderOverrideUserOperation.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            viewRenderOverride/viewRenderOverrideUserOperation.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 2015 Autodesk, Inc.  All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk license agreement
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // provided at the time of installation or download, or which otherwise
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // accompanies this software in either electronic or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;stdio.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MGlobal.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MString.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPxCommand.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MSyntax.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MArgDatabase.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MArgList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MSelectionList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItSelectionList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // For sample draw traversal
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MDrawTraversal.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MHardwareRenderer.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnDagNode.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MBoundingBox.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/M3dView.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPoint.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MImage.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MViewport2Renderer.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MRenderTargetManager.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MStateManager.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MShaderManager.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MTextureManager.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MDrawContext.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MGLFunctionTable.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "viewRenderOverride.h"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_g_l_function_table.html">
+             MGLFunctionTable
+            </a>
+            *gGLFT = NULL;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             Code for a custom user operation which in this case is a custom
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             scene traversal which in this example draws some additional UI:
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             - colored bounding boxes
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             -
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             Note that this operation is written for drawing only using OpenGL,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             but could be written to draw using DirectX as well.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             */
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //------------------------------------------------------------------------
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             Draw traversal utility to prune out everything but shapes.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             */
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            MSurfaceDrawTraversal::filterNode(
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            &amp;traversalItem )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            prune =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( traversalItem.
+            <a name="a2">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#a7c6cdc0f5380b205fcf6e524e307b47f">
+             childCount
+            </a>
+            () == 0)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !traversalItem.
+            <a name="a3">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a name="a4">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ) &amp;&amp;
+           </div>
+           <div class="line">
+            !traversalItem.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a name="a5">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a016a93d2c00725d6ca8021dffbd2a0a8">
+             MFn::kNurbsSurface
+            </a>
+            ) &amp;&amp;
+           </div>
+           <div class="line">
+            !traversalItem.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a name="a6">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a305a1a7e615931a31f8d932bb4f3a4c1">
+             MFn::kSubdiv
+            </a>
+            )
+           </div>
+           <div class="line">
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            prune =
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            prune;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //------------------------------------------------------------------------
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             A very simplistic custom scene draw example which just draws
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             coloured bounding boxes for surface types.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             This code is similiar to the example code found in the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             plugin example OpenGLViewportRenderer and just
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             traverses the scene to perform a draw.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             */
+            </span>
+           </div>
+           <div class="line">
+            MCustomSceneDraw::MCustomSceneDraw()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !gGLFT )
+           </div>
+           <div class="line">
+            gGLFT = MHardwareRenderer::theRenderer()-&gt;
+            <a name="a7">
+            </a>
+            <a class="code" href="./class_m_hardware_renderer.html#ae661000714d15915ccc58949842f4c57">
+             glFunctionTable
+            </a>
+            ();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            MCustomSceneDraw::~MCustomSceneDraw()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            gGLFT = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             Some simple code to draw a wireframe bounding box
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             in OpenGL
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             */
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+           </div>
+           <div class="line">
+            MCustomSceneDraw::drawBounds(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            &amp;dagPath,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a8">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html">
+             MBoundingBox
+            </a>
+            &amp;box)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a9">
+            </a>
+            <a class="code" href="./class_m_matrix.html">
+             MMatrix
+            </a>
+            matrix = dagPath.
+            <a name="a10">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#a229ff721947ec3ded47b5a071a7311ec">
+             inclusiveMatrix
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a name="_a11">
+            </a>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            minPt = box.
+            <a name="a12">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#afb3213b98f3a6b4bda9759511e9b79a1">
+             min
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            maxPt = box.
+            <a name="a13">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#a1dfdbea9d5560e4aa09d34bdbd82480c">
+             max
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            bottomLeftFront[3] =     { minPt.
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , minPt.
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , minPt.
+            <a name="a16">
+            </a>
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            topLeftFront[3] =        { minPt.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , minPt.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            bottomRightFront[3] =    { maxPt.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , minPt.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , minPt.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            topRightFront[3] =       { maxPt.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , minPt.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            bottomLeftBack[3] =      { minPt.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , minPt.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            topLeftBack[3] =         { minPt.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            bottomRightBack[3] =     { maxPt.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , minPt.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            topRightBack[3] =        { maxPt.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , maxPt.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a17">
+            </a>
+            glMatrixMode( MGL_MODELVIEW );
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a18">
+            </a>
+            glPushMatrix();
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a19">
+            </a>
+            glMultMatrixd( &amp;(matrix.
+            <a name="a20">
+            </a>
+            <a class="code" href="./class_m_matrix.html#a527b102f4eb0951cf4f391f828d3ca34">
+             matrix
+            </a>
+            [0][0]) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a21">
+            </a>
+            glBegin(MGL_LINE_STRIP);
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a22">
+            </a>
+            glVertex3dv( bottomLeftFront );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( bottomLeftBack );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( topLeftBack );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( topLeftFront );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( bottomLeftFront );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( bottomRightFront );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( bottomRightBack);
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( topRightBack );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( topRightFront );
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv( bottomRightFront );
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a23">
+            </a>
+            glEnd();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            gGLFT-&gt;glBegin(MGL_LINES);
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv(bottomLeftBack);
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv(bottomRightBack);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv(topLeftBack);
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv(topRightBack);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv(topLeftFront);
+           </div>
+           <div class="line">
+            gGLFT-&gt;glVertex3dv(topRightFront);
+           </div>
+           <div class="line">
+            gGLFT-&gt;glEnd();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a24">
+            </a>
+            glPopMatrix();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             Draw a scene full of bounding boxes
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             */
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+           </div>
+           <div class="line">
+            MCustomSceneDraw::draw(
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            &amp;cameraPath,
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            width,
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            height)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!cameraPath.
+            <a name="a25">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#a1da4467477df2e6955b9917434a94074">
+             isValid
+            </a>
+            ())
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a26">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html">
+             MDrawTraversal
+            </a>
+            *trav = NULL;
+           </div>
+           <div class="line">
+            trav =
+            <span class="keyword">
+             new
+            </span>
+            MSurfaceDrawTraversal;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!trav)
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            trav-&gt;
+            <a name="a27">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#afb2ac0dd09dd73700a4258f091c04a1d">
+             enableFiltering
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            );
+           </div>
+           <div class="line">
+            trav-&gt;
+            <a name="a28">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#a54bc763b89ac8604bfd0a7c88c0044e1">
+             setFrustum
+            </a>
+            ( cameraPath, width, height );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!trav-&gt;
+            <a name="a29">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#a3560c3bd79408c8cd0615889d349c1b3">
+             frustumValid
+            </a>
+            ())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            trav; trav = NULL;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            trav-&gt;
+            <a name="a30">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#a5f1630ceda51de2240591c5409cb3790">
+             traverse
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            numItems = trav-&gt;
+            <a name="a31">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#a890a36866f5602d44153c818f81d8ef5">
+             numberOfItems
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            i;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i=0; i&lt;numItems; i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            path;
+           </div>
+           <div class="line">
+            trav-&gt;
+            <a name="a32">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#ad398b50125777b1021b33f16584370a3">
+             itemPath
+            </a>
+            (i, path);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (path.
+            <a class="code" href="./class_m_dag_path.html#a1da4467477df2e6955b9917434a94074">
+             isValid
+            </a>
+            ())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            drawIt =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Draw surfaces (polys, nurbs, subdivs)
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ) ||
+           </div>
+           <div class="line">
+            path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a016a93d2c00725d6ca8021dffbd2a0a8">
+             MFn::kNurbsSurface
+            </a>
+            ) ||
+           </div>
+           <div class="line">
+            path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a305a1a7e615931a31f8d932bb4f3a4c1">
+             MFn::kSubdiv
+            </a>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            drawIt =
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (trav-&gt;
+            <a name="a33">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#a372f897e3c752448f55cf1ab61f2bddf">
+             itemHasStatus
+            </a>
+            ( i,
+            <a name="a34">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#a726ca809ffd3d67ab4b8476646f26635aeb81f2660649dd45dbf8316826c2e96c">
+             MDrawTraversal::kActiveItem
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            gGLFT-&gt;
+            <a name="a35">
+            </a>
+            glColor3f( 1.0f, 1.0f, 1.0f );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            (trav-&gt;
+            <a class="code" href="./class_m_draw_traversal.html#a372f897e3c752448f55cf1ab61f2bddf">
+             itemHasStatus
+            </a>
+            ( i,
+            <a name="a36">
+            </a>
+            <a class="code" href="./class_m_draw_traversal.html#a726ca809ffd3d67ab4b8476646f26635a4c661de51d08a364ca2d91c38122e9e6">
+             MDrawTraversal::kTemplateItem
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            gGLFT-&gt;glColor3f( 0.2f, 0.2f, 0.2f );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ))
+           </div>
+           <div class="line">
+            gGLFT-&gt;glColor3f( 0.286f, 0.706f, 1.0f );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            (path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a016a93d2c00725d6ca8021dffbd2a0a8">
+             MFn::kNurbsSurface
+            </a>
+            ))
+           </div>
+           <div class="line">
+            gGLFT-&gt;glColor3f( 0.486f, 0.306f, 1.0f );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            gGLFT-&gt;glColor3f( 0.886f, 0.206f, 1.0f );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (drawIt)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a37">
+            </a>
+            <a class="code" href="./class_m_fn_dag_node.html">
+             MFnDagNode
+            </a>
+            dagNode(path);
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_bounding_box.html">
+             MBoundingBox
+            </a>
+            box = dagNode.boundingBox();
+           </div>
+           <div class="line">
+            drawBounds( path, box );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (trav)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            trav;
+           </div>
+           <div class="line">
+            trav = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //------------------------------------------------------------------------
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             Custom user operation
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             */
+            </span>
+           </div>
+           <div class="line">
+            viewRenderUserOperation::viewRenderUserOperation(
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a38">
+            </a>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            &amp;name)
+           </div>
+           <div class="line">
+            : MUserRenderOperation( name )
+           </div>
+           <div class="line">
+            , fDrawLabel(false)
+           </div>
+           <div class="line">
+            , fUserCameraOverride(false)
+           </div>
+           <div class="line">
+            , fDrawBoundingBoxes(false)
+           </div>
+           <div class="line">
+            , fDebugLightingInfo(false)
+           </div>
+           <div class="line">
+            , fDebugDrawContext(false)
+           </div>
+           <div class="line">
+            , fEnableSRGBWriteFlag(false)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // 100 % of target size
+            </span>
+           </div>
+           <div class="line">
+            mViewRectangle[0] = 0.0f;
+           </div>
+           <div class="line">
+            mViewRectangle[1] = 0.0f;
+           </div>
+           <div class="line">
+            mViewRectangle[2] = 1.0f;
+           </div>
+           <div class="line">
+            mViewRectangle[3] = 1.0f;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            viewRenderUserOperation::~viewRenderUserOperation()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a39">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            viewRenderUserOperation::execute(
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a40">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_draw_context.html">
+             MHWRender::MDrawContext
+            </a>
+            &amp; drawContext )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Sample code to debug pass information
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             bool
+            </span>
+            debugPassInformation =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (debugPassInformation)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a41">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_pass_context.html">
+             MHWRender::MPassContext
+            </a>
+            &amp; passCtx = drawContext.
+            <a name="a42">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_draw_context.html#ad3f9422688a9ffbe815c374ece46c1ea">
+             getPassContext
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            &amp; passId = passCtx.
+            <a name="a43">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_pass_context.html#ae90d4b4c8175e81800d8eb16ee126e1f">
+             passIdentifier
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a44">
+            </a>
+            <a class="code" href="./class_m_string_array.html">
+             MStringArray
+            </a>
+            &amp; passSem = passCtx.
+            <a name="a45">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_pass_context.html#a9737189d5cfffd795336d711a678d627">
+             passSemantics
+            </a>
+            ();
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "viewRenderUserOperation: drawing in pass[%s], semantic["
+            </span>
+            , passId.
+            <a name="a46">
+            </a>
+            <a class="code" href="./class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">
+             asChar
+            </a>
+            ());
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            i=0; i&lt;passSem.
+            <a name="a47">
+            </a>
+            <a class="code" href="./class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); i++)
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             " %s"
+            </span>
+            , passSem[i].asChar());
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "\n"
+            </span>
+            );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Example code to find the active override.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // This is not necessary if the operations just keep a reference
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // to the override, but this demonstrates how this
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // contextual information can be extracted.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a48">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_renderer.html">
+             MHWRender::MRenderer
+            </a>
+            *theRenderer =
+            <a name="a49">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_renderer.html#a4678a72ac6959ed21d422d27928d0343">
+             MHWRender::MRenderer::theRenderer
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a50">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_render_override.html">
+             MHWRender::MRenderOverride
+            </a>
+            *overridePtr = NULL;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (theRenderer)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            &amp; overrideName = theRenderer-&gt;
+            <a name="a51">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_renderer.html#a68d4388b5455cb5f8eaa7913d6f8e2d6">
+             activeRenderOverride
+            </a>
+            ();
+           </div>
+           <div class="line">
+            overridePtr = theRenderer-&gt;
+            <a name="a52">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_renderer.html#aa0cb03754b054ca048e0b9e6265b5e82">
+             findRenderOverride
+            </a>
+            ( overrideName );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Some sample code to debug lighting information in the MDrawContext
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fDebugLightingInfo)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            viewRenderOverrideUtilities::printDrawContextLightInfo( drawContext );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Some sample code to debug other MDrawContext information
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fDebugDrawContext)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_matrix.html">
+             MMatrix
+            </a>
+            matrix = drawContext.
+            <a name="a53">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_draw_context.html#a71cbe2a3f2dfa967ebc43b5e97456ccb">
+             getMatrix
+            </a>
+            (
+            <a name="a54">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_frame_context.html#acc6ad8472c2abfd2f63e100474b977f9abe06496227f48d6e05b7d410124b0f85">
+             MHWRender::MFrameContext::kWorldMtx
+            </a>
+            , &amp;status);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            dest[4][4];
+           </div>
+           <div class="line">
+            status = matrix.
+            <a name="a55">
+            </a>
+            <a class="code" href="./class_m_matrix.html#afc8a36464bb71526e9d2bc0361f643cf">
+             get
+            </a>
+            (dest);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "World matrix is:\n"
+            </span>
+            );
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "\t%f, %f, %f, %f\n"
+            </span>
+            , dest[0][0], dest[0][1], dest[0][2], dest[0][3]);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "\t%f, %f, %f, %f\n"
+            </span>
+            , dest[1][0], dest[1][1], dest[1][2], dest[1][3]);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "\t%f, %f, %f, %f\n"
+            </span>
+            , dest[2][0], dest[2][1], dest[2][2], dest[2][3]);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "\t%f, %f, %f, %f\n"
+            </span>
+            , dest[3][0], dest[3][1], dest[3][2], dest[3][3]);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a56">
+            </a>
+            <a class="code" href="./class_m_double_array.html">
+             MDoubleArray
+            </a>
+            viewDirection = drawContext.
+            <a name="a57">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_draw_context.html#a3a2746b602eb8dd543fa0a74497614d1">
+             getTuple
+            </a>
+            (
+            <a name="a58">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_frame_context.html#af164f32d9bda6829f1738ef3fb2c6670a227b592bc3c59e5855866b1d9f8c997b">
+             MHWRender::MFrameContext::kViewDirection
+            </a>
+            , &amp;status);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "Viewdirection is: %f, %f, %f\n"
+            </span>
+            , viewDirection[0], viewDirection[1], viewDirection[2]);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_bounding_box.html">
+             MBoundingBox
+            </a>
+            box = drawContext.
+            <a name="a59">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_draw_context.html#a7b75c194c2b51fa5f31eddef5ebddc41">
+             getSceneBox
+            </a>
+            (&amp;status);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "Screen box is:\n"
+            </span>
+            );
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "\twidth=%f, height=%f, depth=%f\n"
+            </span>
+            , box.
+            <a name="a60">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#a6cddcbf72c80144aa2e6501abb150c30">
+             width
+            </a>
+            (), box.
+            <a name="a61">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#afa7750092d5dcf402c83fb5adba91453">
+             height
+            </a>
+            (), box.
+            <a name="a62">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#a65c72a51aba9fc4233b58751dd712e43">
+             depth
+            </a>
+            ());
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             float
+            </span>
+            center[4];
+           </div>
+           <div class="line">
+            box.
+            <a name="a63">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#a329b58fadcbe4f236bfbb0887253fdc7">
+             center
+            </a>
+            ().
+            <a name="a64">
+            </a>
+            <a class="code" href="./class_m_point.html#aa54ebbec9252a61bd66cdd442bc5758a">
+             get
+            </a>
+            (center);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "\tcenter=(%f, %f, %f, %f)\n"
+            </span>
+            , center[0], center[1], center[2], center[3]);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            originX, originY, width, height;
+           </div>
+           <div class="line">
+            status = drawContext.
+            <a name="a65">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_draw_context.html#a7cd3b2dca6e4f8f4641b587bc642b08e">
+             getViewportDimensions
+            </a>
+            (originX, originY, width, height);
+           </div>
+           <div class="line">
+            printf(
+            <span class="stringliteral">
+             "Viewport dimension: center(%d, %d), width=%d, heigh=%d\n"
+            </span>
+            , originX, originY, width, height);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  Draw some addition things for scene draw
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a66">
+            </a>
+            <a class="code" href="./class_m3d_view.html">
+             M3dView
+            </a>
+            mView;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (mPanelName.length() &amp;&amp;
+           </div>
+           <div class="line">
+            (
+            <a name="a67">
+            </a>
+            <a class="code" href="./class_m3d_view.html#a6f8dcac6993b14738fc6259cfd50a3b8">
+             M3dView::getM3dViewFromModelPanel
+            </a>
+            (mPanelName, mView) ==
+            <a name="a68">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Get the current viewport and scale it relative to that
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            targetW, targetH;
+           </div>
+           <div class="line">
+            drawContext.
+            <a name="a69">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_draw_context.html#a84f8e099a466341238b4b4e40cde4167">
+             getRenderTargetSize
+            </a>
+            ( targetW, targetH );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fDrawLabel)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            testString(
+            <span class="stringliteral">
+             "Drawing with override: "
+            </span>
+            );
+           </div>
+           <div class="line">
+            testString += overridePtr-&gt;
+            <a name="a70">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_render_override.html#ac556578d6219804b38b9387f8c344ef7">
+             name
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            pos(0.0,0.0,0.0);
+           </div>
+           <div class="line">
+            glColor3f( 1.0f, 1.0f, 1.0f );
+           </div>
+           <div class="line">
+            mView.
+            <a name="a71">
+            </a>
+            <a class="code" href="./class_m3d_view.html#a1d533091a31a590ee4599fde04fa65d7">
+             drawText
+            </a>
+            ( testString, pos);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Some user drawing of scene bounding boxes
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fDrawBoundingBoxes)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            cameraPath;
+           </div>
+           <div class="line">
+            mView.
+            <a name="a72">
+            </a>
+            <a class="code" href="./class_m3d_view.html#a5e6ea41ec1bab5ed980b2ddffe398a73">
+             getCamera
+            </a>
+            ( cameraPath);
+           </div>
+           <div class="line">
+            MCustomSceneDraw userDraw;
+           </div>
+           <div class="line">
+            userDraw.draw( cameraPath, targetW, targetH );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Camera override
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a73">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_camera_override.html">
+             MHWRender::MCameraOverride
+            </a>
+            *
+           </div>
+           <div class="line">
+            viewRenderUserOperation::cameraOverride()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fUserCameraOverride)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m3d_view.html">
+             M3dView
+            </a>
+            mView;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (mPanelName.length() &amp;&amp;
+           </div>
+           <div class="line">
+            (
+            <a class="code" href="./class_m3d_view.html#a6f8dcac6993b14738fc6259cfd50a3b8">
+             M3dView::getM3dViewFromModelPanel
+            </a>
+            (mPanelName, mView) ==
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            mView.
+            <a class="code" href="./class_m3d_view.html#a5e6ea41ec1bab5ed980b2ddffe398a73">
+             getCamera
+            </a>
+            ( mCameraOverride.mCameraPath );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            &amp;mCameraOverride;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Target override
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a74">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_render_target.html">
+             MHWRender::MRenderTarget
+            </a>
+            *
+            <span class="keyword">
+             const
+            </span>
+            *
+           </div>
+           <div class="line">
+            viewRenderUserOperation::targetOverrideList(
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            &amp;listSize)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (mTargets)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            listSize = 2;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            &amp;mTargets[kMyColorTarget];
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // sRGB write enable
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            viewRenderUserOperation::enableSRGBWrite()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            fEnableSRGBWriteFlag;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            viewRenderUserOperation::hasUIDrawables()
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            viewRenderUserOperation::addUIDrawables(
+           </div>
+           <div class="line">
+            <a name="_a75">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html">
+             MHWRender::MUIDrawManager
+            </a>
+            &amp; drawManager,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a76">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_frame_context.html">
+             MHWRender::MFrameContext
+            </a>
+            &amp; frameContext )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            drawManager.
+            <a name="a77">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#aa3e12e98018e4dfda0e166d9ec8094b0">
+             beginDrawable
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            drawManager.
+            <a name="a78">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#a9baede3e37abe9551e50a8c6be65ec4d">
+             setColor
+            </a>
+            (
+            <a name="_a79">
+            </a>
+            <a class="code" href="./class_m_color.html">
+             MColor
+            </a>
+            ( 0.95f, 0.5f, 0.1f ) );
+           </div>
+           <div class="line">
+            drawManager.
+            <a name="a80">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#a334e4280e5ddd4653c69f9703b5dd3b4">
+             text
+            </a>
+            (
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            ( 0, 2, 0 ),
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "UI draw test in user operation"
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            drawManager.
+            <a name="a81">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#abe48ac82aa2ede6d0efd3c9cfadb068c">
+             line
+            </a>
+            (
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            ( 0, 0, 0),
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            ( 0, 2, 0 ) );
+           </div>
+           <div class="line">
+            drawManager.
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#a9baede3e37abe9551e50a8c6be65ec4d">
+             setColor
+            </a>
+            (
+            <a class="code" href="./class_m_color.html">
+             MColor
+            </a>
+            ( 1.0f, 1.0f, 1.0f ) );
+           </div>
+           <div class="line">
+            drawManager.
+            <a name="a82">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#a3c2219cf077b63cbf547d305ba58fe29">
+             sphere
+            </a>
+            (
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            ( 0, 2, 0 ), 0.8,
+            <span class="keyword">
+             false
+            </span>
+            );
+           </div>
+           <div class="line">
+            drawManager.
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#a9baede3e37abe9551e50a8c6be65ec4d">
+             setColor
+            </a>
+            (
+            <a class="code" href="./class_m_color.html">
+             MColor
+            </a>
+            ( 0.95f, 0.5f, 0.1f, 0.4f ) );
+           </div>
+           <div class="line">
+            drawManager.
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#a3c2219cf077b63cbf547d305ba58fe29">
+             sphere
+            </a>
+            (
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            ( 0, 2, 0 ), 0.8,
+            <span class="keyword">
+             true
+            </span>
+            );
+           </div>
+           <div class="line">
+            drawManager.
+            <a name="a83">
+            </a>
+            <a class="code" href="./class_m_h_w_render_1_1_m_u_i_draw_manager.html#a78c343c25a05be7e46dd4b7ebab82ff6">
+             endDrawable
+            </a>
+            ();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">viewRenderOverride/viewRenderOverrideUserOperation.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// Copyright 2015 Autodesk, Inc.  All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk license agreement</span></div>
-<div class="line"><span class="comment">// provided at the time of installation or download, or which otherwise</span></div>
-<div class="line"><span class="comment">// accompanies this software in either electronic or hard copy form.</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MGlobal.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MString.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPxCommand.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MSyntax.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MArgDatabase.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MArgList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MSelectionList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItSelectionList.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// For sample draw traversal</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MDrawTraversal.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MHardwareRenderer.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnDagNode.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MBoundingBox.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/M3dView.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPoint.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MImage.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MViewport2Renderer.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MRenderTargetManager.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MStateManager.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MShaderManager.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MTextureManager.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MDrawContext.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MGLFunctionTable.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &quot;viewRenderOverride.h&quot;</span></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">static</span> <a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_g_l_function_table.html">MGLFunctionTable</a> *gGLFT = NULL;</div>
-<div class="line"></div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    Code for a custom user operation which in this case is a custom</span></div>
-<div class="line"><span class="comment">    scene traversal which in this example draws some additional UI:</span></div>
-<div class="line"><span class="comment">    - colored bounding boxes</span></div>
-<div class="line"><span class="comment">    -</span></div>
-<div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">    Note that this operation is written for drawing only using OpenGL,</span></div>
-<div class="line"><span class="comment">    but could be written to draw using DirectX as well.</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//------------------------------------------------------------------------</span></div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    Draw traversal utility to prune out everything but shapes.</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line"><span class="keywordtype">bool</span> MSurfaceDrawTraversal::filterNode( <span class="keyword">const</span> <a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> &amp;traversalItem )</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">bool</span> prune = <span class="keyword">false</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> ( traversalItem.<a name="a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a7c6cdc0f5380b205fcf6e524e307b47f">childCount</a>() == 0)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> ( !traversalItem.<a name="a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a name="a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>) &amp;&amp;</div>
-<div class="line">            !traversalItem.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a name="a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a016a93d2c00725d6ca8021dffbd2a0a8">MFn::kNurbsSurface</a>) &amp;&amp;</div>
-<div class="line">            !traversalItem.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a name="a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a305a1a7e615931a31f8d932bb4f3a4c1">MFn::kSubdiv</a>)</div>
-<div class="line">            )</div>
-<div class="line">        {</div>
-<div class="line">            prune = <span class="keyword">true</span>;</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> prune;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//------------------------------------------------------------------------</span></div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    A very simplistic custom scene draw example which just draws</span></div>
-<div class="line"><span class="comment">    coloured bounding boxes for surface types.</span></div>
-<div class="line"><span class="comment"></span></div>
-<div class="line"><span class="comment">    This code is similiar to the example code found in the</span></div>
-<div class="line"><span class="comment">    plugin example OpenGLViewportRenderer and just</span></div>
-<div class="line"><span class="comment">    traverses the scene to perform a draw.</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line">MCustomSceneDraw::MCustomSceneDraw()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> ( !gGLFT )</div>
-<div class="line">        gGLFT = MHardwareRenderer::theRenderer()-&gt;<a name="a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_hardware_renderer.html#ae661000714d15915ccc58949842f4c57">glFunctionTable</a>();</div>
-<div class="line">}</div>
-<div class="line">MCustomSceneDraw::~MCustomSceneDraw()</div>
-<div class="line">{</div>
-<div class="line">    gGLFT = NULL;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    Some simple code to draw a wireframe bounding box</span></div>
-<div class="line"><span class="comment">    in OpenGL</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line"><span class="keywordtype">void</span></div>
-<div class="line">MCustomSceneDraw::drawBounds( <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> &amp;dagPath,</div>
-<div class="line">                              <span class="keyword">const</span> <a name="_a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html">MBoundingBox</a> &amp;box)</div>
-<div class="line">{</div>
-<div class="line">    <a name="_a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_matrix.html">MMatrix</a>  matrix = dagPath.<a name="a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a229ff721947ec3ded47b5a071a7311ec">inclusiveMatrix</a>();</div>
-<div class="line">    <a name="_a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>  minPt = box.<a name="a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#afb3213b98f3a6b4bda9759511e9b79a1">min</a>();</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>  maxPt = box.<a name="a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#a1dfdbea9d5560e4aa09d34bdbd82480c">max</a>();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordtype">double</span> bottomLeftFront[3] =     { minPt.<a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, minPt.<a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, minPt.<a name="a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line">    <span class="keywordtype">double</span> topLeftFront[3] =        { minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line">    <span class="keywordtype">double</span> bottomRightFront[3] =    { maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line">    <span class="keywordtype">double</span> topRightFront[3] =       { maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line">    <span class="keywordtype">double</span> bottomLeftBack[3] =      { minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line">    <span class="keywordtype">double</span> topLeftBack[3] =         { minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line">    <span class="keywordtype">double</span> bottomRightBack[3] =     { maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, minPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line">    <span class="keywordtype">double</span> topRightBack[3] =        { maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, maxPt.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> };</div>
-<div class="line"></div>
-<div class="line">    gGLFT-&gt;<a name="a17"></a>glMatrixMode( MGL_MODELVIEW );</div>
-<div class="line">    gGLFT-&gt;<a name="a18"></a>glPushMatrix();</div>
-<div class="line">    gGLFT-&gt;<a name="a19"></a>glMultMatrixd( &amp;(matrix.<a name="a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_matrix.html#a527b102f4eb0951cf4f391f828d3ca34">matrix</a>[0][0]) );</div>
-<div class="line"></div>
-<div class="line">    gGLFT-&gt;<a name="a21"></a>glBegin(MGL_LINE_STRIP);</div>
-<div class="line">    gGLFT-&gt;<a name="a22"></a>glVertex3dv( bottomLeftFront );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( bottomLeftBack );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( topLeftBack );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( topLeftFront );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( bottomLeftFront );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( bottomRightFront );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( bottomRightBack);</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( topRightBack );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( topRightFront );</div>
-<div class="line">    gGLFT-&gt;glVertex3dv( bottomRightFront );</div>
-<div class="line">    gGLFT-&gt;<a name="a23"></a>glEnd();</div>
-<div class="line"></div>
-<div class="line">    gGLFT-&gt;glBegin(MGL_LINES);</div>
-<div class="line">    gGLFT-&gt;glVertex3dv(bottomLeftBack);</div>
-<div class="line">    gGLFT-&gt;glVertex3dv(bottomRightBack);</div>
-<div class="line"></div>
-<div class="line">    gGLFT-&gt;glVertex3dv(topLeftBack);</div>
-<div class="line">    gGLFT-&gt;glVertex3dv(topRightBack);</div>
-<div class="line"></div>
-<div class="line">    gGLFT-&gt;glVertex3dv(topLeftFront);</div>
-<div class="line">    gGLFT-&gt;glVertex3dv(topRightFront);</div>
-<div class="line">    gGLFT-&gt;glEnd();</div>
-<div class="line"></div>
-<div class="line">    gGLFT-&gt;<a name="a24"></a>glPopMatrix();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    Draw a scene full of bounding boxes</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line"><span class="keywordtype">bool</span></div>
-<div class="line">MCustomSceneDraw::draw(<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> &amp;cameraPath, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (!cameraPath.<a name="a25"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a1da4467477df2e6955b9917434a94074">isValid</a>())</div>
-<div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"></div>
-<div class="line">    <a name="_a26"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html">MDrawTraversal</a> *trav = NULL;</div>
-<div class="line">    trav = <span class="keyword">new</span> MSurfaceDrawTraversal;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (!trav)</div>
-<div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"></div>
-<div class="line">    trav-&gt;<a name="a27"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#afb2ac0dd09dd73700a4258f091c04a1d">enableFiltering</a>( <span class="keyword">true</span> );</div>
-<div class="line">    trav-&gt;<a name="a28"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a54bc763b89ac8604bfd0a7c88c0044e1">setFrustum</a>( cameraPath, width, height );</div>
-<div class="line">    <span class="keywordflow">if</span> (!trav-&gt;<a name="a29"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a3560c3bd79408c8cd0615889d349c1b3">frustumValid</a>())</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> trav; trav = NULL;</div>
-<div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line">    }</div>
-<div class="line">    trav-&gt;<a name="a30"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a5f1630ceda51de2240591c5409cb3790">traverse</a>();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numItems = trav-&gt;<a name="a31"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a890a36866f5602d44153c818f81d8ef5">numberOfItems</a>();</div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i;</div>
-<div class="line">    <span class="keywordflow">for</span> (i=0; i&lt;numItems; i++)</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> path;</div>
-<div class="line">        trav-&gt;<a name="a32"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#ad398b50125777b1021b33f16584370a3">itemPath</a>(i, path);</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">if</span> (path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a1da4467477df2e6955b9917434a94074">isValid</a>())</div>
-<div class="line">        {</div>
-<div class="line">            <span class="keywordtype">bool</span> drawIt = <span class="keyword">false</span>;</div>
-<div class="line"></div>
-<div class="line">            <span class="comment">//</span></div>
-<div class="line">            <span class="comment">// Draw surfaces (polys, nurbs, subdivs)</span></div>
-<div class="line">            <span class="comment">//</span></div>
-<div class="line">            <span class="keywordflow">if</span> ( path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>) ||</div>
-<div class="line">                path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a016a93d2c00725d6ca8021dffbd2a0a8">MFn::kNurbsSurface</a>) ||</div>
-<div class="line">                path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a305a1a7e615931a31f8d932bb4f3a4c1">MFn::kSubdiv</a>) )</div>
-<div class="line">            {</div>
-<div class="line">                drawIt = <span class="keyword">true</span>;</div>
-<div class="line">                <span class="keywordflow">if</span> (trav-&gt;<a name="a33"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a372f897e3c752448f55cf1ab61f2bddf">itemHasStatus</a>( i, <a name="a34"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a726ca809ffd3d67ab4b8476646f26635aeb81f2660649dd45dbf8316826c2e96c">MDrawTraversal::kActiveItem</a> ))</div>
-<div class="line">                {</div>
-<div class="line">                    gGLFT-&gt;<a name="a35"></a>glColor3f( 1.0f, 1.0f, 1.0f );</div>
-<div class="line">                }</div>
-<div class="line">                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (trav-&gt;<a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a372f897e3c752448f55cf1ab61f2bddf">itemHasStatus</a>( i, <a name="a36"></a><a class="code" href="#!/url=./cpp_ref/class_m_draw_traversal.html#a726ca809ffd3d67ab4b8476646f26635a4c661de51d08a364ca2d91c38122e9e6">MDrawTraversal::kTemplateItem</a> ))</div>
-<div class="line">                {</div>
-<div class="line">                    gGLFT-&gt;glColor3f( 0.2f, 0.2f, 0.2f );</div>
-<div class="line">                }</div>
-<div class="line">                <span class="keywordflow">else</span></div>
-<div class="line">                {</div>
-<div class="line">                    <span class="keywordflow">if</span> (path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a> ))</div>
-<div class="line">                        gGLFT-&gt;glColor3f( 0.286f, 0.706f, 1.0f );</div>
-<div class="line">                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>( <a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a016a93d2c00725d6ca8021dffbd2a0a8">MFn::kNurbsSurface</a>))</div>
-<div class="line">                        gGLFT-&gt;glColor3f( 0.486f, 0.306f, 1.0f );</div>
-<div class="line">                    <span class="keywordflow">else</span></div>
-<div class="line">                        gGLFT-&gt;glColor3f( 0.886f, 0.206f, 1.0f );</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span> (drawIt)</div>
-<div class="line">            {</div>
-<div class="line">                <a name="_a37"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_dag_node.html">MFnDagNode</a> dagNode(path);</div>
-<div class="line">                <a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html">MBoundingBox</a> box = dagNode.boundingBox();</div>
-<div class="line">                drawBounds( path, box );</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (trav)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> trav;</div>
-<div class="line">        trav = NULL;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">//------------------------------------------------------------------------</span></div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">    Custom user operation</span></div>
-<div class="line"><span class="comment">*/</span></div>
-<div class="line">viewRenderUserOperation::viewRenderUserOperation(<span class="keyword">const</span> <a name="_a38"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> &amp;name)</div>
-<div class="line">: MUserRenderOperation( name )</div>
-<div class="line">, fDrawLabel(false)</div>
-<div class="line">, fUserCameraOverride(false)</div>
-<div class="line">, fDrawBoundingBoxes(false)</div>
-<div class="line">, fDebugLightingInfo(false)</div>
-<div class="line">, fDebugDrawContext(false)</div>
-<div class="line">, fEnableSRGBWriteFlag(false)</div>
-<div class="line">{</div>
-<div class="line">    <span class="comment">// 100 % of target size</span></div>
-<div class="line">    mViewRectangle[0] = 0.0f;</div>
-<div class="line">    mViewRectangle[1] = 0.0f;</div>
-<div class="line">    mViewRectangle[2] = 1.0f;</div>
-<div class="line">    mViewRectangle[3] = 1.0f;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line">viewRenderUserOperation::~viewRenderUserOperation()</div>
-<div class="line">{</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a name="_a39"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> viewRenderUserOperation::execute( <span class="keyword">const</span> <a name="_a40"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_draw_context.html">MHWRender::MDrawContext</a> &amp; drawContext )</div>
-<div class="line">{</div>
-<div class="line">    <span class="comment">// Sample code to debug pass information</span></div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> debugPassInformation = <span class="keyword">false</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> (debugPassInformation)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">const</span> <a name="_a41"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_pass_context.html">MHWRender::MPassContext</a> &amp; passCtx = drawContext.<a name="a42"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_draw_context.html#ad3f9422688a9ffbe815c374ece46c1ea">getPassContext</a>();</div>
-<div class="line">        <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> &amp; passId = passCtx.<a name="a43"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#ae90d4b4c8175e81800d8eb16ee126e1f">passIdentifier</a>();</div>
-<div class="line">        <span class="keyword">const</span> <a name="_a44"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html">MStringArray</a> &amp; passSem = passCtx.<a name="a45"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#a9737189d5cfffd795336d711a678d627">passSemantics</a>();</div>
-<div class="line">        printf(<span class="stringliteral">&quot;viewRenderUserOperation: drawing in pass[%s], semantic[&quot;</span>, passId.<a name="a46"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">asChar</a>());</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0; i&lt;passSem.<a name="a47"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); i++)</div>
-<div class="line">            printf(<span class="stringliteral">&quot; %s&quot;</span>, passSem[i].asChar());</div>
-<div class="line">        printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Example code to find the active override.</span></div>
-<div class="line">    <span class="comment">// This is not necessary if the operations just keep a reference</span></div>
-<div class="line">    <span class="comment">// to the override, but this demonstrates how this</span></div>
-<div class="line">    <span class="comment">// contextual information can be extracted.</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <a name="_a48"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_renderer.html">MHWRender::MRenderer</a> *theRenderer = <a name="a49"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_renderer.html#a4678a72ac6959ed21d422d27928d0343">MHWRender::MRenderer::theRenderer</a>();</div>
-<div class="line">    <span class="keyword">const</span> <a name="_a50"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_render_override.html">MHWRender::MRenderOverride</a> *overridePtr = NULL;</div>
-<div class="line">    <span class="keywordflow">if</span> (theRenderer)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> &amp; overrideName = theRenderer-&gt;<a name="a51"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_renderer.html#a68d4388b5455cb5f8eaa7913d6f8e2d6">activeRenderOverride</a>();</div>
-<div class="line">        overridePtr = theRenderer-&gt;<a name="a52"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_renderer.html#aa0cb03754b054ca048e0b9e6265b5e82">findRenderOverride</a>( overrideName );</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Some sample code to debug lighting information in the MDrawContext</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="keywordflow">if</span> (fDebugLightingInfo)</div>
-<div class="line">    {</div>
-<div class="line">        viewRenderOverrideUtilities::printDrawContextLightInfo( drawContext );</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Some sample code to debug other MDrawContext information</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="keywordflow">if</span> (fDebugDrawContext)</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_matrix.html">MMatrix</a> matrix = drawContext.<a name="a53"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_draw_context.html#a71cbe2a3f2dfa967ebc43b5e97456ccb">getMatrix</a>(<a name="a54"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_frame_context.html#acc6ad8472c2abfd2f63e100474b977f9abe06496227f48d6e05b7d410124b0f85">MHWRender::MFrameContext::kWorldMtx</a>, &amp;status);</div>
-<div class="line">        <span class="keywordtype">double</span> dest[4][4];</div>
-<div class="line">        status = matrix.<a name="a55"></a><a class="code" href="#!/url=./cpp_ref/class_m_matrix.html#afc8a36464bb71526e9d2bc0361f643cf">get</a>(dest);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;World matrix is:\n&quot;</span>);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;\t%f, %f, %f, %f\n&quot;</span>, dest[0][0], dest[0][1], dest[0][2], dest[0][3]);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;\t%f, %f, %f, %f\n&quot;</span>, dest[1][0], dest[1][1], dest[1][2], dest[1][3]);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;\t%f, %f, %f, %f\n&quot;</span>, dest[2][0], dest[2][1], dest[2][2], dest[2][3]);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;\t%f, %f, %f, %f\n&quot;</span>, dest[3][0], dest[3][1], dest[3][2], dest[3][3]);</div>
-<div class="line"></div>
-<div class="line">        <a name="_a56"></a><a class="code" href="#!/url=./cpp_ref/class_m_double_array.html">MDoubleArray</a> viewDirection = drawContext.<a name="a57"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_draw_context.html#a3a2746b602eb8dd543fa0a74497614d1">getTuple</a>(<a name="a58"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_frame_context.html#af164f32d9bda6829f1738ef3fb2c6670a227b592bc3c59e5855866b1d9f8c997b">MHWRender::MFrameContext::kViewDirection</a>, &amp;status);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;Viewdirection is: %f, %f, %f\n&quot;</span>, viewDirection[0], viewDirection[1], viewDirection[2]);</div>
-<div class="line"></div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html">MBoundingBox</a> box = drawContext.<a name="a59"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_draw_context.html#a7b75c194c2b51fa5f31eddef5ebddc41">getSceneBox</a>(&amp;status);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;Screen box is:\n&quot;</span>);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;\twidth=%f, height=%f, depth=%f\n&quot;</span>, box.<a name="a60"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#a6cddcbf72c80144aa2e6501abb150c30">width</a>(), box.<a name="a61"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#afa7750092d5dcf402c83fb5adba91453">height</a>(), box.<a name="a62"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#a65c72a51aba9fc4233b58751dd712e43">depth</a>());</div>
-<div class="line">        <span class="keywordtype">float</span> center[4];</div>
-<div class="line">        box.<a name="a63"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#a329b58fadcbe4f236bfbb0887253fdc7">center</a>().<a name="a64"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#aa54ebbec9252a61bd66cdd442bc5758a">get</a>(center);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;\tcenter=(%f, %f, %f, %f)\n&quot;</span>, center[0], center[1], center[2], center[3]);</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line">        <span class="keywordtype">int</span> originX, originY, width, height;</div>
-<div class="line">        status = drawContext.<a name="a65"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_draw_context.html#a7cd3b2dca6e4f8f4641b587bc642b08e">getViewportDimensions</a>(originX, originY, width, height);</div>
-<div class="line">        printf(<span class="stringliteral">&quot;Viewport dimension: center(%d, %d), width=%d, heigh=%d\n&quot;</span>, originX, originY, width, height);</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//  Draw some addition things for scene draw</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <a name="_a66"></a><a class="code" href="#!/url=./cpp_ref/class_m3d_view.html">M3dView</a> mView;</div>
-<div class="line">    <span class="keywordflow">if</span> (mPanelName.length() &amp;&amp;</div>
-<div class="line">        (<a name="a67"></a><a class="code" href="#!/url=./cpp_ref/class_m3d_view.html#a6f8dcac6993b14738fc6259cfd50a3b8">M3dView::getM3dViewFromModelPanel</a>(mPanelName, mView) == <a name="a68"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>))</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">// Get the current viewport and scale it relative to that</span></div>
-<div class="line">        <span class="comment">//</span></div>
-<div class="line">        <span class="keywordtype">int</span> targetW, targetH;</div>
-<div class="line">        drawContext.<a name="a69"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_draw_context.html#a84f8e099a466341238b4b4e40cde4167">getRenderTargetSize</a>( targetW, targetH );</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">if</span> (fDrawLabel)</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> testString(<span class="stringliteral">&quot;Drawing with override: &quot;</span>);</div>
-<div class="line">            testString += overridePtr-&gt;<a name="a70"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_render_override.html#ac556578d6219804b38b9387f8c344ef7">name</a>();</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a> pos(0.0,0.0,0.0);</div>
-<div class="line">            glColor3f( 1.0f, 1.0f, 1.0f );</div>
-<div class="line">            mView.<a name="a71"></a><a class="code" href="#!/url=./cpp_ref/class_m3d_view.html#a1d533091a31a590ee4599fde04fa65d7">drawText</a>( testString, pos);</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <span class="comment">// Some user drawing of scene bounding boxes</span></div>
-<div class="line">        <span class="comment">//</span></div>
-<div class="line">        <span class="keywordflow">if</span> (fDrawBoundingBoxes)</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> cameraPath;</div>
-<div class="line">            mView.<a name="a72"></a><a class="code" href="#!/url=./cpp_ref/class_m3d_view.html#a5e6ea41ec1bab5ed980b2ddffe398a73">getCamera</a>( cameraPath);</div>
-<div class="line">            MCustomSceneDraw userDraw;</div>
-<div class="line">            userDraw.draw( cameraPath, targetW, targetH );</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// Camera override</span></div>
-<div class="line"><span class="keyword">const</span> <a name="_a73"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_camera_override.html">MHWRender::MCameraOverride</a> *</div>
-<div class="line">    viewRenderUserOperation::cameraOverride()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (fUserCameraOverride)</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m3d_view.html">M3dView</a> mView;</div>
-<div class="line">        <span class="keywordflow">if</span> (mPanelName.length() &amp;&amp;</div>
-<div class="line">            (<a class="code" href="#!/url=./cpp_ref/class_m3d_view.html#a6f8dcac6993b14738fc6259cfd50a3b8">M3dView::getM3dViewFromModelPanel</a>(mPanelName, mView) == <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>))</div>
-<div class="line">        {</div>
-<div class="line">            mView.<a class="code" href="#!/url=./cpp_ref/class_m3d_view.html#a5e6ea41ec1bab5ed980b2ddffe398a73">getCamera</a>( mCameraOverride.mCameraPath );</div>
-<div class="line">            <span class="keywordflow">return</span> &amp;mCameraOverride;</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> NULL;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// Target override</span></div>
-<div class="line"><a name="_a74"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_render_target.html">MHWRender::MRenderTarget</a>* <span class="keyword">const</span>*</div>
-<div class="line">viewRenderUserOperation::targetOverrideList(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;listSize)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (mTargets)</div>
-<div class="line">    {</div>
-<div class="line">        listSize = 2;</div>
-<div class="line">        <span class="keywordflow">return</span> &amp;mTargets[kMyColorTarget];</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> NULL;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// sRGB write enable</span></div>
-<div class="line"><span class="keywordtype">bool</span> viewRenderUserOperation::enableSRGBWrite()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> fEnableSRGBWriteFlag;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">bool</span> viewRenderUserOperation::hasUIDrawables()<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword"></span>{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> viewRenderUserOperation::addUIDrawables(</div>
-<div class="line">    <a name="_a75"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html">MHWRender::MUIDrawManager</a>&amp; drawManager,</div>
-<div class="line">    <span class="keyword">const</span> <a name="_a76"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_frame_context.html">MHWRender::MFrameContext</a>&amp; frameContext )</div>
-<div class="line">{</div>
-<div class="line">    drawManager.<a name="a77"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#aa3e12e98018e4dfda0e166d9ec8094b0">beginDrawable</a>();</div>
-<div class="line"></div>
-<div class="line">    drawManager.<a name="a78"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#a9baede3e37abe9551e50a8c6be65ec4d">setColor</a>( <a name="_a79"></a><a class="code" href="#!/url=./cpp_ref/class_m_color.html">MColor</a>( 0.95f, 0.5f, 0.1f ) );</div>
-<div class="line">    drawManager.<a name="a80"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#a334e4280e5ddd4653c69f9703b5dd3b4">text</a>( <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>( 0, 2, 0 ), <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>(<span class="stringliteral">&quot;UI draw test in user operation&quot;</span>) );</div>
-<div class="line">    drawManager.<a name="a81"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#abe48ac82aa2ede6d0efd3c9cfadb068c">line</a>( <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>( 0, 0, 0), <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>( 0, 2, 0 ) );</div>
-<div class="line">    drawManager.<a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#a9baede3e37abe9551e50a8c6be65ec4d">setColor</a>( <a class="code" href="#!/url=./cpp_ref/class_m_color.html">MColor</a>( 1.0f, 1.0f, 1.0f ) );</div>
-<div class="line">    drawManager.<a name="a82"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#a3c2219cf077b63cbf547d305ba58fe29">sphere</a>(  <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>( 0, 2, 0 ), 0.8, <span class="keyword">false</span> );</div>
-<div class="line">    drawManager.<a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#a9baede3e37abe9551e50a8c6be65ec4d">setColor</a>( <a class="code" href="#!/url=./cpp_ref/class_m_color.html">MColor</a>( 0.95f, 0.5f, 0.1f, 0.4f ) );</div>
-<div class="line">    drawManager.<a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#a3c2219cf077b63cbf547d305ba58fe29">sphere</a>(  <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>( 0, 2, 0 ), 0.8, <span class="keyword">true</span> );</div>
-<div class="line">    drawManager.<a name="a83"></a><a class="code" href="#!/url=./cpp_ref/class_m_h_w_render_1_1_m_u_i_draw_manager.html#a78c343c25a05be7e46dd4b7ebab82ff6">endDrawable</a>();</div>
-<div class="line">}</div>
-<div class="line"></div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

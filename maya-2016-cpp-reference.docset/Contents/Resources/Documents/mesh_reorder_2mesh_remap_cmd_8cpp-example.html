@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>meshReorder/meshRemapCmd.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          meshReorder/meshRemapCmd.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,539 +73,2500 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>meshReorder/meshRemapCmd.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          meshReorder/meshRemapCmd.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            meshReorder/meshRemapCmd.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "meshMapUtils.h"
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "meshRemapCmd.h"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MArgList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MDagPathArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnMesh.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItSelectionList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItMeshPolygon.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MObjectArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPlug.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MStatus.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CONSTRUCTOR DEFINITION:
+            </span>
+           </div>
+           <div class="line">
+            meshRemapCommand::meshRemapCommand()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fColorArrays = NULL;
+           </div>
+           <div class="line">
+            fRepArray = NULL;
+           </div>
+           <div class="line">
+            fClampedArray = NULL;
+           </div>
+           <div class="line">
+            fUArrays = NULL;
+           </div>
+           <div class="line">
+            fVArrays = NULL;
+           </div>
+           <div class="line">
+            fUVCountsArrays = NULL;
+           </div>
+           <div class="line">
+            fUVIdsArrays = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DESTRUCTOR DEFINITION:
+            </span>
+           </div>
+           <div class="line">
+            meshRemapCommand::~meshRemapCommand()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // METHOD FOR CREATING AN INSTANCE OF THIS COMMAND:
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            * meshRemapCommand::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            meshRemapCommand;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            meshRemapCommand::parseArgs(
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_arg_list.html">
+             MArgList
+            </a>
+            &amp; args)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a2">
+            </a>
+            <a class="code" href="./class_m_selection_list.html">
+             MSelectionList
+            </a>
+            list;
+           </div>
+           <div class="line">
+            <a name="_a3">
+            </a>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            err;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a name="a4">
+            </a>
+            <a class="code" href="./class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">
+             length
+            </a>
+            () != 6 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "6 vertices must be specified"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a5">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            argIdx = 0;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            i = 0; i &lt; 2; i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a6">
+            </a>
+            <a class="code" href="./class_m_object_array.html">
+             MObjectArray
+            </a>
+            selectedComponent(3);
+           </div>
+           <div class="line">
+            <a name="_a7">
+            </a>
+            <a class="code" href="./class_m_dag_path_array.html">
+             MDagPathArray
+            </a>
+            selectedPath;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            selectedPath.
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_dag_path_array.html#a8c66dfa06f3736b2a214c5aed58bd216">
+             setLength
+            </a>
+            (3);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            j = 0; j &lt; 3; j++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            arg;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( ( stat = args.
+            <a name="a9">
+            </a>
+            <a class="code" href="./class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">
+             get
+            </a>
+            ( argIdx, arg )) !=
+            <a name="a10">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "Can't parse arg"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            list.
+            <a name="a11">
+            </a>
+            <a class="code" href="./class_m_selection_list.html#ad5522f028dde0080b753279426415a4a">
+             clear
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (! list.
+            <a name="a12">
+            </a>
+            <a class="code" href="./class_m_selection_list.html#a23929aeafb29672f2652128eac9c4dec">
+             add
+            </a>
+            ( arg ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            err = arg +
+            <span class="stringliteral">
+             ": no such component"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            displayError(err);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+            <span class="comment">
+             // no such component
+            </span>
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a13">
+            </a>
+            <a class="code" href="./class_m_it_selection_list.html">
+             MItSelectionList
+            </a>
+            selectionIt (list,
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a02fee4c0e0e6f1b7ab7a678d61627461">
+             MFn::kComponent
+            </a>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (selectionIt.isDone ())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            err = arg +
+            <span class="stringliteral">
+             ": not a component"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            displayError (err);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( selectionIt.getDagPath (selectedPath[j], selectedComponent[j]) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "Can't get path for"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!selectedPath[j].node().hasFn(
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ) &amp;&amp; !(selectedPath[j].node().hasFn(
+            <a name="a16">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7adafa274206df602835f0f22ae887e126">
+             MFn::kTransform
+            </a>
+            ) &amp;&amp; selectedPath[j].hasFn(
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            )))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            err = arg +
+            <span class="stringliteral">
+             ": Invalid type!  Only a mesh or its transform can be specified!"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            displayError (err);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MStatus::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            argIdx++;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( i == 0 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( ( stat = meshMapUtils::validateFaceSelection( selectedPath, selectedComponent, &amp;fFaceIdxSrc, &amp;fFaceVtxSrc ) ) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "Selected vertices don't define a unique face on source mesh"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fDagPathSrc = selectedPath[0];
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( ( stat = meshMapUtils::validateFaceSelection( selectedPath, selectedComponent, &amp;fFaceIdxDst, &amp;fFaceVtxDst ) ) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "Selected vertices don't define a unique face on target mesh"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fDagPathDst = selectedPath[0];
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fDagPathSrc == fDagPathDst )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "Cannot use one mesh for both source and target"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // FIRST INVOKED WHEN COMMAND IS CALLED, PARSING THE COMMAND ARGUMENTS, INITIALIZING DEFAULT PARAMETERS, THEN CALLING redoIt():
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            meshRemapCommand::doIt(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_arg_list.html">
+             MArgList
+            </a>
+            &amp; args)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat =
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( ( stat = parseArgs( args ) ) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError (
+            <span class="stringliteral">
+             "Error parsing arguments"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            redoIt();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            meshRemapCommand::redoIt()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            i;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat =
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fDagPathDst.extendToShape();
+           </div>
+           <div class="line">
+            <a name="_a17">
+            </a>
+            <a class="code" href="./class_m_fn_mesh.html">
+             MFnMesh
+            </a>
+            theMeshDst( fDagPathDst, &amp;stat );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             " MFnMesh creation"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  The destination mesh cannot have history or else this won't work.
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a18">
+            </a>
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            historyPlug = theMeshDst.findPlug(
+            <span class="stringliteral">
+             "inMesh"
+            </span>
+            ,
+            <span class="keyword">
+             true
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (historyPlug.
+            <a name="a19">
+            </a>
+            <a class="code" href="./class_m_plug.html#a2914a42ceb556760af045852f1f57a08">
+             isDestination
+            </a>
+            ()) {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "The destination mesh has history. Its geometry cannot be modified."
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a20">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af8c5f748892ec74b32719c8fba7767e1">
+             MS::kInvalidParameter
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fDagPathSrc.extendToShape();
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_mesh.html">
+             MFnMesh
+            </a>
+            theMeshSrc( fDagPathSrc, &amp;stat );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             " MFnMesh creation"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a21">
+            </a>
+            <a class="code" href="./class_m_float_point_array.html">
+             MFloatPointArray
+            </a>
+            origVertices;
+           </div>
+           <div class="line">
+            stat = theMeshSrc.getPoints (origVertices,
+            <a name="a22">
+            </a>
+            <a class="code" href="./class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">
+             MSpace::kObject
+            </a>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             " MFnMesh getPoints"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Traverse the source
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Initialize the traversal flags and CV mappings for this shape
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a23">
+            </a>
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            faceTraversal( theMeshSrc.numPolygons(), false );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            cvMapping( theMeshSrc.numVertices(), -1 );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            cvMappingInverse( theMeshSrc.numVertices(), -1 );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  Starting with the user selected face, recursively rebuild the entire mesh
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            newPolygonCounts;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            newPolygonConnects;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_float_point_array.html">
+             MFloatPointArray
+            </a>
+            newVertices;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            stat = meshMapUtils::traverseFace( fDagPathSrc, fFaceIdxSrc, fFaceVtxSrc[0], fFaceVtxSrc[1], faceTraversal,
+           </div>
+           <div class="line">
+            cvMapping, cvMappingInverse,
+           </div>
+           <div class="line">
+            newPolygonCounts, newPolygonConnects,
+           </div>
+           <div class="line">
+            origVertices, newVertices );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             " could not process all the mesh faces."
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // reuse newPolygonCounts and newPolygonConnects for the src mesh.
+            </span>
+           </div>
+           <div class="line">
+            newPolygonCounts.
+            <a name="a24">
+            </a>
+            <a class="code" href="./class_m_status.html#ac8bb3912a3ce86b15842e79d0b421204">
+             clear
+            </a>
+            ();
+           </div>
+           <div class="line">
+            newPolygonConnects.
+            <a name="a25">
+            </a>
+            <a class="code" href="./class_m_int_array.html#ad5522f028dde0080b753279426415a4a">
+             clear
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a name="_a26">
+            </a>
+            <a class="code" href="./class_m_it_mesh_polygon.html">
+             MItMeshPolygon
+            </a>
+            polyIter(fDagPathSrc.node());
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             while
+            </span>
+            (!polyIter.isDone())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            newPolygonCounts.append(polyIter.polygonVertexCount());
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; (int) polyIter.polygonVertexCount(); i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            newPolygonConnects.
+            <a name="a27">
+            </a>
+            <a class="code" href="./class_m_int_array.html#a11568087ac2ca16f4106cee62f65afd7">
+             append
+            </a>
+            (polyIter.vertexIndex(i));
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            polyIter.next();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Now, traverse the destination
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_float_point_array.html">
+             MFloatPointArray
+            </a>
+            origVerticesDst;
+           </div>
+           <div class="line">
+            stat = theMeshDst.getPoints (origVerticesDst,
+            <a class="code" href="./class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">
+             MSpace::kObject
+            </a>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             " MFnMesh getPoints"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Initialize the traversal flags and CV mappings for this shape
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            faceTraversalDst( theMeshDst.numPolygons(), false );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            cvMappingDst( theMeshDst.numVertices(), -1 );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            cvMappingInverseDst( theMeshDst.numVertices(), -1 );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  Starting with the user selected face, recursively rebuild the entire mesh
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            newPolygonCountsDst;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            newPolygonConnectsDst;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_float_point_array.html">
+             MFloatPointArray
+            </a>
+            newVerticesDst;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            stat = meshMapUtils::traverseFace( fDagPathDst, fFaceIdxDst, fFaceVtxDst[0], fFaceVtxDst[1], faceTraversalDst,
+           </div>
+           <div class="line">
+            cvMappingDst, cvMappingInverseDst,
+           </div>
+           <div class="line">
+            newPolygonCountsDst, newPolygonConnectsDst,
+           </div>
+           <div class="line">
+            origVerticesDst, newVerticesDst );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             " could not process all the mesh faces."
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use the generated maps to build a new CV list that will remap
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // the destination to the source topology
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( i = 0; i &lt; theMeshDst.numVertices(); i++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            newVerticesDst[cvMappingInverse[i]] = origVerticesDst[cvMappingInverseDst[i]];
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Prepare for undo. Must collect the mesh information here before it is modified by createInPlace() call.
+            </span>
+           </div>
+           <div class="line">
+            fVertices.
+            <a name="a28">
+            </a>
+            <a class="code" href="./class_m_float_point_array.html#a8f5d4395b360d005e75b33c67c0894a6">
+             copy
+            </a>
+            (origVerticesDst);
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_it_mesh_polygon.html">
+             MItMeshPolygon
+            </a>
+            polyIterDst(fDagPathDst.node());
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             while
+            </span>
+            (!polyIterDst.isDone())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fPolygonCounts.append(polyIterDst.polygonVertexCount());
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; (int)polyIterDst.polygonVertexCount(); i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fPolygonConnects.append(polyIterDst.vertexIndex(i));
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            polyIterDst.
+            <a name="a29">
+            </a>
+            <a class="code" href="./class_m_it_mesh_polygon.html#a73616f002814b8abe6d921db72d7a496">
+             next
+            </a>
+            ();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Store Colors for undo
+            </span>
+           </div>
+           <div class="line">
+            fColorSetNames.
+            <a class="code" href="./class_m_status.html#ac8bb3912a3ce86b15842e79d0b421204">
+             clear
+            </a>
+            ();
+           </div>
+           <div class="line">
+            theMeshDst.getColorSetNames(fColorSetNames);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            numColorSets = fColorSetNames.length();
+           </div>
+           <div class="line">
+            fClampedArray =
+            <span class="keyword">
+             new
+            </span>
+            <span class="keywordtype">
+             bool
+            </span>
+            [numColorSets];
+           </div>
+           <div class="line">
+            fRepArray =
+            <span class="keyword">
+             new
+            </span>
+            <a class="code" href="./class_m_fn_mesh.html#a80dc8673cdbdbb813c71dfa32e0643f2">
+             MFnMesh::MColorRepresentation
+            </a>
+            [numColorSets];
+           </div>
+           <div class="line">
+            fColorArrays =
+            <span class="keyword">
+             new
+            </span>
+            <a name="_a30">
+            </a>
+            <a class="code" href="./class_m_color_array.html">
+             MColorArray
+            </a>
+            [numColorSets];
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( i = 0; i &lt; numColorSets; i++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fClampedArray[i] = theMeshDst.isColorClamped(fColorSetNames[i]);
+           </div>
+           <div class="line">
+            fRepArray[i] = theMeshDst.getColorRepresentation(fColorSetNames[i]);
+           </div>
+           <div class="line">
+            theMeshDst.getVertexColors(fColorArrays[i], &amp;(fColorSetNames[i]));
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Store UVs for undo
+            </span>
+           </div>
+           <div class="line">
+            fUVSetNames.
+            <a name="a31">
+            </a>
+            <a class="code" href="./class_m_color_array.html#ad5522f028dde0080b753279426415a4a">
+             clear
+            </a>
+            ();
+           </div>
+           <div class="line">
+            theMeshDst.getUVSetNames(fUVSetNames);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            numUVSets = fUVSetNames.length();
+           </div>
+           <div class="line">
+            fUArrays =
+            <span class="keyword">
+             new
+            </span>
+            <a name="_a32">
+            </a>
+            <a class="code" href="./class_m_float_array.html">
+             MFloatArray
+            </a>
+            [numUVSets];
+           </div>
+           <div class="line">
+            fVArrays =
+            <span class="keyword">
+             new
+            </span>
+            <a class="code" href="./class_m_float_array.html">
+             MFloatArray
+            </a>
+            [numUVSets];
+           </div>
+           <div class="line">
+            fUVIdsArrays =
+            <span class="keyword">
+             new
+            </span>
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            [numUVSets];
+           </div>
+           <div class="line">
+            fUVCountsArrays =
+            <span class="keyword">
+             new
+            </span>
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            [numUVSets];
+           </div>
+           <div class="line">
+            fUVIdsArrays =
+            <span class="keyword">
+             new
+            </span>
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            [numUVSets];
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( i = 0; i &lt; numUVSets; i++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            theMeshDst.getAssignedUVs(fUVCountsArrays[i], fUVIdsArrays[i], &amp;(fUVSetNames[i]));
+           </div>
+           <div class="line">
+            theMeshDst.getUVs(fUArrays[i], fVArrays[i], &amp;(fUVSetNames[i]));
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  Create the mesh. The old approach of using copyInPlace is doing referenced counting of the mesh, which is
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  not what we want and has caused strange problem, i.e. reorder not working on a remapped mesh.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            stat = theMeshDst.createInPlace( newVerticesDst.
+            <a name="a33">
+            </a>
+            <a class="code" href="./class_m_float_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (), newPolygonCounts.length(), newVerticesDst, newPolygonCounts, newPolygonConnects );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             " mesh copy failed."
+            </span>
+            );
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copy Colors from src to dst mesh
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a34">
+            </a>
+            <a class="code" href="./class_m_string_array.html">
+             MStringArray
+            </a>
+            colorSetNamesSrc;
+           </div>
+           <div class="line">
+            theMeshSrc.getColorSetNames(colorSetNamesSrc);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            numColorSetsSrc = colorSetNamesSrc.
+            <a name="a35">
+            </a>
+            <a class="code" href="./class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; numColorSetsSrc; i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            mapping(fVertices.length());;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (i == 0)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             unsigned
+            </span>
+            j = 0; j &lt; fVertices.length(); j++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            mapping[j] = j;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_color_array.html">
+             MColorArray
+            </a>
+            colorArraySrc;
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            clampedSrc;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_mesh.html#a80dc8673cdbdbb813c71dfa32e0643f2">
+             MFnMesh::MColorRepresentation
+            </a>
+            repSrc;
+           </div>
+           <div class="line">
+            clampedSrc = theMeshSrc.isColorClamped(colorSetNamesSrc[i]);
+           </div>
+           <div class="line">
+            repSrc = theMeshSrc.getColorRepresentation(colorSetNamesSrc[i]);
+           </div>
+           <div class="line">
+            theMeshSrc.getVertexColors(colorArraySrc, &amp;(colorSetNamesSrc[i]));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            theMeshDst.createColorSet(colorSetNamesSrc[i], NULL, clampedSrc, repSrc);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (colorArraySrc.
+            <a name="a36">
+            </a>
+            <a class="code" href="./class_m_color_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () &gt; 0 &amp;&amp; colorArraySrc.
+            <a class="code" href="./class_m_color_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () == fVertices.length())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            theMeshDst.setVertexColors(colorArraySrc, mapping, NULL, repSrc);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copy UVs from src to dst mesh
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string_array.html">
+             MStringArray
+            </a>
+            uvSetNamesSrc;
+           </div>
+           <div class="line">
+            theMeshSrc.getUVSetNames(uvSetNamesSrc);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            numUVSetsSrc = uvSetNamesSrc.
+            <a class="code" href="./class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            defaultUVSetName;
+           </div>
+           <div class="line">
+            theMeshDst.getCurrentUVSetName(defaultUVSetName);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; numUVSetsSrc; i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_float_array.html">
+             MFloatArray
+            </a>
+            uArraySrc;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_float_array.html">
+             MFloatArray
+            </a>
+            vArraySrc;
+           </div>
+           <div class="line">
+            theMeshSrc.getUVs(uArraySrc, vArraySrc, &amp;(uvSetNamesSrc[i]));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (uvSetNamesSrc[i] != defaultUVSetName)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            theMeshDst.createUVSet(uvSetNamesSrc[i]);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (uArraySrc.
+            <a name="a37">
+            </a>
+            <a class="code" href="./class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () &gt; 0 &amp;&amp; uArraySrc.
+            <a class="code" href="./class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () == vArraySrc.
+            <a class="code" href="./class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            theMeshDst.setUVs(uArraySrc, vArraySrc, &amp;(uvSetNamesSrc[i]));
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            uvCounts;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            uvIds;
+           </div>
+           <div class="line">
+            theMeshSrc.getAssignedUVs(uvCounts, uvIds, &amp;(uvSetNamesSrc[i]));
+           </div>
+           <div class="line">
+            theMeshDst.assignUVs(uvCounts, uvIds, &amp;(uvSetNamesSrc[i]));
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            meshRemapCommand::undoIt()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            i;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat =
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_mesh.html">
+             MFnMesh
+            </a>
+            theMesh( fDagPathDst );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            stat = theMesh.createInPlace( fVertices.length(), fPolygonCounts.length(), fVertices, fPolygonCounts, fPolygonConnects );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Restore Colors from cached data for undo
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            numColorSets = fColorSetNames.length();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; numColorSets; i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            mapping(fVertices.length());;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (i == 0)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             unsigned
+            </span>
+            j = 0; j &lt; fVertices.length(); j++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            mapping[j] = j;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            theMesh.createColorSet(fColorSetNames[i], NULL, fClampedArray[i], fRepArray[i]);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fColorArrays[i].length() &gt; 0 &amp;&amp; fColorArrays[i].length() == fVertices.length())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            theMesh.setVertexColors(fColorArrays[i], mapping, NULL, fRepArray[i]);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Restore UVs from cached data for undo
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            numUVSets = fUVSetNames.
+            <a name="a38">
+            </a>
+            <a class="code" href="./class_m_int_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            defaultUVSetName;
+           </div>
+           <div class="line">
+            theMesh.getCurrentUVSetName(defaultUVSetName);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; numUVSets; i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fUVSetNames[i] != defaultUVSetName)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            theMesh.createUVSet(fUVSetNames[i]);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fUArrays[i].length() &gt; 0 &amp;&amp; fUArrays[i].length() == fVArrays[i].length())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            theMesh.setUVs(fUArrays[i], fVArrays[i], &amp;(fUVSetNames[i]));
+           </div>
+           <div class="line">
+            theMesh.assignUVs(fUVCountsArrays[i], fUVIdsArrays[i], &amp;(fUVSetNames[i]));
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            meshRemapCommand::reset()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fVertices.
+            <a class="code" href="./class_m_status.html#ac8bb3912a3ce86b15842e79d0b421204">
+             clear
+            </a>
+            ();
+           </div>
+           <div class="line">
+            fPolygonCounts.clear();
+           </div>
+           <div class="line">
+            fPolygonConnects.clear();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fColorSetNames.clear();
+           </div>
+           <div class="line">
+            fUVSetNames.clear();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fClampedArray != NULL)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            [] fClampedArray;
+           </div>
+           <div class="line">
+            fClampedArray = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fRepArray != NULL)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            [] fRepArray;
+           </div>
+           <div class="line">
+            fRepArray = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fUArrays != NULL)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            [] fUArrays;
+           </div>
+           <div class="line">
+            fUArrays = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fVArrays != NULL)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            [] fVArrays;
+           </div>
+           <div class="line">
+            fVArrays = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fColorArrays != NULL)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            [] fColorArrays;
+           </div>
+           <div class="line">
+            fColorArrays = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fUVCountsArrays != NULL)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            [] fUVCountsArrays;
+           </div>
+           <div class="line">
+            fUVCountsArrays = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fUVIdsArrays != NULL)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             delete
+            </span>
+            [] fUVIdsArrays;
+           </div>
+           <div class="line">
+            fUVIdsArrays = NULL;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">meshReorder/meshRemapCmd.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &quot;meshMapUtils.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;meshRemapCmd.h&quot;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MArgList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MDagPathArray.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnMesh.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItSelectionList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItMeshPolygon.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MObjectArray.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPlug.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MStatus.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// CONSTRUCTOR DEFINITION:</span></div>
-<div class="line">meshRemapCommand::meshRemapCommand()</div>
-<div class="line">{</div>
-<div class="line">    fColorArrays = NULL;</div>
-<div class="line">    fRepArray = NULL;</div>
-<div class="line">    fClampedArray = NULL;</div>
-<div class="line">    fUArrays = NULL;</div>
-<div class="line">    fVArrays = NULL;</div>
-<div class="line">    fUVCountsArrays = NULL;</div>
-<div class="line">    fUVIdsArrays = NULL;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// DESTRUCTOR DEFINITION:</span></div>
-<div class="line">meshRemapCommand::~meshRemapCommand()</div>
-<div class="line">{</div>
-<div class="line">    reset();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// METHOD FOR CREATING AN INSTANCE OF THIS COMMAND:</span></div>
-<div class="line"><span class="keywordtype">void</span>* meshRemapCommand::creator()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> meshRemapCommand;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> meshRemapCommand::parseArgs(<span class="keyword">const</span> <a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html">MArgList</a>&amp; args)</div>
-<div class="line">{</div>
-<div class="line">    <a name="_a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_selection_list.html">MSelectionList</a> list;</div>
-<div class="line">    <a name="_a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> err;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> stat; </div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span>( args.<a name="a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">length</a>() != 6 )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot;6 vertices must be specified&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a name="a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordtype">int</span> argIdx = 0;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; 2; i++)</div>
-<div class="line">    {</div>
-<div class="line">        <a name="_a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_object_array.html">MObjectArray</a> selectedComponent(3);</div>
-<div class="line">        <a name="_a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path_array.html">MDagPathArray</a> selectedPath;</div>
-<div class="line"></div>
-<div class="line">        selectedPath.<a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path_array.html#a8c66dfa06f3736b2a214c5aed58bd216">setLength</a>(3);</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = 0; j &lt; 3; j++)</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> arg;</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span>( ( stat = args.<a name="a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">get</a>( argIdx, arg )) != <a name="a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">            {</div>
-<div class="line">                displayError( <span class="stringliteral">&quot;Can&#39;t parse arg&quot;</span>);</div>
-<div class="line">                <span class="keywordflow">return</span> stat;</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            list.<a name="a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_selection_list.html#ad5522f028dde0080b753279426415a4a">clear</a>();   </div>
-<div class="line">            <span class="keywordflow">if</span> (! list.<a name="a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_selection_list.html#a23929aeafb29672f2652128eac9c4dec">add</a>( arg ) )</div>
-<div class="line">            {</div>
-<div class="line">                err = arg + <span class="stringliteral">&quot;: no such component&quot;</span>;</div>
-<div class="line">                displayError(err);</div>
-<div class="line">                <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>; <span class="comment">// no such component</span></div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            <a name="_a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_selection_list.html">MItSelectionList</a> selectionIt (list, <a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a02fee4c0e0e6f1b7ab7a678d61627461">MFn::kComponent</a>);</div>
-<div class="line">            <span class="keywordflow">if</span> (selectionIt.isDone ())</div>
-<div class="line">            {</div>
-<div class="line">                err = arg + <span class="stringliteral">&quot;: not a component&quot;</span>;</div>
-<div class="line">                displayError (err);</div>
-<div class="line">                <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span>( selectionIt.getDagPath (selectedPath[j], selectedComponent[j]) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">            {</div>
-<div class="line">                displayError( <span class="stringliteral">&quot;Can&#39;t get path for&quot;</span>);</div>
-<div class="line">                <span class="keywordflow">return</span> stat;</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span> (!selectedPath[j].node().hasFn(<a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>) &amp;&amp; !(selectedPath[j].node().hasFn(<a name="a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7adafa274206df602835f0f22ae887e126">MFn::kTransform</a>) &amp;&amp; selectedPath[j].hasFn(<a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>)))</div>
-<div class="line">            {</div>
-<div class="line">                err = arg + <span class="stringliteral">&quot;: Invalid type!  Only a mesh or its transform can be specified!&quot;</span>;</div>
-<div class="line">                displayError (err);</div>
-<div class="line">                <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MStatus::kFailure</a>;</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            argIdx++;</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">if</span>( i == 0 )</div>
-<div class="line">        {</div>
-<div class="line">            <span class="keywordflow">if</span>( ( stat = meshMapUtils::validateFaceSelection( selectedPath, selectedComponent, &amp;fFaceIdxSrc, &amp;fFaceVtxSrc ) ) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">            {</div>
-<div class="line">                displayError(<span class="stringliteral">&quot;Selected vertices don&#39;t define a unique face on source mesh&quot;</span>);</div>
-<div class="line">                <span class="keywordflow">return</span> stat;</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            fDagPathSrc = selectedPath[0];</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span></div>
-<div class="line">        {</div>
-<div class="line">            <span class="keywordflow">if</span>( ( stat = meshMapUtils::validateFaceSelection( selectedPath, selectedComponent, &amp;fFaceIdxDst, &amp;fFaceVtxDst ) ) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">            {</div>
-<div class="line">                displayError(<span class="stringliteral">&quot;Selected vertices don&#39;t define a unique face on target mesh&quot;</span>);</div>
-<div class="line">                <span class="keywordflow">return</span> stat;</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            fDagPathDst = selectedPath[0];</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span>( fDagPathSrc == fDagPathDst )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot;Cannot use one mesh for both source and target&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// FIRST INVOKED WHEN COMMAND IS CALLED, PARSING THE COMMAND ARGUMENTS, INITIALIZING DEFAULT PARAMETERS, THEN CALLING redoIt():</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> meshRemapCommand::doIt(<span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html">MArgList</a>&amp; args)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>  stat = <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> ( ( stat = parseArgs( args ) ) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError (<span class="stringliteral">&quot;Error parsing arguments&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> redoIt();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> meshRemapCommand::redoIt()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">int</span> i;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>  stat = <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line">    </div>
-<div class="line">    fDagPathDst.extendToShape();</div>
-<div class="line">    <a name="_a17"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_mesh.html">MFnMesh</a> theMeshDst( fDagPathDst, &amp;stat );</div>
-<div class="line">    <span class="keywordflow">if</span>( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot; MFnMesh creation&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//  The destination mesh cannot have history or else this won&#39;t work.</span></div>
-<div class="line">    <a name="_a18"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a>   historyPlug = theMeshDst.findPlug(<span class="stringliteral">&quot;inMesh&quot;</span>, <span class="keyword">true</span>);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (historyPlug.<a name="a19"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a2914a42ceb556760af045852f1f57a08">isDestination</a>()) {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot;The destination mesh has history. Its geometry cannot be modified.&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a name="a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af8c5f748892ec74b32719c8fba7767e1">MS::kInvalidParameter</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    fDagPathSrc.extendToShape();</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_mesh.html">MFnMesh</a> theMeshSrc( fDagPathSrc, &amp;stat );</div>
-<div class="line">    <span class="keywordflow">if</span>( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot; MFnMesh creation&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <a name="_a21"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html">MFloatPointArray</a>    origVertices;</div>
-<div class="line">    stat = theMeshSrc.getPoints (origVertices, <a name="a22"></a><a class="code" href="#!/url=./cpp_ref/class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">MSpace::kObject</a> );</div>
-<div class="line">    <span class="keywordflow">if</span>( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot; MFnMesh getPoints&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// </span></div>
-<div class="line">    <span class="comment">// Traverse the source</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">// </span></div>
-<div class="line">    <span class="comment">// Initialize the traversal flags and CV mappings for this shape </span></div>
-<div class="line">    <a name="_a23"></a><a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           faceTraversal( theMeshSrc.numPolygons(), false );</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           cvMapping( theMeshSrc.numVertices(), -1 );</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           cvMappingInverse( theMeshSrc.numVertices(), -1 ); </div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">//  Starting with the user selected face, recursively rebuild the entire mesh</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           newPolygonCounts;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           newPolygonConnects;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html">MFloatPointArray</a>    newVertices;</div>
-<div class="line"></div>
-<div class="line">    stat = meshMapUtils::traverseFace( fDagPathSrc, fFaceIdxSrc, fFaceVtxSrc[0], fFaceVtxSrc[1], faceTraversal,</div>
-<div class="line">                    cvMapping, cvMappingInverse, </div>
-<div class="line">                    newPolygonCounts, newPolygonConnects, </div>
-<div class="line">                    origVertices, newVertices );</div>
-<div class="line">    <span class="keywordflow">if</span> ( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot; could not process all the mesh faces.&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// reuse newPolygonCounts and newPolygonConnects for the src mesh.</span></div>
-<div class="line">    newPolygonCounts.<a name="a24"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#ac8bb3912a3ce86b15842e79d0b421204">clear</a>();</div>
-<div class="line">    newPolygonConnects.<a name="a25"></a><a class="code" href="#!/url=./cpp_ref/class_m_int_array.html#ad5522f028dde0080b753279426415a4a">clear</a>();</div>
-<div class="line">    <a name="_a26"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_mesh_polygon.html">MItMeshPolygon</a> polyIter(fDagPathSrc.node());</div>
-<div class="line">    <span class="keywordflow">while</span>(!polyIter.isDone()) </div>
-<div class="line">    {</div>
-<div class="line">        newPolygonCounts.append(polyIter.polygonVertexCount());</div>
-<div class="line">        <span class="keywordflow">for</span>(i = 0; i &lt; (int) polyIter.polygonVertexCount(); i++)</div>
-<div class="line">        {</div>
-<div class="line">            newPolygonConnects.<a name="a27"></a><a class="code" href="#!/url=./cpp_ref/class_m_int_array.html#a11568087ac2ca16f4106cee62f65afd7">append</a>(polyIter.vertexIndex(i));</div>
-<div class="line">        }</div>
-<div class="line">        polyIter.next();</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// </span></div>
-<div class="line">    <span class="comment">// Now, traverse the destination</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html">MFloatPointArray</a>    origVerticesDst;</div>
-<div class="line">    stat = theMeshDst.getPoints (origVerticesDst, <a class="code" href="#!/url=./cpp_ref/class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">MSpace::kObject</a> );</div>
-<div class="line">    <span class="keywordflow">if</span>( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot; MFnMesh getPoints&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Initialize the traversal flags and CV mappings for this shape </span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           faceTraversalDst( theMeshDst.numPolygons(), false );</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           cvMappingDst( theMeshDst.numVertices(), -1 );</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           cvMappingInverseDst( theMeshDst.numVertices(), -1 ); </div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">//  Starting with the user selected face, recursively rebuild the entire mesh</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           newPolygonCountsDst;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>           newPolygonConnectsDst;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html">MFloatPointArray</a>    newVerticesDst;</div>
-<div class="line"></div>
-<div class="line">    stat = meshMapUtils::traverseFace( fDagPathDst, fFaceIdxDst, fFaceVtxDst[0], fFaceVtxDst[1], faceTraversalDst,</div>
-<div class="line">                    cvMappingDst, cvMappingInverseDst, </div>
-<div class="line">                    newPolygonCountsDst, newPolygonConnectsDst, </div>
-<div class="line">                    origVerticesDst, newVerticesDst );</div>
-<div class="line">    <span class="keywordflow">if</span> ( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot; could not process all the mesh faces.&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">// Use the generated maps to build a new CV list that will remap</span></div>
-<div class="line">    <span class="comment">// the destination to the source topology</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="keywordflow">for</span>( i = 0; i &lt; theMeshDst.numVertices(); i++ )</div>
-<div class="line">    {</div>
-<div class="line">        newVerticesDst[cvMappingInverse[i]] = origVerticesDst[cvMappingInverseDst[i]];</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Prepare for undo. Must collect the mesh information here before it is modified by createInPlace() call.</span></div>
-<div class="line">    fVertices.<a name="a28"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html#a8f5d4395b360d005e75b33c67c0894a6">copy</a>(origVerticesDst);</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_it_mesh_polygon.html">MItMeshPolygon</a> polyIterDst(fDagPathDst.node());</div>
-<div class="line">    <span class="keywordflow">while</span>(!polyIterDst.isDone()) </div>
-<div class="line">    {</div>
-<div class="line">        fPolygonCounts.append(polyIterDst.polygonVertexCount());</div>
-<div class="line">        <span class="keywordflow">for</span>(i = 0; i &lt; (int)polyIterDst.polygonVertexCount(); i++)</div>
-<div class="line">        {</div>
-<div class="line">            fPolygonConnects.append(polyIterDst.vertexIndex(i));</div>
-<div class="line">        }</div>
-<div class="line">        polyIterDst.<a name="a29"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_mesh_polygon.html#a73616f002814b8abe6d921db72d7a496">next</a>();</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Store Colors for undo</span></div>
-<div class="line">    fColorSetNames.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#ac8bb3912a3ce86b15842e79d0b421204">clear</a>();</div>
-<div class="line">    theMeshDst.getColorSetNames(fColorSetNames);</div>
-<div class="line">    <span class="keywordtype">int</span> numColorSets = fColorSetNames.length();</div>
-<div class="line">    fClampedArray = <span class="keyword">new</span> <span class="keywordtype">bool</span>[numColorSets];</div>
-<div class="line">    fRepArray = <span class="keyword">new</span> <a class="code" href="#!/url=./cpp_ref/class_m_fn_mesh.html#a80dc8673cdbdbb813c71dfa32e0643f2">MFnMesh::MColorRepresentation</a>[numColorSets];</div>
-<div class="line">    fColorArrays = <span class="keyword">new</span> <a name="_a30"></a><a class="code" href="#!/url=./cpp_ref/class_m_color_array.html">MColorArray</a>[numColorSets];</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">for</span> ( i = 0; i &lt; numColorSets; i++ ) </div>
-<div class="line">    {</div>
-<div class="line">        fClampedArray[i] = theMeshDst.isColorClamped(fColorSetNames[i]);</div>
-<div class="line">        fRepArray[i] = theMeshDst.getColorRepresentation(fColorSetNames[i]);</div>
-<div class="line">        theMeshDst.getVertexColors(fColorArrays[i], &amp;(fColorSetNames[i]));</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Store UVs for undo</span></div>
-<div class="line">    fUVSetNames.<a name="a31"></a><a class="code" href="#!/url=./cpp_ref/class_m_color_array.html#ad5522f028dde0080b753279426415a4a">clear</a>();</div>
-<div class="line">    theMeshDst.getUVSetNames(fUVSetNames);</div>
-<div class="line">    <span class="keywordtype">int</span> numUVSets = fUVSetNames.length();</div>
-<div class="line">    fUArrays = <span class="keyword">new</span> <a name="_a32"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_array.html">MFloatArray</a>[numUVSets];</div>
-<div class="line">    fVArrays = <span class="keyword">new</span> <a class="code" href="#!/url=./cpp_ref/class_m_float_array.html">MFloatArray</a>[numUVSets];</div>
-<div class="line">    fUVIdsArrays = <span class="keyword">new</span> <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>[numUVSets];</div>
-<div class="line">    fUVCountsArrays = <span class="keyword">new</span> <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>[numUVSets];</div>
-<div class="line">    fUVIdsArrays = <span class="keyword">new</span> <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>[numUVSets];</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">for</span> ( i = 0; i &lt; numUVSets; i++ ) </div>
-<div class="line">    {</div>
-<div class="line">        theMeshDst.getAssignedUVs(fUVCountsArrays[i], fUVIdsArrays[i], &amp;(fUVSetNames[i]));</div>
-<div class="line">        theMeshDst.getUVs(fUArrays[i], fVArrays[i], &amp;(fUVSetNames[i]));</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">//  Create the mesh. The old approach of using copyInPlace is doing referenced counting of the mesh, which is</span></div>
-<div class="line">    <span class="comment">//  not what we want and has caused strange problem, i.e. reorder not working on a remapped mesh.</span></div>
-<div class="line">    <span class="comment">// </span></div>
-<div class="line">    stat = theMeshDst.createInPlace( newVerticesDst.<a name="a33"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(), newPolygonCounts.length(), newVerticesDst, newPolygonCounts, newPolygonConnects );</div>
-<div class="line">    <span class="keywordflow">if</span> ( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        displayError(<span class="stringliteral">&quot; mesh copy failed.&quot;</span>);</div>
-<div class="line">        reset();</div>
-<div class="line">        <span class="keywordflow">return</span> stat;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Copy Colors from src to dst mesh</span></div>
-<div class="line">    <a name="_a34"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html">MStringArray</a> colorSetNamesSrc;</div>
-<div class="line">    theMeshSrc.getColorSetNames(colorSetNamesSrc);</div>
-<div class="line">    <span class="keywordtype">int</span> numColorSetsSrc = colorSetNamesSrc.<a name="a35"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>();</div>
-<div class="line">    <span class="keywordflow">for</span> (i = 0; i &lt; numColorSetsSrc; i++) </div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a> mapping(fVertices.length());;</div>
-<div class="line">        <span class="keywordflow">if</span> (i == 0) </div>
-<div class="line">        {</div>
-<div class="line">            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; fVertices.length(); j++) </div>
-<div class="line">            {</div>
-<div class="line">                mapping[j] = j;</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_color_array.html">MColorArray</a> colorArraySrc;</div>
-<div class="line">        <span class="keywordtype">bool</span>        clampedSrc;</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_fn_mesh.html#a80dc8673cdbdbb813c71dfa32e0643f2">MFnMesh::MColorRepresentation</a> repSrc;</div>
-<div class="line">        clampedSrc = theMeshSrc.isColorClamped(colorSetNamesSrc[i]);</div>
-<div class="line">        repSrc = theMeshSrc.getColorRepresentation(colorSetNamesSrc[i]);</div>
-<div class="line">        theMeshSrc.getVertexColors(colorArraySrc, &amp;(colorSetNamesSrc[i]));</div>
-<div class="line"></div>
-<div class="line">        theMeshDst.createColorSet(colorSetNamesSrc[i], NULL, clampedSrc, repSrc);</div>
-<div class="line">        <span class="keywordflow">if</span> (colorArraySrc.<a name="a36"></a><a class="code" href="#!/url=./cpp_ref/class_m_color_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() &gt; 0 &amp;&amp; colorArraySrc.<a class="code" href="#!/url=./cpp_ref/class_m_color_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() == fVertices.length())</div>
-<div class="line">        {</div>
-<div class="line">            theMeshDst.setVertexColors(colorArraySrc, mapping, NULL, repSrc);</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Copy UVs from src to dst mesh</span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_string_array.html">MStringArray</a> uvSetNamesSrc;</div>
-<div class="line">    theMeshSrc.getUVSetNames(uvSetNamesSrc);</div>
-<div class="line">    <span class="keywordtype">int</span> numUVSetsSrc = uvSetNamesSrc.<a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>();</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> defaultUVSetName;</div>
-<div class="line">    theMeshDst.getCurrentUVSetName(defaultUVSetName);</div>
-<div class="line">    <span class="keywordflow">for</span> (i = 0; i &lt; numUVSetsSrc; i++) </div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_float_array.html">MFloatArray</a> uArraySrc;</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_float_array.html">MFloatArray</a> vArraySrc;</div>
-<div class="line">        theMeshSrc.getUVs(uArraySrc, vArraySrc, &amp;(uvSetNamesSrc[i]));</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">if</span> (uvSetNamesSrc[i] != defaultUVSetName) </div>
-<div class="line">        {</div>
-<div class="line">            theMeshDst.createUVSet(uvSetNamesSrc[i]);</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">if</span> (uArraySrc.<a name="a37"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() &gt; 0 &amp;&amp; uArraySrc.<a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() == vArraySrc.<a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>())</div>
-<div class="line">        {</div>
-<div class="line">            theMeshDst.setUVs(uArraySrc, vArraySrc, &amp;(uvSetNamesSrc[i]));</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a> uvCounts;</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a> uvIds;</div>
-<div class="line">            theMeshSrc.getAssignedUVs(uvCounts, uvIds, &amp;(uvSetNamesSrc[i]));</div>
-<div class="line">            theMeshDst.assignUVs(uvCounts, uvIds, &amp;(uvSetNamesSrc[i]));</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> stat;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> meshRemapCommand::undoIt()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">int</span> i;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>  stat = <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_mesh.html">MFnMesh</a> theMesh( fDagPathDst );</div>
-<div class="line"></div>
-<div class="line">    stat = theMesh.createInPlace( fVertices.length(), fPolygonCounts.length(), fVertices, fPolygonCounts, fPolygonConnects );</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Restore Colors from cached data for undo</span></div>
-<div class="line">    <span class="keywordtype">int</span> numColorSets = fColorSetNames.length();</div>
-<div class="line">    <span class="keywordflow">for</span> (i = 0; i &lt; numColorSets; i++) </div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a> mapping(fVertices.length());;</div>
-<div class="line">        <span class="keywordflow">if</span> (i == 0) </div>
-<div class="line">        {</div>
-<div class="line">            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; fVertices.length(); j++) </div>
-<div class="line">            {</div>
-<div class="line">                mapping[j] = j;</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        theMesh.createColorSet(fColorSetNames[i], NULL, fClampedArray[i], fRepArray[i]);</div>
-<div class="line">        <span class="keywordflow">if</span> (fColorArrays[i].length() &gt; 0 &amp;&amp; fColorArrays[i].length() == fVertices.length())</div>
-<div class="line">        {</div>
-<div class="line">            theMesh.setVertexColors(fColorArrays[i], mapping, NULL, fRepArray[i]);</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Restore UVs from cached data for undo</span></div>
-<div class="line">    <span class="keywordtype">int</span> numUVSets = fUVSetNames.<a name="a38"></a><a class="code" href="#!/url=./cpp_ref/class_m_int_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>();</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> defaultUVSetName;</div>
-<div class="line">    theMesh.getCurrentUVSetName(defaultUVSetName);</div>
-<div class="line">    <span class="keywordflow">for</span> (i = 0; i &lt; numUVSets; i++) </div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> (fUVSetNames[i] != defaultUVSetName)</div>
-<div class="line">        {</div>
-<div class="line">            theMesh.createUVSet(fUVSetNames[i]);</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">if</span> (fUArrays[i].length() &gt; 0 &amp;&amp; fUArrays[i].length() == fVArrays[i].length())</div>
-<div class="line">        {</div>
-<div class="line">            theMesh.setUVs(fUArrays[i], fVArrays[i], &amp;(fUVSetNames[i]));</div>
-<div class="line">            theMesh.assignUVs(fUVCountsArrays[i], fUVIdsArrays[i], &amp;(fUVSetNames[i]));</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    reset();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> stat;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> meshRemapCommand::reset()</div>
-<div class="line">{</div>
-<div class="line">    fVertices.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#ac8bb3912a3ce86b15842e79d0b421204">clear</a>();</div>
-<div class="line">    fPolygonCounts.clear();</div>
-<div class="line">    fPolygonConnects.clear();</div>
-<div class="line"></div>
-<div class="line">    fColorSetNames.clear();</div>
-<div class="line">    fUVSetNames.clear();</div>
-<div class="line">    <span class="keywordflow">if</span> (fClampedArray != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> [] fClampedArray;</div>
-<div class="line">        fClampedArray = NULL;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> (fRepArray != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> [] fRepArray;</div>
-<div class="line">        fRepArray = NULL;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> (fUArrays != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> [] fUArrays;</div>
-<div class="line">        fUArrays = NULL;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> (fVArrays != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> [] fVArrays;</div>
-<div class="line">        fVArrays = NULL;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> (fColorArrays != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> [] fColorArrays;</div>
-<div class="line">        fColorArrays = NULL;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> (fUVCountsArrays != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> [] fUVCountsArrays;</div>
-<div class="line">        fUVCountsArrays = NULL;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> (fUVIdsArrays != NULL)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keyword">delete</span> [] fUVIdsArrays;</div>
-<div class="line">        fUVIdsArrays = NULL;</div>
-<div class="line">    }</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

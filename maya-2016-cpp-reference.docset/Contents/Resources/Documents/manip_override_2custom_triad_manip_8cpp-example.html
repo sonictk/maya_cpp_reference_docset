@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>manipOverride/customTriadManip.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          manipOverride/customTriadManip.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,321 +73,1459 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>manipOverride/customTriadManip.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          manipOverride/customTriadManip.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            manipOverride/customTriadManip.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // customTriadManip.cpp
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // This module demonstrates how to create user-defined manipulators
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // from a user-defined context and apply the manipulator to the translation
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // attribute of a transform node.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;stdio.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MArgList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MCursor.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MDistance.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MEulerRotation.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFn.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnCamera.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnNumericData.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnFreePointTriadManip.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnTransform.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnUnitAttribute.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MGlobal.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItSelectionList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MModelMessage.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPlug.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPoint.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPxNode.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MSelectionList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "customTriadManip.h"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The customTriadManip manipulator
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // - This class defines the manipulator which will be used
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //   when the tool becomes the active context.  It consists of
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //   a single triad manip aligned with the axes of the attached
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //   transform's coordinate system.  The internals of the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //   manipulator base class handle the management of command
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //   information so that undo/redo are handled.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_type_id.html">
+             MTypeId
+            </a>
+            customTriadManip::id( 0x80026 );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            customTriadManip::customTriadManip()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Do not call createChildren from here -
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // MayaPtr has not been set up yet.
+            </span>
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            customTriadManip::~customTriadManip()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            *customTriadManip::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            customTriadManip();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            customTriadManip::initialize()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat;
+           </div>
+           <div class="line">
+            stat =
+            <a name="a2">
+            </a>
+            <a class="code" href="./class_m_px_manip_container.html#ab775d976c0f4b24e540bd06af23a0738">
+             MPxManipContainer::initialize
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            customTriadManip::createChildren()
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    Create the geometry of the manip.  This consists of a single
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    triad manip.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fTriadManip = addFreePointTriadManip(
+            <span class="stringliteral">
+             "customtManip"
+            </span>
+            ,
+            <span class="stringliteral">
+             "customPoint"
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a3">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a4">
+            </a>
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            customTriadManip::nodeTranslation() const
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    Query and return the translation values for the attached transform node.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a5">
+            </a>
+            <a class="code" href="./class_m_fn_dag_node.html">
+             MFnDagNode
+            </a>
+            dagFn(fNodePath);
+           </div>
+           <div class="line">
+            <a name="_a6">
+            </a>
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            path;
+           </div>
+           <div class="line">
+            dagFn.
+            <a name="a7">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#a45d0e6118fefc8c6e0b86b50234da810">
+             getPath
+            </a>
+            (path);
+           </div>
+           <div class="line">
+            <a name="_a8">
+            </a>
+            <a class="code" href="./class_m_fn_transform.html">
+             MFnTransform
+            </a>
+            transformFn(path);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            transformFn.translation(
+            <a name="a9">
+            </a>
+            <a class="code" href="./class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8a45a60f04ac9114f0d6e865a6285f40b2">
+             MSpace::kWorld
+            </a>
+            );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            customTriadManip::updateManipLocations()
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    This method places the manip in the scene according to the information
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    obtained from the attached transform node.  The position and orientation
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    of the three distance manips are determined.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a10">
+            </a>
+            <a class="code" href="./class_m_fn_free_point_triad_manip.html">
+             MFnFreePointTriadManip
+            </a>
+            manipFn(fTriadManip);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            offset = nodeTranslation();
+           </div>
+           <div class="line">
+            manipFn.setPoint(offset);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            customTriadManip::connectToDependNode(
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a11">
+            </a>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            &amp;node)
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    This method activates the manip on the given transform node.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat =
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Get the DAG path
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_dag_node.html">
+             MFnDagNode
+            </a>
+            dagNodeFn(node);
+           </div>
+           <div class="line">
+            dagNodeFn.getPath(fNodePath);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Connect the plugs to the manip.
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a12">
+            </a>
+            <a class="code" href="./class_m_fn_dependency_node.html">
+             MFnDependencyNode
+            </a>
+            nodeFn(node);
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_free_point_triad_manip.html">
+             MFnFreePointTriadManip
+            </a>
+            manipFn(fTriadManip);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a13">
+            </a>
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            cPlug = nodeFn.findPlug(
+            <span class="stringliteral">
+             "translate"
+            </span>
+            , &amp;stat);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat ==
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            manipFn.connectToPointPlug(cPlug);
+           </div>
+           <div class="line">
+            finishAddingManips();
+           </div>
+           <div class="line">
+            updateManipLocations();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_px_manip_container.html#ac7013eba743cd3226bc9a72b1ea27cff">
+             MPxManipContainer::connectToDependNode
+            </a>
+            (node);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The customTriadManip Context
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // - Tool contexts are custom event handlers and are used to
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //   process mouse interactions.  The context subclass
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //   allows you to override press/drag/release events.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  This context contains the customTriadManip defined above.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+            <span class="preprocessor">
+             #define MOVEHELPSTR     "Drag the triad manip to change the translation values"
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #define MOVETITLESTR    "customTriadManip"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <span class="keywordtype">
+             void
+            </span>
+            updateTriadManipulator(
+            <span class="keywordtype">
+             void
+            </span>
+            * data);
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            MCallbackId mid = 0;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            customTriadCtx::customTriadCtx()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a15">
+            </a>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            str(MOVETITLESTR);
+           </div>
+           <div class="line">
+            setTitleString(str);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            customTriadCtx::toolOnSetup(
+            <a name="_a16">
+            </a>
+            <a class="code" href="./class_m_event.html">
+             MEvent
+            </a>
+            &amp;)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            str(MOVEHELPSTR);
+           </div>
+           <div class="line">
+            setHelpString(str);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            updateTriadManipulator(
+            <span class="keyword">
+             this
+            </span>
+            );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            mid =
+            <a name="a17">
+            </a>
+            <a class="code" href="./class_m_model_message.html#a600e047a3896d986d4d46a75ffe4a7c6">
+             MModelMessage::addCallback
+            </a>
+            (
+            <a name="a18">
+            </a>
+            <a class="code" href="./class_m_model_message.html#a4f09127c805cc1f5ee20e67db7b45efaa256632550aa8e279dac1d41927c59d84">
+             MModelMessage::kActiveListModified
+            </a>
+            ,
+           </div>
+           <div class="line">
+            updateTriadManipulator,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             this
+            </span>
+            , &amp;status);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status) {
+           </div>
+           <div class="line">
+            cerr &lt;&lt;
+            <span class="stringliteral">
+             "Model addCallback failed\n"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            customTriadCtx::toolOffCleanup()
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //     This method is called when the context is no longer the current context.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //     The manipulator is removed from the scene.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            status =
+            <a name="a19">
+            </a>
+            <a class="code" href="./class_m_message.html#a50fe995add3ce133b8b56551abb4ed09">
+             MModelMessage::removeCallback
+            </a>
+            (mid);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status) {
+           </div>
+           <div class="line">
+            cerr &lt;&lt;
+            <span class="stringliteral">
+             "Model remove callback failed\n"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <a name="a20">
+            </a>
+            <a class="code" href="./class_m_px_context.html#a1a7ea794ab903ce98dfe7498619a2518">
+             MPxContext::toolOffCleanup
+            </a>
+            ();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <span class="keywordtype">
+             void
+            </span>
+            updateTriadManipulator(
+            <span class="keywordtype">
+             void
+            </span>
+            * data)
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //     This callback function is called when the selection changes so that the manip can
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //    be reinitialized on the new current selection.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat =
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Delete any previously existing manipulators
+            </span>
+           </div>
+           <div class="line">
+            customTriadCtx * ctxPtr = (customTriadCtx *) data;
+           </div>
+           <div class="line">
+            ctxPtr-&gt;deleteManipulators();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // iterate through the selected objects:
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a21">
+            </a>
+            <a class="code" href="./class_m_selection_list.html">
+             MSelectionList
+            </a>
+            list;
+           </div>
+           <div class="line">
+            stat =
+            <a name="a22">
+            </a>
+            <a class="code" href="./class_m_global.html#a6d81d38246555884897fb153c93aaf42">
+             MGlobal::getActiveSelectionList
+            </a>
+            (list);
+           </div>
+           <div class="line">
+            <a name="_a23">
+            </a>
+            <a class="code" href="./class_m_it_selection_list.html">
+             MItSelectionList
+            </a>
+            iter(list,
+            <a name="a24">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a94dd08feda7b2cf0ff8262312c4fcc09">
+             MFn::kInvalid
+            </a>
+            , &amp;stat);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            == stat) {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (; !iter.isDone(); iter.next()) {
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Create the customTriadManip for each object selected.
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            manipName (
+            <span class="stringliteral">
+             "customTriadManip"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            manipObject;
+           </div>
+           <div class="line">
+            ctxPtr-&gt;caManip = (customTriadManip *) customTriadManip::newManipulator(manipName, manipObject);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (NULL != ctxPtr-&gt;caManip) {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            dependNode;
+           </div>
+           <div class="line">
+            iter.getDependNode(dependNode);
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_dependency_node.html">
+             MFnDependencyNode
+            </a>
+            dependNodeFn(dependNode);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ctxPtr-&gt;addManipulator(manipObject);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            dependNodeFn.findPlug(
+            <span class="stringliteral">
+             "translate"
+            </span>
+            , &amp;stat);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            != stat) {
+           </div>
+           <div class="line">
+            ctxPtr-&gt;deleteManipulators();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ctxPtr-&gt;caManip-&gt;connectToDependNode(dependNode);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            customTriadCtx::doEnterRegion(
+            <a class="code" href="./class_m_event.html">
+             MEvent
+            </a>
+            &amp;event)
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Print the tool description in the help line.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            str(MOVEHELPSTR);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            setHelpString(str);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Context creation command
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  This is the command that will be used to create instances
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  of our context.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a25">
+            </a>
+            <a class="code" href="./class_m_px_context.html">
+             MPxContext
+            </a>
+            *customTriadCtxCommand::makeObj()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            customTriadCtx *newC =
+            <span class="keyword">
+             new
+            </span>
+            customTriadCtx();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            newC;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            *customTriadCtxCommand::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            customTriadCtxCommand;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">manipOverride/customTriadManip.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// </span></div>
-<div class="line"><span class="comment">// customTriadManip.cpp</span></div>
-<div class="line"><span class="comment">// </span></div>
-<div class="line"><span class="comment">// This module demonstrates how to create user-defined manipulators</span></div>
-<div class="line"><span class="comment">// from a user-defined context and apply the manipulator to the translation</span></div>
-<div class="line"><span class="comment">// attribute of a transform node.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment"></span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MArgList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MCursor.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MDistance.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MEulerRotation.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFn.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnCamera.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnNumericData.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnFreePointTriadManip.h&gt;</span> </div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnTransform.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnUnitAttribute.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MGlobal.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItSelectionList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MModelMessage.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPlug.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPoint.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPxNode.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MSelectionList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;customTriadManip.h&quot;</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// The customTriadManip manipulator</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// - This class defines the manipulator which will be used</span></div>
-<div class="line"><span class="comment">//   when the tool becomes the active context.  It consists of</span></div>
-<div class="line"><span class="comment">//   a single triad manip aligned with the axes of the attached</span></div>
-<div class="line"><span class="comment">//   transform&#39;s coordinate system.  The internals of the</span></div>
-<div class="line"><span class="comment">//   manipulator base class handle the management of command</span></div>
-<div class="line"><span class="comment">//   information so that undo/redo are handled.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment"></span></div>
-<div class="line"><a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_type_id.html">MTypeId</a> customTriadManip::id( 0x80026 );</div>
-<div class="line"></div>
-<div class="line">customTriadManip::customTriadManip() </div>
-<div class="line">{ </div>
-<div class="line">    <span class="comment">// Do not call createChildren from here - </span></div>
-<div class="line">    <span class="comment">// MayaPtr has not been set up yet.</span></div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line">customTriadManip::~customTriadManip() </div>
-<div class="line">{</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> *customTriadManip::creator()</div>
-<div class="line">{</div>
-<div class="line">     <span class="keywordflow">return</span> <span class="keyword">new</span> customTriadManip();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> customTriadManip::initialize()</div>
-<div class="line">{ </div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> stat;</div>
-<div class="line">    stat = <a name="a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_manip_container.html#ab775d976c0f4b24e540bd06af23a0738">MPxManipContainer::initialize</a>();</div>
-<div class="line">    <span class="keywordflow">return</span> stat;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> customTriadManip::createChildren()</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description</span></div>
-<div class="line"><span class="comment">//    Create the geometry of the manip.  This consists of a single</span></div>
-<div class="line"><span class="comment">//    triad manip.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    fTriadManip = addFreePointTriadManip(<span class="stringliteral">&quot;customtManip&quot;</span>, <span class="stringliteral">&quot;customPoint&quot;</span>);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> <a name="a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a name="_a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> customTriadManip::nodeTranslation() const</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description</span></div>
-<div class="line"><span class="comment">//    Query and return the translation values for the attached transform node.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    <a name="_a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_dag_node.html">MFnDagNode</a> dagFn(fNodePath);</div>
-<div class="line">    <a name="_a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> path;</div>
-<div class="line">    dagFn.<a name="a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a45d0e6118fefc8c6e0b86b50234da810">getPath</a>(path);</div>
-<div class="line">    <a name="_a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_transform.html">MFnTransform</a> transformFn(path);</div>
-<div class="line">    <span class="keywordflow">return</span> transformFn.translation(<a name="a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8a45a60f04ac9114f0d6e865a6285f40b2">MSpace::kWorld</a>);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> customTriadManip::updateManipLocations()</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description</span></div>
-<div class="line"><span class="comment">//    This method places the manip in the scene according to the information</span></div>
-<div class="line"><span class="comment">//    obtained from the attached transform node.  The position and orientation</span></div>
-<div class="line"><span class="comment">//    of the three distance manips are determined.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    <a name="_a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_free_point_triad_manip.html">MFnFreePointTriadManip</a> manipFn(fTriadManip);</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> offset = nodeTranslation();</div>
-<div class="line">    manipFn.setPoint(offset);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> customTriadManip::connectToDependNode(<span class="keyword">const</span> <a name="_a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> &amp;node)</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description</span></div>
-<div class="line"><span class="comment">//    This method activates the manip on the given transform node.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> stat = <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Get the DAG path</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_dag_node.html">MFnDagNode</a> dagNodeFn(node);</div>
-<div class="line">    dagNodeFn.getPath(fNodePath);</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Connect the plugs to the manip.</span></div>
-<div class="line">    <a name="_a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_dependency_node.html">MFnDependencyNode</a> nodeFn(node);    </div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_free_point_triad_manip.html">MFnFreePointTriadManip</a> manipFn(fTriadManip);</div>
-<div class="line"></div>
-<div class="line">    <a name="_a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> cPlug = nodeFn.findPlug(<span class="stringliteral">&quot;translate&quot;</span>, &amp;stat);</div>
-<div class="line">    <span class="keywordflow">if</span>( stat == <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">        manipFn.connectToPointPlug(cPlug);</div>
-<div class="line">    finishAddingManips();</div>
-<div class="line">    updateManipLocations();</div>
-<div class="line"></div>
-<div class="line">    <a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_manip_container.html#ac7013eba743cd3226bc9a72b1ea27cff">MPxManipContainer::connectToDependNode</a>(node);        </div>
-<div class="line">    <span class="keywordflow">return</span> stat;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// The customTriadManip Context</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// - Tool contexts are custom event handlers and are used to </span></div>
-<div class="line"><span class="comment">//   process mouse interactions.  The context subclass </span></div>
-<div class="line"><span class="comment">//   allows you to override press/drag/release events.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">//  This context contains the customTriadManip defined above.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment"></span><span class="preprocessor">#define MOVEHELPSTR     &quot;Drag the triad manip to change the translation values&quot;</span></div>
-<div class="line"><span class="preprocessor">#define MOVETITLESTR    &quot;customTriadManip&quot;</span></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> updateTriadManipulator(<span class="keywordtype">void</span> * data);</div>
-<div class="line"><span class="keyword">static</span> MCallbackId mid = 0;</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line">customTriadCtx::customTriadCtx()</div>
-<div class="line">{</div>
-<div class="line">    <a name="_a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> str(MOVETITLESTR);</div>
-<div class="line">    setTitleString(str);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> customTriadCtx::toolOnSetup(<a name="_a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_event.html">MEvent</a> &amp;)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> str(MOVEHELPSTR);</div>
-<div class="line">    setHelpString(str);</div>
-<div class="line"></div>
-<div class="line">    updateTriadManipulator(<span class="keyword">this</span>);</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line">    mid = <a name="a17"></a><a class="code" href="#!/url=./cpp_ref/class_m_model_message.html#a600e047a3896d986d4d46a75ffe4a7c6">MModelMessage::addCallback</a>(<a name="a18"></a><a class="code" href="#!/url=./cpp_ref/class_m_model_message.html#a4f09127c805cc1f5ee20e67db7b45efaa256632550aa8e279dac1d41927c59d84">MModelMessage::kActiveListModified</a>,</div>
-<div class="line">                                     updateTriadManipulator, </div>
-<div class="line">                                     <span class="keyword">this</span>, &amp;status);</div>
-<div class="line">    <span class="keywordflow">if</span> (!status) {</div>
-<div class="line">        cerr &lt;&lt; <span class="stringliteral">&quot;Model addCallback failed\n&quot;</span>;</div>
-<div class="line">    }</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> customTriadCtx::toolOffCleanup()</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description</span></div>
-<div class="line"><span class="comment">//     This method is called when the context is no longer the current context.</span></div>
-<div class="line"><span class="comment">//     The manipulator is removed from the scene.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line">    status = <a name="a19"></a><a class="code" href="#!/url=./cpp_ref/class_m_message.html#a50fe995add3ce133b8b56551abb4ed09">MModelMessage::removeCallback</a>(mid);</div>
-<div class="line">    <span class="keywordflow">if</span> (!status) {</div>
-<div class="line">        cerr &lt;&lt; <span class="stringliteral">&quot;Model remove callback failed\n&quot;</span>;</div>
-<div class="line">    }</div>
-<div class="line">    <a name="a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_context.html#a1a7ea794ab903ce98dfe7498619a2518">MPxContext::toolOffCleanup</a>();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> updateTriadManipulator(<span class="keywordtype">void</span> * data)</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description</span></div>
-<div class="line"><span class="comment">//     This callback function is called when the selection changes so that the manip can</span></div>
-<div class="line"><span class="comment">//    be reinitialized on the new current selection.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> stat = <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">// Delete any previously existing manipulators</span></div>
-<div class="line">    customTriadCtx * ctxPtr = (customTriadCtx *) data;</div>
-<div class="line">    ctxPtr-&gt;deleteManipulators(); </div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// iterate through the selected objects:</span></div>
-<div class="line">    <span class="comment">// </span></div>
-<div class="line">    <a name="_a21"></a><a class="code" href="#!/url=./cpp_ref/class_m_selection_list.html">MSelectionList</a> list;</div>
-<div class="line">    stat = <a name="a22"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#a6d81d38246555884897fb153c93aaf42">MGlobal::getActiveSelectionList</a>(list);</div>
-<div class="line">    <a name="_a23"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_selection_list.html">MItSelectionList</a> iter(list, <a name="a24"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a94dd08feda7b2cf0ff8262312c4fcc09">MFn::kInvalid</a>, &amp;stat);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> == stat) {</div>
-<div class="line">        <span class="keywordflow">for</span> (; !iter.isDone(); iter.next()) {</div>
-<div class="line"></div>
-<div class="line">            <span class="comment">// Create the customTriadManip for each object selected.</span></div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> manipName (<span class="stringliteral">&quot;customTriadManip&quot;</span>);</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> manipObject;</div>
-<div class="line">            ctxPtr-&gt;caManip = (customTriadManip *) customTriadManip::newManipulator(manipName, manipObject);</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span> (NULL != ctxPtr-&gt;caManip) {</div>
-<div class="line">                <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> dependNode;</div>
-<div class="line">                iter.getDependNode(dependNode);</div>
-<div class="line">                <a class="code" href="#!/url=./cpp_ref/class_m_fn_dependency_node.html">MFnDependencyNode</a> dependNodeFn(dependNode);</div>
-<div class="line"></div>
-<div class="line">                ctxPtr-&gt;addManipulator(manipObject);</div>
-<div class="line"></div>
-<div class="line">                dependNodeFn.findPlug(<span class="stringliteral">&quot;translate&quot;</span>, &amp;stat);</div>
-<div class="line">                <span class="keywordflow">if</span> (<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> != stat) {</div>
-<div class="line">                    ctxPtr-&gt;deleteManipulators(); </div>
-<div class="line">                    <span class="keywordflow">return</span>;</div>
-<div class="line">                }</div>
-<div class="line"></div>
-<div class="line">                ctxPtr-&gt;caManip-&gt;connectToDependNode(dependNode);</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> customTriadCtx::doEnterRegion(<a class="code" href="#!/url=./cpp_ref/class_m_event.html">MEvent</a> &amp;event)</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Print the tool description in the help line.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> str(MOVEHELPSTR);</div>
-<div class="line">    <span class="keywordflow">return</span> setHelpString(str);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Context creation command</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">//  This is the command that will be used to create instances</span></div>
-<div class="line"><span class="comment">//  of our context.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment"></span></div>
-<div class="line"><a name="_a25"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_context.html">MPxContext</a> *customTriadCtxCommand::makeObj()</div>
-<div class="line">{</div>
-<div class="line">    customTriadCtx *newC = <span class="keyword">new</span> customTriadCtx();</div>
-<div class="line">    <span class="keywordflow">return</span> newC;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> *customTriadCtxCommand::creator()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> customTriadCtxCommand;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

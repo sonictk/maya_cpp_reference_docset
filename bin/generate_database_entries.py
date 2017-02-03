@@ -29,9 +29,8 @@ def main():
     try:
         logger.debug('Cleaning database...')
         cur.execute('DROP TABLE searchIndex;')
-
     except:
-        pass
+        raise RuntimeError('Failed to clear out database! Aborting operation!')
     finally:
         cur.execute('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
         cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
@@ -42,19 +41,25 @@ def main():
     if not os.path.isdir(docs_root):
         raise IOError('The documentation directory: {0} does not exist!'.format(docs_root))
 
+    logger.debug('Inserting entries into database...')
     for f in os.listdir(docs_root):
         if os.path.splitext(f)[-1] == '.html':
+
+            if '-members' in f:
+                continue
+
             if f.startswith('class_'):
                 class_name = ''.join([a[0].upper() + a[1:] for a in os.path.splitext(f)[0].split('class_')[-1].split('_')])
-
-                logger.debug('inserting entry for {0} located at {1}'.format(class_name, f))
                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                         ' VALUES (\'{name}\', \'Class\', \'{path}\')'.format(name=class_name, path=f))
 
+            elif f.startswith('struct_'):
+                struct_name = ''.join([a[0].upper() + a[1:] for a in os.path.splitext(f)[0].split('struct_')[-1].split('_') if a])
+                cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
+                        ' VALUES (\'{name}\', \'Struct\', \'{path}\')'.format(name=struct_name, path=f))
+
             elif '-example' in f:
-                logger.debug('formatting name for: {0}'.format(f))
                 example_name = ''.join([a[0].upper() + a[1:] for a in os.path.splitext(f)[0].split('-example')[0].split('_') if a]) + 'Example'
-                logger.debug('inserting entry for {0} located at {1}'.format(example_name, f))
                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                         ' VALUES (\'{name}\', \'Sample\', \'{path}\')'.format(name=example_name, path=f))
 

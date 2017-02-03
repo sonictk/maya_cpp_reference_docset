@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>lepTranslator/lepTranslator.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          lepTranslator/lepTranslator.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,404 +73,2294 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>lepTranslator/lepTranslator.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          lepTranslator/lepTranslator.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            lepTranslator/lepTranslator.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 2015 Autodesk, Inc.  All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  This example plugin demonstrates how to implement a Maya File Translator.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  In this example, the user can create one or more nurbsSpheres, nurbsCylinders or nurbsCones.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  The user can translate them around.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  The LEP files can be referenced by Maya files.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  It is to be noted that this example was made to be simple.  Hence, there are limitations.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  For example, every geometry saved will have its values reset to default,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  except their translation if the option "Show Position" has been turned on.  To find what
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  geometries we can export, we search by name, hence, if a polygon cube contains in its
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  named the string "nurbsSphere", it will be written out as a nurbs sphere.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MStatus.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MObject.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnPlugin.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MString.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MVector.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MStringArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPxFileTranslator.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MGlobal.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItDag.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MObject.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPlug.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItSelectionList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MSelectionList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFileIO.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnTransform.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MNamespace.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;string.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This is the backbone for creating a MPxFileTranslator
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             class
+            </span>
+            LepTranslator :
+            <span class="keyword">
+             public
+            </span>
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html">
+             MPxFileTranslator
+            </a>
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             public
+            </span>
+            :
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //Constructor
+            </span>
+           </div>
+           <div class="line">
+            LepTranslator () {};
+           </div>
+           <div class="line">
+            <span class="comment">
+             //Destructor
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             virtual
+            </span>
+            ~LepTranslator () {};
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This tells maya that the translator can read files.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //Basically, you can import or load with your translator.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            <a name="a1">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a5bdde07c444bcc490367efe4f3424ade">
+             haveReadMethod
+            </a>
+            ()
+            <span class="keyword">
+             const
+            </span>
+            {
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             true
+            </span>
+            ; }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This tells maya that the translator can write files.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //Basically, you can export or save with your translator.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            <a name="a2">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#ab58322cfe1d3437d3fc627be3a49121c">
+             haveWriteMethod
+            </a>
+            ()
+            <span class="keyword">
+             const
+            </span>
+            {
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             true
+            </span>
+            ; }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //If this method returns true, and the lep file is referenced in a scene, the write method will be
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //called when a write operation is performed on the parent file.  This use is for users who wish
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //to implement a custom file referencing system.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //For this example, we will return false as we will use Maya's file referencing system.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            <a name="a3">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a43ef24125f987f9f3a27639afe4b6ffc">
+             haveReferenceMethod
+            </a>
+            ()
+            <span class="keyword">
+             const
+            </span>
+            {
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             false
+            </span>
+            ; }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //If this method returns true, it means we support namespaces.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            <a name="a4">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#afca676f2056a1a37aac4bf499d82b793">
+             haveNamespaceSupport
+            </a>
+            ()
+            <span class="keyword">
+             const
+            </span>
+            {
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             true
+            </span>
+            ; }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This method is used by Maya to create instances of the translator.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <span class="keywordtype">
+             void
+            </span>
+            * creator();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This returns the default extension ".lep" in this case.
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a5">
+            </a>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            <a name="a6">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a48074cfa41f4caf87bfa0bc533ea6f25">
+             defaultExtension
+            </a>
+            ()
+            <span class="keyword">
+             const
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //If this method returns true it means that the translator can handle opening files
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //as well as importing them.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //If the method returns false then only imports are handled. The difference between
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //an open and an import is that the scene is cleared(e.g. 'file -new') prior to an
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //open, which may affect the behaviour of the translator.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            <a name="a7">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a21cb60f2121ebce3f21367325c940fbc">
+             canBeOpened
+            </a>
+            ()
+            <span class="keyword">
+             const
+            </span>
+            {
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             true
+            </span>
+            ; }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //Maya will call this method to determine if our translator
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //is capable of handling this file.
+            </span>
+           </div>
+           <div class="line">
+            MFileKind
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a109c18b551ef7c162399326799ab67e6">
+             identifyFile
+            </a>
+            (
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a9">
+            </a>
+            <a class="code" href="./class_m_file_object.html">
+             MFileObject
+            </a>
+            &amp; fileName,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * buffer,
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             short
+            </span>
+            size)
+            <span class="keyword">
+             const
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This function is called by maya when import or open is called.
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a10">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            <a name="a11">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#ab66b1f5adee9fb511e49f5f6730a7c42">
+             reader
+            </a>
+            (
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_file_object.html">
+             MFileObject
+            </a>
+            &amp; file,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            &amp; optionsString,
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">
+             MPxFileTranslator::FileAccessMode
+            </a>
+            mode);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This function is called by maya when export or save is called.
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            <a name="a12">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a7d2e676fd6823e199ba4fe1da95098ac">
+             writer
+            </a>
+            (
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_file_object.html">
+             MFileObject
+            </a>
+            &amp; file,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            &amp; optionsString,
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">
+             MPxFileTranslator::FileAccessMode
+            </a>
+            mode);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             private
+            </span>
+            :
+           </div>
+           <div class="line">
+            <span class="comment">
+             //The magic string to verify it's a LEP file
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //simply "&lt;LEP&gt;"
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            <span class="keyword">
+             const
+            </span>
+            magic;
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //Creates one instance of the LepTranslator
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            * LepTranslator::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            LepTranslator();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Initialize our magic string
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            <span class="keyword">
+             const
+            </span>
+            LepTranslator::magic(
+            <span class="stringliteral">
+             "&lt;LEP&gt;"
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // An LEP file is an ascii whose first line contains the string &lt;LEP&gt;.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The read does not support comments, and assumes that the each
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // subsequent line of the file contains a valid MEL command that can
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // be executed via the "executeCommand" method of the MGlobal class.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            LepTranslator::reader (
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_file_object.html">
+             MFileObject
+            </a>
+            &amp; file,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            &amp; options,
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">
+             MPxFileTranslator::FileAccessMode
+            </a>
+            mode)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            fname = file.
+            <a name="a13">
+            </a>
+            <a class="code" href="./class_m_file_object.html#a7a1c6f1f04d612d126a4e7512ab62ca7">
+             fullName
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            rval(
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            );
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            maxLineSize = 1024;
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             char
+            </span>
+            buf[maxLineSize];
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ifstream inputfile(fname.
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">
+             asChar
+            </a>
+            (), ios::in);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!inputfile) {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // open failed
+            </span>
+           </div>
+           <div class="line">
+            cerr &lt;&lt; fname &lt;&lt;
+            <span class="stringliteral">
+             ": could not be opened for reading\n"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a16">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!inputfile.getline (buf, maxLineSize)) {
+           </div>
+           <div class="line">
+            cerr &lt;&lt;
+            <span class="stringliteral">
+             "file "
+            </span>
+            &lt;&lt; fname &lt;&lt;
+            <span class="stringliteral">
+             " contained no lines ... aborting\n"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (0 != strncmp(buf, magic.asChar(), magic.length())) {
+           </div>
+           <div class="line">
+            cerr &lt;&lt;
+            <span class="stringliteral">
+             "first line of file "
+            </span>
+            &lt;&lt; fname;
+           </div>
+           <div class="line">
+            cerr &lt;&lt;
+            <span class="stringliteral">
+             " did not contain "
+            </span>
+            &lt;&lt; magic.
+            <a class="code" href="./class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">
+             asChar
+            </a>
+            () &lt;&lt;
+            <span class="stringliteral">
+             " ... aborting\n"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             while
+            </span>
+            (inputfile.getline (buf, maxLineSize)) {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            cmdString;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            cmdString.
+            <a name="a17">
+            </a>
+            <a class="code" href="./class_m_string.html#acee761fe098fc30a5ac1437e3aca5bc0">
+             set
+            </a>
+            (buf);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!
+            <a name="a18">
+            </a>
+            <a class="code" href="./class_m_global.html#a09e405631e7cf680f8ac9d934ad73434">
+             MGlobal::executeCommand
+            </a>
+            (cmdString))
+           </div>
+           <div class="line">
+            rval =
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            inputfile.close();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            rval;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The currently recognised primitives.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * primitiveStrings[] = {
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "nurbsSphere"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "nurbsCone"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "nurbsCylinder"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             unsigned
+            </span>
+            numPrimitives =
+            <span class="keyword">
+             sizeof
+            </span>
+            (primitiveStrings) /
+            <span class="keyword">
+             sizeof
+            </span>
+            (
+            <span class="keywordtype">
+             char
+            </span>
+            *);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Corresponding commands to create the primitives
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * primitiveCommands[] = {
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "sphere"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "cone"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "cylinder"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //The writer simply goes gathers all objects from the scene.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //We will check if the object has a transform, if so, we will check
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //if it's either a nurbsSphere, nurbsCone or nurbsCylinder.  If so,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //we will write it out.
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            LepTranslator::writer (
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_file_object.html">
+             MFileObject
+            </a>
+            &amp; file,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            &amp; options,
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">
+             MPxFileTranslator::FileAccessMode
+            </a>
+            mode)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            showPositions =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            i;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            fname = file.
+            <a class="code" href="./class_m_file_object.html#a7a1c6f1f04d612d126a4e7512ab62ca7">
+             fullName
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ofstream newf(fname.
+            <a class="code" href="./class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">
+             asChar
+            </a>
+            (), ios::out);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!newf) {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // open failed
+            </span>
+           </div>
+           <div class="line">
+            cerr &lt;&lt; fname &lt;&lt;
+            <span class="stringliteral">
+             ": could not be opened for reading\n"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            newf.setf(ios::unitbuf);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (options.
+            <a name="a19">
+            </a>
+            <a class="code" href="./class_m_string.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () &gt; 0) {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Start parsing.
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a20">
+            </a>
+            <a class="code" href="./class_m_string_array.html">
+             MStringArray
+            </a>
+            optionList;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string_array.html">
+             MStringArray
+            </a>
+            theOption;
+           </div>
+           <div class="line">
+            options.
+            <a name="a21">
+            </a>
+            <a class="code" href="./class_m_string.html#ac914d138fc96d7065c687a4f8b40c263">
+             split
+            </a>
+            (
+            <span class="charliteral">
+             ';'
+            </span>
+            , optionList);
+            <span class="comment">
+             // break out all the options.
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( i = 0; i &lt; optionList.
+            <a name="a22">
+            </a>
+            <a class="code" href="./class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); ++i ){
+           </div>
+           <div class="line">
+            theOption.
+            <a name="a23">
+            </a>
+            <a class="code" href="./class_m_string_array.html#ad5522f028dde0080b753279426415a4a">
+             clear
+            </a>
+            ();
+           </div>
+           <div class="line">
+            optionList[i].split(
+            <span class="charliteral">
+             '='
+            </span>
+            , theOption );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( theOption[0] ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "showPositions"
+            </span>
+            ) &amp;&amp;
+           </div>
+           <div class="line">
+            theOption.
+            <a class="code" href="./class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () &gt; 1 ) {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( theOption[1].asInt() &gt; 0 ){
+           </div>
+           <div class="line">
+            showPositions =
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+            <span class="keywordflow">
+             else
+            </span>
+            {
+           </div>
+           <div class="line">
+            showPositions =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // output our magic number
+            </span>
+           </div>
+           <div class="line">
+            newf &lt;&lt;
+            <span class="stringliteral">
+             "&lt;LEP&gt;\n"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a24">
+            </a>
+            <a class="code" href="./class_m_it_dag.html">
+             MItDag
+            </a>
+            dagIterator(
+            <a name="a25">
+            </a>
+            <a class="code" href="./class_m_it_dag.html#a1545968b4f810358b53ae9844bce6bd1a8ad4d0a286855b50181b12df48942291">
+             MItDag::kBreadthFirst
+            </a>
+            ,
+            <a name="a26">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a94dd08feda7b2cf0ff8262312c4fcc09">
+             MFn::kInvalid
+            </a>
+            , &amp;status);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status) {
+           </div>
+           <div class="line">
+            status.
+            <a name="a27">
+            </a>
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "Failure in DAG iterator setup"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a28">
+            </a>
+            <a class="code" href="./class_m_selection_list.html">
+             MSelectionList
+            </a>
+            selection;
+           </div>
+           <div class="line">
+            <a name="a29">
+            </a>
+            <a class="code" href="./class_m_global.html#a6d81d38246555884897fb153c93aaf42">
+             MGlobal::getActiveSelectionList
+            </a>
+            (selection);
+           </div>
+           <div class="line">
+            <a name="_a30">
+            </a>
+            <a class="code" href="./class_m_it_selection_list.html">
+             MItSelectionList
+            </a>
+            selIterator (selection,
+            <a name="a31">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a7f6b3e140a92b64ca6c088012cca49af">
+             MFn::kDagNode
+            </a>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            done =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             while
+            </span>
+            (
+            <span class="keyword">
+             true
+            </span>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a32">
+            </a>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            currentNode;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             switch
+            </span>
+            (mode)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            <a name="a33">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417a64282dfea3d1ae99cd9c8220dfa5d0a7">
+             MPxFileTranslator::kSaveAccessMode
+            </a>
+            :
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            <a name="a34">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417a2b6cc89b2e3d91b69ec9af440ef0bc94">
+             MPxFileTranslator::kExportAccessMode
+            </a>
+            :
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (dagIterator.isDone ())
+           </div>
+           <div class="line">
+            done =
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            {
+           </div>
+           <div class="line">
+            currentNode = dagIterator.item ();
+           </div>
+           <div class="line">
+            dagIterator.next ();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            <a name="a35">
+            </a>
+            <a class="code" href="./class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417ab8316a826501eb9bae9132346b5db59f">
+             MPxFileTranslator::kExportActiveAccessMode
+            </a>
+            :
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (selIterator.isDone ())
+           </div>
+           <div class="line">
+            done =
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            {
+           </div>
+           <div class="line">
+            selIterator.getDependNode (currentNode);
+           </div>
+           <div class="line">
+            selIterator.next ();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             default
+            </span>
+            :
+           </div>
+           <div class="line">
+            cerr &lt;&lt;
+            <span class="stringliteral">
+             "Unrecognized write mode: "
+            </span>
+            &lt;&lt; mode &lt;&lt; endl;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (done)
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //We only care about nodes that are transforms
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a36">
+            </a>
+            <a class="code" href="./class_m_fn_transform.html">
+             MFnTransform
+            </a>
+            dagNode(currentNode, &amp;status);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( status ==
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            nodeNameNoNamespace=
+            <a name="a37">
+            </a>
+            <a class="code" href="./class_m_namespace.html#a3d06313c5ef9f98cc8feaef331cae7ec">
+             MNamespace::stripNamespaceFromName
+            </a>
+            (dagNode.name());
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; numPrimitives; ++i) {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (nodeNameNoNamespace.
+            <a name="a38">
+            </a>
+            <a class="code" href="./class_m_string.html#aaa76dfd27998dc2ff937d3690d11391c">
+             indexW
+            </a>
+            (primitiveStrings[i]) &gt;= 0){
+           </div>
+           <div class="line">
+            <span class="comment">
+             // This is a node we support
+            </span>
+           </div>
+           <div class="line">
+            newf &lt;&lt; primitiveCommands[i] &lt;&lt;
+            <span class="stringliteral">
+             " -n "
+            </span>
+            &lt;&lt; nodeNameNoNamespace &lt;&lt; endl;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (showPositions) {
+           </div>
+           <div class="line">
+            <a name="_a39">
+            </a>
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            pos;
+           </div>
+           <div class="line">
+            pos = dagNode.getTranslation(
+            <a name="a40">
+            </a>
+            <a class="code" href="./class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">
+             MSpace::kObject
+            </a>
+            );
+           </div>
+           <div class="line">
+            newf &lt;&lt;
+            <span class="stringliteral">
+             "move "
+            </span>
+            &lt;&lt; pos.
+            <a name="a41">
+            </a>
+            <a class="code" href="./class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            &lt;&lt;
+            <span class="stringliteral">
+             " "
+            </span>
+            &lt;&lt; pos.
+            <a name="a42">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            &lt;&lt;
+            <span class="stringliteral">
+             " "
+            </span>
+            &lt;&lt; pos.
+            <a name="a43">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            &lt;&lt; endl;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+            <span class="comment">
+             //if (status == MS::kSuccess)
+            </span>
+           </div>
+           <div class="line">
+            }
+            <span class="comment">
+             //while loop
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            newf.close();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Whenever Maya needs to know the preferred extension of this file format,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // it calls this method. For example, if the user tries to save a file called
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // "test" using the Save As dialog, Maya will call this method and actually
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // save it as "test.lep". Note that the period should *not* be included in
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // the extension.
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            LepTranslator::defaultExtension ()
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="stringliteral">
+             "lep"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //This method is pretty simple, maya will call this function
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //to make sure it is really a file from our translator.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //To make sure, we have a little magic number and we verify against it.
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_px_file_translator.html#a8966f27c569f8ef7182b63f0a66e79dd">
+             MPxFileTranslator::MFileKind
+            </a>
+            LepTranslator::identifyFile (
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_file_object.html">
+             MFileObject
+            </a>
+            &amp; fileName,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * buffer,
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             short
+            </span>
+            size)
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Check the buffer for the "LEP" magic number, the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // string "&lt;LEP&gt;\n"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            MFileKind rval = kNotMyFileType;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ((size &gt;= (
+            <span class="keywordtype">
+             short
+            </span>
+            )magic.length()) &amp;&amp;
+           </div>
+           <div class="line">
+            (0 == strncmp(buffer, magic.asChar(), magic.length())))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            rval = kIsMyFileType;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            rval;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            initializePlugin(
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            obj )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a name="_a44">
+            </a>
+            <a class="code" href="./class_m_fn_plugin.html">
+             MFnPlugin
+            </a>
+            plugin( obj, PLUGIN_COMPANY,
+            <span class="stringliteral">
+             "3.0"
+            </span>
+            ,
+            <span class="stringliteral">
+             "Any"
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Register the translator with the system
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The last boolean in this method is very important.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // It should be set to true if the reader method in the derived class
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // intends to issue MEL commands via the MGlobal::executeCommand
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // method.  Setting this to true will slow down the creation of
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // new objects, but allows MEL commands other than those that are
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // part of the Maya Ascii file format to function correctly.
+            </span>
+           </div>
+           <div class="line">
+            status =  plugin.registerFileTranslator(
+            <span class="stringliteral">
+             "Lep"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "lepTranslator.rgb"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            LepTranslator::creator,
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "lepTranslatorOpts"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "showPositions=1"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             true
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "registerFileTranslator"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            uninitializePlugin(
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            obj )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_plugin.html">
+             MFnPlugin
+            </a>
+            plugin( obj );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status =  plugin.deregisterFileTranslator(
+            <span class="stringliteral">
+             "Lep"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "deregisterFileTranslator"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">lepTranslator/lepTranslator.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright 2015 Autodesk, Inc.  All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">//  This example plugin demonstrates how to implement a Maya File Translator.</span></div>
-<div class="line"><span class="comment">//  In this example, the user can create one or more nurbsSpheres, nurbsCylinders or nurbsCones.</span></div>
-<div class="line"><span class="comment">//  The user can translate them around.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">//  The LEP files can be referenced by Maya files.</span></div>
-<div class="line"><span class="comment">//  </span></div>
-<div class="line"><span class="comment">//  It is to be noted that this example was made to be simple.  Hence, there are limitations.</span></div>
-<div class="line"><span class="comment">//  For example, every geometry saved will have its values reset to default,</span></div>
-<div class="line"><span class="comment">//  except their translation if the option &quot;Show Position&quot; has been turned on.  To find what </span></div>
-<div class="line"><span class="comment">//  geometries we can export, we search by name, hence, if a polygon cube contains in its </span></div>
-<div class="line"><span class="comment">//  named the string &quot;nurbsSphere&quot;, it will be written out as a nurbs sphere.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MStatus.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MObject.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnPlugin.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MString.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MVector.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MStringArray.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPxFileTranslator.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MGlobal.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItDag.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MObject.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPlug.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItSelectionList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MSelectionList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFileIO.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnTransform.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MNamespace.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//This is the backbone for creating a MPxFileTranslator</span></div>
-<div class="line"><span class="keyword">class </span>LepTranslator : <span class="keyword">public</span> <a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html">MPxFileTranslator</a> {</div>
-<div class="line"><span class="keyword">public</span>:</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//Constructor</span></div>
-<div class="line">    LepTranslator () {};</div>
-<div class="line">    <span class="comment">//Destructor</span></div>
-<div class="line">    <span class="keyword">virtual</span>            ~LepTranslator () {};</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//This tells maya that the translator can read files.</span></div>
-<div class="line">    <span class="comment">//Basically, you can import or load with your translator.</span></div>
-<div class="line">    <span class="keywordtype">bool</span> <a name="a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a5bdde07c444bcc490367efe4f3424ade">haveReadMethod</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//This tells maya that the translator can write files.</span></div>
-<div class="line">    <span class="comment">//Basically, you can export or save with your translator.</span></div>
-<div class="line">    <span class="keywordtype">bool</span> <a name="a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#ab58322cfe1d3437d3fc627be3a49121c">haveWriteMethod</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//If this method returns true, and the lep file is referenced in a scene, the write method will be</span></div>
-<div class="line">    <span class="comment">//called when a write operation is performed on the parent file.  This use is for users who wish</span></div>
-<div class="line">    <span class="comment">//to implement a custom file referencing system.</span></div>
-<div class="line">    <span class="comment">//For this example, we will return false as we will use Maya&#39;s file referencing system.</span></div>
-<div class="line">    <span class="keywordtype">bool</span> <a name="a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a43ef24125f987f9f3a27639afe4b6ffc">haveReferenceMethod</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//If this method returns true, it means we support namespaces.</span></div>
-<div class="line">    <span class="keywordtype">bool</span> <a name="a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#afca676f2056a1a37aac4bf499d82b793">haveNamespaceSupport</a>()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//This method is used by Maya to create instances of the translator.</span></div>
-<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span>* creator();</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">//This returns the default extension &quot;.lep&quot; in this case.</span></div>
-<div class="line">    <a name="_a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> <a name="a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a48074cfa41f4caf87bfa0bc533ea6f25">defaultExtension</a> () <span class="keyword">const</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//If this method returns true it means that the translator can handle opening files </span></div>
-<div class="line">    <span class="comment">//as well as importing them.</span></div>
-<div class="line">    <span class="comment">//If the method returns false then only imports are handled. The difference between </span></div>
-<div class="line">    <span class="comment">//an open and an import is that the scene is cleared(e.g. &#39;file -new&#39;) prior to an </span></div>
-<div class="line">    <span class="comment">//open, which may affect the behaviour of the translator.</span></div>
-<div class="line">    <span class="keywordtype">bool</span> <a name="a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a21cb60f2121ebce3f21367325c940fbc">canBeOpened</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//Maya will call this method to determine if our translator</span></div>
-<div class="line">    <span class="comment">//is capable of handling this file.</span></div>
-<div class="line">    MFileKind <a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a109c18b551ef7c162399326799ab67e6">identifyFile</a> (    <span class="keyword">const</span> <a name="_a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_file_object.html">MFileObject</a>&amp; fileName,</div>
-<div class="line">                                                <span class="keyword">const</span> <span class="keywordtype">char</span>* buffer,</div>
-<div class="line">                                                <span class="keywordtype">short</span> size) <span class="keyword">const</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//This function is called by maya when import or open is called.</span></div>
-<div class="line">    <a name="_a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> <a name="a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#ab66b1f5adee9fb511e49f5f6730a7c42">reader</a> ( <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_file_object.html">MFileObject</a>&amp; file,</div>
-<div class="line">                                        <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>&amp; optionsString,</div>
-<div class="line">                            <a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">MPxFileTranslator::FileAccessMode</a> mode);</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//This function is called by maya when export or save is called.</span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> <a name="a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a7d2e676fd6823e199ba4fe1da95098ac">writer</a> ( <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_file_object.html">MFileObject</a>&amp; file,</div>
-<div class="line">                                        <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>&amp; optionsString,</div>
-<div class="line">                             <a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">MPxFileTranslator::FileAccessMode</a> mode);</div>
-<div class="line"></div>
-<div class="line"><span class="keyword">private</span>:</div>
-<div class="line">    <span class="comment">//The magic string to verify it&#39;s a LEP file</span></div>
-<div class="line">    <span class="comment">//simply &quot;&lt;LEP&gt;&quot;</span></div>
-<div class="line">    <span class="keyword">static</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> <span class="keyword">const</span> magic;</div>
-<div class="line">};</div>
-<div class="line"></div>
-<div class="line"><span class="comment">//Creates one instance of the LepTranslator</span></div>
-<div class="line"><span class="keywordtype">void</span>* LepTranslator::creator()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> LepTranslator();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// Initialize our magic string</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> <span class="keyword">const</span> LepTranslator::magic(<span class="stringliteral">&quot;&lt;LEP&gt;&quot;</span>);</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// An LEP file is an ascii whose first line contains the string &lt;LEP&gt;.</span></div>
-<div class="line"><span class="comment">// The read does not support comments, and assumes that the each</span></div>
-<div class="line"><span class="comment">// subsequent line of the file contains a valid MEL command that can</span></div>
-<div class="line"><span class="comment">// be executed via the &quot;executeCommand&quot; method of the MGlobal class.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> LepTranslator::reader ( <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_file_object.html">MFileObject</a>&amp; file,</div>
-<div class="line">                                <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>&amp; options,</div>
-<div class="line">                                <a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">MPxFileTranslator::FileAccessMode</a> mode)</div>
-<div class="line">{    </div>
-<div class="line">    <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> fname = file.<a name="a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_file_object.html#a7a1c6f1f04d612d126a4e7512ab62ca7">fullName</a>();</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> rval(<a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>);</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> maxLineSize = 1024;</div>
-<div class="line">    <span class="keywordtype">char</span> buf[maxLineSize];</div>
-<div class="line"></div>
-<div class="line">    ifstream inputfile(fname.<a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">asChar</a>(), ios::in);</div>
-<div class="line">    <span class="keywordflow">if</span> (!inputfile) {</div>
-<div class="line">        <span class="comment">// open failed</span></div>
-<div class="line">        cerr &lt;&lt; fname &lt;&lt; <span class="stringliteral">&quot;: could not be opened for reading\n&quot;</span>;</div>
-<div class="line">        <span class="keywordflow">return</span> <a name="a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (!inputfile.getline (buf, maxLineSize)) {</div>
-<div class="line">        cerr &lt;&lt; <span class="stringliteral">&quot;file &quot;</span> &lt;&lt; fname &lt;&lt; <span class="stringliteral">&quot; contained no lines ... aborting\n&quot;</span>;</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (0 != strncmp(buf, magic.asChar(), magic.length())) {</div>
-<div class="line">        cerr &lt;&lt; <span class="stringliteral">&quot;first line of file &quot;</span> &lt;&lt; fname;</div>
-<div class="line">        cerr &lt;&lt; <span class="stringliteral">&quot; did not contain &quot;</span> &lt;&lt; magic.<a class="code" href="#!/url=./cpp_ref/class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">asChar</a>() &lt;&lt; <span class="stringliteral">&quot; ... aborting\n&quot;</span>;</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">while</span> (inputfile.getline (buf, maxLineSize)) {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> cmdString;</div>
-<div class="line"></div>
-<div class="line">        cmdString.<a name="a17"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html#acee761fe098fc30a5ac1437e3aca5bc0">set</a>(buf);</div>
-<div class="line">        <span class="keywordflow">if</span> (!<a name="a18"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#a09e405631e7cf680f8ac9d934ad73434">MGlobal::executeCommand</a>(cmdString))</div>
-<div class="line">            rval = <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line">    inputfile.close();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> rval;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// The currently recognised primitives.</span></div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>* primitiveStrings[] = {</div>
-<div class="line">    <span class="stringliteral">&quot;nurbsSphere&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;nurbsCone&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;nurbsCylinder&quot;</span>,</div>
-<div class="line">};</div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">unsigned</span> numPrimitives = <span class="keyword">sizeof</span>(primitiveStrings) / <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>*);</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// Corresponding commands to create the primitives</span></div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>* primitiveCommands[] = {</div>
-<div class="line">    <span class="stringliteral">&quot;sphere&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;cone&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;cylinder&quot;</span>,</div>
-<div class="line">};</div>
-<div class="line"></div>
-<div class="line"><span class="comment">//The writer simply goes gathers all objects from the scene.</span></div>
-<div class="line"><span class="comment">//We will check if the object has a transform, if so, we will check</span></div>
-<div class="line"><span class="comment">//if it&#39;s either a nurbsSphere, nurbsCone or nurbsCylinder.  If so,</span></div>
-<div class="line"><span class="comment">//we will write it out.</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> LepTranslator::writer ( <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_file_object.html">MFileObject</a>&amp; file,</div>
-<div class="line">                                <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>&amp; options,</div>
-<div class="line">                                <a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417">MPxFileTranslator::FileAccessMode</a> mode)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line">    <span class="keywordtype">bool</span> showPositions = <span class="keyword">false</span>;</div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>  i;</div>
-<div class="line">    <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> fname = file.<a class="code" href="#!/url=./cpp_ref/class_m_file_object.html#a7a1c6f1f04d612d126a4e7512ab62ca7">fullName</a>();</div>
-<div class="line"></div>
-<div class="line">    ofstream newf(fname.<a class="code" href="#!/url=./cpp_ref/class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">asChar</a>(), ios::out);</div>
-<div class="line">    <span class="keywordflow">if</span> (!newf) {</div>
-<div class="line">        <span class="comment">// open failed</span></div>
-<div class="line">        cerr &lt;&lt; fname &lt;&lt; <span class="stringliteral">&quot;: could not be opened for reading\n&quot;</span>;</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line">    newf.setf(ios::unitbuf);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (options.<a name="a19"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html#a580388f31f60c46fac867ca48a48da1e">length</a>() &gt; 0) {</div>
-<div class="line">        <span class="comment">// Start parsing.</span></div>
-<div class="line">        <a name="_a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html">MStringArray</a> optionList;</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_string_array.html">MStringArray</a> theOption;</div>
-<div class="line">        options.<a name="a21"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html#ac914d138fc96d7065c687a4f8b40c263">split</a>(<span class="charliteral">&#39;;&#39;</span>, optionList);    <span class="comment">// break out all the options.</span></div>
-<div class="line">        </div>
-<div class="line">        <span class="keywordflow">for</span>( i = 0; i &lt; optionList.<a name="a22"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); ++i ){</div>
-<div class="line">            theOption.<a name="a23"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#ad5522f028dde0080b753279426415a4a">clear</a>();</div>
-<div class="line">            optionList[i].split( <span class="charliteral">&#39;=&#39;</span>, theOption );</div>
-<div class="line">            <span class="keywordflow">if</span>( theOption[0] == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>(<span class="stringliteral">&quot;showPositions&quot;</span>) &amp;&amp;</div>
-<div class="line">                                                    theOption.<a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() &gt; 1 ) {</div>
-<div class="line">                <span class="keywordflow">if</span>( theOption[1].asInt() &gt; 0 ){</div>
-<div class="line">                    showPositions = <span class="keyword">true</span>;</div>
-<div class="line">                }<span class="keywordflow">else</span>{</div>
-<div class="line">                    showPositions = <span class="keyword">false</span>;</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// output our magic number</span></div>
-<div class="line">    newf &lt;&lt; <span class="stringliteral">&quot;&lt;LEP&gt;\n&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <a name="_a24"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_dag.html">MItDag</a> dagIterator( <a name="a25"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_dag.html#a1545968b4f810358b53ae9844bce6bd1a8ad4d0a286855b50181b12df48942291">MItDag::kBreadthFirst</a>, <a name="a26"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a94dd08feda7b2cf0ff8262312c4fcc09">MFn::kInvalid</a>, &amp;status);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> ( !status) {</div>
-<div class="line">        status.<a name="a27"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a> (<span class="stringliteral">&quot;Failure in DAG iterator setup&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <a name="_a28"></a><a class="code" href="#!/url=./cpp_ref/class_m_selection_list.html">MSelectionList</a> selection;</div>
-<div class="line">    <a name="a29"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#a6d81d38246555884897fb153c93aaf42">MGlobal::getActiveSelectionList</a> (selection);</div>
-<div class="line">    <a name="_a30"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_selection_list.html">MItSelectionList</a> selIterator (selection, <a name="a31"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a7f6b3e140a92b64ca6c088012cca49af">MFn::kDagNode</a>);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordtype">bool</span> done = <span class="keyword">false</span>;</div>
-<div class="line">    <span class="keywordflow">while</span> (<span class="keyword">true</span>) </div>
-<div class="line">    {</div>
-<div class="line">        <a name="_a32"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> currentNode;</div>
-<div class="line">        <span class="keywordflow">switch</span> (mode)</div>
-<div class="line">        {</div>
-<div class="line">            <span class="keywordflow">case</span> <a name="a33"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417a64282dfea3d1ae99cd9c8220dfa5d0a7">MPxFileTranslator::kSaveAccessMode</a>:</div>
-<div class="line">            <span class="keywordflow">case</span> <a name="a34"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417a2b6cc89b2e3d91b69ec9af440ef0bc94">MPxFileTranslator::kExportAccessMode</a>:</div>
-<div class="line">                <span class="keywordflow">if</span> (dagIterator.isDone ())</div>
-<div class="line">                    done = <span class="keyword">true</span>;</div>
-<div class="line">                <span class="keywordflow">else</span> {</div>
-<div class="line">                    currentNode = dagIterator.item ();</div>
-<div class="line">                    dagIterator.next ();</div>
-<div class="line">                }</div>
-<div class="line">                <span class="keywordflow">break</span>;</div>
-<div class="line">            <span class="keywordflow">case</span> <a name="a35"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a248681daa33e11b68c934862cfe49417ab8316a826501eb9bae9132346b5db59f">MPxFileTranslator::kExportActiveAccessMode</a>:</div>
-<div class="line">                <span class="keywordflow">if</span> (selIterator.isDone ())</div>
-<div class="line">                    done = <span class="keyword">true</span>;</div>
-<div class="line">                <span class="keywordflow">else</span> {</div>
-<div class="line">                    selIterator.getDependNode (currentNode);</div>
-<div class="line">                    selIterator.next ();</div>
-<div class="line">                }</div>
-<div class="line">                <span class="keywordflow">break</span>;</div>
-<div class="line">            <span class="keywordflow">default</span>:</div>
-<div class="line">                cerr &lt;&lt; <span class="stringliteral">&quot;Unrecognized write mode: &quot;</span> &lt;&lt; mode &lt;&lt; endl;</div>
-<div class="line">                <span class="keywordflow">break</span>;</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">if</span> (done)</div>
-<div class="line">            <span class="keywordflow">break</span>;</div>
-<div class="line"></div>
-<div class="line">        <span class="comment">//We only care about nodes that are transforms</span></div>
-<div class="line">        <a name="_a36"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_transform.html">MFnTransform</a> dagNode(currentNode, &amp;status);</div>
-<div class="line">        <span class="keywordflow">if</span> ( status == <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> ) </div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> nodeNameNoNamespace=<a name="a37"></a><a class="code" href="#!/url=./cpp_ref/class_m_namespace.html#a3d06313c5ef9f98cc8feaef331cae7ec">MNamespace::stripNamespaceFromName</a>(dagNode.name());</div>
-<div class="line">            <span class="keywordflow">for</span> (i = 0; i &lt; numPrimitives; ++i) {                </div>
-<div class="line">                <span class="keywordflow">if</span>(nodeNameNoNamespace.<a name="a38"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html#aaa76dfd27998dc2ff937d3690d11391c">indexW</a>(primitiveStrings[i]) &gt;= 0){</div>
-<div class="line">                    <span class="comment">// This is a node we support</span></div>
-<div class="line">                    newf &lt;&lt; primitiveCommands[i] &lt;&lt; <span class="stringliteral">&quot; -n &quot;</span> &lt;&lt; nodeNameNoNamespace &lt;&lt; endl;</div>
-<div class="line">                    <span class="keywordflow">if</span> (showPositions) {</div>
-<div class="line">                        <a name="_a39"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> pos;</div>
-<div class="line">                        pos = dagNode.getTranslation(<a name="a40"></a><a class="code" href="#!/url=./cpp_ref/class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">MSpace::kObject</a>);</div>
-<div class="line">                        newf &lt;&lt; <span class="stringliteral">&quot;move &quot;</span> &lt;&lt; pos.<a name="a41"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">x</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; pos.<a name="a42"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab927965981178aa1fba979a37168db2a">y</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; pos.<a name="a43"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> &lt;&lt; endl;</div>
-<div class="line">                    }</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line">        }<span class="comment">//if (status == MS::kSuccess)</span></div>
-<div class="line">    }<span class="comment">//while loop</span></div>
-<div class="line"></div>
-<div class="line">    newf.close();</div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">// Whenever Maya needs to know the preferred extension of this file format,</span></div>
-<div class="line"><span class="comment">// it calls this method. For example, if the user tries to save a file called</span></div>
-<div class="line"><span class="comment">// &quot;test&quot; using the Save As dialog, Maya will call this method and actually</span></div>
-<div class="line"><span class="comment">// save it as &quot;test.lep&quot;. Note that the period should *not* be included in</span></div>
-<div class="line"><span class="comment">// the extension.</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> LepTranslator::defaultExtension ()<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword"></span>{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="stringliteral">&quot;lep&quot;</span>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//This method is pretty simple, maya will call this function</span></div>
-<div class="line"><span class="comment">//to make sure it is really a file from our translator.</span></div>
-<div class="line"><span class="comment">//To make sure, we have a little magic number and we verify against it.</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_px_file_translator.html#a8966f27c569f8ef7182b63f0a66e79dd">MPxFileTranslator::MFileKind</a> LepTranslator::identifyFile (</div>
-<div class="line">                                        <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_file_object.html">MFileObject</a>&amp; fileName,</div>
-<div class="line">                                        <span class="keyword">const</span> <span class="keywordtype">char</span>* buffer,</div>
-<div class="line">                                        <span class="keywordtype">short</span> size)<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword"></span>{</div>
-<div class="line">    <span class="comment">// Check the buffer for the &quot;LEP&quot; magic number, the</span></div>
-<div class="line">    <span class="comment">// string &quot;&lt;LEP&gt;\n&quot;</span></div>
-<div class="line"></div>
-<div class="line">    MFileKind rval = kNotMyFileType;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> ((size &gt;= (<span class="keywordtype">short</span>)magic.length()) &amp;&amp;</div>
-<div class="line">        (0 == strncmp(buffer, magic.asChar(), magic.length()))) </div>
-<div class="line">    {</div>
-<div class="line">        rval = kIsMyFileType;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> rval;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> initializePlugin( <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> obj )</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>   status;</div>
-<div class="line">    <a name="_a44"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_plugin.html">MFnPlugin</a> plugin( obj, PLUGIN_COMPANY, <span class="stringliteral">&quot;3.0&quot;</span>, <span class="stringliteral">&quot;Any&quot;</span>);</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Register the translator with the system</span></div>
-<div class="line">    <span class="comment">// The last boolean in this method is very important.</span></div>
-<div class="line">    <span class="comment">// It should be set to true if the reader method in the derived class</span></div>
-<div class="line">    <span class="comment">// intends to issue MEL commands via the MGlobal::executeCommand </span></div>
-<div class="line">    <span class="comment">// method.  Setting this to true will slow down the creation of</span></div>
-<div class="line">    <span class="comment">// new objects, but allows MEL commands other than those that are</span></div>
-<div class="line">    <span class="comment">// part of the Maya Ascii file format to function correctly.</span></div>
-<div class="line">    status =  plugin.registerFileTranslator( <span class="stringliteral">&quot;Lep&quot;</span>,</div>
-<div class="line">                                        <span class="stringliteral">&quot;lepTranslator.rgb&quot;</span>,</div>
-<div class="line">                                        LepTranslator::creator,</div>
-<div class="line">                                        <span class="stringliteral">&quot;lepTranslatorOpts&quot;</span>,</div>
-<div class="line">                                        <span class="stringliteral">&quot;showPositions=1&quot;</span>,</div>
-<div class="line">                                        <span class="keyword">true</span> );</div>
-<div class="line">    <span class="keywordflow">if</span> (!status) </div>
-<div class="line">    {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;registerFileTranslator&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> status;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> uninitializePlugin( <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> obj )</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>   status;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_plugin.html">MFnPlugin</a> plugin( obj );</div>
-<div class="line"></div>
-<div class="line">    status =  plugin.deregisterFileTranslator( <span class="stringliteral">&quot;Lep&quot;</span> );</div>
-<div class="line">    <span class="keywordflow">if</span> (!status)</div>
-<div class="line">    {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;deregisterFileTranslator&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> status;</div>
-<div class="line">}</div>
-<div class="line"></div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

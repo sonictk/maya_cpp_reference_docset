@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>Cg/cgGL.h</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          Cg/cgGL.h
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,309 +73,2052 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>Cg/cgGL.h</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          Cg/cgGL.h
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            Cg/cgGL.h
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             /*
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * Copyright (c) 2002-2012, NVIDIA Corporation.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * NVIDIA Corporation("NVIDIA") supplies this software to you in consideration
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * of your agreement to the following terms, and your use, installation,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * modification or redistribution of this NVIDIA software constitutes
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * acceptance of these terms.  If you do not agree with these terms, please do
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * not use, install, modify or redistribute this NVIDIA software.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * In consideration of your agreement to abide by the following terms, and
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * subject to these terms, NVIDIA grants you a personal, non-exclusive license,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * under NVIDIA's copyrights in this original NVIDIA software (the "NVIDIA
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * Software"), to use, reproduce, modify and redistribute the NVIDIA
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * Software, with or without modifications, in source and/or binary forms;
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * provided that if you redistribute the NVIDIA Software, you must retain the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * copyright notice of NVIDIA, this notice and the following text and
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * disclaimers in all such redistributions of the NVIDIA Software. Neither the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * name, trademarks, service marks nor logos of NVIDIA Corporation may be used
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * to endorse or promote products derived from the NVIDIA Software without
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * specific prior written permission from NVIDIA.  Except as expressly stated
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * in this notice, no other rights or licenses express or implied, are granted
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * by NVIDIA herein, including but not limited to any patent rights that may be
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * infringed by your derivative works or by other works in which the NVIDIA
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * Software may be incorporated. No hardware is licensed hereunder.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * THE NVIDIA SOFTWARE IS BEING PROVIDED ON AN "AS IS" BASIS, WITHOUT
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * WITHOUT LIMITATION, WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR ITS USE AND OPERATION
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * EITHER ALONE OR IN COMBINATION WITH OTHER PRODUCTS.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * IN NO EVENT SHALL NVIDIA BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * EXEMPLARY, CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, LOST
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * PROFITS; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * PROFITS; OR BUSINESS INTERRUPTION) OR ARISING IN ANY WAY OUT OF THE USE,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF THE NVIDIA SOFTWARE,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF NVIDIA HAS BEEN ADVISED
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             * OF THE POSSIBILITY OF SUCH DAMAGE.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             *
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             */
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifndef _cggl_h
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #define _cggl_h
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*** CGGL Run-Time Library API                                         ***/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;Cg/cg.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifdef _WIN32
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # ifndef APIENTRY
+            </span>
+            <span class="comment">
+             /* From Win32's &lt;windef.h&gt; */
+            </span>
+            <span class="preprocessor">
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  define CGGL_APIENTRY_DEFINED
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  if (_MSC_VER &gt;= 800) || defined(_STDCALL_SUPPORTED) || defined(__BORLANDC__) || defined(__LCC__)
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #   define APIENTRY    __stdcall
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  else
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #   define APIENTRY
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  endif
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # endif
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # ifndef WINGDIAPI
+            </span>
+            <span class="comment">
+             /* From Win32's &lt;wingdi.h&gt; and &lt;winnt.h&gt; */
+            </span>
+            <span class="preprocessor">
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  define CGGL_WINGDIAPI_DEFINED
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  define WINGDIAPI __declspec(dllimport)
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # endif
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+            <span class="comment">
+             /* _WIN32 */
+            </span>
+            <span class="preprocessor">
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /* Set up CGGL_API for Win32 dllexport or gcc visibility. */
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifndef CGGL_API
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # ifdef CGGL_EXPORTS
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  ifdef _WIN32
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #   define CGGL_API __declspec(dllexport)
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  elif defined(__GNUC__) &amp;&amp; __GNUC__&gt;=4
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #   define CGGL_API __attribute__ ((visibility("default")))
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  elif defined(__SUNPRO_C) || defined(__SUNPRO_CC)
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #   define CGGL_API __global
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  else
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #   define CGGL_API
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  endif
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # else
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  define CGGL_API
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # endif
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifndef CGGLENTRY
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # ifdef _WIN32
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  define CGGLENTRY __cdecl
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # else
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  define CGGLENTRY
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # endif
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /* Use CGGL_NO_OPENGL to avoid including OpenGL headers. */
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifndef CGGL_NO_OPENGL
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # ifdef __APPLE__
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  include &lt;OpenGL/gl.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # else
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #  include &lt;GL/gl.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # endif
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*** Data types and enumerants                                         ***/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             typedef
+            </span>
+            <span class="keyword">
+             enum
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            CG_GL_MATRIX_IDENTITY             = 0,
+           </div>
+           <div class="line">
+            CG_GL_MATRIX_TRANSPOSE            = 1,
+           </div>
+           <div class="line">
+            CG_GL_MATRIX_INVERSE              = 2,
+           </div>
+           <div class="line">
+            CG_GL_MATRIX_INVERSE_TRANSPOSE    = 3,
+           </div>
+           <div class="line">
+            CG_GL_MODELVIEW_MATRIX            = 4,
+           </div>
+           <div class="line">
+            CG_GL_PROJECTION_MATRIX           = 5,
+           </div>
+           <div class="line">
+            CG_GL_TEXTURE_MATRIX              = 6,
+           </div>
+           <div class="line">
+            CG_GL_MODELVIEW_PROJECTION_MATRIX = 7,
+           </div>
+           <div class="line">
+            CG_GL_VERTEX                      = 8,
+           </div>
+           <div class="line">
+            CG_GL_FRAGMENT                    = 9,
+           </div>
+           <div class="line">
+            CG_GL_GEOMETRY                    = 10,
+           </div>
+           <div class="line">
+            CG_GL_TESSELLATION_CONTROL        = 11,
+           </div>
+           <div class="line">
+            CG_GL_TESSELLATION_EVALUATION     = 12
+           </div>
+           <div class="line">
+            } CGGLenum;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             typedef
+            </span>
+            <span class="keyword">
+             enum
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            CG_GL_GLSL_DEFAULT = 0,
+           </div>
+           <div class="line">
+            CG_GL_GLSL_100     = 1,
+           </div>
+           <div class="line">
+            CG_GL_GLSL_110     = 2,
+           </div>
+           <div class="line">
+            CG_GL_GLSL_120     = 3
+           </div>
+           <div class="line">
+            } CGGLglslversion;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifdef __cplusplus
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             extern
+            </span>
+            <span class="stringliteral">
+             "C"
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*** Functions                                                         ***/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifndef CGGL_EXPLICIT
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            CGGL_API CGbool CGGLENTRY cgGLIsProfileSupported(CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLEnableProfile(CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLDisableProfile(CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API CGprofile CGGLENTRY cgGLGetLatestProfile(CGGLenum profile_type);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetOptimalOptions(CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             char
+            </span>
+            <span class="keyword">
+             const
+            </span>
+            ** CGGLENTRY cgGLGetOptimalOptions(CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLLoadProgram(CGprogram program);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLUnloadProgram(CGprogram program);
+           </div>
+           <div class="line">
+            CGGL_API CGbool CGGLENTRY cgGLIsProgramLoaded(CGprogram program);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLBindProgram(CGprogram program);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLUnbindProgram(CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API GLuint CGGLENTRY cgGLGetProgramID(CGprogram program);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter1f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            x);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter2f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            x,
+            <span class="keywordtype">
+             float
+            </span>
+            y);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter3f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            x,
+            <span class="keywordtype">
+             float
+            </span>
+            y,
+            <span class="keywordtype">
+             float
+            </span>
+            z);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter4f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            x,
+            <span class="keywordtype">
+             float
+            </span>
+            y,
+            <span class="keywordtype">
+             float
+            </span>
+            z,
+            <span class="keywordtype">
+             float
+            </span>
+            w);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter1fv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter2fv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter3fv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter4fv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter1d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            x);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter2d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            x,
+            <span class="keywordtype">
+             double
+            </span>
+            y);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter3d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            x,
+            <span class="keywordtype">
+             double
+            </span>
+            y,
+            <span class="keywordtype">
+             double
+            </span>
+            z);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter4d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            x,
+            <span class="keywordtype">
+             double
+            </span>
+            y,
+            <span class="keywordtype">
+             double
+            </span>
+            z,
+            <span class="keywordtype">
+             double
+            </span>
+            w);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter1dv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter2dv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter3dv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameter4dv(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter1f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter2f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter3f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter4f(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter1d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter2d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter3d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameter4d(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray1f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray2f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray3f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray4f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray1d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray2d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray3d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterArray4d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray1f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray2f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray3f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray4f(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             float
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray1d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray2d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray3d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetParameterArray4d(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             double
+            </span>
+            *v);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetParameterPointer(CGparameter param, GLint fsize, GLenum type, GLsizei stride,
+            <span class="keyword">
+             const
+            </span>
+            GLvoid *pointer);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLEnableClientState(CGparameter param);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLDisableClientState(CGparameter param);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterdr(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterfr(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterdc(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterfc(CGparameter param,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterdr(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterfr(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterdc(CGparameter param,
+            <span class="keywordtype">
+             double
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterfc(CGparameter param,
+            <span class="keywordtype">
+             float
+            </span>
+            *matrix);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetStateMatrixParameter(CGparameter param, CGGLenum matrix, CGGLenum transform);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterArrayfc(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterArrayfr(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             float
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterArraydc(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetMatrixParameterArraydr(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterArrayfc(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             float
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterArrayfr(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             float
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterArraydc(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             double
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLGetMatrixParameterArraydr(CGparameter param,
+            <span class="keywordtype">
+             long
+            </span>
+            offset,
+            <span class="keywordtype">
+             long
+            </span>
+            nelements,
+            <span class="keywordtype">
+             double
+            </span>
+            *matrices);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetTextureParameter(CGparameter param, GLuint texobj);
+           </div>
+           <div class="line">
+            CGGL_API GLuint CGGLENTRY cgGLGetTextureParameter(CGparameter param);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLEnableTextureParameter(CGparameter param);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLDisableTextureParameter(CGparameter param);
+           </div>
+           <div class="line">
+            CGGL_API GLenum CGGLENTRY cgGLGetTextureEnum(CGparameter param);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetManageTextureParameters(CGcontext ctx, CGbool flag);
+           </div>
+           <div class="line">
+            CGGL_API CGbool CGGLENTRY cgGLGetManageTextureParameters(CGcontext ctx);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetupSampler(CGparameter param, GLuint texobj);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLRegisterStates(CGcontext ctx);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLEnableProgramProfiles(CGprogram program);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLDisableProgramProfiles(CGprogram program);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetDebugMode(CGbool debug);
+           </div>
+           <div class="line">
+            CGGL_API CGbuffer CGGLENTRY cgGLCreateBuffer(CGcontext context,
+            <span class="keywordtype">
+             int
+            </span>
+            size,
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             void
+            </span>
+            *data, GLenum bufferUsage);
+           </div>
+           <div class="line">
+            CGGL_API GLuint CGGLENTRY cgGLGetBufferObject(CGbuffer buffer);
+           </div>
+           <div class="line">
+            CGGL_API CGbuffer CGGLENTRY cgGLCreateBufferFromObject(CGcontext context, GLuint obj, CGbool manageObject);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetContextOptimalOptions(CGcontext context, CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             char
+            </span>
+            <span class="keyword">
+             const
+            </span>
+            ** CGGLENTRY cgGLGetContextOptimalOptions(CGcontext context, CGprofile profile);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keywordtype">
+             void
+            </span>
+            CGGLENTRY cgGLSetContextGLSLVersion(CGcontext context, CGGLglslversion version);
+           </div>
+           <div class="line">
+            CGGL_API CGGLglslversion CGGLENTRY cgGLGetContextGLSLVersion(CGcontext context);
+           </div>
+           <div class="line">
+            CGGL_API
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * CGGLENTRY cgGLGetGLSLVersionString(CGGLglslversion version);
+           </div>
+           <div class="line">
+            CGGL_API CGGLglslversion CGGLENTRY cgGLGetGLSLVersion(
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            *version_string);
+           </div>
+           <div class="line">
+            CGGL_API CGGLglslversion CGGLENTRY cgGLDetectGLSLVersion(
+            <span class="keywordtype">
+             void
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifdef __cplusplus
+            </span>
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifdef CGGL_APIENTRY_DEFINED
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # undef CGGL_APIENTRY_DEFINED
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # undef APIENTRY
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #ifdef CGGL_WINGDIAPI_DEFINED
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # undef CGGL_WINGDIAPI_DEFINED
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             # undef WINGDIAPI
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">Cg/cgGL.h</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * Copyright (c) 2002-2012, NVIDIA Corporation.</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * NVIDIA Corporation(&quot;NVIDIA&quot;) supplies this software to you in consideration</span></div>
-<div class="line"><span class="comment"> * of your agreement to the following terms, and your use, installation,</span></div>
-<div class="line"><span class="comment"> * modification or redistribution of this NVIDIA software constitutes</span></div>
-<div class="line"><span class="comment"> * acceptance of these terms.  If you do not agree with these terms, please do</span></div>
-<div class="line"><span class="comment"> * not use, install, modify or redistribute this NVIDIA software.</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * In consideration of your agreement to abide by the following terms, and</span></div>
-<div class="line"><span class="comment"> * subject to these terms, NVIDIA grants you a personal, non-exclusive license,</span></div>
-<div class="line"><span class="comment"> * under NVIDIA&#39;s copyrights in this original NVIDIA software (the &quot;NVIDIA</span></div>
-<div class="line"><span class="comment"> * Software&quot;), to use, reproduce, modify and redistribute the NVIDIA</span></div>
-<div class="line"><span class="comment"> * Software, with or without modifications, in source and/or binary forms;</span></div>
-<div class="line"><span class="comment"> * provided that if you redistribute the NVIDIA Software, you must retain the</span></div>
-<div class="line"><span class="comment"> * copyright notice of NVIDIA, this notice and the following text and</span></div>
-<div class="line"><span class="comment"> * disclaimers in all such redistributions of the NVIDIA Software. Neither the</span></div>
-<div class="line"><span class="comment"> * name, trademarks, service marks nor logos of NVIDIA Corporation may be used</span></div>
-<div class="line"><span class="comment"> * to endorse or promote products derived from the NVIDIA Software without</span></div>
-<div class="line"><span class="comment"> * specific prior written permission from NVIDIA.  Except as expressly stated</span></div>
-<div class="line"><span class="comment"> * in this notice, no other rights or licenses express or implied, are granted</span></div>
-<div class="line"><span class="comment"> * by NVIDIA herein, including but not limited to any patent rights that may be</span></div>
-<div class="line"><span class="comment"> * infringed by your derivative works or by other works in which the NVIDIA</span></div>
-<div class="line"><span class="comment"> * Software may be incorporated. No hardware is licensed hereunder.</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * THE NVIDIA SOFTWARE IS BEING PROVIDED ON AN &quot;AS IS&quot; BASIS, WITHOUT</span></div>
-<div class="line"><span class="comment"> * WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING</span></div>
-<div class="line"><span class="comment"> * WITHOUT LIMITATION, WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT,</span></div>
-<div class="line"><span class="comment"> * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR ITS USE AND OPERATION</span></div>
-<div class="line"><span class="comment"> * EITHER ALONE OR IN COMBINATION WITH OTHER PRODUCTS.</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * IN NO EVENT SHALL NVIDIA BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL,</span></div>
-<div class="line"><span class="comment"> * EXEMPLARY, CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, LOST</span></div>
-<div class="line"><span class="comment"> * PROFITS; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR</span></div>
-<div class="line"><span class="comment"> * PROFITS; OR BUSINESS INTERRUPTION) OR ARISING IN ANY WAY OUT OF THE USE,</span></div>
-<div class="line"><span class="comment"> * REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF THE NVIDIA SOFTWARE,</span></div>
-<div class="line"><span class="comment"> * HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING</span></div>
-<div class="line"><span class="comment"> * NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF NVIDIA HAS BEEN ADVISED</span></div>
-<div class="line"><span class="comment"> * OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> */</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifndef _cggl_h</span></div>
-<div class="line"><span class="preprocessor">#define _cggl_h</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">/*************************************************************************/</span></div>
-<div class="line"><span class="comment">/*** CGGL Run-Time Library API                                         ***/</span></div>
-<div class="line"><span class="comment">/*************************************************************************/</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;Cg/cg.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><span class="preprocessor"># ifndef APIENTRY </span><span class="comment">/* From Win32&#39;s &lt;windef.h&gt; */</span><span class="preprocessor"></span></div>
-<div class="line"><span class="preprocessor">#  define CGGL_APIENTRY_DEFINED</span></div>
-<div class="line"><span class="preprocessor">#  if (_MSC_VER &gt;= 800) || defined(_STDCALL_SUPPORTED) || defined(__BORLANDC__) || defined(__LCC__)</span></div>
-<div class="line"><span class="preprocessor">#   define APIENTRY    __stdcall</span></div>
-<div class="line"><span class="preprocessor">#  else</span></div>
-<div class="line"><span class="preprocessor">#   define APIENTRY</span></div>
-<div class="line"><span class="preprocessor">#  endif</span></div>
-<div class="line"><span class="preprocessor"># endif</span></div>
-<div class="line"><span class="preprocessor"># ifndef WINGDIAPI </span><span class="comment">/* From Win32&#39;s &lt;wingdi.h&gt; and &lt;winnt.h&gt; */</span><span class="preprocessor"></span></div>
-<div class="line"><span class="preprocessor">#  define CGGL_WINGDIAPI_DEFINED</span></div>
-<div class="line"><span class="preprocessor">#  define WINGDIAPI __declspec(dllimport)</span></div>
-<div class="line"><span class="preprocessor"># endif</span></div>
-<div class="line"><span class="preprocessor">#endif </span><span class="comment">/* _WIN32 */</span><span class="preprocessor"></span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">/* Set up CGGL_API for Win32 dllexport or gcc visibility. */</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifndef CGGL_API</span></div>
-<div class="line"><span class="preprocessor"># ifdef CGGL_EXPORTS</span></div>
-<div class="line"><span class="preprocessor">#  ifdef _WIN32</span></div>
-<div class="line"><span class="preprocessor">#   define CGGL_API __declspec(dllexport)</span></div>
-<div class="line"><span class="preprocessor">#  elif defined(__GNUC__) &amp;&amp; __GNUC__&gt;=4</span></div>
-<div class="line"><span class="preprocessor">#   define CGGL_API __attribute__ ((visibility(&quot;default&quot;)))</span></div>
-<div class="line"><span class="preprocessor">#  elif defined(__SUNPRO_C) || defined(__SUNPRO_CC)</span></div>
-<div class="line"><span class="preprocessor">#   define CGGL_API __global</span></div>
-<div class="line"><span class="preprocessor">#  else</span></div>
-<div class="line"><span class="preprocessor">#   define CGGL_API</span></div>
-<div class="line"><span class="preprocessor">#  endif</span></div>
-<div class="line"><span class="preprocessor"># else</span></div>
-<div class="line"><span class="preprocessor">#  define CGGL_API</span></div>
-<div class="line"><span class="preprocessor"># endif</span></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifndef CGGLENTRY</span></div>
-<div class="line"><span class="preprocessor"># ifdef _WIN32</span></div>
-<div class="line"><span class="preprocessor">#  define CGGLENTRY __cdecl</span></div>
-<div class="line"><span class="preprocessor"># else</span></div>
-<div class="line"><span class="preprocessor">#  define CGGLENTRY</span></div>
-<div class="line"><span class="preprocessor"># endif</span></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">/* Use CGGL_NO_OPENGL to avoid including OpenGL headers. */</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifndef CGGL_NO_OPENGL</span></div>
-<div class="line"><span class="preprocessor"># ifdef __APPLE__</span></div>
-<div class="line"><span class="preprocessor">#  include &lt;OpenGL/gl.h&gt;</span></div>
-<div class="line"><span class="preprocessor"># else</span></div>
-<div class="line"><span class="preprocessor">#  include &lt;GL/gl.h&gt;</span></div>
-<div class="line"><span class="preprocessor"># endif</span></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">/*************************************************************************/</span></div>
-<div class="line"><span class="comment">/*** Data types and enumerants                                         ***/</span></div>
-<div class="line"><span class="comment">/*************************************************************************/</span></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
-<div class="line">{</div>
-<div class="line">  CG_GL_MATRIX_IDENTITY             = 0,</div>
-<div class="line">  CG_GL_MATRIX_TRANSPOSE            = 1,</div>
-<div class="line">  CG_GL_MATRIX_INVERSE              = 2,</div>
-<div class="line">  CG_GL_MATRIX_INVERSE_TRANSPOSE    = 3,</div>
-<div class="line">  CG_GL_MODELVIEW_MATRIX            = 4,</div>
-<div class="line">  CG_GL_PROJECTION_MATRIX           = 5,</div>
-<div class="line">  CG_GL_TEXTURE_MATRIX              = 6,</div>
-<div class="line">  CG_GL_MODELVIEW_PROJECTION_MATRIX = 7,</div>
-<div class="line">  CG_GL_VERTEX                      = 8,</div>
-<div class="line">  CG_GL_FRAGMENT                    = 9,</div>
-<div class="line">  CG_GL_GEOMETRY                    = 10,</div>
-<div class="line">  CG_GL_TESSELLATION_CONTROL        = 11,</div>
-<div class="line">  CG_GL_TESSELLATION_EVALUATION     = 12</div>
-<div class="line">} CGGLenum;</div>
-<div class="line"></div>
-<div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
-<div class="line">{</div>
-<div class="line">  CG_GL_GLSL_DEFAULT = 0,</div>
-<div class="line">  CG_GL_GLSL_100     = 1,</div>
-<div class="line">  CG_GL_GLSL_110     = 2,</div>
-<div class="line">  CG_GL_GLSL_120     = 3</div>
-<div class="line">} CGGLglslversion;</div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
-<div class="line">{</div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">/*************************************************************************/</span></div>
-<div class="line"><span class="comment">/*** Functions                                                         ***/</span></div>
-<div class="line"><span class="comment">/*************************************************************************/</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifndef CGGL_EXPLICIT</span></div>
-<div class="line"></div>
-<div class="line">CGGL_API CGbool CGGLENTRY cgGLIsProfileSupported(CGprofile profile);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLEnableProfile(CGprofile profile);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLDisableProfile(CGprofile profile);</div>
-<div class="line">CGGL_API CGprofile CGGLENTRY cgGLGetLatestProfile(CGGLenum profile_type);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetOptimalOptions(CGprofile profile);</div>
-<div class="line">CGGL_API <span class="keywordtype">char</span> <span class="keyword">const</span> ** CGGLENTRY cgGLGetOptimalOptions(CGprofile profile);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLLoadProgram(CGprogram program);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLUnloadProgram(CGprogram program);</div>
-<div class="line">CGGL_API CGbool CGGLENTRY cgGLIsProgramLoaded(CGprogram program);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLBindProgram(CGprogram program);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLUnbindProgram(CGprofile profile);</div>
-<div class="line">CGGL_API GLuint CGGLENTRY cgGLGetProgramID(CGprogram program);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter1f(CGparameter param, <span class="keywordtype">float</span> x);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter2f(CGparameter param, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter3f(CGparameter param, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter4f(CGparameter param, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z, <span class="keywordtype">float</span> w);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter1fv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter2fv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter3fv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter4fv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter1d(CGparameter param, <span class="keywordtype">double</span> x);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter2d(CGparameter param, <span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter3d(CGparameter param, <span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y, <span class="keywordtype">double</span> z);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter4d(CGparameter param, <span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y, <span class="keywordtype">double</span> z, <span class="keywordtype">double</span> w);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter1dv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter2dv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter3dv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameter4dv(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter1f(CGparameter param, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter2f(CGparameter param, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter3f(CGparameter param, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter4f(CGparameter param, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter1d(CGparameter param, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter2d(CGparameter param, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter3d(CGparameter param, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameter4d(CGparameter param, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray1f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray2f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray3f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray4f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray1d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray2d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray3d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterArray4d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray1f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray2f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray3f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray4f(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">float</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray1d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray2d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray3d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetParameterArray4d(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">double</span> *v);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetParameterPointer(CGparameter param, GLint fsize, GLenum type, GLsizei stride, <span class="keyword">const</span> GLvoid *pointer);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLEnableClientState(CGparameter param);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLDisableClientState(CGparameter param);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterdr(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">double</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterfr(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">float</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterdc(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">double</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterfc(CGparameter param, <span class="keyword">const</span> <span class="keywordtype">float</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterdr(CGparameter param, <span class="keywordtype">double</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterfr(CGparameter param, <span class="keywordtype">float</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterdc(CGparameter param, <span class="keywordtype">double</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterfc(CGparameter param, <span class="keywordtype">float</span> *matrix);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetStateMatrixParameter(CGparameter param, CGGLenum matrix, CGGLenum transform);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterArrayfc(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">float</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterArrayfr(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">float</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterArraydc(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">double</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetMatrixParameterArraydr(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keyword">const</span> <span class="keywordtype">double</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterArrayfc(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">float</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterArrayfr(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">float</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterArraydc(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">double</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLGetMatrixParameterArraydr(CGparameter param, <span class="keywordtype">long</span> offset, <span class="keywordtype">long</span> nelements, <span class="keywordtype">double</span> *matrices);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetTextureParameter(CGparameter param, GLuint texobj);</div>
-<div class="line">CGGL_API GLuint CGGLENTRY cgGLGetTextureParameter(CGparameter param);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLEnableTextureParameter(CGparameter param);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLDisableTextureParameter(CGparameter param);</div>
-<div class="line">CGGL_API GLenum CGGLENTRY cgGLGetTextureEnum(CGparameter param);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetManageTextureParameters(CGcontext ctx, CGbool flag);</div>
-<div class="line">CGGL_API CGbool CGGLENTRY cgGLGetManageTextureParameters(CGcontext ctx);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetupSampler(CGparameter param, GLuint texobj);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLRegisterStates(CGcontext ctx);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLEnableProgramProfiles(CGprogram program);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLDisableProgramProfiles(CGprogram program);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetDebugMode(CGbool debug);</div>
-<div class="line">CGGL_API CGbuffer CGGLENTRY cgGLCreateBuffer(CGcontext context, <span class="keywordtype">int</span> size, <span class="keyword">const</span> <span class="keywordtype">void</span> *data, GLenum bufferUsage);</div>
-<div class="line">CGGL_API GLuint CGGLENTRY cgGLGetBufferObject(CGbuffer buffer);</div>
-<div class="line">CGGL_API CGbuffer CGGLENTRY cgGLCreateBufferFromObject(CGcontext context, GLuint obj, CGbool manageObject);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetContextOptimalOptions(CGcontext context, CGprofile profile);</div>
-<div class="line">CGGL_API <span class="keywordtype">char</span> <span class="keyword">const</span> ** CGGLENTRY cgGLGetContextOptimalOptions(CGcontext context, CGprofile profile);</div>
-<div class="line">CGGL_API <span class="keywordtype">void</span> CGGLENTRY cgGLSetContextGLSLVersion(CGcontext context, CGGLglslversion version);</div>
-<div class="line">CGGL_API CGGLglslversion CGGLENTRY cgGLGetContextGLSLVersion(CGcontext context);</div>
-<div class="line">CGGL_API <span class="keyword">const</span> <span class="keywordtype">char</span> * CGGLENTRY cgGLGetGLSLVersionString(CGGLglslversion version);</div>
-<div class="line">CGGL_API CGGLglslversion CGGLENTRY cgGLGetGLSLVersion(<span class="keyword">const</span> <span class="keywordtype">char</span> *version_string);</div>
-<div class="line">CGGL_API CGGLglslversion CGGLENTRY cgGLDetectGLSLVersion(<span class="keywordtype">void</span>);</div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line">}</div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifdef CGGL_APIENTRY_DEFINED</span></div>
-<div class="line"><span class="preprocessor"># undef CGGL_APIENTRY_DEFINED</span></div>
-<div class="line"><span class="preprocessor"># undef APIENTRY</span></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#ifdef CGGL_WINGDIAPI_DEFINED</span></div>
-<div class="line"><span class="preprocessor"># undef CGGL_WINGDIAPI_DEFINED</span></div>
-<div class="line"><span class="preprocessor"># undef WINGDIAPI</span></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

@@ -1,1 +1,3 @@
+# Ignore build files and backup files
 backup/
+maya-2016-cpp-reference.docset/Contents/Resources/Documents/output/

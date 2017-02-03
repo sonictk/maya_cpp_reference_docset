@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>gpuCache/gpuCacheFrustum.h</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          gpuCache/gpuCacheFrustum.h
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,254 +73,1194 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>gpuCache/gpuCacheFrustum.h</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          gpuCache/gpuCacheFrustum.h
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            gpuCache/gpuCacheFrustum.h
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="preprocessor">
+             #ifndef _gpuCacheFrustum_h_
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #define _gpuCacheFrustum_h_
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //**************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 2012 Autodesk, Inc. All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //**************************************************************************/
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MMatrix.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MBoundingBox.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;cassert&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             namespace
+            </span>
+            GPUCache {
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //==============================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CLASS Frustum
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //==============================================================================
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Inspired from "Optimized View Frustum Culling Algorithms", Ulf
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Assarsson and Tomas Moller, Chalmers University, March 1999
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             class
+            </span>
+            Frustum
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             public
+            </span>
+            :
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*----- typedefs and enums -----*/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             enum
+            </span>
+            ClippingResult {
+           </div>
+           <div class="line">
+            kIntersectsLeft     = (1),
+           </div>
+           <div class="line">
+            kIntersectsRight    = (1 &lt;&lt; 1),
+           </div>
+           <div class="line">
+            kIntersectsBottom   = (1 &lt;&lt; 2),
+           </div>
+           <div class="line">
+            kIntersectsTop      = (1 &lt;&lt; 3),
+           </div>
+           <div class="line">
+            kIntersectsNear     = (1 &lt;&lt; 4),
+           </div>
+           <div class="line">
+            kIntersectsFar      = (1 &lt;&lt; 5),
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            kIntersectsMask     = kIntersectsLeft | kIntersectsRight |
+           </div>
+           <div class="line">
+            kIntersectsBottom | kIntersectsTop |
+           </div>
+           <div class="line">
+            kIntersectsNear | kIntersectsFar,
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            kOutside            = (1 &lt;&lt; 6),
+           </div>
+           <div class="line">
+            kInside             = (1 &lt;&lt; 7),
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            kIntersects         = kIntersectsMask,
+           </div>
+           <div class="line">
+            kUnknown            = kIntersectsMask,
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             enum
+            </span>
+            <a class="code" href="./namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49">
+             DrawAPI
+            </a>
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49a72361be679c1aca1c1be5f9b500a3315">
+             kOpenGL
+            </a>
+            ,
+           </div>
+           <div class="line">
+            kDirectX,
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*----- member functions -----*/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            Frustum(
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_matrix.html">
+             MMatrix
+            </a>
+            worldViewProjInvMatrix,
+            <a class="code" href="./namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49">
+             DrawAPI
+            </a>
+            api =
+            <a class="code" href="./namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49a72361be679c1aca1c1be5f9b500a3315">
+             kOpenGL
+            </a>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ClippingResult test(
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html">
+             MBoundingBox
+            </a>
+            &amp; bbox,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            ClippingResult&amp; parentResult = kUnknown)
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // kOutside and kInside should be processed before calling test()
+            </span>
+           </div>
+           <div class="line">
+            assert(!(parentResult &amp; (kOutside | kInside)));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a2">
+            </a>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            pmin = bbox.
+            <a name="a3">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#afb3213b98f3a6b4bda9759511e9b79a1">
+             min
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            pmax = bbox.
+            <a name="a4">
+            </a>
+            <a class="code" href="./class_m_bounding_box.html#a1dfdbea9d5560e4aa09d34bdbd82480c">
+             max
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            result    = 0;
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            intersect = 1;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             int
+            </span>
+            i=kFirstPlane; i&lt;=kLastPlane; ++i,intersect=intersect&lt;&lt;1) {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Check the parent bounding box against the clipping plane.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // We don't need to check the clipping plane if
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // the parent bounding box is fully inside the clipping plane,
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (parentResult &amp; intersect) {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Parent bounding box intersects with the clipping plane
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Test this bounding box against the clipping plane
+            </span>
+           </div>
+           <div class="line">
+            ClippingResult res = planes[i].test(pmin, pmax);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Outside the clipping plane, return
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (res == kOutside) {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            kOutside;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Intersect the clipping plane, set the bit
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (res == kIntersects) {
+           </div>
+           <div class="line">
+            result = result | intersect;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The bounding box does not intersect with any of the clipping plane.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!(result &amp; kIntersectsMask)) {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            kInside;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The bounding box intersect with one of the clipping plane.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            (ClippingResult)result;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             private
+            </span>
+            :
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*----- typedefs and enums -----*/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             enum
+            </span>
+            PlaneId {
+           </div>
+           <div class="line">
+            kLeft,
+           </div>
+           <div class="line">
+            kRight,
+           </div>
+           <div class="line">
+            kBottom,
+           </div>
+           <div class="line">
+            kTop,
+           </div>
+           <div class="line">
+            kNear,
+           </div>
+           <div class="line">
+            kFar,
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            kFirstPlane = kLeft,
+           </div>
+           <div class="line">
+            kLastPlane = kFar
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*----- classes -----*/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             class
+            </span>
+            Plane
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             public
+            </span>
+            :
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Setup plane given three non-colinear points.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // We also pass in a vertex that lies on the possitive
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // side of the plane. We can't rely on the winding
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ordering of the vertices because the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // worldViewProjInvMatrix might contain reflections along
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // arbitray axis.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Note that we could check the orientation of only half
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // the planes, but it seem simpler to simply check each
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // planes.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            init(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; p0,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; p1,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; p2,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; opp)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a5">
+            </a>
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            u = p2 - p1;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            v = p0 - p1;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            n = (u ^ v).normal();
+           </div>
+           <div class="line">
+            a = n.
+            <a name="a6">
+            </a>
+            <a class="code" href="./class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            ;
+           </div>
+           <div class="line">
+            b = n.
+            <a name="a7">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            ;
+           </div>
+           <div class="line">
+            c = n.
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ;
+           </div>
+           <div class="line">
+            d = -(n.
+            <a class="code" href="./class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            *p1.x + n.
+            <a class="code" href="./class_m_vector.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            *p1.y + n.
+            <a class="code" href="./class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            *p1.z);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (distance(opp) &lt; 0.0f) {
+           </div>
+           <div class="line">
+            a = -a; b = -b; c = -c; d = -d;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            distance(
+            <span class="keywordtype">
+             double
+            </span>
+            x,
+            <span class="keywordtype">
+             double
+            </span>
+            y,
+            <span class="keywordtype">
+             double
+            </span>
+            z)
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            a*x + b*y + c*z + d;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            distance(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; p)
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            distance(p.
+            <a name="a9">
+            </a>
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , p.
+            <a name="a10">
+            </a>
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , p.
+            <a name="a11">
+            </a>
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ClippingResult test(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; pmin,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; pmax)
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             bool
+            </span>
+            sa = a &gt; 0.0;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             bool
+            </span>
+            sb = b &gt; 0.0;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             bool
+            </span>
+            sc = c &gt; 0.0;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Test the p-vertex
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (distance(sa ? pmax.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            : pmin.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            ,
+           </div>
+           <div class="line">
+            sb ? pmax.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            : pmin.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            ,
+           </div>
+           <div class="line">
+            sc ? pmax.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            : pmin.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ) &lt; 0.0)
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            kOutside;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Test the n-vertex
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (distance(sa ? pmin.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            : pmax.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            ,
+           </div>
+           <div class="line">
+            sb ? pmin.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            : pmax.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            ,
+           </div>
+           <div class="line">
+            sc ? pmin.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            : pmax.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ) &gt; 0.0)
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            kInside;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            kIntersects;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            print(
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * name,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; op1,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; op2,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; op3,
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp; op4);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             private
+            </span>
+            :
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Plane equation a*x + b*y + c*z + d = 0
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ||a,b,c|| == 1.0
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            a, b, c, d;
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             /*----- data members -----*/
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            Plane planes[6];
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            }
+            <span class="comment">
+             // namespace GPUCache
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #endif
+            </span>
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">gpuCache/gpuCacheFrustum.h</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="preprocessor">#ifndef _gpuCacheFrustum_h_</span></div>
-<div class="line"><span class="preprocessor">#define _gpuCacheFrustum_h_</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">//**************************************************************************/</span></div>
-<div class="line"><span class="comment">// Copyright 2012 Autodesk, Inc. All rights reserved. </span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk </span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download, </span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic </span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">//**************************************************************************/</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MMatrix.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MBoundingBox.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;cassert&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">namespace </span>GPUCache {</div>
-<div class="line">    </div>
-<div class="line"><span class="comment">//==============================================================================</span></div>
-<div class="line"><span class="comment">// CLASS Frustum</span></div>
-<div class="line"><span class="comment">//==============================================================================</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// Inspired from &quot;Optimized View Frustum Culling Algorithms&quot;, Ulf</span></div>
-<div class="line"><span class="comment">// Assarsson and Tomas Moller, Chalmers University, March 1999</span></div>
-<div class="line"><span class="keyword">class </span>Frustum</div>
-<div class="line">{</div>
-<div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">/*----- typedefs and enums -----*/</span></div>
-<div class="line">    </div>
-<div class="line">    <span class="keyword">enum</span> ClippingResult {</div>
-<div class="line">        kIntersectsLeft     = (1),</div>
-<div class="line">        kIntersectsRight    = (1 &lt;&lt; 1),</div>
-<div class="line">        kIntersectsBottom   = (1 &lt;&lt; 2),</div>
-<div class="line">        kIntersectsTop      = (1 &lt;&lt; 3),</div>
-<div class="line">        kIntersectsNear     = (1 &lt;&lt; 4),</div>
-<div class="line">        kIntersectsFar      = (1 &lt;&lt; 5),</div>
-<div class="line"></div>
-<div class="line">        kIntersectsMask     = kIntersectsLeft | kIntersectsRight |</div>
-<div class="line">                              kIntersectsBottom | kIntersectsTop |</div>
-<div class="line">                              kIntersectsNear | kIntersectsFar,</div>
-<div class="line"></div>
-<div class="line">        kOutside            = (1 &lt;&lt; 6),</div>
-<div class="line">        kInside             = (1 &lt;&lt; 7),</div>
-<div class="line"></div>
-<div class="line">        kIntersects         = kIntersectsMask,</div>
-<div class="line">        kUnknown            = kIntersectsMask,</div>
-<div class="line">    };</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">enum</span> <a class="code" href="#!/url=./cpp_ref/namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49">DrawAPI</a> {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49a72361be679c1aca1c1be5f9b500a3315">kOpenGL</a>,</div>
-<div class="line">        kDirectX,</div>
-<div class="line">    };</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">/*----- member functions -----*/</span></div>
-<div class="line">    </div>
-<div class="line">    Frustum(<a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_matrix.html">MMatrix</a> worldViewProjInvMatrix, <a class="code" href="#!/url=./cpp_ref/namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49">DrawAPI</a> api = <a class="code" href="#!/url=./cpp_ref/namespace_m_h_w_render.html#ad970d5c990d4803d0e9d73c1ff4fda49a72361be679c1aca1c1be5f9b500a3315">kOpenGL</a>);</div>
-<div class="line"></div>
-<div class="line">    ClippingResult test(<span class="keyword">const</span> <a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html">MBoundingBox</a>&amp; bbox, </div>
-<div class="line">        <span class="keyword">const</span> ClippingResult&amp; parentResult = kUnknown)<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword">    </span>{</div>
-<div class="line">        <span class="comment">// kOutside and kInside should be processed before calling test()</span></div>
-<div class="line">        assert(!(parentResult &amp; (kOutside | kInside)));</div>
-<div class="line"></div>
-<div class="line">        <span class="keyword">const</span> <a name="_a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a> pmin = bbox.<a name="a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#afb3213b98f3a6b4bda9759511e9b79a1">min</a>();</div>
-<div class="line">        <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a> pmax = bbox.<a name="a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_bounding_box.html#a1dfdbea9d5560e4aa09d34bdbd82480c">max</a>();</div>
-<div class="line">            </div>
-<div class="line">        <span class="keywordtype">int</span> result    = 0;</div>
-<div class="line">        <span class="keywordtype">int</span> intersect = 1;</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=kFirstPlane; i&lt;=kLastPlane; ++i,intersect=intersect&lt;&lt;1) {</div>
-<div class="line">            <span class="comment">// Check the parent bounding box against the clipping plane.</span></div>
-<div class="line">            <span class="comment">// We don&#39;t need to check the clipping plane if</span></div>
-<div class="line">            <span class="comment">// the parent bounding box is fully inside the clipping plane,</span></div>
-<div class="line">            <span class="keywordflow">if</span> (parentResult &amp; intersect) {</div>
-<div class="line">                <span class="comment">// Parent bounding box intersects with the clipping plane</span></div>
-<div class="line">                <span class="comment">// Test this bounding box against the clipping plane</span></div>
-<div class="line">                ClippingResult res = planes[i].test(pmin, pmax);</div>
-<div class="line"></div>
-<div class="line">                <span class="comment">// Outside the clipping plane, return</span></div>
-<div class="line">                <span class="keywordflow">if</span> (res == kOutside) {</div>
-<div class="line">                    <span class="keywordflow">return</span> kOutside;</div>
-<div class="line">                }</div>
-<div class="line"></div>
-<div class="line">                <span class="comment">// Intersect the clipping plane, set the bit</span></div>
-<div class="line">                <span class="keywordflow">if</span> (res == kIntersects) {</div>
-<div class="line">                    result = result | intersect;</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <span class="comment">// The bounding box does not intersect with any of the clipping plane.</span></div>
-<div class="line">        <span class="keywordflow">if</span> (!(result &amp; kIntersectsMask)) {</div>
-<div class="line">            <span class="keywordflow">return</span> kInside;</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <span class="comment">// The bounding box intersect with one of the clipping plane.</span></div>
-<div class="line">        <span class="keywordflow">return</span> (ClippingResult)result;</div>
-<div class="line">    }        </div>
-<div class="line">        </div>
-<div class="line"><span class="keyword">private</span>:</div>
-<div class="line">        </div>
-<div class="line">    <span class="comment">/*----- typedefs and enums -----*/</span></div>
-<div class="line">    </div>
-<div class="line">    <span class="keyword">enum</span> PlaneId {</div>
-<div class="line">        kLeft,</div>
-<div class="line">        kRight,</div>
-<div class="line">        kBottom,</div>
-<div class="line">        kTop,</div>
-<div class="line">        kNear,</div>
-<div class="line">        kFar,</div>
-<div class="line"></div>
-<div class="line">        kFirstPlane = kLeft,</div>
-<div class="line">        kLastPlane = kFar</div>
-<div class="line">    };</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">/*----- classes -----*/</span></div>
-<div class="line">    </div>
-<div class="line">    <span class="keyword">class </span>Plane </div>
-<div class="line">    {</div>
-<div class="line">    <span class="keyword">public</span>:</div>
-<div class="line">            </div>
-<div class="line">        <span class="comment">// Setup plane given three non-colinear points.</span></div>
-<div class="line">        <span class="comment">//</span></div>
-<div class="line">        <span class="comment">// We also pass in a vertex that lies on the possitive</span></div>
-<div class="line">        <span class="comment">// side of the plane. We can&#39;t rely on the winding</span></div>
-<div class="line">        <span class="comment">// ordering of the vertices because the</span></div>
-<div class="line">        <span class="comment">// worldViewProjInvMatrix might contain reflections along</span></div>
-<div class="line">        <span class="comment">// arbitray axis.</span></div>
-<div class="line">        <span class="comment">//</span></div>
-<div class="line">        <span class="comment">// Note that we could check the orientation of only half</span></div>
-<div class="line">        <span class="comment">// the planes, but it seem simpler to simply check each</span></div>
-<div class="line">        <span class="comment">// planes.</span></div>
-<div class="line">        <span class="keywordtype">void</span> init(<span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; p0,</div>
-<div class="line">                  <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; p1,</div>
-<div class="line">                  <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; p2,</div>
-<div class="line">                  <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; opp)</div>
-<div class="line">        {</div>
-<div class="line">            <a name="_a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> u = p2 - p1;</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> v = p0 - p1;</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> n = (u ^ v).normal();</div>
-<div class="line">            a = n.<a name="a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>;</div>
-<div class="line">            b = n.<a name="a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab927965981178aa1fba979a37168db2a">y</a>;</div>
-<div class="line">            c = n.<a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>;</div>
-<div class="line">            d = -(n.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>*p1.x + n.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab927965981178aa1fba979a37168db2a">y</a>*p1.y + n.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>*p1.z);</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span> (distance(opp) &lt; 0.0f) {</div>
-<div class="line">                a = -a; b = -b; c = -c; d = -d;</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordtype">double</span> distance(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y, <span class="keywordtype">double</span> z)<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword">        </span>{</div>
-<div class="line">            <span class="keywordflow">return</span> a*x + b*y + c*z + d;</div>
-<div class="line">        }</div>
-<div class="line">            </div>
-<div class="line">        <span class="keywordtype">double</span> distance(<span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; p)<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword">        </span>{</div>
-<div class="line">            <span class="keywordflow">return</span> distance(p.<a name="a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, p.<a name="a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, p.<a name="a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>);</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        ClippingResult test(<span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; pmin,</div>
-<div class="line">                            <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; pmax)<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword">        </span>{</div>
-<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> sa = a &gt; 0.0;</div>
-<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> sb = b &gt; 0.0;</div>
-<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> sc = c &gt; 0.0;</div>
-<div class="line"></div>
-<div class="line">            <span class="comment">// Test the p-vertex</span></div>
-<div class="line">            <span class="keywordflow">if</span> (distance(sa ? pmax.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a> : pmin.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>,</div>
-<div class="line">                         sb ? pmax.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a> : pmin.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>,</div>
-<div class="line">                         sc ? pmax.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> : pmin.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>) &lt; 0.0)</div>
-<div class="line">                <span class="keywordflow">return</span> kOutside;</div>
-<div class="line"></div>
-<div class="line">            <span class="comment">// Test the n-vertex</span></div>
-<div class="line">            <span class="keywordflow">if</span> (distance(sa ? pmin.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a> : pmax.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>,</div>
-<div class="line">                         sb ? pmin.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a> : pmax.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>,</div>
-<div class="line">                         sc ? pmin.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a> : pmax.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>) &gt; 0.0)</div>
-<div class="line">                <span class="keywordflow">return</span> kInside;</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">return</span> kIntersects;</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordtype">void</span> print(<span class="keyword">const</span> <span class="keywordtype">char</span>* name,</div>
-<div class="line">                   <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; op1,</div>
-<div class="line">                   <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; op2,</div>
-<div class="line">                   <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; op3,</div>
-<div class="line">                   <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a>&amp; op4);</div>
-<div class="line">                    </div>
-<div class="line">    <span class="keyword">private</span>:</div>
-<div class="line">            </div>
-<div class="line">        <span class="comment">// Plane equation a*x + b*y + c*z + d = 0</span></div>
-<div class="line">        <span class="comment">// ||a,b,c|| == 1.0</span></div>
-<div class="line">        <span class="keywordtype">double</span> a, b, c, d;</div>
-<div class="line">    };</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">/*----- data members -----*/</span></div>
-<div class="line">    </div>
-<div class="line">    Plane planes[6];</div>
-<div class="line">};</div>
-<div class="line"></div>
-<div class="line">    </div>
-<div class="line">} <span class="comment">// namespace GPUCache</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

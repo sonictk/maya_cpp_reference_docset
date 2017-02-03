@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>hwReflectBumpShader_NV20/ShadingConnection.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          hwReflectBumpShader_NV20/ShadingConnection.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,285 +73,1309 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>hwReflectBumpShader_NV20/ShadingConnection.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          hwReflectBumpShader_NV20/ShadingConnection.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            hwReflectBumpShader_NV20/ShadingConnection.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright (C) 1995 - 2006 Autodesk, Inc. and/or its licensors.  All
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The coded instructions, statements, computer programs, and/or related
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // material (collectively the "Data") in these files contain unpublished
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // information proprietary to Autodesk, Inc. ("Autodesk") and/or its
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // licensors, which is protected by U.S. and Canadian federal copyright
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // law and by international treaties.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The Data is provided for use exclusively by You. You have the right
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // to use, modify, and incorporate this Data into other products for
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // purposes authorized by the Autodesk software license agreement,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // without fee.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The copyright notices in the Software and this entire statement,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // including the above license grant, this restriction and the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // following disclaimer, must be included in all copies of the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Software, in whole or in part, and all derivative works of
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // the Software, unless such copies or derivative works are solely
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // in the form of machine-executable object code generated by a
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // source language processor.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // AUTODESK DOES NOT MAKE AND HEREBY DISCLAIMS ANY EXPRESS OR IMPLIED
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // WARRANTIES INCLUDING, BUT NOT LIMITED TO, THE WARRANTIES OF
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE, OR
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // TRADE PRACTICE. IN NO EVENT WILL AUTODESK AND/OR ITS LICENSORS
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // BE LIABLE FOR ANY LOST REVENUES, DATA, OR PROFITS, OR SPECIAL,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES, EVEN IF AUTODESK
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // AND/OR ITS LICENSORS HAS BEEN ADVISED OF THE POSSIBILITY
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // OR PROBABILITY OF SUCH DAMAGES.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ShadingConnection.cpp
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DESCRIPTION:  This class stores useful information about
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //               a shader's attribute, including what's connected upstream of it.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //               It also automatically passes through shader switches.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // AUTHOR: Christian Laforte
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MObject.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MColor.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MString.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MStringArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnDependencyNode.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPlug.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPlugArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;assert.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "ShadingConnection.h"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ShadingConnection::ShadingConnection(
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            shaderObj,
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            shapeName,
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            attribute
+            <span class="comment">
+             /* = "" */
+            </span>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Store those input values for later use.
+            </span>
+           </div>
+           <div class="line">
+            this-&gt;m_shaderObj = shaderObj;
+           </div>
+           <div class="line">
+            this-&gt;m_shapeName = shapeName;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // By default, the connection is direct until proven otherwise.
+            </span>
+           </div>
+           <div class="line">
+            this-&gt;m_directConnection =
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (attribute !=
+            <span class="stringliteral">
+             ""
+            </span>
+            )
+           </div>
+           <div class="line">
+            traverseAttribute(attribute);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ShadingConnection::TYPE ShadingConnection::traverseAttribute(
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            attributeName)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Get a plug to the attribute.
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a2">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a name="_a3">
+            </a>
+            <a class="code" href="./class_m_fn_dependency_node.html">
+             MFnDependencyNode
+            </a>
+            shaderNode(m_shaderObj);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a4">
+            </a>
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            plug = shaderNode.findPlug( attributeName, &amp;status );
+           </div>
+           <div class="line">
+            assert(status);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            this-&gt;m_attributeName = attributeName;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            analyzePlug(plug);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ShadingConnection::TYPE ShadingConnection::analyzePlug(
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            plug)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Find all incoming connections.
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a5">
+            </a>
+            <a class="code" href="./class_m_plug_array.html">
+             MPlugArray
+            </a>
+            connectedElements;
+           </div>
+           <div class="line">
+            plug.
+            <a name="a6">
+            </a>
+            <a class="code" href="./class_m_plug.html#a3727c18c58fc5ba8be5fb2582b5d06f1">
+             connectedTo
+            </a>
+            ( connectedElements,
+            <span class="keyword">
+             true
+            </span>
+            ,
+            <span class="keyword">
+             false
+            </span>
+            , &amp;status );
+           </div>
+           <div class="line">
+            assert(status);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (connectedElements.
+            <a name="a7">
+            </a>
+            <a class="code" href="./class_m_plug_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () == 0)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // It's a constant color... set it now and return.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            numChildren = plug.
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_plug.html#a0a27cb351cc1a05aa82d4329d7f99bd1">
+             numChildren
+            </a>
+            ();
+           </div>
+           <div class="line">
+            assert(numChildren == 3);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             float
+            </span>
+            red, green, blue;
+           </div>
+           <div class="line">
+            plug.
+            <a name="a9">
+            </a>
+            <a class="code" href="./class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">
+             child
+            </a>
+            (0).
+            <a name="a10">
+            </a>
+            <a class="code" href="./class_m_plug.html#a64f7093bfde5c5eb9d89b32635b772aa">
+             getValue
+            </a>
+            (red);
+           </div>
+           <div class="line">
+            plug.
+            <a class="code" href="./class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">
+             child
+            </a>
+            (1).
+            <a class="code" href="./class_m_plug.html#a64f7093bfde5c5eb9d89b32635b772aa">
+             getValue
+            </a>
+            (green);
+           </div>
+           <div class="line">
+            plug.
+            <a class="code" href="./class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">
+             child
+            </a>
+            (2).
+            <a class="code" href="./class_m_plug.html#a64f7093bfde5c5eb9d89b32635b772aa">
+             getValue
+            </a>
+            (blue);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            setConstantColor(
+            <a name="_a11">
+            </a>
+            <a class="code" href="./class_m_color.html">
+             MColor
+            </a>
+            (red, green, blue, 1.0));
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The plug is actually connected on a different shading node.
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            connectedObject = connectedElements[0].node(&amp;status);
+           </div>
+           <div class="line">
+            assert(status);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // If this is a triple shading switch, go through it.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (connectedObject.
+            <a name="a12">
+            </a>
+            <a class="code" href="./class_m_object.html#af0af77f14f96d1134fb8e8e60dc7e420">
+             hasFn
+            </a>
+            (
+            <a name="a13">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7af4feda59f088b9fdba6ea42bea02dd6d">
+             MFn::kTripleShadingSwitch
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            traverseTripleShadingSwitch(connectedObject);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Set the object and return the appropriate type.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            setTexture(connectedObject);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ShadingConnection::TYPE ShadingConnection::traverseTripleShadingSwitch(
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            connectedObject)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The connection cannot be direct anymore.
+            </span>
+           </div>
+           <div class="line">
+            m_directConnection =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_dependency_node.html">
+             MFnDependencyNode
+            </a>
+            node(connectedObject);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            inputPlug = node.findPlug(
+            <span class="stringliteral">
+             "input"
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            numElements = inputPlug.
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_plug.html#a12c4005d04ff520718c343dd894b2efd">
+             numElements
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            numChildren = inputPlug.
+            <a class="code" href="./class_m_plug.html#a0a27cb351cc1a05aa82d4329d7f99bd1">
+             numChildren
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // It is assumed that the first child of this input compound attribute is
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // a "inTexture" attribute and the the second child is the inShape attribute.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // This assumption should always be safe, unless some drastic changes occured in the
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // implementation of the shading switches... in which case this code won't work, so
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // we would throw an exception.
+            </span>
+           </div>
+           <div class="line">
+            assert( numChildren &gt;= 2);
+            <span class="comment">
+             // "Abnormal hierarchy in switching node."
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Go through each row of the switch table.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            index = 0; index &lt; numElements; index++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            inTexturePlug = inputPlug.
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_plug.html#aa79cd2ef3e019dbb57cfe28019932b46">
+             elementByPhysicalIndex
+            </a>
+            (index).
+            <a class="code" href="./class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">
+             child
+            </a>
+            (0);
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            inShapePlug = inputPlug.
+            <a class="code" href="./class_m_plug.html#aa79cd2ef3e019dbb57cfe28019932b46">
+             elementByPhysicalIndex
+            </a>
+            (index).
+            <a class="code" href="./class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">
+             child
+            </a>
+            (1);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_plug_array.html">
+             MPlugArray
+            </a>
+            inShapeConnections;
+           </div>
+           <div class="line">
+            inShapePlug.
+            <a class="code" href="./class_m_plug.html#a3727c18c58fc5ba8be5fb2582b5d06f1">
+             connectedTo
+            </a>
+            ( inShapeConnections,
+            <span class="keyword">
+             true
+            </span>
+            ,
+            <span class="keyword">
+             false
+            </span>
+            , &amp;status );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Check if one of the corresponding shapes matches the given shape name.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            numCorrespondingShapes = inShapeConnections.
+            <a class="code" href="./class_m_plug_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            shapeNum = 0; shapeNum &lt; numCorrespondingShapes; shapeNum++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            inShapeObj = inShapeConnections[0].node(&amp;status);
+           </div>
+           <div class="line">
+            assert(status);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_dependency_node.html">
+             MFnDependencyNode
+            </a>
+            inShape(inShapeObj);
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            inShapeName = inShape.name();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (inShapeName == m_shapeName)
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            analyzePlug(inTexturePlug);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // If there was no special case in the switch for our shape, check the default.
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            defaultPlug = node.findPlug(
+            <span class="stringliteral">
+             "default"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            analyzePlug(defaultPlug);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ShadingConnection::TYPE ShadingConnection::type()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_type;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_color.html">
+             MColor
+            </a>
+            ShadingConnection::constantColor()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            assert(m_type == CONSTANT_COLOR);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_constantColor;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            ShadingConnection::texture()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            assert(m_type == TEXTURE);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_texture;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            ShadingConnection::shaderObj()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_shaderObj;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            ShadingConnection::shaderName()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_dependency_node.html">
+             MFnDependencyNode
+            </a>
+            shaderNode(m_shaderObj, &amp;stat);
+           </div>
+           <div class="line">
+            assert(stat);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            shaderNode.name();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            ShadingConnection::attributeName()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_attributeName;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            ShadingConnection::shapeName()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_shapeName;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ShadingConnection::TYPE ShadingConnection::setConstantColor(
+            <a class="code" href="./class_m_color.html">
+             MColor
+            </a>
+            col)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            m_constantColor = col;
+           </div>
+           <div class="line">
+            m_type = CONSTANT_COLOR;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Reset m_texture to prevent misinterpretation.
+            </span>
+           </div>
+           <div class="line">
+            m_texture =
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_type;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            ShadingConnection::TYPE ShadingConnection::setTexture(
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            texture)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            m_texture = texture;
+           </div>
+           <div class="line">
+            m_type = TEXTURE;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Reset m_color to prevent misinterpretation.
+            </span>
+           </div>
+           <div class="line">
+            m_constantColor =
+            <a class="code" href="./class_m_color.html">
+             MColor
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_type;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            ShadingConnection::isDirectConnection()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            m_directConnection;
+           </div>
+           <div class="line">
+            }
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">hwReflectBumpShader_NV20/ShadingConnection.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright (C) 1995 - 2006 Autodesk, Inc. and/or its licensors.  All </span></div>
-<div class="line"><span class="comment">// rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// The coded instructions, statements, computer programs, and/or related </span></div>
-<div class="line"><span class="comment">// material (collectively the &quot;Data&quot;) in these files contain unpublished </span></div>
-<div class="line"><span class="comment">// information proprietary to Autodesk, Inc. (&quot;Autodesk&quot;) and/or its </span></div>
-<div class="line"><span class="comment">// licensors, which is protected by U.S. and Canadian federal copyright </span></div>
-<div class="line"><span class="comment">// law and by international treaties.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// The Data is provided for use exclusively by You. You have the right </span></div>
-<div class="line"><span class="comment">// to use, modify, and incorporate this Data into other products for </span></div>
-<div class="line"><span class="comment">// purposes authorized by the Autodesk software license agreement, </span></div>
-<div class="line"><span class="comment">// without fee.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// The copyright notices in the Software and this entire statement, </span></div>
-<div class="line"><span class="comment">// including the above license grant, this restriction and the </span></div>
-<div class="line"><span class="comment">// following disclaimer, must be included in all copies of the </span></div>
-<div class="line"><span class="comment">// Software, in whole or in part, and all derivative works of </span></div>
-<div class="line"><span class="comment">// the Software, unless such copies or derivative works are solely </span></div>
-<div class="line"><span class="comment">// in the form of machine-executable object code generated by a </span></div>
-<div class="line"><span class="comment">// source language processor.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND. </span></div>
-<div class="line"><span class="comment">// AUTODESK DOES NOT MAKE AND HEREBY DISCLAIMS ANY EXPRESS OR IMPLIED </span></div>
-<div class="line"><span class="comment">// WARRANTIES INCLUDING, BUT NOT LIMITED TO, THE WARRANTIES OF </span></div>
-<div class="line"><span class="comment">// NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR </span></div>
-<div class="line"><span class="comment">// PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE, OR </span></div>
-<div class="line"><span class="comment">// TRADE PRACTICE. IN NO EVENT WILL AUTODESK AND/OR ITS LICENSORS </span></div>
-<div class="line"><span class="comment">// BE LIABLE FOR ANY LOST REVENUES, DATA, OR PROFITS, OR SPECIAL, </span></div>
-<div class="line"><span class="comment">// DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES, EVEN IF AUTODESK </span></div>
-<div class="line"><span class="comment">// AND/OR ITS LICENSORS HAS BEEN ADVISED OF THE POSSIBILITY </span></div>
-<div class="line"><span class="comment">// OR PROBABILITY OF SUCH DAMAGES.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// ShadingConnection.cpp</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// DESCRIPTION:  This class stores useful information about</span></div>
-<div class="line"><span class="comment">//               a shader&#39;s attribute, including what&#39;s connected upstream of it.</span></div>
-<div class="line"><span class="comment">//               It also automatically passes through shader switches.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// AUTHOR: Christian Laforte</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment"></span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MObject.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MColor.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MString.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MStringArray.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnDependencyNode.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPlug.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPlugArray.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &quot;ShadingConnection.h&quot;</span></div>
-<div class="line"></div>
-<div class="line">ShadingConnection::ShadingConnection(<a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> shaderObj, <a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> shapeName, <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> attribute <span class="comment">/* = &quot;&quot; */</span>)</div>
-<div class="line">{</div>
-<div class="line">    <span class="comment">// Store those input values for later use.</span></div>
-<div class="line">    this-&gt;m_shaderObj = shaderObj;</div>
-<div class="line">    this-&gt;m_shapeName = shapeName;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// By default, the connection is direct until proven otherwise.</span></div>
-<div class="line">    this-&gt;m_directConnection = <span class="keyword">true</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (attribute != <span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line">        traverseAttribute(attribute);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line">ShadingConnection::TYPE ShadingConnection::traverseAttribute(<a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> attributeName)</div>
-<div class="line">{</div>
-<div class="line">    <span class="comment">// Get a plug to the attribute.</span></div>
-<div class="line">    <a name="_a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line">    <a name="_a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_dependency_node.html">MFnDependencyNode</a> shaderNode(m_shaderObj);</div>
-<div class="line"></div>
-<div class="line">    <a name="_a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> plug = shaderNode.findPlug( attributeName, &amp;status );</div>
-<div class="line">    assert(status);</div>
-<div class="line"></div>
-<div class="line">    this-&gt;m_attributeName = attributeName;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> analyzePlug(plug);</div>
-<div class="line">}</div>
-<div class="line">    </div>
-<div class="line">ShadingConnection::TYPE ShadingConnection::analyzePlug(<a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> plug)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Find all incoming connections.</span></div>
-<div class="line">    <a name="_a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug_array.html">MPlugArray</a> connectedElements;</div>
-<div class="line">    plug.<a name="a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a3727c18c58fc5ba8be5fb2582b5d06f1">connectedTo</a>( connectedElements, <span class="keyword">true</span>, <span class="keyword">false</span>, &amp;status );</div>
-<div class="line">    assert(status);</div>
-<div class="line">    </div>
-<div class="line">    <span class="keywordflow">if</span> (connectedElements.<a name="a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() == 0)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">// It&#39;s a constant color... set it now and return.</span></div>
-<div class="line">        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChildren = plug.<a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a0a27cb351cc1a05aa82d4329d7f99bd1">numChildren</a>();</div>
-<div class="line">        assert(numChildren == 3);</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordtype">float</span> red, green, blue;</div>
-<div class="line">        plug.<a name="a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">child</a>(0).<a name="a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a64f7093bfde5c5eb9d89b32635b772aa">getValue</a>(red);</div>
-<div class="line">        plug.<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">child</a>(1).<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a64f7093bfde5c5eb9d89b32635b772aa">getValue</a>(green);</div>
-<div class="line">        plug.<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">child</a>(2).<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a64f7093bfde5c5eb9d89b32635b772aa">getValue</a>(blue);</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">return</span> setConstantColor(<a name="_a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_color.html">MColor</a>(red, green, blue, 1.0));</div>
-<div class="line">    }</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">// The plug is actually connected on a different shading node.</span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> connectedObject = connectedElements[0].node(&amp;status);</div>
-<div class="line">    assert(status);</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// If this is a triple shading switch, go through it.</span></div>
-<div class="line">    <span class="keywordflow">if</span> (connectedObject.<a name="a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html#af0af77f14f96d1134fb8e8e60dc7e420">hasFn</a>(<a name="a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7af4feda59f088b9fdba6ea42bea02dd6d">MFn::kTripleShadingSwitch</a>))</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> traverseTripleShadingSwitch(connectedObject);</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Set the object and return the appropriate type.</span></div>
-<div class="line">    <span class="keywordflow">return</span> setTexture(connectedObject);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line">ShadingConnection::TYPE ShadingConnection::traverseTripleShadingSwitch(<a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> connectedObject)</div>
-<div class="line">{           </div>
-<div class="line">    <span class="comment">// The connection cannot be direct anymore.</span></div>
-<div class="line">    m_directConnection = <span class="keyword">false</span>;</div>
-<div class="line">    </div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_dependency_node.html">MFnDependencyNode</a> node(connectedObject);</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> inputPlug = node.findPlug( <span class="stringliteral">&quot;input&quot;</span> );</div>
-<div class="line">    </div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numElements = inputPlug.<a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a12c4005d04ff520718c343dd894b2efd">numElements</a>();</div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numChildren = inputPlug.<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a0a27cb351cc1a05aa82d4329d7f99bd1">numChildren</a>();</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">// It is assumed that the first child of this input compound attribute is</span></div>
-<div class="line">    <span class="comment">// a &quot;inTexture&quot; attribute and the the second child is the inShape attribute.</span></div>
-<div class="line">    <span class="comment">// This assumption should always be safe, unless some drastic changes occured in the</span></div>
-<div class="line">    <span class="comment">// implementation of the shading switches... in which case this code won&#39;t work, so</span></div>
-<div class="line">    <span class="comment">// we would throw an exception.</span></div>
-<div class="line">    assert( numChildren &gt;= 2); <span class="comment">// &quot;Abnormal hierarchy in switching node.&quot;</span></div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">// Go through each row of the switch table.</span></div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index = 0; index &lt; numElements; index++)</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> inTexturePlug = inputPlug.<a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#aa79cd2ef3e019dbb57cfe28019932b46">elementByPhysicalIndex</a>(index).<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">child</a>(0);</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> inShapePlug = inputPlug.<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#aa79cd2ef3e019dbb57cfe28019932b46">elementByPhysicalIndex</a>(index).<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#ae9e2ba9ea7be1790e7e13fd2c49bd143">child</a>(1);               </div>
-<div class="line"></div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_plug_array.html">MPlugArray</a> inShapeConnections;</div>
-<div class="line">        inShapePlug.<a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a3727c18c58fc5ba8be5fb2582b5d06f1">connectedTo</a>( inShapeConnections, <span class="keyword">true</span>, <span class="keyword">false</span>, &amp;status );</div>
-<div class="line">        </div>
-<div class="line">        <span class="comment">// Check if one of the corresponding shapes matches the given shape name.</span></div>
-<div class="line">        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numCorrespondingShapes = inShapeConnections.<a class="code" href="#!/url=./cpp_ref/class_m_plug_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>();</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> shapeNum = 0; shapeNum &lt; numCorrespondingShapes; shapeNum++)</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> inShapeObj = inShapeConnections[0].node(&amp;status);</div>
-<div class="line">            assert(status);</div>
-<div class="line">            </div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_fn_dependency_node.html">MFnDependencyNode</a> inShape(inShapeObj);</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> inShapeName = inShape.name();</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span> (inShapeName == m_shapeName)</div>
-<div class="line">                <span class="keywordflow">return</span> analyzePlug(inTexturePlug);</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// If there was no special case in the switch for our shape, check the default.</span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> defaultPlug = node.findPlug(<span class="stringliteral">&quot;default&quot;</span>);</div>
-<div class="line">    <span class="keywordflow">return</span> analyzePlug(defaultPlug);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line">ShadingConnection::TYPE ShadingConnection::type()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> m_type;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_color.html">MColor</a> ShadingConnection::constantColor()</div>
-<div class="line">{</div>
-<div class="line">    assert(m_type == CONSTANT_COLOR);</div>
-<div class="line">    <span class="keywordflow">return</span> m_constantColor;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> ShadingConnection::texture()</div>
-<div class="line">{</div>
-<div class="line">    assert(m_type == TEXTURE);</div>
-<div class="line">    <span class="keywordflow">return</span> m_texture;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> ShadingConnection::shaderObj()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> m_shaderObj;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> ShadingConnection::shaderName()</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> stat;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_dependency_node.html">MFnDependencyNode</a> shaderNode(m_shaderObj, &amp;stat);</div>
-<div class="line">    assert(stat);</div>
-<div class="line">    <span class="keywordflow">return</span> shaderNode.name();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> ShadingConnection::attributeName()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> m_attributeName;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> ShadingConnection::shapeName()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> m_shapeName;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line">ShadingConnection::TYPE ShadingConnection::setConstantColor(<a class="code" href="#!/url=./cpp_ref/class_m_color.html">MColor</a> col)</div>
-<div class="line">{</div>
-<div class="line">    m_constantColor = col;</div>
-<div class="line">    m_type = CONSTANT_COLOR;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Reset m_texture to prevent misinterpretation.</span></div>
-<div class="line">    m_texture = <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a>();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> m_type;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line">ShadingConnection::TYPE ShadingConnection::setTexture(<a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> texture)</div>
-<div class="line">{</div>
-<div class="line">    m_texture = texture;</div>
-<div class="line">    m_type = TEXTURE;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Reset m_color to prevent misinterpretation.</span></div>
-<div class="line">    m_constantColor = <a class="code" href="#!/url=./cpp_ref/class_m_color.html">MColor</a>();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> m_type;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">bool</span> ShadingConnection::isDirectConnection()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> m_directConnection;</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

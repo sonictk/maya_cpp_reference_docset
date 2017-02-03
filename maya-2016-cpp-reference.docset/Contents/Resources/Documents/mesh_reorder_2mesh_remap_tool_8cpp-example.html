@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>meshReorder/meshRemapTool.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          meshReorder/meshRemapTool.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,532 +73,2617 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>meshReorder/meshRemapTool.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          meshReorder/meshRemapTool.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            meshReorder/meshRemapTool.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description: Get user selections for mesh vertex/edge remapping
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Author: Bruce Hickey
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // This is added to prevent multiple definitions of the MApiVersion string.
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #define _MApiVersion
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MCursor.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnDependencyNode.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnMesh.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MGlobal.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItMeshPolygon.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MItMeshVertex.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MMatrix.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPlug.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPointArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MVector.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "meshRemapTool.h"
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "meshMapUtils.h"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The user Context
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             double
+            </span>
+            epsilon = 0.00001;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            meshRemapTool::meshRemapTool()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            setTitleString (
+            <span class="stringliteral">
+             "Mesh Remap Tool"
+            </span>
+            );
+           </div>
+           <div class="line">
+            setCursor(
+            <a name="a0">
+            </a>
+            <a class="code" href="./class_m_cursor.html#af90009e098b37698c059716caba92603">
+             MCursor::editCursor
+            </a>
+            );
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            meshRemapTool::~meshRemapTool() {}
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            * meshRemapTool::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            meshRemapTool;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            meshRemapTool::toolOnSetup (
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_event.html">
+             MEvent
+            </a>
+            &amp; )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            meshRemapTool::reset()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fNumSelectedPoints = 0;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fSelectedPathSrc.clear();
+           </div>
+           <div class="line">
+            fSelectedComponentSrc.clear();
+           </div>
+           <div class="line">
+            fSelectVtxSrc.clear();
+           </div>
+           <div class="line">
+            fSelectedFaceSrc = -1;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fSelectedPathDst.clear();
+           </div>
+           <div class="line">
+            fSelectedComponentDst.clear();
+           </div>
+           <div class="line">
+            fSelectVtxDst.clear();
+           </div>
+           <div class="line">
+            fSelectedFaceDst = -1;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fCurrentHelpString =
+            <span class="stringliteral">
+             "Select 1st point on source mesh."
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            helpStateHasChanged();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Selects objects within the user defined area, then process them
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a2">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            meshRemapTool::doRelease(
+            <a class="code" href="./class_m_event.html">
+             MEvent
+            </a>
+            &amp; event )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             char
+            </span>
+            buf[1024];
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Perform the base actions
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat =
+            <a name="a3">
+            </a>
+            <a class="code" href="./class_m_px_selection_context.html#a8bd8976814e8a33289efa506b627a27c">
+             MPxSelectionContext::doRelease
+            </a>
+            (event);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Get the list of selected items
+            </span>
+           </div>
+           <div class="line">
+            <a name="a4">
+            </a>
+            <a class="code" href="./class_m_global.html#a6d81d38246555884897fb153c93aaf42">
+             MGlobal::getActiveSelectionList
+            </a>
+            ( fSelectionList );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  Get the selection's details, we must have exactly one component selected
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a5">
+            </a>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            component;
+           </div>
+           <div class="line">
+            <a name="_a6">
+            </a>
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            path;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a7">
+            </a>
+            <a class="code" href="./class_m_it_selection_list.html">
+             MItSelectionList
+            </a>
+            selectionIt (fSelectionList,
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a02fee4c0e0e6f1b7ab7a678d61627461">
+             MFn::kComponent
+            </a>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a9">
+            </a>
+            <a class="code" href="./class_m_string_array.html">
+             MStringArray
+            </a>
+            selections;
+           </div>
+           <div class="line">
+            selectionIt.getStrings( selections );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // There are valid cases where only the meshes are selected.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( selections.
+            <a name="a10">
+            </a>
+            <a class="code" href="./class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () == 0 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Handling the case where the user's workflow is
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // 1) select src mesh, select vtx1, vtx2, vtx3 (i.e. fNumSelectedPoints == 0)
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // 2) select dst mesh, select vtx1, vtx2, vtx3 (i.e. fNumSelectedPoints == 3)
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fNumSelectedPoints == 0 || fNumSelectedPoints == 3 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_it_selection_list.html">
+             MItSelectionList
+            </a>
+            selectionDag (fSelectionList,
+            <a name="a11">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a7f6b3e140a92b64ca6c088012cca49af">
+             MFn::kDagNode
+            </a>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!selectionDag.isDone() &amp;&amp; selectionDag.getDagPath(path) ==
+            <a name="a12">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            path.
+            <a name="a13">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">
+             extendToShape
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="comment">
+             // return true there is exactly one mesh selected
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (path.
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            selectionDag.next();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (selectionDag.isDone())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  If this is the destination mesh, make sure that
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  it doesn't have history.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fNumSelectedPoints == 3)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            checkForHistory(path);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Handling the case where the user is doing the auto remap, i.e.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // select src mesh, and then dst mesh when fNumSelectedPoints == 0.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fNumSelectedPoints == 0 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_it_selection_list.html">
+             MItSelectionList
+            </a>
+            selectionDag (fSelectionList,
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a7f6b3e140a92b64ca6c088012cca49af">
+             MFn::kDagNode
+            </a>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!selectionDag.isDone() &amp;&amp; selectionDag.getDagPath(path) ==
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            path.
+            <a class="code" href="./class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">
+             extendToShape
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Confirm first selection is a mesh
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            selectionDag.next();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!selectionDag.isDone() &amp;&amp;
+           </div>
+           <div class="line">
+            selectionDag.getDagPath(path) ==
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            path.
+            <a class="code" href="./class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">
+             extendToShape
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Confirm second selection is a mesh
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            selectionDag.next();
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Confirm there are exactly 2 selections
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (selectionDag.isDone())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  Make sure that the destination mesh
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  doesn't have history.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            checkForHistory(path);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( selections.
+            <a class="code" href="./class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () != 1 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="a16">
+            </a>
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "Must select exactly one vertex"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (selectionIt.isDone ())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "Selected item not a vertex"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( selectionIt.getDagPath (path, component) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "Must select a mesh or its vertex"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!path.
+            <a name="a17">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#ad1aa507eb8e63e89e8d46a0abc18aa8c">
+             node
+            </a>
+            ().
+            <a name="a18">
+            </a>
+            <a class="code" href="./class_m_object.html#af0af77f14f96d1134fb8e8e60dc7e420">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            ) &amp;&amp; !(path.
+            <a class="code" href="./class_m_dag_path.html#ad1aa507eb8e63e89e8d46a0abc18aa8c">
+             node
+            </a>
+            ().
+            <a class="code" href="./class_m_object.html#af0af77f14f96d1134fb8e8e60dc7e420">
+             hasFn
+            </a>
+            (
+            <a name="a19">
+            </a>
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7adafa274206df602835f0f22ae887e126">
+             MFn::kTransform
+            </a>
+            ) &amp;&amp; path.
+            <a class="code" href="./class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">
+             hasFn
+            </a>
+            (
+            <a class="code" href="./class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFn::kMesh
+            </a>
+            )))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "Must select a mesh or its transform"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  If this is the first vertex of the destination mesh, make sure that
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  it doesn't have history.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ((fNumSelectedPoints == 3) &amp;&amp; (checkForHistory(path) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a20">
+            </a>
+            <a class="code" href="./class_m_it_mesh_vertex.html">
+             MItMeshVertex
+            </a>
+            fIt ( path, component, &amp;stat );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "MItMeshVertex failed"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a21">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MStatus::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (fIt.count() != 1 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            sprintf(buf,
+            <span class="stringliteral">
+             "Invalid selection '%s'. Vertices must be picked one at a time."
+            </span>
+            , selections[0].asChar() );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            ( buf );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            sprintf(buf,
+            <span class="stringliteral">
+             "Accepting vertex '%s'"
+            </span>
+            , selections[0].asChar() );
+           </div>
+           <div class="line">
+            <a name="a22">
+            </a>
+            <a class="code" href="./class_m_global.html#a3d14e9f9ed022a80f664eac0136c2f7a">
+             MGlobal::displayInfo
+            </a>
+            (  buf );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Now that we know it's valid, process the selection, the first 3 items are the source, the second
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // 3 define the target
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fNumSelectedPoints &lt; 3 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fSelectedPathSrc.append( path );
+           </div>
+           <div class="line">
+            fSelectedComponentSrc.append( component );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fSelectedPathDst.append( path );
+           </div>
+           <div class="line">
+            fSelectedComponentDst.append( component );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  When each of the source/target are defined, process them. An error/invalid selection will restart the selection for
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //  that particular mesh.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fNumSelectedPoints == 2 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( ( stat = meshMapUtils::validateFaceSelection( fSelectedPathSrc, fSelectedComponentSrc, &amp;fSelectedFaceSrc, &amp;fSelectVtxSrc ) ) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "Selected vertices don't define a unique face on source mesh"
+            </span>
+            );
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Once the target is defined, invoke the command
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fNumSelectedPoints == 5 )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( ( stat = meshMapUtils::validateFaceSelection( fSelectedPathDst, fSelectedComponentDst, &amp;fSelectedFaceDst, &amp;fSelectVtxDst ) ) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "Selected vertices don't define a unique face on destination mesh"
+            </span>
+            );
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            executeCmd();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // We don't have all the details yet, just move to the next item
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            fNumSelectedPoints++;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            helpStateHasChanged();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            stat;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            meshRemapTool::checkForHistory(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            &amp; mesh)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a23">
+            </a>
+            <a class="code" href="./class_m_fn_mesh.html">
+             MFnMesh
+            </a>
+            meshFn(mesh);
+           </div>
+           <div class="line">
+            <a name="_a24">
+            </a>
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            historyPlug = meshFn.findPlug(
+            <span class="stringliteral">
+             "inMesh"
+            </span>
+            ,
+            <span class="keyword">
+             true
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (historyPlug.
+            <a name="a25">
+            </a>
+            <a class="code" href="./class_m_plug.html#a2914a42ceb556760af045852f1f57a08">
+             isDestination
+            </a>
+            ())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             "Destination mesh has history. Its geometry cannot be modified."
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a26">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af8c5f748892ec74b32719c8fba7767e1">
+             MS::kInvalidParameter
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            meshRemapTool::resolveMapping()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Get the list of selected items
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a6d81d38246555884897fb153c93aaf42">
+             MGlobal::getActiveSelectionList
+            </a>
+            ( fSelectionList );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fSelectionList.length() != 2)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            helpStateHasChanged();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MStatus::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            dagPath;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            component;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fSelectionList.getDagPath(0, dagPath, component) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             " Invalid source mesh"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MStatus::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            dagPath.
+            <a class="code" href="./class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">
+             extendToShape
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Repeat this 3 times one for each vertex
+            </span>
+           </div>
+           <div class="line">
+            fSelectedPathSrc.append(dagPath);
+           </div>
+           <div class="line">
+            fSelectedPathSrc.append(dagPath);
+           </div>
+           <div class="line">
+            fSelectedPathSrc.append(dagPath);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( fSelectionList.getDagPath(1, dagPath, component) !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">
+             MGlobal::displayError
+            </a>
+            (
+            <span class="stringliteral">
+             " Invalid destination mesh"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MStatus::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            dagPath.
+            <a class="code" href="./class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">
+             extendToShape
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Repeat this 3 times one for each vertex
+            </span>
+           </div>
+           <div class="line">
+            fSelectedPathDst.append(dagPath);
+           </div>
+           <div class="line">
+            fSelectedPathDst.append(dagPath);
+           </div>
+           <div class="line">
+            fSelectedPathDst.append(dagPath);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Find the vertices in Object Space of the first polygon
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a27">
+            </a>
+            <a class="code" href="./class_m_point_array.html">
+             MPointArray
+            </a>
+            srcPts;
+           </div>
+           <div class="line">
+            <a name="_a28">
+            </a>
+            <a class="code" href="./class_m_int_array.html">
+             MIntArray
+            </a>
+            srcVertIds, dstVertIds;
+           </div>
+           <div class="line">
+            <a name="_a29">
+            </a>
+            <a class="code" href="./class_m_it_mesh_polygon.html">
+             MItMeshPolygon
+            </a>
+            faceIterSrc(fSelectedPathSrc[0]);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            srcFaceId = faceIterSrc.index();
+           </div>
+           <div class="line">
+            faceIterSrc.getPoints(srcPts,
+            <a name="a30">
+            </a>
+            <a class="code" href="./class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">
+             MSpace::kObject
+            </a>
+            );
+           </div>
+           <div class="line">
+            faceIterSrc.getVertices(srcVertIds);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Tranfrom the vertices to dst World Space
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            i, j;
+           </div>
+           <div class="line">
+            <a name="_a31">
+            </a>
+            <a class="code" href="./class_m_matrix.html">
+             MMatrix
+            </a>
+            m = fSelectedPathDst[0].inclusiveMatrix();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; srcPts.
+            <a name="a32">
+            </a>
+            <a class="code" href="./class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            srcPts[i] = srcPts[i] * m;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_it_mesh_polygon.html">
+             MItMeshPolygon
+            </a>
+            faceIterDst(fSelectedPathDst[0]);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             while
+            </span>
+            (!faceIterDst.isDone())
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_point_array.html">
+             MPointArray
+            </a>
+            dstPts;
+           </div>
+           <div class="line">
+            faceIterDst.getPoints(dstPts,
+            <a name="a33">
+            </a>
+            <a class="code" href="./class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8a45a60f04ac9114f0d6e865a6285f40b2">
+             MSpace::kWorld
+            </a>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (arePointsOverlap(srcPts, dstPts))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Set face and vertex indices
+            </span>
+           </div>
+           <div class="line">
+            fSelectedFaceSrc = srcFaceId;
+           </div>
+           <div class="line">
+            fSelectedFaceDst = faceIterDst.index();
+           </div>
+           <div class="line">
+            fSelectVtxSrc.
+            <a name="a34">
+            </a>
+            <a class="code" href="./class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">
+             append
+            </a>
+            (srcVertIds[0]);
+           </div>
+           <div class="line">
+            fSelectVtxSrc.append(srcVertIds[1]);
+           </div>
+           <div class="line">
+            fSelectVtxSrc.append(srcVertIds[2]);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            faceIterDst.getVertices(dstVertIds);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (j = 0; j &lt; dstPts.
+            <a class="code" href="./class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); j++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a35">
+            </a>
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            v = dstPts[j] - srcPts[0];
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (v * v &lt; epsilon)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fSelectVtxDst.
+            <a class="code" href="./class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">
+             append
+            </a>
+            (dstVertIds[j]);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (j = 0; j &lt; dstPts.
+            <a class="code" href="./class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); j++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            v = dstPts[j] - srcPts[1];
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (v * v &lt; epsilon)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fSelectVtxDst.
+            <a class="code" href="./class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">
+             append
+            </a>
+            (dstVertIds[j]);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (j = 0; j &lt; dstPts.
+            <a class="code" href="./class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); j++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            v = dstPts[j] - srcPts[2];
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (v * v &lt; epsilon)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fSelectVtxDst.
+            <a class="code" href="./class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">
+             append
+            </a>
+            (dstVertIds[j]);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            faceIterDst.next();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MStatus::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            meshRemapTool::arePointsOverlap(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point_array.html">
+             MPointArray
+            </a>
+            &amp; srcPts,
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_point_array.html">
+             MPointArray
+            </a>
+            &amp; dstPts)
+            <span class="keyword">
+             const
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            i, j;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (i = 0; i &lt; 3; i++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            overlap =
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a36">
+            </a>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            &amp;pt = srcPts[i];
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            (j = 0; j &lt; dstPts.
+            <a class="code" href="./class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); j++)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            v = dstPts[j] - pt;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (v * v &lt; epsilon)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            overlap =
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!overlap)
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             false
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             true
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            meshRemapTool::completeAction()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( resolveMapping() !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MStatus::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            executeCmd();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            meshRemapTool::executeCmd()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             char
+            </span>
+            cmdString[200];
+           </div>
+           <div class="line">
+            sprintf(cmdString,
+            <span class="stringliteral">
+             "meshRemap %s.vtx[%d] %s.vtx[%d] %s.vtx[%d] %s.vtx[%d] %s.vtx[%d] %s.vtx[%d]"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            fSelectedPathSrc[0].partialPathName().asChar(), fSelectVtxSrc[0],
+           </div>
+           <div class="line">
+            fSelectedPathSrc[1].partialPathName().asChar(), fSelectVtxSrc[1],
+           </div>
+           <div class="line">
+            fSelectedPathSrc[2].partialPathName().asChar(), fSelectVtxSrc[2],
+           </div>
+           <div class="line">
+            fSelectedPathDst[0].partialPathName().asChar(), fSelectVtxDst[0],
+           </div>
+           <div class="line">
+            fSelectedPathDst[1].partialPathName().asChar(), fSelectVtxDst[1],
+           </div>
+           <div class="line">
+            fSelectedPathDst[2].partialPathName().asChar(), fSelectVtxDst[2]);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            st =
+            <a name="a37">
+            </a>
+            <a class="code" href="./class_m_global.html#a09e405631e7cf680f8ac9d934ad73434">
+             MGlobal::executeCommand
+            </a>
+            (cmdString,
+            <span class="keyword">
+             true
+            </span>
+            ,
+            <span class="keyword">
+             true
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (st)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_global.html#a3d14e9f9ed022a80f664eac0136c2f7a">
+             MGlobal::displayInfo
+            </a>
+            (
+            <span class="stringliteral">
+             "Mesh remapping complete"
+            </span>
+            );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="a38">
+            </a>
+            <a class="code" href="./class_m_global.html#af729d8e7ac1ba9869ff698d381f72a3a">
+             MGlobal::clearSelectionList
+            </a>
+            ();
+           </div>
+           <div class="line">
+            reset();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            meshRemapTool::helpStateHasChanged()
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Description:
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //              Set up the correct information in the help window based
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //              on the current state.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             switch
+            </span>
+            (fNumSelectedPoints)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            0:
+           </div>
+           <div class="line">
+            fCurrentHelpString =
+            <span class="stringliteral">
+             "For auto remap select source mesh and then destination mesh and Press Enter. For manual remap select 1st vertex on source mesh."
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            1:
+           </div>
+           <div class="line">
+            fCurrentHelpString =
+            <span class="stringliteral">
+             "Select 2nd vertex on source mesh."
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            2:
+           </div>
+           <div class="line">
+            fCurrentHelpString =
+            <span class="stringliteral">
+             "Select 3rd vertex on source mesh."
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            3:
+           </div>
+           <div class="line">
+            fCurrentHelpString =
+            <span class="stringliteral">
+             "Select 1st vertex on target mesh."
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            4:
+           </div>
+           <div class="line">
+            fCurrentHelpString =
+            <span class="stringliteral">
+             "Select 2nd vertex on target mesh."
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             case
+            </span>
+            5:
+           </div>
+           <div class="line">
+            fCurrentHelpString =
+            <span class="stringliteral">
+             "Select 3rd vertex on target mesh."
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             default
+            </span>
+            :
+           </div>
+           <div class="line">
+            <span class="comment">
+             // nothing, shouldn't be here
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            setHelpString( fCurrentHelpString );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a39">
+            </a>
+            <a class="code" href="./class_m_px_context.html">
+             MPxContext
+            </a>
+            * meshRemapContextCmd::makeObj()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            meshRemapTool;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            * meshRemapContextCmd::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            meshRemapContextCmd;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 2015 Autodesk, Inc.  All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">meshReorder/meshRemapTool.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description: Get user selections for mesh vertex/edge remapping </span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Author: Bruce Hickey</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// This is added to prevent multiple definitions of the MApiVersion string.</span></div>
-<div class="line"><span class="preprocessor">#define _MApiVersion</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MCursor.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnDependencyNode.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnMesh.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MGlobal.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItMeshPolygon.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MItMeshVertex.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MMatrix.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPlug.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPointArray.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MVector.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &quot;meshRemapTool.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;meshMapUtils.h&quot;</span></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// The user Context</span></div>
-<div class="line"><span class="comment"></span><span class="keyword">const</span> <span class="keywordtype">double</span> epsilon = 0.00001;</div>
-<div class="line"></div>
-<div class="line">meshRemapTool::meshRemapTool()</div>
-<div class="line">{</div>
-<div class="line">    setTitleString ( <span class="stringliteral">&quot;Mesh Remap Tool&quot;</span> );</div>
-<div class="line">    setCursor( <a name="a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_cursor.html#af90009e098b37698c059716caba92603">MCursor::editCursor</a> );</div>
-<div class="line">    reset();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line">meshRemapTool::~meshRemapTool() {}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span>* meshRemapTool::creator()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> meshRemapTool;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> meshRemapTool::toolOnSetup ( <a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_event.html">MEvent</a> &amp; )</div>
-<div class="line">{</div>
-<div class="line">    reset();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> meshRemapTool::reset()</div>
-<div class="line">{</div>
-<div class="line">    fNumSelectedPoints = 0;</div>
-<div class="line"></div>
-<div class="line">    fSelectedPathSrc.clear();</div>
-<div class="line">    fSelectedComponentSrc.clear();</div>
-<div class="line">    fSelectVtxSrc.clear();</div>
-<div class="line">    fSelectedFaceSrc = -1;</div>
-<div class="line"></div>
-<div class="line">    fSelectedPathDst.clear();</div>
-<div class="line">    fSelectedComponentDst.clear();</div>
-<div class="line">    fSelectVtxDst.clear();</div>
-<div class="line">    fSelectedFaceDst = -1;</div>
-<div class="line"></div>
-<div class="line">    fCurrentHelpString = <span class="stringliteral">&quot;Select 1st point on source mesh.&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    helpStateHasChanged();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Selects objects within the user defined area, then process them</span></div>
-<div class="line"><span class="comment">// </span></div>
-<div class="line"><a name="_a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> meshRemapTool::doRelease( <a class="code" href="#!/url=./cpp_ref/class_m_event.html">MEvent</a> &amp; event )</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> buf[1024];</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Perform the base actions</span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> stat = <a name="a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_selection_context.html#a8bd8976814e8a33289efa506b627a27c">MPxSelectionContext::doRelease</a>(event);</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Get the list of selected items </span></div>
-<div class="line">    <a name="a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#a6d81d38246555884897fb153c93aaf42">MGlobal::getActiveSelectionList</a>( fSelectionList );</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">//  Get the selection&#39;s details, we must have exactly one component selected</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <a name="_a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> component;</div>
-<div class="line">    <a name="_a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> path;</div>
-<div class="line"></div>
-<div class="line">    <a name="_a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_selection_list.html">MItSelectionList</a> selectionIt (fSelectionList, <a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a02fee4c0e0e6f1b7ab7a678d61627461">MFn::kComponent</a>);</div>
-<div class="line"></div>
-<div class="line">    <a name="_a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html">MStringArray</a>    selections;</div>
-<div class="line">    selectionIt.getStrings( selections );</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">// There are valid cases where only the meshes are selected.</span></div>
-<div class="line">    <span class="keywordflow">if</span>( selections.<a name="a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() == 0 )</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">// Handling the case where the user&#39;s workflow is</span></div>
-<div class="line">        <span class="comment">// 1) select src mesh, select vtx1, vtx2, vtx3 (i.e. fNumSelectedPoints == 0)</span></div>
-<div class="line">        <span class="comment">// 2) select dst mesh, select vtx1, vtx2, vtx3 (i.e. fNumSelectedPoints == 3)</span></div>
-<div class="line">        <span class="keywordflow">if</span>( fNumSelectedPoints == 0 || fNumSelectedPoints == 3 )</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_it_selection_list.html">MItSelectionList</a> selectionDag (fSelectionList, <a name="a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a7f6b3e140a92b64ca6c088012cca49af">MFn::kDagNode</a>);</div>
-<div class="line">            <span class="keywordflow">if</span> (!selectionDag.isDone() &amp;&amp; selectionDag.getDagPath(path) == <a name="a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>)</div>
-<div class="line">            {</div>
-<div class="line">                path.<a name="a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">extendToShape</a>();</div>
-<div class="line">                <span class="comment">// return true there is exactly one mesh selected</span></div>
-<div class="line">                <span class="keywordflow">if</span> (path.<a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>(<a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>))</div>
-<div class="line">                {</div>
-<div class="line">                    selectionDag.next();</div>
-<div class="line">                    <span class="keywordflow">if</span> (selectionDag.isDone())</div>
-<div class="line">                    {</div>
-<div class="line">                        <span class="comment">//  If this is the destination mesh, make sure that</span></div>
-<div class="line">                        <span class="comment">//  it doesn&#39;t have history.</span></div>
-<div class="line">                        <span class="keywordflow">if</span> (fNumSelectedPoints == 3)</div>
-<div class="line">                        {</div>
-<div class="line">                            <span class="keywordflow">return</span> checkForHistory(path);</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">                    }</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        <span class="comment">// Handling the case where the user is doing the auto remap, i.e.</span></div>
-<div class="line">        <span class="comment">// select src mesh, and then dst mesh when fNumSelectedPoints == 0.</span></div>
-<div class="line">        <span class="keywordflow">if</span>( fNumSelectedPoints == 0 )</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_it_selection_list.html">MItSelectionList</a> selectionDag (fSelectionList, <a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a7f6b3e140a92b64ca6c088012cca49af">MFn::kDagNode</a>);</div>
-<div class="line">            <span class="keywordflow">if</span> (!selectionDag.isDone() &amp;&amp; selectionDag.getDagPath(path) == <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>)</div>
-<div class="line">            {</div>
-<div class="line">                path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">extendToShape</a>();</div>
-<div class="line">                <span class="comment">// Confirm first selection is a mesh</span></div>
-<div class="line">                <span class="keywordflow">if</span> (path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>(<a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>))</div>
-<div class="line">                {</div>
-<div class="line">                    selectionDag.next();</div>
-<div class="line">                    <span class="keywordflow">if</span> (!selectionDag.isDone() &amp;&amp;</div>
-<div class="line">                        selectionDag.getDagPath(path) == <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>)</div>
-<div class="line">                    {</div>
-<div class="line">                        path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">extendToShape</a>();</div>
-<div class="line">                        <span class="comment">// Confirm second selection is a mesh</span></div>
-<div class="line">                        <span class="keywordflow">if</span> (path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>(<a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>))</div>
-<div class="line">                        {</div>
-<div class="line">                            selectionDag.next();</div>
-<div class="line">                            <span class="comment">// Confirm there are exactly 2 selections</span></div>
-<div class="line">                            <span class="keywordflow">if</span> (selectionDag.isDone())</div>
-<div class="line">                            {</div>
-<div class="line">                                <span class="comment">//  Make sure that the destination mesh</span></div>
-<div class="line">                                <span class="comment">//  doesn&#39;t have history.</span></div>
-<div class="line">                                <span class="keywordflow">return</span> checkForHistory(path);</div>
-<div class="line">                            }</div>
-<div class="line">                        }</div>
-<div class="line">                    }</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span>( selections.<a class="code" href="#!/url=./cpp_ref/class_m_string_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() != 1 )</div>
-<div class="line">    {</div>
-<div class="line">        <a name="a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>( <span class="stringliteral">&quot;Must select exactly one vertex&quot;</span> );</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (selectionIt.isDone ())</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>( <span class="stringliteral">&quot;Selected item not a vertex&quot;</span> );</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span>( selectionIt.getDagPath (path, component) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>( <span class="stringliteral">&quot;Must select a mesh or its vertex&quot;</span> );</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (!path.<a name="a17"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#ad1aa507eb8e63e89e8d46a0abc18aa8c">node</a>().<a name="a18"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html#af0af77f14f96d1134fb8e8e60dc7e420">hasFn</a>(<a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>) &amp;&amp; !(path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#ad1aa507eb8e63e89e8d46a0abc18aa8c">node</a>().<a class="code" href="#!/url=./cpp_ref/class_m_object.html#af0af77f14f96d1134fb8e8e60dc7e420">hasFn</a>(<a name="a19"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7adafa274206df602835f0f22ae887e126">MFn::kTransform</a>) &amp;&amp; path.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#abea5b1e5057d0e1088877be2573be47b">hasFn</a>(<a class="code" href="#!/url=./cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFn::kMesh</a>)))</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>( <span class="stringliteral">&quot;Must select a mesh or its transform&quot;</span> );</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//  If this is the first vertex of the destination mesh, make sure that</span></div>
-<div class="line">    <span class="comment">//  it doesn&#39;t have history.</span></div>
-<div class="line">    <span class="keywordflow">if</span> ((fNumSelectedPoints == 3) &amp;&amp; (checkForHistory(path) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>))</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <a name="_a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_mesh_vertex.html">MItMeshVertex</a> fIt ( path, component, &amp;stat );</div>
-<div class="line">    <span class="keywordflow">if</span>( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>( <span class="stringliteral">&quot;MItMeshVertex failed&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a name="a21"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MStatus::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (fIt.count() != 1 )</div>
-<div class="line">    {</div>
-<div class="line">        sprintf(buf, <span class="stringliteral">&quot;Invalid selection &#39;%s&#39;. Vertices must be picked one at a time.&quot;</span>, selections[0].asChar() );</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>( buf );</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span></div>
-<div class="line">    {</div>
-<div class="line">        sprintf(buf, <span class="stringliteral">&quot;Accepting vertex &#39;%s&#39;&quot;</span>, selections[0].asChar() );</div>
-<div class="line">        <a name="a22"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#a3d14e9f9ed022a80f664eac0136c2f7a">MGlobal::displayInfo</a>(  buf );</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">// Now that we know it&#39;s valid, process the selection, the first 3 items are the source, the second</span></div>
-<div class="line">    <span class="comment">// 3 define the target</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span>( fNumSelectedPoints &lt; 3 )</div>
-<div class="line">    {</div>
-<div class="line">        fSelectedPathSrc.append( path );</div>
-<div class="line">        fSelectedComponentSrc.append( component );</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span> </div>
-<div class="line">    {</div>
-<div class="line">        fSelectedPathDst.append( path );</div>
-<div class="line">        fSelectedComponentDst.append( component );</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">//  When each of the source/target are defined, process them. An error/invalid selection will restart the selection for</span></div>
-<div class="line">    <span class="comment">//  that particular mesh.</span></div>
-<div class="line">    <span class="comment">//  </span></div>
-<div class="line">    <span class="keywordflow">if</span>( fNumSelectedPoints == 2 )</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span>( ( stat = meshMapUtils::validateFaceSelection( fSelectedPathSrc, fSelectedComponentSrc, &amp;fSelectedFaceSrc, &amp;fSelectVtxSrc ) ) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>(<span class="stringliteral">&quot;Selected vertices don&#39;t define a unique face on source mesh&quot;</span>);</div>
-<div class="line">            reset();</div>
-<div class="line">            <span class="keywordflow">return</span> stat;</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="comment">// Once the target is defined, invoke the command</span></div>
-<div class="line">    <span class="comment">//</span></div>
-<div class="line">    <span class="keywordflow">if</span>( fNumSelectedPoints == 5 )</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span>( ( stat = meshMapUtils::validateFaceSelection( fSelectedPathDst, fSelectedComponentDst, &amp;fSelectedFaceDst, &amp;fSelectVtxDst ) ) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>(<span class="stringliteral">&quot;Selected vertices don&#39;t define a unique face on destination mesh&quot;</span>);</div>
-<div class="line">            reset();</div>
-<div class="line">            <span class="keywordflow">return</span> stat;</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">        executeCmd();</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span></div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">//</span></div>
-<div class="line">        <span class="comment">// We don&#39;t have all the details yet, just move to the next item</span></div>
-<div class="line">        <span class="comment">//</span></div>
-<div class="line">        fNumSelectedPoints++;   </div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    helpStateHasChanged();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> stat;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> meshRemapTool::checkForHistory(<span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a>&amp; mesh)</div>
-<div class="line">{</div>
-<div class="line">    <a name="_a23"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_mesh.html">MFnMesh</a> meshFn(mesh);</div>
-<div class="line">    <a name="_a24"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a>   historyPlug = meshFn.findPlug(<span class="stringliteral">&quot;inMesh&quot;</span>, <span class="keyword">true</span>);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (historyPlug.<a name="a25"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html#a2914a42ceb556760af045852f1f57a08">isDestination</a>())</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>(<span class="stringliteral">&quot;Destination mesh has history. Its geometry cannot be modified.&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a name="a26"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af8c5f748892ec74b32719c8fba7767e1">MS::kInvalidParameter</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> meshRemapTool::resolveMapping()</div>
-<div class="line">{</div>
-<div class="line">    <span class="comment">// Get the list of selected items </span></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a6d81d38246555884897fb153c93aaf42">MGlobal::getActiveSelectionList</a>( fSelectionList );</div>
-<div class="line">    <span class="keywordflow">if</span>( fSelectionList.length() != 2)</div>
-<div class="line">    {</div>
-<div class="line">        reset();</div>
-<div class="line">        helpStateHasChanged();</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MStatus::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> dagPath;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a>  component;</div>
-<div class="line">    <span class="keywordflow">if</span>( fSelectionList.getDagPath(0, dagPath, component) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>(<span class="stringliteral">&quot; Invalid source mesh&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MStatus::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line">    dagPath.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">extendToShape</a>();</div>
-<div class="line">    <span class="comment">// Repeat this 3 times one for each vertex</span></div>
-<div class="line">    fSelectedPathSrc.append(dagPath);</div>
-<div class="line">    fSelectedPathSrc.append(dagPath);</div>
-<div class="line">    fSelectedPathSrc.append(dagPath);</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span>( fSelectionList.getDagPath(1, dagPath, component) != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0">MGlobal::displayError</a>(<span class="stringliteral">&quot; Invalid destination mesh&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MStatus::kFailure</a>;</div>
-<div class="line">    }</div>
-<div class="line">    dagPath.<a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a658d9664035ff84ffefa217c0e45cc88">extendToShape</a>();</div>
-<div class="line">    <span class="comment">// Repeat this 3 times one for each vertex</span></div>
-<div class="line">    fSelectedPathDst.append(dagPath);</div>
-<div class="line">    fSelectedPathDst.append(dagPath);</div>
-<div class="line">    fSelectedPathDst.append(dagPath);</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Find the vertices in Object Space of the first polygon</span></div>
-<div class="line">    <a name="_a27"></a><a class="code" href="#!/url=./cpp_ref/class_m_point_array.html">MPointArray</a> srcPts;</div>
-<div class="line">    <a name="_a28"></a><a class="code" href="#!/url=./cpp_ref/class_m_int_array.html">MIntArray</a>   srcVertIds, dstVertIds;</div>
-<div class="line">    <a name="_a29"></a><a class="code" href="#!/url=./cpp_ref/class_m_it_mesh_polygon.html">MItMeshPolygon</a> faceIterSrc(fSelectedPathSrc[0]);</div>
-<div class="line">    <span class="keywordtype">unsigned</span> srcFaceId = faceIterSrc.index();</div>
-<div class="line">    faceIterSrc.getPoints(srcPts, <a name="a30"></a><a class="code" href="#!/url=./cpp_ref/class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8ad74f4c7c6562dc3f8339a8bba2d28dd0">MSpace::kObject</a>);</div>
-<div class="line">    faceIterSrc.getVertices(srcVertIds);</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Tranfrom the vertices to dst World Space</span></div>
-<div class="line">    <span class="keywordtype">unsigned</span> i, j;</div>
-<div class="line">    <a name="_a31"></a><a class="code" href="#!/url=./cpp_ref/class_m_matrix.html">MMatrix</a> m = fSelectedPathDst[0].inclusiveMatrix();</div>
-<div class="line">    <span class="keywordflow">for</span>(i = 0; i &lt; srcPts.<a name="a32"></a><a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); i++)</div>
-<div class="line">    {</div>
-<div class="line">        srcPts[i] = srcPts[i] * m;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_it_mesh_polygon.html">MItMeshPolygon</a> faceIterDst(fSelectedPathDst[0]);</div>
-<div class="line">    <span class="keywordflow">while</span> (!faceIterDst.isDone())</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_point_array.html">MPointArray</a> dstPts;</div>
-<div class="line">        faceIterDst.getPoints(dstPts, <a name="a33"></a><a class="code" href="#!/url=./cpp_ref/class_m_space.html#ab11a1dda34491acff014ddfc9e6bafb8a45a60f04ac9114f0d6e865a6285f40b2">MSpace::kWorld</a>);</div>
-<div class="line">        <span class="keywordflow">if</span> (arePointsOverlap(srcPts, dstPts))</div>
-<div class="line">        {</div>
-<div class="line">            <span class="comment">// Set face and vertex indices</span></div>
-<div class="line">            fSelectedFaceSrc = srcFaceId;</div>
-<div class="line">            fSelectedFaceDst = faceIterDst.index();</div>
-<div class="line">            fSelectVtxSrc.<a name="a34"></a><a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">append</a>(srcVertIds[0]);</div>
-<div class="line">            fSelectVtxSrc.append(srcVertIds[1]);</div>
-<div class="line">            fSelectVtxSrc.append(srcVertIds[2]);</div>
-<div class="line"></div>
-<div class="line">            faceIterDst.getVertices(dstVertIds);</div>
-<div class="line">            <span class="keywordflow">for</span> (j = 0; j &lt; dstPts.<a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); j++)</div>
-<div class="line">            {</div>
-<div class="line">                <a name="_a35"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> v = dstPts[j] - srcPts[0];</div>
-<div class="line">                <span class="keywordflow">if</span> (v * v &lt; epsilon)</div>
-<div class="line">                {</div>
-<div class="line">                    fSelectVtxDst.<a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">append</a>(dstVertIds[j]);</div>
-<div class="line">                    <span class="keywordflow">break</span>;</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">for</span> (j = 0; j &lt; dstPts.<a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); j++)</div>
-<div class="line">            {</div>
-<div class="line">                <a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> v = dstPts[j] - srcPts[1];</div>
-<div class="line">                <span class="keywordflow">if</span> (v * v &lt; epsilon)</div>
-<div class="line">                {</div>
-<div class="line">                    fSelectVtxDst.<a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">append</a>(dstVertIds[j]);</div>
-<div class="line">                    <span class="keywordflow">break</span>;</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">for</span> (j = 0; j &lt; dstPts.<a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); j++)</div>
-<div class="line">            {</div>
-<div class="line">                <a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> v = dstPts[j] - srcPts[2];</div>
-<div class="line">                <span class="keywordflow">if</span> (v * v &lt; epsilon)</div>
-<div class="line">                {</div>
-<div class="line">                    fSelectVtxDst.<a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#abe5a9fe36b4651af38a4a26c85f46e1a">append</a>(dstVertIds[j]);</div>
-<div class="line">                    <span class="keywordflow">break</span>;</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
-<div class="line"></div>
-<div class="line">            <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a>;</div>
-<div class="line">        }</div>
-<div class="line">        faceIterDst.next();</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MStatus::kFailure</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">bool</span> meshRemapTool::arePointsOverlap(<span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point_array.html">MPointArray</a>&amp; srcPts, <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_point_array.html">MPointArray</a>&amp; dstPts)<span class="keyword"> const</span></div>
-<div class="line"><span class="keyword"></span>{</div>
-<div class="line">    <span class="keywordtype">unsigned</span> i, j;</div>
-<div class="line">    <span class="keywordflow">for</span>(i = 0; i &lt; 3; i++) </div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordtype">bool</span> overlap = <span class="keyword">false</span>;</div>
-<div class="line">        <span class="keyword">const</span> <a name="_a36"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a> &amp;pt = srcPts[i];</div>
-<div class="line">        <span class="keywordflow">for</span>(j = 0; j &lt; dstPts.<a class="code" href="#!/url=./cpp_ref/class_m_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); j++) </div>
-<div class="line">        {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> v = dstPts[j] - pt;</div>
-<div class="line">            <span class="keywordflow">if</span> (v * v &lt; epsilon)</div>
-<div class="line">            {</div>
-<div class="line">                overlap = <span class="keyword">true</span>;</div>
-<div class="line">                <span class="keywordflow">break</span>;</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">if</span> (!overlap) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> meshRemapTool::completeAction()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span>( resolveMapping() != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MStatus::kSuccess</a> )</div>
-<div class="line">    {</div>
-<div class="line">        reset();</div>
-<div class="line">        <span class="keywordflow">return</span>;</div>
-<div class="line">    }</div>
-<div class="line">    executeCmd();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> meshRemapTool::executeCmd()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> cmdString[200];</div>
-<div class="line">    sprintf(cmdString, <span class="stringliteral">&quot;meshRemap %s.vtx[%d] %s.vtx[%d] %s.vtx[%d] %s.vtx[%d] %s.vtx[%d] %s.vtx[%d]&quot;</span>,</div>
-<div class="line">        fSelectedPathSrc[0].partialPathName().asChar(), fSelectVtxSrc[0],</div>
-<div class="line">        fSelectedPathSrc[1].partialPathName().asChar(), fSelectVtxSrc[1],</div>
-<div class="line">        fSelectedPathSrc[2].partialPathName().asChar(), fSelectVtxSrc[2],</div>
-<div class="line">        fSelectedPathDst[0].partialPathName().asChar(), fSelectVtxDst[0],</div>
-<div class="line">        fSelectedPathDst[1].partialPathName().asChar(), fSelectVtxDst[1],</div>
-<div class="line">        fSelectedPathDst[2].partialPathName().asChar(), fSelectVtxDst[2]);</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> st = <a name="a37"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#a09e405631e7cf680f8ac9d934ad73434">MGlobal::executeCommand</a>(cmdString, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
-<div class="line">    <span class="keywordflow">if</span> (st)</div>
-<div class="line">    {</div>
-<div class="line">        <a class="code" href="#!/url=./cpp_ref/class_m_global.html#a3d14e9f9ed022a80f664eac0136c2f7a">MGlobal::displayInfo</a>( <span class="stringliteral">&quot;Mesh remapping complete&quot;</span> );</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <a name="a38"></a><a class="code" href="#!/url=./cpp_ref/class_m_global.html#af729d8e7ac1ba9869ff698d381f72a3a">MGlobal::clearSelectionList</a>();</div>
-<div class="line">    reset();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> meshRemapTool::helpStateHasChanged()</div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Description:</span></div>
-<div class="line"><span class="comment">//              Set up the correct information in the help window based</span></div>
-<div class="line"><span class="comment">//              on the current state.  </span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">switch</span> (fNumSelectedPoints)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">case</span> 0:</div>
-<div class="line">         fCurrentHelpString = <span class="stringliteral">&quot;For auto remap select source mesh and then destination mesh and Press Enter. For manual remap select 1st vertex on source mesh.&quot;</span>;</div>
-<div class="line">         <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">case</span> 1:</div>
-<div class="line">         fCurrentHelpString = <span class="stringliteral">&quot;Select 2nd vertex on source mesh.&quot;</span>;</div>
-<div class="line">         <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">case</span> 2:</div>
-<div class="line">         fCurrentHelpString = <span class="stringliteral">&quot;Select 3rd vertex on source mesh.&quot;</span>;</div>
-<div class="line">         <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">case</span> 3:</div>
-<div class="line">         fCurrentHelpString = <span class="stringliteral">&quot;Select 1st vertex on target mesh.&quot;</span>;</div>
-<div class="line">         <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">case</span> 4:</div>
-<div class="line">         fCurrentHelpString = <span class="stringliteral">&quot;Select 2nd vertex on target mesh.&quot;</span>;</div>
-<div class="line">         <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">case</span> 5:</div>
-<div class="line">         fCurrentHelpString = <span class="stringliteral">&quot;Select 3rd vertex on target mesh.&quot;</span>;</div>
-<div class="line">         <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">default</span>:</div>
-<div class="line">         <span class="comment">// nothing, shouldn&#39;t be here</span></div>
-<div class="line">         <span class="keywordflow">break</span>;</div>
-<div class="line">     }</div>
-<div class="line"></div>
-<div class="line">    setHelpString( fCurrentHelpString );</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a name="_a39"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_context.html">MPxContext</a>* meshRemapContextCmd::makeObj()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> meshRemapTool;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span>* meshRemapContextCmd::creator()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> meshRemapContextCmd;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright 2015 Autodesk, Inc.  All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

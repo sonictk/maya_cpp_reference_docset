@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>sampleCmd/sampleCmd.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          sampleCmd/sampleCmd.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,330 +73,1999 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>sampleCmd/sampleCmd.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          sampleCmd/sampleCmd.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            sampleCmd/sampleCmd.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //      Translate selected objects
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+            </span>
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;stdio.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;stdlib.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPxCommand.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnPlugin.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MArgList.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MGlobal.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/M3dView.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MDagPath.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MMatrix.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFloatMatrix.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MRenderUtil.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFloatPoint.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFloatPointArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFloatArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFloatVectorArray.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MVector.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPoint.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;math.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             class
+            </span>
+            sampleCmd :
+            <span class="keyword">
+             public
+            </span>
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_px_command.html">
+             MPxCommand
+            </a>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            printErr();
+           </div>
+           <div class="line">
+            <span class="keyword">
+             public
+            </span>
+            :
+           </div>
+           <div class="line">
+            sampleCmd() {};
+           </div>
+           <div class="line">
+            <span class="keyword">
+             virtual
+            </span>
+            ~sampleCmd();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            <a name="a2">
+            </a>
+            <a class="code" href="./class_m_px_command.html#ade7d0a873cbe811d6eab464e695390a9">
+             doIt
+            </a>
+            (
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a3">
+            </a>
+            <a class="code" href="./class_m_arg_list.html">
+             MArgList
+            </a>
+            &amp; args );
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <span class="keywordtype">
+             void
+            </span>
+            *    creator();
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            sampleCmd::~sampleCmd() {}
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            * sampleCmd::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            sampleCmd();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            sampleCmd::printErr()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError(
+            <span class="stringliteral">
+             "Usage: sampleCmd [-shadow|-reuse] &lt;shadingEngine|shadingNode.plug&gt; &lt;numSamples&gt;\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  [-points p0.x p0.y p0.z p1.x p1.y p1.z ...]\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  [-refPoints rp0.x rp0.y rp0.z rp1.x rp1.y rp1.z ...]\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  [-uvs u0 v0 u1 v1 ...]\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  [-normals n0.x n0.y n0.z n1.x n1.y n1.z ...]\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  [-tangentUs tu0.x tu0.y tu0.z tu1.x tu1.y tu1.z ...]\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  [-tangentVs tv0.x tv0.y tv0.z tv1.x tv1.y tv1.z ...]\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  [-filterSizes f0 f1 ...]\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "Result:\n"
+            </span>
+           </div>
+           <div class="line">
+            <span class="stringliteral">
+             "  clr0.r clr0.g clr0.b clr1.r clr1.g clr1.b ... transp0.r transp0.g transp0.b transp1.r transp1.g transp1.b ...\n"
+            </span>
+           </div>
+           <div class="line">
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a4">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">
+             MS::kFailure
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            sampleCmd::doIt(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_arg_list.html">
+             MArgList
+            </a>
+            &amp; args )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            stat;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             unsigned
+            </span>
+            <span class="keywordtype">
+             int
+            </span>
+            i;
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            shadow = 0;
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            reuse = 0;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( i = 0; i &lt; args.
+            <a name="a5">
+            </a>
+            <a class="code" href="./class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">
+             length
+            </a>
+            (); i++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a name="a6">
+            </a>
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            (i) ==
+            <a name="_a7">
+            </a>
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-shadow"
+            </span>
+            ) ||
+           </div>
+           <div class="line">
+            args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            (i) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-s"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            shadow = 1;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            (i) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-reuse"
+            </span>
+            ) ||
+           </div>
+           <div class="line">
+            args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            (i) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-r"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            reuse = 1;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             break
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="comment">
+             // fprintf( stderr, "length: %d\n", args.length() - i );
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">
+             length
+            </a>
+            () - i &lt; 4 )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( reuse &amp;&amp; !shadow )
+            <span class="comment">
+             // can only reuse if shadow is turned on
+            </span>
+           </div>
+           <div class="line">
+            reuse = 0;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            node = args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i );
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            numSamples = args.
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_arg_list.html#a54e9c6d91b7b999624b2384bc52f12a2">
+             asInt
+            </a>
+            ( i+1 );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            fprintf( stderr,
+            <span class="stringliteral">
+             "num samples: %d\n"
+            </span>
+            , numSamples );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a9">
+            </a>
+            <a class="code" href="./class_m_float_array.html">
+             MFloatArray
+            </a>
+            uCoords, vCoords, filterSizes;
+           </div>
+           <div class="line">
+            <a name="_a10">
+            </a>
+            <a class="code" href="./class_m_float_point_array.html">
+             MFloatPointArray
+            </a>
+            points, refPoints;
+           </div>
+           <div class="line">
+            <a name="_a11">
+            </a>
+            <a class="code" href="./class_m_float_vector_array.html">
+             MFloatVectorArray
+            </a>
+            normals, tanUs, tanVs;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            j;
+           </div>
+           <div class="line">
+            <a name="_a12">
+            </a>
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            vector;
+           </div>
+           <div class="line">
+            <a name="_a13">
+            </a>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            point;
+           </div>
+           <div class="line">
+            i+=2;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( ; i &lt; args.
+            <a class="code" href="./class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">
+             length
+            </a>
+            (); i++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-points"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( j = 0; j &lt; numSamples; j++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            != args.
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">
+             get
+            </a>
+            ( i, point ) )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            points.
+            <a name="a16">
+            </a>
+            <a class="code" href="./class_m_float_point_array.html#a9a607c73c20aca58b154cd5d40befbb7">
+             append
+            </a>
+            (
+            <a name="_a17">
+            </a>
+            <a class="code" href="./class_m_float_point.html">
+             MFloatPoint
+            </a>
+            ((
+            <span class="keywordtype">
+             float
+            </span>
+            )point.
+            <a name="a18">
+            </a>
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )point.
+            <a name="a19">
+            </a>
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )point.
+            <a name="a20">
+            </a>
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ) );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-refPoints"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( j = 0; j &lt; numSamples; j++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            != args.
+            <a class="code" href="./class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">
+             get
+            </a>
+            ( i, point ) )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            refPoints.
+            <a class="code" href="./class_m_float_point_array.html#a9a607c73c20aca58b154cd5d40befbb7">
+             append
+            </a>
+            (
+            <a class="code" href="./class_m_float_point.html">
+             MFloatPoint
+            </a>
+            ((
+            <span class="keywordtype">
+             float
+            </span>
+            )point.
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )point.
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )point.
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ) );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-normals"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( j = 0; j &lt; numSamples; j++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            != args.
+            <a class="code" href="./class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">
+             get
+            </a>
+            ( i, vector ) )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            normals.
+            <a name="a21">
+            </a>
+            <a class="code" href="./class_m_float_vector_array.html#a5f296873af45a368395354bea26b6eab">
+             append
+            </a>
+            (
+            <a name="_a22">
+            </a>
+            <a class="code" href="./class_m_float_vector.html">
+             MFloatVector
+            </a>
+            ((
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a name="a23">
+            </a>
+            <a class="code" href="./class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a name="a24">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a name="a25">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ) );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-tangentUs"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( j = 0; j &lt; numSamples; j++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            != args.
+            <a class="code" href="./class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">
+             get
+            </a>
+            ( i, vector ) )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            tanUs.
+            <a class="code" href="./class_m_float_vector_array.html#a5f296873af45a368395354bea26b6eab">
+             append
+            </a>
+            (
+            <a class="code" href="./class_m_float_vector.html">
+             MFloatVector
+            </a>
+            ((
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a class="code" href="./class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a class="code" href="./class_m_vector.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a class="code" href="./class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ) );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-tangentVs"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( j = 0; j &lt; numSamples; j++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            != args.
+            <a class="code" href="./class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">
+             get
+            </a>
+            ( i, vector ) )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            tanVs.
+            <a class="code" href="./class_m_float_vector_array.html#a5f296873af45a368395354bea26b6eab">
+             append
+            </a>
+            (
+            <a class="code" href="./class_m_float_vector.html">
+             MFloatVector
+            </a>
+            ((
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a class="code" href="./class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a class="code" href="./class_m_vector.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , (
+            <span class="keywordtype">
+             float
+            </span>
+            )vector.
+            <a class="code" href="./class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            ) );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-uvs"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( j = 0; j &lt; numSamples; j++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            d = args.
+            <a name="a26">
+            </a>
+            <a class="code" href="./class_m_arg_list.html#a15a33f5705d13873ab7f003bb64f0741">
+             asDouble
+            </a>
+            ( i, &amp;stat );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            uCoords.
+            <a name="a27">
+            </a>
+            <a class="code" href="./class_m_float_array.html#a6d61a0ea5cd7a087db5ee81a990d4307">
+             append
+            </a>
+            ( (
+            <span class="keywordtype">
+             float
+            </span>
+            )d );
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            d = args.
+            <a class="code" href="./class_m_arg_list.html#a15a33f5705d13873ab7f003bb64f0741">
+             asDouble
+            </a>
+            ( i, &amp;stat );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            vCoords.
+            <a class="code" href="./class_m_float_array.html#a6d61a0ea5cd7a087db5ee81a990d4307">
+             append
+            </a>
+            ( (
+            <span class="keywordtype">
+             float
+            </span>
+            )d );
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+            <span class="keywordflow">
+             if
+            </span>
+            ( args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ) ==
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             "-filterSizes"
+            </span>
+            ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( j = 0; j &lt; numSamples; j++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            d = args.
+            <a class="code" href="./class_m_arg_list.html#a15a33f5705d13873ab7f003bb64f0741">
+             asDouble
+            </a>
+            ( i, &amp;stat );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( stat !=
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            )
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            filterSizes.
+            <a class="code" href="./class_m_float_array.html#a6d61a0ea5cd7a087db5ee81a990d4307">
+             append
+            </a>
+            ( (
+            <span class="keywordtype">
+             float
+            </span>
+            )d );
+           </div>
+           <div class="line">
+            i++;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fprintf( stderr,
+            <span class="stringliteral">
+             "*** ERROR: Bad args: %s\n"
+            </span>
+            , args.
+            <a class="code" href="./class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">
+             asString
+            </a>
+            ( i ).
+            <a name="a28">
+            </a>
+            <a class="code" href="./class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">
+             asChar
+            </a>
+            () );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            printErr();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            }
+            <span class="comment">
+             // for i &lt; length()
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // get current camera
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a name="_a29">
+            </a>
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            cameraPath;
+           </div>
+           <div class="line">
+            <a name="a30">
+            </a>
+            <a class="code" href="./class_m3d_view.html#a3cda809eff914b04ff47de958c365f09">
+             M3dView::active3dView
+            </a>
+            ().
+            <a name="a31">
+            </a>
+            <a class="code" href="./class_m3d_view.html#a5e6ea41ec1bab5ed980b2ddffe398a73">
+             getCamera
+            </a>
+            ( cameraPath );
+           </div>
+           <div class="line">
+            <a name="_a32">
+            </a>
+            <a class="code" href="./class_m_matrix.html">
+             MMatrix
+            </a>
+            mat = cameraPath.
+            <a name="a33">
+            </a>
+            <a class="code" href="./class_m_dag_path.html#a229ff721947ec3ded47b5a071a7311ec">
+             inclusiveMatrix
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a name="_a34">
+            </a>
+            <a class="code" href="./class_m_float_matrix.html">
+             MFloatMatrix
+            </a>
+            cameraMat( mat.
+            <a name="a35">
+            </a>
+            <a class="code" href="./class_m_matrix.html#a527b102f4eb0951cf4f391f828d3ca34">
+             matrix
+            </a>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_float_vector_array.html">
+             MFloatVectorArray
+            </a>
+            colors, transps;
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ==
+            <a name="a36">
+            </a>
+            <a class="code" href="./class_m_render_util.html#a6b9ba1907baa091db043c29581c963fe">
+             MRenderUtil::sampleShadingNetwork
+            </a>
+            (
+           </div>
+           <div class="line">
+            node,
+           </div>
+           <div class="line">
+            numSamples,
+           </div>
+           <div class="line">
+            shadow,
+           </div>
+           <div class="line">
+            reuse,
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            cameraMat,
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            (points.
+            <a name="a37">
+            </a>
+            <a class="code" href="./class_m_float_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0)     ? &amp;points : NULL,
+           </div>
+           <div class="line">
+            (uCoords.
+            <a name="a38">
+            </a>
+            <a class="code" href="./class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0)    ? &amp;uCoords : NULL,
+           </div>
+           <div class="line">
+            (vCoords.
+            <a class="code" href="./class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0)    ? &amp;vCoords : NULL,
+           </div>
+           <div class="line">
+            (normals.
+            <a name="a39">
+            </a>
+            <a class="code" href="./class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0)    ? &amp;normals : NULL,
+           </div>
+           <div class="line">
+            (refPoints.
+            <a class="code" href="./class_m_float_point_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0)  ? &amp;refPoints : NULL,
+           </div>
+           <div class="line">
+            (tanUs.
+            <a class="code" href="./class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0)      ? &amp;tanUs : NULL,
+           </div>
+           <div class="line">
+            (tanVs.
+            <a class="code" href="./class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0)      ? &amp;tanVs : NULL,
+           </div>
+           <div class="line">
+            (filterSizes.
+            <a class="code" href="./class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            ()&gt;0) ? &amp;filterSizes : NULL,
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            colors,
+           </div>
+           <div class="line">
+            transps ) )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            fprintf( stderr,
+            <span class="stringliteral">
+             "%u points sampled...\n"
+            </span>
+            , colors.
+            <a class="code" href="./class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            () );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( i = 0; i &lt; colors.
+            <a class="code" href="./class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); i++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            appendToResult( (
+            <span class="keywordtype">
+             double
+            </span>
+            ) colors[i].x );
+           </div>
+           <div class="line">
+            appendToResult( (
+            <span class="keywordtype">
+             double
+            </span>
+            ) colors[i].y );
+           </div>
+           <div class="line">
+            appendToResult( (
+            <span class="keywordtype">
+             double
+            </span>
+            ) colors[i].z );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             for
+            </span>
+            ( i = 0; i &lt; transps.
+            <a class="code" href="./class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">
+             length
+            </a>
+            (); i++ )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            appendToResult( (
+            <span class="keywordtype">
+             double
+            </span>
+            ) transps[i].x );
+           </div>
+           <div class="line">
+            appendToResult( (
+            <span class="keywordtype">
+             double
+            </span>
+            ) transps[i].y );
+           </div>
+           <div class="line">
+            appendToResult( (
+            <span class="keywordtype">
+             double
+            </span>
+            ) transps[i].z );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            displayError( node +
+            <a class="code" href="./class_m_string.html">
+             MString
+            </a>
+            (
+            <span class="stringliteral">
+             " is not a shading engine!  Specify node.attr or shading group node."
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // The following routines are used to register/unregister
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // the command we are creating within Maya
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            initializePlugin(
+            <a name="_a40">
+            </a>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            obj )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a name="_a41">
+            </a>
+            <a class="code" href="./class_m_fn_plugin.html">
+             MFnPlugin
+            </a>
+            plugin( obj, PLUGIN_COMPANY,
+            <span class="stringliteral">
+             "3.0"
+            </span>
+            ,
+            <span class="stringliteral">
+             "Any"
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status = plugin.registerCommand(
+            <span class="stringliteral">
+             "sampleCmd"
+            </span>
+            , sampleCmd::creator );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status) {
+           </div>
+           <div class="line">
+            status.
+            <a name="a42">
+            </a>
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "registerCommand"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            uninitializePlugin(
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            obj)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_plugin.html">
+             MFnPlugin
+            </a>
+            plugin( obj );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status = plugin.deregisterCommand(
+            <span class="stringliteral">
+             "sampleCmd"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "deregisterCommand"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">sampleCmd/sampleCmd.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">//      Translate selected objects</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment"></span><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPxCommand.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnPlugin.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MArgList.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MGlobal.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/M3dView.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MDagPath.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MMatrix.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFloatMatrix.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MRenderUtil.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFloatPoint.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFloatPointArray.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFloatArray.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFloatVectorArray.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MVector.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPoint.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">class </span>sampleCmd : <span class="keyword">public</span> <a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_command.html">MPxCommand</a></div>
-<div class="line">{</div>
-<div class="line">    <a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>         printErr();</div>
-<div class="line"><span class="keyword">public</span>:</div>
-<div class="line">                    sampleCmd() {};</div>
-<div class="line">    <span class="keyword">virtual</span>         ~sampleCmd(); </div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>         <a name="a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_command.html#ade7d0a873cbe811d6eab464e695390a9">doIt</a>( <span class="keyword">const</span> <a name="_a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html">MArgList</a>&amp; args );</div>
-<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span>*    creator();</div>
-<div class="line">};</div>
-<div class="line"></div>
-<div class="line">sampleCmd::~sampleCmd() {}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span>* sampleCmd::creator()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> sampleCmd();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> sampleCmd::printErr()</div>
-<div class="line">{</div>
-<div class="line">    displayError( <span class="stringliteral">&quot;Usage: sampleCmd [-shadow|-reuse] &lt;shadingEngine|shadingNode.plug&gt; &lt;numSamples&gt;\n&quot;</span></div>
-<div class="line">        <span class="stringliteral">&quot;  [-points p0.x p0.y p0.z p1.x p1.y p1.z ...]\n&quot;</span></div>
-<div class="line">        <span class="stringliteral">&quot;  [-refPoints rp0.x rp0.y rp0.z rp1.x rp1.y rp1.z ...]\n&quot;</span></div>
-<div class="line">        <span class="stringliteral">&quot;  [-uvs u0 v0 u1 v1 ...]\n&quot;</span></div>
-<div class="line">        <span class="stringliteral">&quot;  [-normals n0.x n0.y n0.z n1.x n1.y n1.z ...]\n&quot;</span></div>
-<div class="line">        <span class="stringliteral">&quot;  [-tangentUs tu0.x tu0.y tu0.z tu1.x tu1.y tu1.z ...]\n&quot;</span></div>
-<div class="line">        <span class="stringliteral">&quot;  [-tangentVs tv0.x tv0.y tv0.z tv1.x tv1.y tv1.z ...]\n&quot;</span></div>
-<div class="line">        <span class="stringliteral">&quot;  [-filterSizes f0 f1 ...]\n&quot;</span> </div>
-<div class="line">        <span class="stringliteral">&quot;Result:\n&quot;</span> </div>
-<div class="line">        <span class="stringliteral">&quot;  clr0.r clr0.g clr0.b clr1.r clr1.g clr1.b ... transp0.r transp0.g transp0.b transp1.r transp1.g transp1.b ...\n&quot;</span> </div>
-<div class="line">    );</div>
-<div class="line">    <span class="keywordflow">return</span> <a name="a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00">MS::kFailure</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> sampleCmd::doIt( <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html">MArgList</a>&amp; args )</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> stat;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i;</div>
-<div class="line">    <span class="keywordtype">bool</span> shadow = 0;</div>
-<div class="line">    <span class="keywordtype">bool</span> reuse = 0;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">for</span> ( i = 0; i &lt; args.<a name="a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">length</a>(); i++ )</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> ( args.<a name="a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>(i) == <a name="_a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>(<span class="stringliteral">&quot;-shadow&quot;</span>) || </div>
-<div class="line">            args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>(i) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>(<span class="stringliteral">&quot;-s&quot;</span>) )</div>
-<div class="line">            shadow = 1;</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>(i) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>(<span class="stringliteral">&quot;-reuse&quot;</span>) || </div>
-<div class="line">            args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>(i) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>(<span class="stringliteral">&quot;-r&quot;</span>) )</div>
-<div class="line">            reuse = 1;</div>
-<div class="line">        <span class="keywordflow">else</span></div>
-<div class="line">            <span class="keywordflow">break</span>;</div>
-<div class="line">    }</div>
-<div class="line"><span class="comment">// fprintf( stderr, &quot;length: %d\n&quot;, args.length() - i );</span></div>
-<div class="line">    <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">length</a>() - i &lt; 4 )</div>
-<div class="line">        <span class="keywordflow">return</span> printErr();</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> ( reuse &amp;&amp; !shadow ) <span class="comment">// can only reuse if shadow is turned on</span></div>
-<div class="line">        reuse = 0;</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a> node = args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i );</div>
-<div class="line">    <span class="keywordtype">int</span> numSamples = args.<a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a54e9c6d91b7b999624b2384bc52f12a2">asInt</a>( i+1 );</div>
-<div class="line"></div>
-<div class="line">    fprintf( stderr, <span class="stringliteral">&quot;num samples: %d\n&quot;</span>, numSamples );</div>
-<div class="line"></div>
-<div class="line">    <a name="_a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_array.html">MFloatArray</a> uCoords, vCoords, filterSizes;</div>
-<div class="line">    <a name="_a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html">MFloatPointArray</a> points, refPoints;</div>
-<div class="line">    <a name="_a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html">MFloatVectorArray</a> normals, tanUs, tanVs;</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordtype">int</span> j;</div>
-<div class="line">    <a name="_a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> vector;</div>
-<div class="line">    <a name="_a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a> point;</div>
-<div class="line">    i+=2;</div>
-<div class="line">    <span class="keywordflow">for</span> ( ; i &lt; args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a99dd6a54b909ede1d11702fe58977e2a">length</a>(); i++ )</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>( <span class="stringliteral">&quot;-points&quot;</span> ) )</div>
-<div class="line">        {</div>
-<div class="line">            i++;</div>
-<div class="line">            <span class="keywordflow">for</span> ( j = 0; j &lt; numSamples; j++ )</div>
-<div class="line">            {</div>
-<div class="line">                <span class="keywordflow">if</span> ( <a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> != args.<a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">get</a>( i, point ) )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                points.<a name="a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html#a9a607c73c20aca58b154cd5d40befbb7">append</a>( <a name="_a17"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_point.html">MFloatPoint</a>((<span class="keywordtype">float</span>)point.<a name="a18"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, (<span class="keywordtype">float</span>)point.<a name="a19"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, (<span class="keywordtype">float</span>)point.<a name="a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>) );</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>( <span class="stringliteral">&quot;-refPoints&quot;</span> ) )</div>
-<div class="line">        {</div>
-<div class="line">            i++;</div>
-<div class="line">            <span class="keywordflow">for</span> ( j = 0; j &lt; numSamples; j++ )</div>
-<div class="line">            {</div>
-<div class="line">                <span class="keywordflow">if</span> ( <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> != args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">get</a>( i, point ) )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                refPoints.<a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html#a9a607c73c20aca58b154cd5d40befbb7">append</a>( <a class="code" href="#!/url=./cpp_ref/class_m_float_point.html">MFloatPoint</a>((<span class="keywordtype">float</span>)point.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, (<span class="keywordtype">float</span>)point.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, (<span class="keywordtype">float</span>)point.<a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>) );</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>( <span class="stringliteral">&quot;-normals&quot;</span> ) )</div>
-<div class="line">        {</div>
-<div class="line">            i++;</div>
-<div class="line">            <span class="keywordflow">for</span> ( j = 0; j &lt; numSamples; j++ )</div>
-<div class="line">            {</div>
-<div class="line">                <span class="keywordflow">if</span> ( <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> != args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">get</a>( i, vector ) )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                normals.<a name="a21"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a5f296873af45a368395354bea26b6eab">append</a>( <a name="_a22"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_vector.html">MFloatVector</a>((<span class="keywordtype">float</span>)vector.<a name="a23"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, (<span class="keywordtype">float</span>)vector.<a name="a24"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab927965981178aa1fba979a37168db2a">y</a>, (<span class="keywordtype">float</span>)vector.<a name="a25"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>) );</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>( <span class="stringliteral">&quot;-tangentUs&quot;</span> ) )</div>
-<div class="line">        {</div>
-<div class="line">            i++;</div>
-<div class="line">            <span class="keywordflow">for</span> ( j = 0; j &lt; numSamples; j++ )</div>
-<div class="line">            {</div>
-<div class="line">                <span class="keywordflow">if</span> ( <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> != args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">get</a>( i, vector ) )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                tanUs.<a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a5f296873af45a368395354bea26b6eab">append</a>( <a class="code" href="#!/url=./cpp_ref/class_m_float_vector.html">MFloatVector</a>((<span class="keywordtype">float</span>)vector.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, (<span class="keywordtype">float</span>)vector.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab927965981178aa1fba979a37168db2a">y</a>, (<span class="keywordtype">float</span>)vector.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>) );</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>( <span class="stringliteral">&quot;-tangentVs&quot;</span> ) )</div>
-<div class="line">        {</div>
-<div class="line">            i++;</div>
-<div class="line">            <span class="keywordflow">for</span> ( j = 0; j &lt; numSamples; j++ )</div>
-<div class="line">            {</div>
-<div class="line">                <span class="keywordflow">if</span> ( <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> != args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#adc169cdc872457a2664c3d66c29cf504">get</a>( i, vector ) )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                tanVs.<a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a5f296873af45a368395354bea26b6eab">append</a>( <a class="code" href="#!/url=./cpp_ref/class_m_float_vector.html">MFloatVector</a>((<span class="keywordtype">float</span>)vector.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, (<span class="keywordtype">float</span>)vector.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab927965981178aa1fba979a37168db2a">y</a>, (<span class="keywordtype">float</span>)vector.<a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>) );</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>( <span class="stringliteral">&quot;-uvs&quot;</span> ) )</div>
-<div class="line">        {</div>
-<div class="line">            i++;</div>
-<div class="line">            <span class="keywordflow">for</span> ( j = 0; j &lt; numSamples; j++ )</div>
-<div class="line">            {</div>
-<div class="line">                <span class="keywordtype">double</span> d = args.<a name="a26"></a><a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a15a33f5705d13873ab7f003bb64f0741">asDouble</a>( i, &amp;stat );</div>
-<div class="line">                <span class="keywordflow">if</span> ( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                uCoords.<a name="a27"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a6d61a0ea5cd7a087db5ee81a990d4307">append</a>( (<span class="keywordtype">float</span>)d );</div>
-<div class="line">                i++;</div>
-<div class="line">                d = args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a15a33f5705d13873ab7f003bb64f0741">asDouble</a>( i, &amp;stat );</div>
-<div class="line">                <span class="keywordflow">if</span> ( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                vCoords.<a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a6d61a0ea5cd7a087db5ee81a990d4307">append</a>( (<span class="keywordtype">float</span>)d );</div>
-<div class="line">                i++;</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ) == <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>( <span class="stringliteral">&quot;-filterSizes&quot;</span> ) )</div>
-<div class="line">        {</div>
-<div class="line">            i++;</div>
-<div class="line">            <span class="keywordflow">for</span> ( j = 0; j &lt; numSamples; j++ )</div>
-<div class="line">            {</div>
-<div class="line">                <span class="keywordtype">double</span> d = args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#a15a33f5705d13873ab7f003bb64f0741">asDouble</a>( i, &amp;stat );</div>
-<div class="line">                <span class="keywordflow">if</span> ( stat != <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> )</div>
-<div class="line">                    <span class="keywordflow">return</span> printErr();</div>
-<div class="line">                filterSizes.<a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a6d61a0ea5cd7a087db5ee81a990d4307">append</a>( (<span class="keywordtype">float</span>)d );</div>
-<div class="line">                i++;</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> </div>
-<div class="line">        {</div>
-<div class="line">            fprintf( stderr, <span class="stringliteral">&quot;*** ERROR: Bad args: %s\n&quot;</span>, args.<a class="code" href="#!/url=./cpp_ref/class_m_arg_list.html#ad24ff3826e4df513b55e1a0ecb0a665b">asString</a>( i ).<a name="a28"></a><a class="code" href="#!/url=./cpp_ref/class_m_string.html#aa9ab612f356c53479afc4c648c9ef94d">asChar</a>() );</div>
-<div class="line">            <span class="keywordflow">return</span> printErr();</div>
-<div class="line">        }</div>
-<div class="line"></div>
-<div class="line">    }   <span class="comment">// for i &lt; length()</span></div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// get current camera</span></div>
-<div class="line"></div>
-<div class="line">    <a name="_a29"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> cameraPath;</div>
-<div class="line">    <a name="a30"></a><a class="code" href="#!/url=./cpp_ref/class_m3d_view.html#a3cda809eff914b04ff47de958c365f09">M3dView::active3dView</a>().<a name="a31"></a><a class="code" href="#!/url=./cpp_ref/class_m3d_view.html#a5e6ea41ec1bab5ed980b2ddffe398a73">getCamera</a>( cameraPath );</div>
-<div class="line">    <a name="_a32"></a><a class="code" href="#!/url=./cpp_ref/class_m_matrix.html">MMatrix</a> mat = cameraPath.<a name="a33"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html#a229ff721947ec3ded47b5a071a7311ec">inclusiveMatrix</a>();</div>
-<div class="line">    <a name="_a34"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_matrix.html">MFloatMatrix</a> cameraMat( mat.<a name="a35"></a><a class="code" href="#!/url=./cpp_ref/class_m_matrix.html#a527b102f4eb0951cf4f391f828d3ca34">matrix</a> );</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html">MFloatVectorArray</a> colors, transps;</div>
-<div class="line">    <span class="keywordflow">if</span> ( <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a> == <a name="a36"></a><a class="code" href="#!/url=./cpp_ref/class_m_render_util.html#a6b9ba1907baa091db043c29581c963fe">MRenderUtil::sampleShadingNetwork</a>( </div>
-<div class="line">            node, </div>
-<div class="line">            numSamples,</div>
-<div class="line">            shadow,</div>
-<div class="line">            reuse,</div>
-<div class="line"></div>
-<div class="line">            cameraMat,</div>
-<div class="line"></div>
-<div class="line">            (points.<a name="a37"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0)     ? &amp;points : NULL,</div>
-<div class="line">            (uCoords.<a name="a38"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0)    ? &amp;uCoords : NULL,</div>
-<div class="line">            (vCoords.<a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0)    ? &amp;vCoords : NULL,</div>
-<div class="line">            (normals.<a name="a39"></a><a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0)    ? &amp;normals : NULL,</div>
-<div class="line">            (refPoints.<a class="code" href="#!/url=./cpp_ref/class_m_float_point_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0)  ? &amp;refPoints : NULL,</div>
-<div class="line">            (tanUs.<a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0)      ? &amp;tanUs : NULL,</div>
-<div class="line">            (tanVs.<a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0)      ? &amp;tanVs : NULL,</div>
-<div class="line">            (filterSizes.<a class="code" href="#!/url=./cpp_ref/class_m_float_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>()&gt;0) ? &amp;filterSizes : NULL,</div>
-<div class="line"></div>
-<div class="line">            colors,</div>
-<div class="line">            transps ) )</div>
-<div class="line">    {</div>
-<div class="line">        fprintf( stderr, <span class="stringliteral">&quot;%u points sampled...\n&quot;</span>, colors.<a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>() );</div>
-<div class="line">        <span class="keywordflow">for</span> ( i = 0; i &lt; colors.<a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); i++ )</div>
-<div class="line">        {</div>
-<div class="line">            appendToResult( (<span class="keywordtype">double</span>) colors[i].x );</div>
-<div class="line">            appendToResult( (<span class="keywordtype">double</span>) colors[i].y );</div>
-<div class="line">            appendToResult( (<span class="keywordtype">double</span>) colors[i].z );</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">for</span> ( i = 0; i &lt; transps.<a class="code" href="#!/url=./cpp_ref/class_m_float_vector_array.html#a580388f31f60c46fac867ca48a48da1e">length</a>(); i++ )</div>
-<div class="line">        {</div>
-<div class="line">            appendToResult( (<span class="keywordtype">double</span>) transps[i].x );</div>
-<div class="line">            appendToResult( (<span class="keywordtype">double</span>) transps[i].y );</div>
-<div class="line">            appendToResult( (<span class="keywordtype">double</span>) transps[i].z );</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span></div>
-<div class="line">    {</div>
-<div class="line">        displayError( node + <a class="code" href="#!/url=./cpp_ref/class_m_string.html">MString</a>(<span class="stringliteral">&quot; is not a shading engine!  Specify node.attr or shading group node.&quot;</span> ) );</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// The following routines are used to register/unregister</span></div>
-<div class="line"><span class="comment">// the command we are creating within Maya</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> initializePlugin( <a name="_a40"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> obj )</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>   status;</div>
-<div class="line">    <a name="_a41"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_plugin.html">MFnPlugin</a> plugin( obj, PLUGIN_COMPANY, <span class="stringliteral">&quot;3.0&quot;</span>, <span class="stringliteral">&quot;Any&quot;</span>);</div>
-<div class="line"></div>
-<div class="line">    status = plugin.registerCommand( <span class="stringliteral">&quot;sampleCmd&quot;</span>, sampleCmd::creator );</div>
-<div class="line">    <span class="keywordflow">if</span> (!status) {</div>
-<div class="line">        status.<a name="a42"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;registerCommand&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> status;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> uninitializePlugin( <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> obj)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>   status;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_plugin.html">MFnPlugin</a> plugin( obj );</div>
-<div class="line"></div>
-<div class="line">    status = plugin.deregisterCommand( <span class="stringliteral">&quot;sampleCmd&quot;</span> );</div>
-<div class="line">    <span class="keywordflow">if</span> (!status) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;deregisterCommand&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> status;</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

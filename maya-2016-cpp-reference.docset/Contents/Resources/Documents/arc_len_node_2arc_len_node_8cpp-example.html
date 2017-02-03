@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>arcLenNode/arcLenNode.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          arcLenNode/arcLenNode.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,203 +73,1049 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>arcLenNode/arcLenNode.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          arcLenNode/arcLenNode.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            arcLenNode/arcLenNode.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;string.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;math.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPxNode.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnNumericAttribute.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnTypedAttribute.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnPlugin.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MFnNurbsCurve.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MString.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MTypeId.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MPlug.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MDataBlock.h&gt;
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MDataHandle.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             class
+            </span>
+            arcLen :
+            <span class="keyword">
+             public
+            </span>
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_px_node.html">
+             MPxNode
+            </a>
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             public
+            </span>
+            :
+           </div>
+           <div class="line">
+            arcLen();
+           </div>
+           <div class="line">
+            <span class="keyword">
+             virtual
+            </span>
+            ~arcLen();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             virtual
+            </span>
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            <a name="a2">
+            </a>
+            <a class="code" href="./class_m_px_node.html#a5cb7edfa1f67c75588bec1c38b7bf5f8">
+             compute
+            </a>
+            (
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a3">
+            </a>
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            &amp; plug,
+            <a name="_a4">
+            </a>
+            <a class="code" href="./class_m_data_block.html">
+             MDataBlock
+            </a>
+            &amp; data );
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <span class="keywordtype">
+             void
+            </span>
+            *       creator();
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            initialize();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             public
+            </span>
+            :
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <a name="_a5">
+            </a>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            inputCurve;
+            <span class="comment">
+             // The input curve.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            output;
+            <span class="comment">
+             // The output value.
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             static
+            </span>
+            <a name="_a6">
+            </a>
+            <a class="code" href="./class_m_type_id.html">
+             MTypeId
+            </a>
+            id;
+            <span class="comment">
+             // The IFF type id
+            </span>
+           </div>
+           <div class="line">
+            };
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_type_id.html">
+             MTypeId
+            </a>
+            arcLen::id( 0x80001  );
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            arcLen::inputCurve;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            arcLen::output;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            arcLen::arcLen() {}
+           </div>
+           <div class="line">
+            arcLen::~arcLen() {}
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            * arcLen::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            arcLen();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            arcLen::compute(
+            <span class="keyword">
+             const
+            </span>
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            &amp; plug,
+            <a class="code" href="./class_m_data_block.html">
+             MDataBlock
+            </a>
+            &amp; data )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( plug == output )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a7">
+            </a>
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            inputData = data.
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">
+             inputValue
+            </a>
+            ( inputCurve, &amp;status );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status ) {
+           </div>
+           <div class="line">
+            status.
+            <a name="a9">
+            </a>
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "ERROR getting data"
+            </span>
+            );
+           </div>
+           <div class="line">
+            }
+            <span class="keywordflow">
+             else
+            </span>
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            curve = inputData.
+            <a name="a10">
+            </a>
+            <a class="code" href="./class_m_data_handle.html#a9cd068019354183411835a1f31fdb443">
+             asNurbsCurveTransformed
+            </a>
+            ();
+           </div>
+           <div class="line">
+            <a name="_a11">
+            </a>
+            <a class="code" href="./class_m_fn_nurbs_curve.html">
+             MFnNurbsCurve
+            </a>
+            curveFn( curve, &amp;status );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status ) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "ERROR creating curve function set"
+            </span>
+            );
+           </div>
+           <div class="line">
+            }
+            <span class="keywordflow">
+             else
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            result = curveFn.length();
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            outputHandle = data.
+            <a name="a12">
+            </a>
+            <a class="code" href="./class_m_data_block.html#a5e4082d6ab961bee4ec0281676bb4834">
+             outputValue
+            </a>
+            ( arcLen::output );
+           </div>
+           <div class="line">
+            outputHandle.
+            <a name="a13">
+            </a>
+            <a class="code" href="./class_m_data_handle.html#a2a75482f517f405a641c0eee0bd995ac">
+             set
+            </a>
+            ( result );
+           </div>
+           <div class="line">
+            data.
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_data_block.html#aceb46f1065ef1cd730c4ab15d61466cc">
+             setClean
+            </a>
+            (plug);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            }
+            <span class="keywordflow">
+             else
+            </span>
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a7f858db05022c8bc860d685e13bab6ae">
+             MS::kUnknownParameter
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a16">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            arcLen::initialize()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a name="_a17">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            numericAttr;
+           </div>
+           <div class="line">
+            <a name="_a18">
+            </a>
+            <a class="code" href="./class_m_fn_typed_attribute.html">
+             MFnTypedAttribute
+            </a>
+            typedAttr;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            inputCurve = typedAttr.
+            <a name="a19">
+            </a>
+            <a class="code" href="./class_m_fn_typed_attribute.html#af785af0a66bd4a4da1d9f7bd74d4de0a">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "inputCurve"
+            </span>
+            ,
+            <span class="stringliteral">
+             "in"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <a name="a20">
+            </a>
+            <a class="code" href="./class_m_fn_data.html#a1d1cfd8ffb84e947f82999c682b666a7a9366a44db1c93f593f8e65fcbec6a1b9">
+             MFnData::kNurbsCurve
+            </a>
+            ,
+           </div>
+           <div class="line">
+            &amp;status );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status ) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "ERROR creating arcLen curve attribute"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            output = numericAttr.
+            <a name="a21">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "output"
+            </span>
+            ,
+            <span class="stringliteral">
+             "out"
+            </span>
+            ,
+           </div>
+           <div class="line">
+            <a name="a22">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.0,
+           </div>
+           <div class="line">
+            &amp;status );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status ) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "ERROR creating arcLen output attribute"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            numericAttr.
+            <a name="a23">
+            </a>
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status = addAttribute( inputCurve );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status ) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "addAttribute(inputCurve)"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status = addAttribute( output );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status ) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "addAttribute(output)"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status = attributeAffects( inputCurve, output );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ( !status ) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "attributeAffects(inputCurve, output)"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            initializePlugin(
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            obj )
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a name="_a24">
+            </a>
+            <a class="code" href="./class_m_fn_plugin.html">
+             MFnPlugin
+            </a>
+            plugin( obj, PLUGIN_COMPANY,
+            <span class="stringliteral">
+             "3.0"
+            </span>
+            ,
+            <span class="stringliteral">
+             "Any"
+            </span>
+            );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status = plugin.registerNode(
+            <span class="stringliteral">
+             "arcLen"
+            </span>
+            , arcLen::id, arcLen::creator,
+           </div>
+           <div class="line">
+            arcLen::initialize);
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "registerNode"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            uninitializePlugin(
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            obj)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            status;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_plugin.html">
+             MFnPlugin
+            </a>
+            plugin( obj );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            status = plugin.deregisterNode( arcLen::id );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            (!status) {
+           </div>
+           <div class="line">
+            status.
+            <a class="code" href="./class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">
+             perror
+            </a>
+            (
+            <span class="stringliteral">
+             "deregisterNode"
+            </span>
+            );
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            status;
+           </div>
+           <div class="line">
+            }
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">arcLenNode/arcLenNode.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPxNode.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnNumericAttribute.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnTypedAttribute.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnPlugin.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MFnNurbsCurve.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MString.h&gt;</span> </div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MTypeId.h&gt;</span> </div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MPlug.h&gt;</span> </div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MDataBlock.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MDataHandle.h&gt;</span> </div>
-<div class="line"></div>
-<div class="line"><span class="keyword">class </span>arcLen : <span class="keyword">public</span> <a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_node.html">MPxNode</a></div>
-<div class="line">{</div>
-<div class="line"><span class="keyword">public</span>:</div>
-<div class="line">                        arcLen();</div>
-<div class="line">    <span class="keyword">virtual</span>             ~arcLen(); </div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">virtual</span> <a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>     <a name="a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_px_node.html#a5cb7edfa1f67c75588bec1c38b7bf5f8">compute</a>( <span class="keyword">const</span> <a name="_a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a>&amp; plug, <a name="_a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html">MDataBlock</a>&amp; data );</div>
-<div class="line">    <span class="keyword">static</span>  <span class="keywordtype">void</span>*       creator();</div>
-<div class="line">    <span class="keyword">static</span>  <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>     initialize();</div>
-<div class="line"></div>
-<div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">static</span>  <a name="_a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a>     inputCurve;  <span class="comment">// The input curve.</span></div>
-<div class="line">    <span class="keyword">static</span>  <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a>     output;      <span class="comment">// The output value.</span></div>
-<div class="line">    <span class="keyword">static</span>  <a name="_a6"></a><a class="code" href="#!/url=./cpp_ref/class_m_type_id.html">MTypeId</a>     id;          <span class="comment">// The IFF type id</span></div>
-<div class="line">};</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_type_id.html">MTypeId</a>     arcLen::id( 0x80001  );</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a>     arcLen::inputCurve;        </div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a>     arcLen::output;       </div>
-<div class="line"></div>
-<div class="line">arcLen::arcLen() {}</div>
-<div class="line">arcLen::~arcLen() {}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span>* arcLen::creator()</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> arcLen();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> arcLen::compute( <span class="keyword">const</span> <a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a>&amp; plug, <a class="code" href="#!/url=./cpp_ref/class_m_data_block.html">MDataBlock</a>&amp; data )</div>
-<div class="line">{</div>
-<div class="line">    </div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span>( plug == output )</div>
-<div class="line">    {</div>
-<div class="line">        <a name="_a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> inputData = data.<a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">inputValue</a>( inputCurve, &amp;status );</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">if</span>( !status ) {</div>
-<div class="line">            status.<a name="a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;ERROR getting data&quot;</span>);</div>
-<div class="line">        } <span class="keywordflow">else</span> {</div>
-<div class="line">            <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> curve = inputData.<a name="a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#a9cd068019354183411835a1f31fdb443">asNurbsCurveTransformed</a>();</div>
-<div class="line">            <a name="_a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_nurbs_curve.html">MFnNurbsCurve</a> curveFn( curve, &amp;status ); </div>
-<div class="line">            <span class="keywordflow">if</span>( !status ) {</div>
-<div class="line">                status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;ERROR creating curve function set&quot;</span>);</div>
-<div class="line">            } <span class="keywordflow">else</span> {</div>
-<div class="line">                <span class="keywordtype">double</span> result = curveFn.length();</div>
-<div class="line">                <a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> outputHandle = data.<a name="a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#a5e4082d6ab961bee4ec0281676bb4834">outputValue</a>( arcLen::output );</div>
-<div class="line">                outputHandle.<a name="a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#a2a75482f517f405a641c0eee0bd995ac">set</a>( result );</div>
-<div class="line">                data.<a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#aceb46f1065ef1cd730c4ab15d61466cc">setClean</a>(plug);</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">    } <span class="keywordflow">else</span> {</div>
-<div class="line">        <span class="keywordflow">return</span> <a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a7f858db05022c8bc860d685e13bab6ae">MS::kUnknownParameter</a>;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> <a name="a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> arcLen::initialize()</div>
-<div class="line">{</div>
-<div class="line">    <a name="_a17"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> numericAttr;</div>
-<div class="line">    <a name="_a18"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_typed_attribute.html">MFnTypedAttribute</a>   typedAttr;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> status;</div>
-<div class="line"></div>
-<div class="line">    inputCurve = typedAttr.<a name="a19"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_typed_attribute.html#af785af0a66bd4a4da1d9f7bd74d4de0a">create</a>( <span class="stringliteral">&quot;inputCurve&quot;</span>, <span class="stringliteral">&quot;in&quot;</span>, </div>
-<div class="line">                                    <a name="a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_data.html#a1d1cfd8ffb84e947f82999c682b666a7a9366a44db1c93f593f8e65fcbec6a1b9">MFnData::kNurbsCurve</a>, </div>
-<div class="line">                                    &amp;status );</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span>( !status ) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;ERROR creating arcLen curve attribute&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    output = numericAttr.<a name="a21"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>( <span class="stringliteral">&quot;output&quot;</span>, <span class="stringliteral">&quot;out&quot;</span>, </div>
-<div class="line">                                    <a name="a22"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.0, </div>
-<div class="line">                                    &amp;status );</div>
-<div class="line">    <span class="keywordflow">if</span>( !status ) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;ERROR creating arcLen output attribute&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line">    numericAttr.<a name="a23"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>);</div>
-<div class="line"></div>
-<div class="line">    status = addAttribute( inputCurve );</div>
-<div class="line">    <span class="keywordflow">if</span>( !status ) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;addAttribute(inputCurve)&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    status = addAttribute( output );</div>
-<div class="line">    <span class="keywordflow">if</span>( !status ) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;addAttribute(output)&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    status = attributeAffects( inputCurve, output );</div>
-<div class="line">    <span class="keywordflow">if</span>( !status ) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;attributeAffects(inputCurve, output)&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> initializePlugin( <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> obj )</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>   status;</div>
-<div class="line">    <a name="_a24"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_plugin.html">MFnPlugin</a> plugin( obj, PLUGIN_COMPANY, <span class="stringliteral">&quot;3.0&quot;</span>, <span class="stringliteral">&quot;Any&quot;</span>);</div>
-<div class="line"></div>
-<div class="line">    status = plugin.registerNode( <span class="stringliteral">&quot;arcLen&quot;</span>, arcLen::id, arcLen::creator,</div>
-<div class="line">                                               arcLen::initialize);</div>
-<div class="line">    <span class="keywordflow">if</span> (!status) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;registerNode&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> status;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> uninitializePlugin( <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> obj)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a>   status;</div>
-<div class="line">    <a class="code" href="#!/url=./cpp_ref/class_m_fn_plugin.html">MFnPlugin</a> plugin( obj );</div>
-<div class="line"></div>
-<div class="line">    status = plugin.deregisterNode( arcLen::id );</div>
-<div class="line">    <span class="keywordflow">if</span> (!status) {</div>
-<div class="line">        status.<a class="code" href="#!/url=./cpp_ref/class_m_status.html#a1f01a4748fea4d8bcced082df83f804d">perror</a>(<span class="stringliteral">&quot;deregisterNode&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> status;</div>
-<div class="line">    }</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">return</span> status;</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

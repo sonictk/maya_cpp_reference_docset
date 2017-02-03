@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>glslShader/GLSLShaderSemantics.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          glslShader/GLSLShaderSemantics.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,258 +73,2129 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>glslShader/GLSLShaderSemantics.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          glslShader/GLSLShaderSemantics.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            glslShader/GLSLShaderSemantics.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             // Copyright 2015 Autodesk, Inc. All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "GLSLShaderSemantics.h"
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             namespace
+            </span>
+            glslShaderSemantic
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSTANDARDSGLOBAL                        =
+            <span class="stringliteral">
+             "STANDARDSGLOBAL"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUndefined                              =
+            <span class="stringliteral">
+             "Undefined"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorld                                  =
+            <span class="stringliteral">
+             "World"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldTranspose                         =
+            <span class="stringliteral">
+             "WorldTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldInverse                           =
+            <span class="stringliteral">
+             "WorldInverse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldInverseTranspose                  =
+            <span class="stringliteral">
+             "WorldInverseTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kView                                   =
+            <span class="stringliteral">
+             "View"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewTranspose                          =
+            <span class="stringliteral">
+             "ViewTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewInverse                            =
+            <span class="stringliteral">
+             "ViewInverse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewInverseTranspose                   =
+            <span class="stringliteral">
+             "ViewInverseTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kProjection                             =
+            <span class="stringliteral">
+             "Projection"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kProjectionTranspose                    =
+            <span class="stringliteral">
+             "ProjectionTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kProjectionInverse                      =
+            <span class="stringliteral">
+             "ProjectionInverse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kProjectionInverseTranspose             =
+            <span class="stringliteral">
+             "ProjectionInverseTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldView                              =
+            <span class="stringliteral">
+             "WorldView"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldViewTranspose                     =
+            <span class="stringliteral">
+             "WorldViewTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldViewInverse                       =
+            <span class="stringliteral">
+             "WorldViewInverse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldViewInverseTranspose              =
+            <span class="stringliteral">
+             "WorldViewInverseTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewProjection                         =
+            <span class="stringliteral">
+             "ViewProjection"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewProjectionTranspose                =
+            <span class="stringliteral">
+             "ViewProjectionTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewProjectionInverse                  =
+            <span class="stringliteral">
+             "ViewProjectionInverse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewProjectionInverseTranspose         =
+            <span class="stringliteral">
+             "ViewProjectionInverseTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldViewProjection                    =
+            <span class="stringliteral">
+             "WorldViewProjection"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldViewProjectionTranspose           =
+            <span class="stringliteral">
+             "WorldViewProjectionTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldViewProjectionInverse             =
+            <span class="stringliteral">
+             "WorldViewProjectionInverse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorldViewProjectionInverseTranspose    =
+            <span class="stringliteral">
+             "WorldViewProjectionInverseTranspose"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewDirection                          =
+            <span class="stringliteral">
+             "ViewDirection"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewPosition                           =
+            <span class="stringliteral">
+             "ViewPosition"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLocalViewer                            =
+            <span class="stringliteral">
+             "LocalViewer"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kViewportPixelSize                      =
+            <span class="stringliteral">
+             "ViewportPixelSize"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kBackgroundColor                        =
+            <span class="stringliteral">
+             "BackgroundColor"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kFrame                                  =
+            <span class="stringliteral">
+             "Frame"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kFrameNumber                            =
+            <span class="stringliteral">
+             "FrameNumber"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kAnimationTime                          =
+            <span class="stringliteral">
+             "AnimationTime"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kTime                                   =
+            <span class="stringliteral">
+             "Time"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kColor                                  =
+            <span class="stringliteral">
+             "Color"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightColor                             =
+            <span class="stringliteral">
+             "LightColor"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kAmbient                                =
+            <span class="stringliteral">
+             "Ambient"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightAmbientColor                      =
+            <span class="stringliteral">
+             "LightAmbientColor"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSpecular                               =
+            <span class="stringliteral">
+             "Specular"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightSpecularColor                     =
+            <span class="stringliteral">
+             "LightSpecularColor"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kDiffuse                                =
+            <span class="stringliteral">
+             "Diffuse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightDiffuseColor                      =
+            <span class="stringliteral">
+             "LightDiffuseColor"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kNormal                                 =
+            <span class="stringliteral">
+             "Normal"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kBump                                   =
+            <span class="stringliteral">
+             "Bump"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kEnvironment                            =
+            <span class="stringliteral">
+             "Environment"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kPosition                               =
+            <span class="stringliteral">
+             "Position"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kAreaPosition0                          =
+            <span class="stringliteral">
+             "AreaPosition0"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kAreaPosition1                          =
+            <span class="stringliteral">
+             "AreaPosition1"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kAreaPosition2                          =
+            <span class="stringliteral">
+             "AreaPosition2"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kAreaPosition3                          =
+            <span class="stringliteral">
+             "AreaPosition3"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kDirection                              =
+            <span class="stringliteral">
+             "Direction"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kTexCoord                               =
+            <span class="stringliteral">
+             "TexCoord"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kTangent                                =
+            <span class="stringliteral">
+             "Tangent"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kBinormal                               =
+            <span class="stringliteral">
+             "Binormal"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kShadowMap                              =
+            <span class="stringliteral">
+             "ShadowMap"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kShadowColor                            =
+            <span class="stringliteral">
+             "ShadowColor"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kShadowFlag                             =
+            <span class="stringliteral">
+             "ShadowFlag"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kShadowMapBias                          =
+            <span class="stringliteral">
+             "ShadowMapBias"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kShadowMapMatrix                        =
+            <span class="stringliteral">
+             "ShadowMapMatrix"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kShadowMapXForm                         =
+            <span class="stringliteral">
+             "ShadowMapXForm"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kStandardsGlobal                        =
+            <span class="stringliteral">
+             "StandardsGlobal"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Used to determine the type of a light parameter
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightEnable                            =
+            <span class="stringliteral">
+             "LightEnable"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightIntensity                         =
+            <span class="stringliteral">
+             "LightIntensity"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightFalloff                           =
+            <span class="stringliteral">
+             "LightFalloff"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kFalloff                                =
+            <span class="stringliteral">
+             "Falloff"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kHotspot                                =
+            <span class="stringliteral">
+             "Hotspot"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightType                              =
+            <span class="stringliteral">
+             "LightType"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kDecayRate                              =
+            <span class="stringliteral">
+             "DecayRate"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightRange                             =
+            <span class="stringliteral">
+             "LightRange"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightAttenuation0                      =
+            <span class="stringliteral">
+             "LightAttenuation0"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightAttenuation1                      =
+            <span class="stringliteral">
+             "LightAttenuation1"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightAttenuation2                      =
+            <span class="stringliteral">
+             "LightAttenuation2"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightTheta                             =
+            <span class="stringliteral">
+             "LightTheta"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLightPhi                               =
+            <span class="stringliteral">
+             "LightPhi"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kTranspDepthTexture                     =
+            <span class="stringliteral">
+             "transpdepthtexture"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kOpaqueDepthTexture                     =
+            <span class="stringliteral">
+             "opaquedepthtexture"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //--------------------------
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Maya custom semantics
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Define a boolean parameter to flag for swatch rendering
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kMayaSwatchRender                       =
+            <span class="stringliteral">
+             "MayaSwatchRender"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Define a float parameter to use to control the bounding box extra scale
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kBboxExtraScale                         =
+            <span class="stringliteral">
+             "BoundingBoxExtraScale"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Define a float parameter to use to check for transparency flag
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Used in collaboration with the kIsTransparent annotation
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kOpacity                                =
+            <span class="stringliteral">
+             "Opacity"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Define a boolean parameter for full screen gamma correction
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kMayaGammaCorrection                    =
+            <span class="stringliteral">
+             "MayaGammaCorrection"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             namespace
+            </span>
+            glslShaderAnnotation
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Technique annotations
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kTransparency                           =
+            <span class="stringliteral">
+             "Transparency"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSupportsAdvancedTransparency           =
+            <span class="stringliteral">
+             "supportsAdvancedTransparency"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kIndexBufferType                        =
+            <span class="stringliteral">
+             "index_buffer_type"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kTextureMipmaplevels                    =
+            <span class="stringliteral">
+             "texture_mipmaplevels"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kObject                                 =
+            <span class="stringliteral">
+             "Object"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Define if the technique should follow the Maya transparent object rendering or is self-managed (multi-passes)
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kOverridesDrawState                     =
+            <span class="stringliteral">
+             "overridesDrawState"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kExtraScale                             =
+            <span class="stringliteral">
+             "extraScale"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kOverridesNonMaterialItems              =
+            <span class="stringliteral">
+             "overridesNonMaterialItems"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Allow the shader writer to force the variable name to become the attribute name, even if UIName annotation is used
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kVariableNameAsAttributeName            =
+            <span class="stringliteral">
+             "VariableNameAsAttributeName"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Pass annotations
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kDrawContext                            =
+            <span class="stringliteral">
+             "drawContext"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kNonMaterialItemsPass                   =
+            <span class="stringliteral">
+             "nonMaterialItemsPass"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kPrimitiveFilter                        =
+            <span class="stringliteral">
+             "primitiveFilter"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Uniform annotations
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUIMin                                  =
+            <span class="stringliteral">
+             "UIMin"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUIMax                                  =
+            <span class="stringliteral">
+             "UIMax"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUISoftMin                              =
+            <span class="stringliteral">
+             "UISoftMin"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUISoftMax                              =
+            <span class="stringliteral">
+             "UISoftMax"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSpace                                  =
+            <span class="stringliteral">
+             "Space"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUIFieldNames                           =
+            <span class="stringliteral">
+             "UIFieldNames"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Used to determine the semantic of a parameter
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSasBindAddress                         =
+            <span class="stringliteral">
+             "SasBindAddress"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSasUiControl                           =
+            <span class="stringliteral">
+             "SasUiControl"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUIWidget                               =
+            <span class="stringliteral">
+             "UIWidget"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUIGroup                                =
+            <span class="stringliteral">
+             "UIGroup"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kUIOrder                                =
+            <span class="stringliteral">
+             "UIOrder"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Texture annotations
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kMipmaplevels                           =
+            <span class="stringliteral">
+             "mipmaplevels"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             namespace
+            </span>
+            glslShaderAnnotationValue
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Transparency values, used with kTransparency semantic
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kValueTransparent                       =
+            <span class="stringliteral">
+             "Transparent"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kValueOpaque                            =
+            <span class="stringliteral">
+             "Opaque"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kValueTrue                              =
+            <span class="stringliteral">
+             "true"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kValueFalse                             =
+            <span class="stringliteral">
+             "false"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Used to try to determine an unknown semantic
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kPosition                               =
+            <span class="stringliteral">
+             "Position"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kDirection                              =
+            <span class="stringliteral">
+             "Direction"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kColor                                  =
+            <span class="stringliteral">
+             "Color"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kColour                                 =
+            <span class="stringliteral">
+             "Colour"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kDiffuse                                =
+            <span class="stringliteral">
+             "Diffuse"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSpecular                               =
+            <span class="stringliteral">
+             "Specular"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kAmbient                                =
+            <span class="stringliteral">
+             "Ambient"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Supported values for the kObject annotation
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLight                                  =
+            <span class="stringliteral">
+             "Light"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kLamp                                   =
+            <span class="stringliteral">
+             "Lamp"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kPoint                                  =
+            <span class="stringliteral">
+             "Point"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSpot                                   =
+            <span class="stringliteral">
+             "Spot"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kDirectional                            =
+            <span class="stringliteral">
+             "Directional"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Supported values for the kSpace annotation
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kObject                                 =
+            <span class="stringliteral">
+             "Object"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kWorld                                  =
+            <span class="stringliteral">
+             "World"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kView                                   =
+            <span class="stringliteral">
+             "View"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kCamera                                 =
+            <span class="stringliteral">
+             "Camera"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Supported values for the kSasBindAddress annotation
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSas_Skeleton_MeshToJointToWorld_0_     =
+            <span class="stringliteral">
+             "Sas.Skeleton.MeshToJointToWorld[0]"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSas_Camera_WorldToView                 =
+            <span class="stringliteral">
+             "Sas.Camera.WorldToView"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSas_Camera_Projection                  =
+            <span class="stringliteral">
+             "Sas.Camera.Projection"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kSas_Time_Now                           =
+            <span class="stringliteral">
+             "Sas.Time.Now"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * k_Position                              =
+            <span class="stringliteral">
+             ".Position"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * k_Direction                             =
+            <span class="stringliteral">
+             ".Direction"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * k_Directional                           =
+            <span class="stringliteral">
+             ".Directional"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Supported value for the kSasUiControl annotation
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kColorPicker                            =
+            <span class="stringliteral">
+             "ColorPicker"
+            </span>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Supported value for kPrimitiveFilter annotation
+            </span>
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kFatLine                                =
+            <span class="stringliteral">
+             "fatLine"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            <span class="keyword">
+             const
+            </span>
+            <span class="keywordtype">
+             char
+            </span>
+            * kFatPoint                               =
+            <span class="stringliteral">
+             "fatPoint"
+            </span>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">glslShader/GLSLShaderSemantics.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">// Copyright 2015 Autodesk, Inc. All rights reserved.</span></div>
-<div class="line"><span class="comment">// </span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &quot;GLSLShaderSemantics.h&quot;</span></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">namespace </span>glslShaderSemantic</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSTANDARDSGLOBAL                        = <span class="stringliteral">&quot;STANDARDSGLOBAL&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUndefined                              = <span class="stringliteral">&quot;Undefined&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorld                                  = <span class="stringliteral">&quot;World&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldTranspose                         = <span class="stringliteral">&quot;WorldTranspose&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldInverse                           = <span class="stringliteral">&quot;WorldInverse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldInverseTranspose                  = <span class="stringliteral">&quot;WorldInverseTranspose&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kView                                   = <span class="stringliteral">&quot;View&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewTranspose                          = <span class="stringliteral">&quot;ViewTranspose&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewInverse                            = <span class="stringliteral">&quot;ViewInverse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewInverseTranspose                   = <span class="stringliteral">&quot;ViewInverseTranspose&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kProjection                             = <span class="stringliteral">&quot;Projection&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kProjectionTranspose                    = <span class="stringliteral">&quot;ProjectionTranspose&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kProjectionInverse                      = <span class="stringliteral">&quot;ProjectionInverse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kProjectionInverseTranspose             = <span class="stringliteral">&quot;ProjectionInverseTranspose&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldView                              = <span class="stringliteral">&quot;WorldView&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldViewTranspose                     = <span class="stringliteral">&quot;WorldViewTranspose&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldViewInverse                       = <span class="stringliteral">&quot;WorldViewInverse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldViewInverseTranspose              = <span class="stringliteral">&quot;WorldViewInverseTranspose&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewProjection                         = <span class="stringliteral">&quot;ViewProjection&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewProjectionTranspose                = <span class="stringliteral">&quot;ViewProjectionTranspose&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewProjectionInverse                  = <span class="stringliteral">&quot;ViewProjectionInverse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewProjectionInverseTranspose         = <span class="stringliteral">&quot;ViewProjectionInverseTranspose&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldViewProjection                    = <span class="stringliteral">&quot;WorldViewProjection&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldViewProjectionTranspose           = <span class="stringliteral">&quot;WorldViewProjectionTranspose&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldViewProjectionInverse             = <span class="stringliteral">&quot;WorldViewProjectionInverse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorldViewProjectionInverseTranspose    = <span class="stringliteral">&quot;WorldViewProjectionInverseTranspose&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewDirection                          = <span class="stringliteral">&quot;ViewDirection&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewPosition                           = <span class="stringliteral">&quot;ViewPosition&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLocalViewer                            = <span class="stringliteral">&quot;LocalViewer&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kViewportPixelSize                      = <span class="stringliteral">&quot;ViewportPixelSize&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kBackgroundColor                        = <span class="stringliteral">&quot;BackgroundColor&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kFrame                                  = <span class="stringliteral">&quot;Frame&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kFrameNumber                            = <span class="stringliteral">&quot;FrameNumber&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kAnimationTime                          = <span class="stringliteral">&quot;AnimationTime&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kTime                                   = <span class="stringliteral">&quot;Time&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kColor                                  = <span class="stringliteral">&quot;Color&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightColor                             = <span class="stringliteral">&quot;LightColor&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kAmbient                                = <span class="stringliteral">&quot;Ambient&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightAmbientColor                      = <span class="stringliteral">&quot;LightAmbientColor&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSpecular                               = <span class="stringliteral">&quot;Specular&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightSpecularColor                     = <span class="stringliteral">&quot;LightSpecularColor&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kDiffuse                                = <span class="stringliteral">&quot;Diffuse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightDiffuseColor                      = <span class="stringliteral">&quot;LightDiffuseColor&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kNormal                                 = <span class="stringliteral">&quot;Normal&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kBump                                   = <span class="stringliteral">&quot;Bump&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kEnvironment                            = <span class="stringliteral">&quot;Environment&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kPosition                               = <span class="stringliteral">&quot;Position&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kAreaPosition0                          = <span class="stringliteral">&quot;AreaPosition0&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kAreaPosition1                          = <span class="stringliteral">&quot;AreaPosition1&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kAreaPosition2                          = <span class="stringliteral">&quot;AreaPosition2&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kAreaPosition3                          = <span class="stringliteral">&quot;AreaPosition3&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kDirection                              = <span class="stringliteral">&quot;Direction&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kTexCoord                               = <span class="stringliteral">&quot;TexCoord&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kTangent                                = <span class="stringliteral">&quot;Tangent&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kBinormal                               = <span class="stringliteral">&quot;Binormal&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kShadowMap                              = <span class="stringliteral">&quot;ShadowMap&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kShadowColor                            = <span class="stringliteral">&quot;ShadowColor&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kShadowFlag                             = <span class="stringliteral">&quot;ShadowFlag&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kShadowMapBias                          = <span class="stringliteral">&quot;ShadowMapBias&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kShadowMapMatrix                        = <span class="stringliteral">&quot;ShadowMapMatrix&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kShadowMapXForm                         = <span class="stringliteral">&quot;ShadowMapXForm&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kStandardsGlobal                        = <span class="stringliteral">&quot;StandardsGlobal&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Used to determine the type of a light parameter</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightEnable                            = <span class="stringliteral">&quot;LightEnable&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightIntensity                         = <span class="stringliteral">&quot;LightIntensity&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightFalloff                           = <span class="stringliteral">&quot;LightFalloff&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kFalloff                                = <span class="stringliteral">&quot;Falloff&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kHotspot                                = <span class="stringliteral">&quot;Hotspot&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightType                              = <span class="stringliteral">&quot;LightType&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kDecayRate                              = <span class="stringliteral">&quot;DecayRate&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightRange                             = <span class="stringliteral">&quot;LightRange&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightAttenuation0                      = <span class="stringliteral">&quot;LightAttenuation0&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightAttenuation1                      = <span class="stringliteral">&quot;LightAttenuation1&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightAttenuation2                      = <span class="stringliteral">&quot;LightAttenuation2&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightTheta                             = <span class="stringliteral">&quot;LightTheta&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLightPhi                               = <span class="stringliteral">&quot;LightPhi&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kTranspDepthTexture                     = <span class="stringliteral">&quot;transpdepthtexture&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kOpaqueDepthTexture                     = <span class="stringliteral">&quot;opaquedepthtexture&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">//--------------------------</span></div>
-<div class="line">    <span class="comment">// Maya custom semantics</span></div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Define a boolean parameter to flag for swatch rendering</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kMayaSwatchRender                       = <span class="stringliteral">&quot;MayaSwatchRender&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Define a float parameter to use to control the bounding box extra scale</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kBboxExtraScale                         = <span class="stringliteral">&quot;BoundingBoxExtraScale&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Define a float parameter to use to check for transparency flag</span></div>
-<div class="line">    <span class="comment">// Used in collaboration with the kIsTransparent annotation</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kOpacity                                = <span class="stringliteral">&quot;Opacity&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Define a boolean parameter for full screen gamma correction</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kMayaGammaCorrection                    = <span class="stringliteral">&quot;MayaGammaCorrection&quot;</span>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="keyword">namespace </span>glslShaderAnnotation</div>
-<div class="line">{</div>
-<div class="line">    <span class="comment">// Technique annotations</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kTransparency                           = <span class="stringliteral">&quot;Transparency&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSupportsAdvancedTransparency           = <span class="stringliteral">&quot;supportsAdvancedTransparency&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kIndexBufferType                        = <span class="stringliteral">&quot;index_buffer_type&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kTextureMipmaplevels                    = <span class="stringliteral">&quot;texture_mipmaplevels&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kObject                                 = <span class="stringliteral">&quot;Object&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Define if the technique should follow the Maya transparent object rendering or is self-managed (multi-passes)</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kOverridesDrawState                     = <span class="stringliteral">&quot;overridesDrawState&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kExtraScale                             = <span class="stringliteral">&quot;extraScale&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kOverridesNonMaterialItems              = <span class="stringliteral">&quot;overridesNonMaterialItems&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Allow the shader writer to force the variable name to become the attribute name, even if UIName annotation is used</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kVariableNameAsAttributeName            = <span class="stringliteral">&quot;VariableNameAsAttributeName&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Pass annotations</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kDrawContext                            = <span class="stringliteral">&quot;drawContext&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kNonMaterialItemsPass                   = <span class="stringliteral">&quot;nonMaterialItemsPass&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kPrimitiveFilter                        = <span class="stringliteral">&quot;primitiveFilter&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Uniform annotations</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUIMin                                  = <span class="stringliteral">&quot;UIMin&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUIMax                                  = <span class="stringliteral">&quot;UIMax&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUISoftMin                              = <span class="stringliteral">&quot;UISoftMin&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUISoftMax                              = <span class="stringliteral">&quot;UISoftMax&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSpace                                  = <span class="stringliteral">&quot;Space&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUIFieldNames                           = <span class="stringliteral">&quot;UIFieldNames&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Used to determine the semantic of a parameter</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSasBindAddress                         = <span class="stringliteral">&quot;SasBindAddress&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSasUiControl                           = <span class="stringliteral">&quot;SasUiControl&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUIWidget                               = <span class="stringliteral">&quot;UIWidget&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUIGroup                                = <span class="stringliteral">&quot;UIGroup&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kUIOrder                                = <span class="stringliteral">&quot;UIOrder&quot;</span>;</div>
-<div class="line">    </div>
-<div class="line">    <span class="comment">// Texture annotations</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kMipmaplevels                           = <span class="stringliteral">&quot;mipmaplevels&quot;</span>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keyword">namespace </span>glslShaderAnnotationValue</div>
-<div class="line">{</div>
-<div class="line">    <span class="comment">// Transparency values, used with kTransparency semantic</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kValueTransparent                       = <span class="stringliteral">&quot;Transparent&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kValueOpaque                            = <span class="stringliteral">&quot;Opaque&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kValueTrue                              = <span class="stringliteral">&quot;true&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kValueFalse                             = <span class="stringliteral">&quot;false&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Used to try to determine an unknown semantic</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kPosition                               = <span class="stringliteral">&quot;Position&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kDirection                              = <span class="stringliteral">&quot;Direction&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kColor                                  = <span class="stringliteral">&quot;Color&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kColour                                 = <span class="stringliteral">&quot;Colour&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kDiffuse                                = <span class="stringliteral">&quot;Diffuse&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSpecular                               = <span class="stringliteral">&quot;Specular&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kAmbient                                = <span class="stringliteral">&quot;Ambient&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Supported values for the kObject annotation</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLight                                  = <span class="stringliteral">&quot;Light&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kLamp                                   = <span class="stringliteral">&quot;Lamp&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kPoint                                  = <span class="stringliteral">&quot;Point&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSpot                                   = <span class="stringliteral">&quot;Spot&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kDirectional                            = <span class="stringliteral">&quot;Directional&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Supported values for the kSpace annotation</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kObject                                 = <span class="stringliteral">&quot;Object&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kWorld                                  = <span class="stringliteral">&quot;World&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kView                                   = <span class="stringliteral">&quot;View&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kCamera                                 = <span class="stringliteral">&quot;Camera&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Supported values for the kSasBindAddress annotation</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSas_Skeleton_MeshToJointToWorld_0_     = <span class="stringliteral">&quot;Sas.Skeleton.MeshToJointToWorld[0]&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSas_Camera_WorldToView                 = <span class="stringliteral">&quot;Sas.Camera.WorldToView&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSas_Camera_Projection                  = <span class="stringliteral">&quot;Sas.Camera.Projection&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kSas_Time_Now                           = <span class="stringliteral">&quot;Sas.Time.Now&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* k_Position                              = <span class="stringliteral">&quot;.Position&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* k_Direction                             = <span class="stringliteral">&quot;.Direction&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* k_Directional                           = <span class="stringliteral">&quot;.Directional&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Supported value for the kSasUiControl annotation</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kColorPicker                            = <span class="stringliteral">&quot;ColorPicker&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">    <span class="comment">// Supported value for kPrimitiveFilter annotation</span></div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kFatLine                                = <span class="stringliteral">&quot;fatLine&quot;</span>;</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* kFatPoint                               = <span class="stringliteral">&quot;fatPoint&quot;</span>;</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>

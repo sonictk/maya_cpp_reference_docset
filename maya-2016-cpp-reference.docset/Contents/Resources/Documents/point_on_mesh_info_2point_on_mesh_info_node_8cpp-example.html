@@ -1,12 +1,43 @@
 <!-- saved from url=(0024)http://docs.autodesk.com -->
 <html>
-   <head><script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="product" content="MAYAUL"><meta name="release" content="2016"><meta name="book" content="Developer"><meta name="created" content="2015-10-14"><meta name="topicid" content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887"><meta name="topic-type" content="concept">
-      <title>pointOnMeshInfo/pointOnMeshInfoNode.cpp</title>
-   
-
-<meta name="topic-subtype" content="C++"></head>
-   <body height="100%"><div class="body_content" id="body-content"><link rel="stylesheet" type="text/css" href="cpp_ref/navtree.css"><link rel="stylesheet" type="text/css" href="cpp_ref/doxygen.css"><link rel="stylesheet" type="text/css" href="cpp_ref/tabs.css"><link rel="stylesheet" type="text/css" href="style/adsk.cpm.css"><script language="javascript">var index = 'index.html';</script><script>$(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });</script><script type="text/javascript">
-var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
+ <head>
+  <script src="../scripts/yepnope.1.5.4-min.js" type="text/javascript">
+  </script>
+  <script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript">
+  </script>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="MAYAUL" name="product">
+    <meta content="2016" name="release">
+     <meta content="Developer" name="book">
+      <meta content="2015-10-14" name="created">
+       <meta content="GUID-02DEF634-1E7B-48C6-8ACD-2C934CA97887" name="topicid">
+        <meta content="concept" name="topic-type">
+         <title>
+          pointOnMeshInfo/pointOnMeshInfoNode.cpp
+         </title>
+         <meta content="C++" name="topic-subtype"/>
+        </meta>
+       </meta>
+      </meta>
+     </meta>
+    </meta>
+   </meta>
+  </meta>
+ </head>
+ <body height="100%">
+  <div class="body_content" id="body-content">
+   <link href="cpp_ref/navtree.css" rel="stylesheet" type="text/css">
+    <link href="cpp_ref/doxygen.css" rel="stylesheet" type="text/css">
+     <link href="cpp_ref/tabs.css" rel="stylesheet" type="text/css">
+      <link href="style/adsk.cpm.css" rel="stylesheet" type="text/css">
+       <script language="javascript">
+        var index = 'index.html';
+       </script>
+       <script>
+        $(document).ready(function() { yepnope.injectJs("./scripts/ac_common.js"); });
+       </script>
+       <script type="text/javascript">
+        var tocSystemNeedsToBeLoaded = typeof(cpp_ref_adsk_ref_toc) == 'undefined';
 var weAreIn21 = $('div#main.view-active').length;
 var tocPrefix = '';
 if (weAreIn21)
@@ -42,341 +73,2374 @@ $(window).load( function() {
     }, 100);
 } ); 
 }
-</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script>
- if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
- </script><!-- begin MT -->
-            
-            <div id='MicrosoftTranslatorWidget' class='Dark' style='position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden'></div>
-      <div>
-         <div class="head">
-            <h1>pointOnMeshInfo/pointOnMeshInfoNode.cpp</h1>
+       </script>
+       <script>
+        $("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();
+       </script>
+       <script type="text/javascript">
+        $("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=y5CYlxTRD0znCzRLDwX0Wy7-g1EdC1XA4dSC-Y1LtaeScyli8_Ps5jPKqTr4xKxMI0OOUfkDplvX3uxN0JnPclebSYW8_J1HBzf4VLQEzQ8M4PsYXF_cMyp1Oumaetky&category=5297189e-446b-459e-ae1d-9d0360400781_tech&ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );
+       </script>
+       <script>
+        if (!tocSystemNeedsToBeLoaded) { cpp_ref_initializeToc(); }
+       </script>
+       <!-- begin MT -->
+       <div class="Dark" id="MicrosoftTranslatorWidget" style="position:absolute;right:20px;top:5px;z-index:100;color:white;background-color:#555555;height:58px;overflow:hidden">
+       </div>
+       <div>
+        <div class="head">
+         <h1>
+          pointOnMeshInfo/pointOnMeshInfoNode.cpp
+         </h1>
+        </div>
+        <div id="top">
+         <!-- Generated by Doxygen 1.8.10 -->
+         <div class="tabs" id="navrow1">
+          <ul class="tablist">
+           <li>
+            <a href="./index.html">
+             <span>
+              Main Page
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./pages.html">
+             <span>
+              Topics
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./modules.html">
+             <span>
+              Modules
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./namespaces.html">
+             <span>
+              Namespaces
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./annotated.html">
+             <span>
+              Classes
+             </span>
+            </a>
+           </li>
+           <li>
+            <a href="./examples.html">
+             <span>
+              Examples
+             </span>
+            </a>
+           </li>
+          </ul>
          </div>
-
-    <div id="top"><!-- Generated by Doxygen 1.8.10 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li><a href="#!/url=./cpp_ref/index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="#!/url=./cpp_ref/pages.html"><span>Topics</span></a></li>
-      <li><a href="#!/url=./cpp_ref/modules.html"><span>Modules</span></a></li>
-      <li><a href="#!/url=./cpp_ref/namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="#!/url=./cpp_ref/annotated.html"><span>Classes</span></a></li>
-      <li><a href="#!/url=./cpp_ref/examples.html"><span>Examples</span></a></li>
-    </ul>
+        </div>
+        <!-- top -->
+        <div class="ui-resizable side-nav-resizable" id="side-nav">
+         <div id="nav-tree">
+          <div id="nav-tree-contents">
+           <div class="sync" id="nav-sync">
+           </div>
+          </div>
+         </div>
+         <div class="ui-resizable-handle" id="splitbar" style="-moz-user-select:none;">
+         </div>
+        </div>
+        <div id="doc-content">
+         <div class="header">
+          <div class="headertitle">
+           <div class="title">
+            pointOnMeshInfo/pointOnMeshInfoNode.cpp
+           </div>
+          </div>
+         </div>
+         <!--header-->
+         <div class="contents">
+          <div class="fragment">
+           <div class="line">
+            <span class="comment">
+             //-
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // Use of this software is subject to the terms of the Autodesk
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // license agreement provided at the time of installation or download,
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or which otherwise accompanies this software in either electronic
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // or hard copy form.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // ==========================================================================
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //+
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DISCLAIMER: THIS PLUGIN IS PROVIDED AS IS.  IT IS NOT SUPPORTED BY
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //            AUTODESK, SO PLEASE USE AND MODIFY AT YOUR OWN RISK.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // PLUGIN NAME: pointOnMeshInfo v1.0
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // FILE: pointOnMeshInfoNode.cpp
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DESCRIPTION: -Defines "pointOnMeshInfo" node.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //              -Please see readme.txt for full details.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // AUTHOR: QT
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // REFERENCES: -This plugin is based off of the `pointOnSurface` MEL command and "pointOnSurfaceInfo" node.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //             -The pointOnSubdNode.cpp plugin example from the Maya API Devkit was also used for reference.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //             -The MEL script AEpointOnSurfaceInfoTemplate.mel was referred to for the AE template MEL script
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             //              that accompanies the pointOnMeshInfo node.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // LAST UPDATED: Oct. 11th, 2001.
+            </span>
+           </div>
+           <div class="line">
+            <span class="comment">
+             // COMPILED AND TESTED ON: Maya 4.0 on Windows
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // HEADER FILES:
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "pointOnMeshInfoNode.h"
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include "getPointAndNormal.h"
+            </span>
+           </div>
+           <div class="line">
+            <span class="preprocessor">
+             #include &lt;maya/MIOStream.h&gt;
+            </span>
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DEFINE CLASS'S STATIC DATA MEMBERS:
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a0">
+            </a>
+            <a class="code" href="./class_m_type_id.html">
+             MTypeId
+            </a>
+            pointOnMeshInfoNode::id(0x00105480);
+           </div>
+           <div class="line">
+            <a name="_a1">
+            </a>
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aInMesh;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aFaceIndex;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aRelative;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aParameterU;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aParameterV;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aPosition;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aPositionX;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aPositionY;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aPositionZ;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aNormal;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aNormalX;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aNormalY;
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            pointOnMeshInfoNode::aNormalZ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CONSTRUCTOR DEFINITION:
+            </span>
+           </div>
+           <div class="line">
+            pointOnMeshInfoNode::pointOnMeshInfoNode()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DESTRUCTOR DEFINITION:
+            </span>
+           </div>
+           <div class="line">
+            pointOnMeshInfoNode::~pointOnMeshInfoNode()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // FOR CREATING AN INSTANCE OF THIS NODE:
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             void
+            </span>
+            *pointOnMeshInfoNode::creator()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <span class="keyword">
+             new
+            </span>
+            pointOnMeshInfoNode();
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // INITIALIZES THE NODE BY CREATING ITS ATTRIBUTES:
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a2">
+            </a>
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            pointOnMeshInfoNode::initialize()
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".inMesh" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a3">
+            </a>
+            <a class="code" href="./class_m_fn_typed_attribute.html">
+             MFnTypedAttribute
+            </a>
+            inMeshAttrFn;
+           </div>
+           <div class="line">
+            aInMesh = inMeshAttrFn.
+            <a name="a4">
+            </a>
+            <a class="code" href="./class_m_fn_typed_attribute.html#af785af0a66bd4a4da1d9f7bd74d4de0a">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "inMesh"
+            </span>
+            ,
+            <span class="stringliteral">
+             "im"
+            </span>
+            ,
+            <a name="a5">
+            </a>
+            <a class="code" href="./class_m_fn_data.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">
+             MFnData::kMesh
+            </a>
+            );
+           </div>
+           <div class="line">
+            <a name="a6">
+            </a>
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( inMeshAttrFn.
+            <a name="a7">
+            </a>
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( inMeshAttrFn.
+            <a name="a8">
+            </a>
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( inMeshAttrFn.
+            <a name="a9">
+            </a>
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( inMeshAttrFn.
+            <a name="a10">
+            </a>
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( inMeshAttrFn.
+            <a name="a11">
+            </a>
+            <a class="code" href="./class_m_fn_attribute.html#afa3d56222eae663308e11edc39e8d153">
+             setCached
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aInMesh));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".faceIndex" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a12">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            faceIndexAttrFn;
+           </div>
+           <div class="line">
+            aFaceIndex = faceIndexAttrFn.
+            <a name="a13">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "faceIndex"
+            </span>
+            ,
+            <span class="stringliteral">
+             "f"
+            </span>
+            ,
+            <a name="a14">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7a762e1602488228e1b11b83501bb3832e">
+             MFnNumericData::kLong
+            </a>
+            , 0);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            (faceIndexAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( faceIndexAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( faceIndexAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( faceIndexAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( faceIndexAttrFn.
+            <a name="a15">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_attribute.html#aba21b33176bb831de026b78605c1dcf3">
+             setMin
+            </a>
+            (0) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aFaceIndex) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".relative" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            relativeAttrFn;
+           </div>
+           <div class="line">
+            aRelative = relativeAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "relative"
+            </span>
+            ,
+            <span class="stringliteral">
+             "r"
+            </span>
+            ,
+            <a name="a16">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7a8cfc0ab572a96edfc9db7c02f0d025d7">
+             MFnNumericData::kBoolean
+            </a>
+            , 1);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( relativeAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( relativeAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( relativeAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( relativeAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aRelative) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".parameterU" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            parameterUAttrFn;
+           </div>
+           <div class="line">
+            aParameterU = parameterUAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "parameterU"
+            </span>
+            ,
+            <span class="stringliteral">
+             "u"
+            </span>
+            ,
+            <a name="a17">
+            </a>
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.5);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterUAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterUAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterUAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) ) ;
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterUAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) ) ;
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aParameterU) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".parameterV" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            parameterVAttrFn;
+           </div>
+           <div class="line">
+            aParameterV = parameterVAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "parameterV"
+            </span>
+            ,
+            <span class="stringliteral">
+             "v"
+            </span>
+            ,
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.5);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterVAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterVAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterVAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( parameterVAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aParameterV) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".positionX" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            pointXAttrFn;
+           </div>
+           <div class="line">
+            aPositionX = pointXAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "positionX"
+            </span>
+            ,
+            <span class="stringliteral">
+             "px"
+            </span>
+            ,
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.0);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) ) ;
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aPositionX) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".positionY" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            pointYAttrFn;
+           </div>
+           <div class="line">
+            aPositionY = pointYAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "positionY"
+            </span>
+            ,
+            <span class="stringliteral">
+             "py"
+            </span>
+            ,
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.0);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aPositionY) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".positionZ" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            pointZAttrFn;
+           </div>
+           <div class="line">
+            aPositionZ = pointZAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "positionZ"
+            </span>
+            ,
+            <span class="stringliteral">
+             "pz"
+            </span>
+            ,
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.0);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aPositionZ) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".position" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            pointAttrFn;
+           </div>
+           <div class="line">
+            aPosition = pointAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "position"
+            </span>
+            ,
+            <span class="stringliteral">
+             "p"
+            </span>
+            , aPositionX, aPositionY, aPositionZ);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( pointAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aPosition) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".normalX" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            normalXAttrFn;
+           </div>
+           <div class="line">
+            aNormalX = normalXAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "normalX"
+            </span>
+            ,
+            <span class="stringliteral">
+             "nx"
+            </span>
+            ,
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.0);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalXAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aNormalX) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".normalY" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            normalYAttrFn;
+           </div>
+           <div class="line">
+            aNormalY = normalYAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "normalY"
+            </span>
+            ,
+            <span class="stringliteral">
+             "ny"
+            </span>
+            ,
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.0);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalYAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ) );
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            (addAttribute(aNormalY));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".normalZ" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            normalZAttrFn;
+           </div>
+           <div class="line">
+            aNormalZ = normalZAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "normalZ"
+            </span>
+            ,
+            <span class="stringliteral">
+             "nz"
+            </span>
+            ,
+            <a class="code" href="./class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">
+             MFnNumericData::kDouble
+            </a>
+            , 0.0);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalZAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aNormalZ));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // CREATE AND ADD ".normal" ATTRIBUTE:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_fn_numeric_attribute.html">
+             MFnNumericAttribute
+            </a>
+            normalAttrFn;
+           </div>
+           <div class="line">
+            aNormal = normalAttrFn.
+            <a class="code" href="./class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">
+             create
+            </a>
+            (
+            <span class="stringliteral">
+             "normal"
+            </span>
+            ,
+            <span class="stringliteral">
+             "n"
+            </span>
+            , aNormalX, aNormalY, aNormalZ);
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">
+             setStorable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">
+             setKeyable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">
+             setReadable
+            </a>
+            (
+            <span class="keyword">
+             true
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( normalAttrFn.
+            <a class="code" href="./class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">
+             setWritable
+            </a>
+            (
+            <span class="keyword">
+             false
+            </span>
+            ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( addAttribute(aNormal) );
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DEPENDENCY RELATIONS FOR ".inMesh":
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aPosition));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aPositionX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aPositionY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aPositionZ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aNormal));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aNormalX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aNormalY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aInMesh, aNormalZ));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DEPENDENCY RELATIONS FOR ".faceIndex":
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aFaceIndex, aPosition));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aFaceIndex, aPositionX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aFaceIndex, aPositionY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aFaceIndex, aPositionZ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aFaceIndex, aNormal));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aFaceIndex, aNormalX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            (attributeAffects(aFaceIndex, aNormalY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aFaceIndex, aNormalZ));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DEPENDENCY RELATIONS FOR ".relative":
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aRelative, aPosition));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aRelative, aPositionX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aRelative, aPositionY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            (attributeAffects(aRelative, aPositionZ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aRelative, aNormal));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aRelative, aNormalX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aRelative, aNormalY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aRelative, aNormalZ));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DEPENDENCY RELATIONS FOR ".parameterU":
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            (  attributeAffects(aParameterU, aPosition));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterU, aPositionX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterU, aPositionY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterU, aPositionZ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterU, aNormal));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterU, aNormalX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterU, aNormalY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterU, aNormalZ));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DEPENDENCY RELATIONS FOR ".parameterV":
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aPosition));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aPositionX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aPositionY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aPositionZ));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aNormal));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aNormalX));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aNormalY));
+           </div>
+           <div class="line">
+            <a class="code" href="./group___macros.html#gae3dc78724237805e00a767b587b7cf79">
+             CHECK_MSTATUS
+            </a>
+            ( attributeAffects(aParameterV, aNormalZ));
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a18">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // COMPUTE METHOD'S DEFINITION:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_status.html">
+             MStatus
+            </a>
+            pointOnMeshInfoNode::compute(
+            <span class="keyword">
+             const
+            </span>
+            <a name="_a19">
+            </a>
+            <a class="code" href="./class_m_plug.html">
+             MPlug
+            </a>
+            &amp;plug,
+            <a name="_a20">
+            </a>
+            <a class="code" href="./class_m_data_block.html">
+             MDataBlock
+            </a>
+            &amp;data)
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // DO THE COMPUTE ONLY FOR THE *OUTPUT* PLUGS THAT ARE DIRTIED:
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             if
+            </span>
+            ((plug == aPosition)  || (plug == aPositionX)  || (plug == aPositionY)  || (plug == aPositionZ)
+           </div>
+           <div class="line">
+            || (plug == aNormal) || (plug == aNormalX) || (plug == aNormalY) || (plug == aNormalZ))
+           </div>
+           <div class="line">
+            {
+           </div>
+           <div class="line">
+            <span class="comment">
+             // READ IN ".inMesh" DATA:
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a21">
+            </a>
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            inMeshDataHandle = data.
+            <a name="a22">
+            </a>
+            <a class="code" href="./class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">
+             inputValue
+            </a>
+            (aInMesh);
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_object.html">
+             MObject
+            </a>
+            inMesh = inMeshDataHandle.
+            <a name="a23">
+            </a>
+            <a class="code" href="./class_m_data_handle.html#a301e7b7cdf9f9e1e206651cc6a1b67ec">
+             asMesh
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // READ IN ".faceIndex" DATA:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            faceIndexDataHandle = data.
+            <a class="code" href="./class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">
+             inputValue
+            </a>
+            (aFaceIndex);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             int
+            </span>
+            faceIndex = faceIndexDataHandle.
+            <a name="a24">
+            </a>
+            <a class="code" href="./class_m_data_handle.html#a7e34eb0d7ccd3be001aebd8f5fa90675">
+             asLong
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // READ IN ".relative" DATA:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            relativeDataHandle = data.
+            <a class="code" href="./class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">
+             inputValue
+            </a>
+            (aRelative);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             bool
+            </span>
+            relative = relativeDataHandle.
+            <a name="a25">
+            </a>
+            <a class="code" href="./class_m_data_handle.html#a69fdebf4dcdf33c1b313eb4a426e0d45">
+             asBool
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // READ IN ".parameterU" DATA:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            parameterUDataHandle = data.
+            <a class="code" href="./class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">
+             inputValue
+            </a>
+            (aParameterU);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            parameterU = parameterUDataHandle.
+            <a name="a26">
+            </a>
+            <a class="code" href="./class_m_data_handle.html#ac1983b7d41a8dae60dc5b1eb9f44a53c">
+             asDouble
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // READ IN ".parameterV" DATA:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            parameterVDataHandle = data.
+            <a class="code" href="./class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">
+             inputValue
+            </a>
+            (aParameterV);
+           </div>
+           <div class="line">
+            <span class="keywordtype">
+             double
+            </span>
+            parameterV = parameterVDataHandle.
+            <a class="code" href="./class_m_data_handle.html#ac1983b7d41a8dae60dc5b1eb9f44a53c">
+             asDouble
+            </a>
+            ();
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // GET THE POINT AND NORMAL:
+            </span>
+           </div>
+           <div class="line">
+            <a name="_a27">
+            </a>
+            <a class="code" href="./class_m_point.html">
+             MPoint
+            </a>
+            point;
+           </div>
+           <div class="line">
+            <a name="_a28">
+            </a>
+            <a class="code" href="./class_m_vector.html">
+             MVector
+            </a>
+            normal;
+           </div>
+           <div class="line">
+            <a name="_a29">
+            </a>
+            <a class="code" href="./class_m_dag_path.html">
+             MDagPath
+            </a>
+            dummyDagPath;
+           </div>
+           <div class="line">
+            getPointAndNormal(dummyDagPath, faceIndex, relative, parameterU, parameterV, point, normal, inMesh);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // WRITE OUT ".position" DATA:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            pointDataHandle = data.
+            <a name="a30">
+            </a>
+            <a class="code" href="./class_m_data_block.html#a5e4082d6ab961bee4ec0281676bb4834">
+             outputValue
+            </a>
+            (aPosition);
+           </div>
+           <div class="line">
+            pointDataHandle.
+            <a name="a31">
+            </a>
+            <a class="code" href="./class_m_data_handle.html#a2a75482f517f405a641c0eee0bd995ac">
+             set
+            </a>
+            (point.
+            <a name="a32">
+            </a>
+            <a class="code" href="./class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , point.
+            <a name="a33">
+            </a>
+            <a class="code" href="./class_m_point.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , point.
+            <a name="a34">
+            </a>
+            <a class="code" href="./class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            );
+           </div>
+           <div class="line">
+            data.
+            <a name="a35">
+            </a>
+            <a class="code" href="./class_m_data_block.html#aceb46f1065ef1cd730c4ab15d61466cc">
+             setClean
+            </a>
+            (plug);
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="comment">
+             // WRITE OUT ".normal" DATA:
+            </span>
+           </div>
+           <div class="line">
+            <a class="code" href="./class_m_data_handle.html">
+             MDataHandle
+            </a>
+            normalDataHandle = data.
+            <a class="code" href="./class_m_data_block.html#a5e4082d6ab961bee4ec0281676bb4834">
+             outputValue
+            </a>
+            (aNormal);
+           </div>
+           <div class="line">
+            normalDataHandle.
+            <a class="code" href="./class_m_data_handle.html#a2a75482f517f405a641c0eee0bd995ac">
+             set
+            </a>
+            (normal.
+            <a name="a36">
+            </a>
+            <a class="code" href="./class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">
+             x
+            </a>
+            , normal.
+            <a name="a37">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab927965981178aa1fba979a37168db2a">
+             y
+            </a>
+            , normal.
+            <a name="a38">
+            </a>
+            <a class="code" href="./class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">
+             z
+            </a>
+            );
+           </div>
+           <div class="line">
+            data.
+            <a class="code" href="./class_m_data_block.html#aceb46f1065ef1cd730c4ab15d61466cc">
+             setClean
+            </a>
+            (plug);
+           </div>
+           <div class="line">
+            }
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             else
+            </span>
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a name="a39">
+            </a>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a7f858db05022c8bc860d685e13bab6ae">
+             MS::kUnknownParameter
+            </a>
+            ;
+           </div>
+           <div class="line">
+           </div>
+           <div class="line">
+            <span class="keywordflow">
+             return
+            </span>
+            <a class="code" href="./class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">
+             MS::kSuccess
+            </a>
+            ;
+           </div>
+           <div class="line">
+            }
+           </div>
+          </div>
+          <!-- fragment -->
+         </div>
+         <!-- contents -->
+        </div>
+        <!-- doc-content -->
+        <div class="footer-block">
+         <a class="comments-anchor" href="../html/ac.cmtdialog.htm" target="_blank">
+          <span class="comments-link">
+           Please send us your comment about this page
+          </span>
+         </a>
+        </div>
+        <br/>
+       </div>
+      </link>
+     </link>
+    </link>
+   </link>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
-  </div>
-</div>
-
-<div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<div class="title">pointOnMeshInfo/pointOnMeshInfoNode.cpp</div>  </div>
-</div><!--header-->
-<div class="contents">
-<div class="fragment"><div class="line"><span class="comment">//-</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">// Copyright 1995,2006,2008 Autodesk, Inc. All rights reserved.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// Use of this software is subject to the terms of the Autodesk</span></div>
-<div class="line"><span class="comment">// license agreement provided at the time of installation or download,</span></div>
-<div class="line"><span class="comment">// or which otherwise accompanies this software in either electronic</span></div>
-<div class="line"><span class="comment">// or hard copy form.</span></div>
-<div class="line"><span class="comment">// ==========================================================================</span></div>
-<div class="line"><span class="comment">//+</span></div>
-<div class="line"></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// DISCLAIMER: THIS PLUGIN IS PROVIDED AS IS.  IT IS NOT SUPPORTED BY</span></div>
-<div class="line"><span class="comment">//            AUTODESK, SO PLEASE USE AND MODIFY AT YOUR OWN RISK.</span></div>
-<div class="line"><span class="comment">//</span></div>
-<div class="line"><span class="comment">// PLUGIN NAME: pointOnMeshInfo v1.0</span></div>
-<div class="line"><span class="comment">// FILE: pointOnMeshInfoNode.cpp</span></div>
-<div class="line"><span class="comment">// DESCRIPTION: -Defines &quot;pointOnMeshInfo&quot; node.</span></div>
-<div class="line"><span class="comment">//              -Please see readme.txt for full details.</span></div>
-<div class="line"><span class="comment">// AUTHOR: QT</span></div>
-<div class="line"><span class="comment">// REFERENCES: -This plugin is based off of the `pointOnSurface` MEL command and &quot;pointOnSurfaceInfo&quot; node.</span></div>
-<div class="line"><span class="comment">//             -The pointOnSubdNode.cpp plugin example from the Maya API Devkit was also used for reference.</span></div>
-<div class="line"><span class="comment">//             -The MEL script AEpointOnSurfaceInfoTemplate.mel was referred to for the AE template MEL script</span></div>
-<div class="line"><span class="comment">//              that accompanies the pointOnMeshInfo node.</span></div>
-<div class="line"><span class="comment">// LAST UPDATED: Oct. 11th, 2001.</span></div>
-<div class="line"><span class="comment">// COMPILED AND TESTED ON: Maya 4.0 on Windows</span></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// HEADER FILES:</span></div>
-<div class="line"><span class="preprocessor">#include &quot;pointOnMeshInfoNode.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;getPointAndNormal.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;maya/MIOStream.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// DEFINE CLASS&#39;S STATIC DATA MEMBERS:</span></div>
-<div class="line"><a name="_a0"></a><a class="code" href="#!/url=./cpp_ref/class_m_type_id.html">MTypeId</a> pointOnMeshInfoNode::id(0x00105480);</div>
-<div class="line"><a name="_a1"></a><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aInMesh;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aFaceIndex;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aRelative;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aParameterU;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aParameterV;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aPosition;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aPositionX;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aPositionY;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aPositionZ;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aNormal;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aNormalX;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aNormalY;</div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> pointOnMeshInfoNode::aNormalZ;</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// CONSTRUCTOR DEFINITION:</span></div>
-<div class="line">pointOnMeshInfoNode::pointOnMeshInfoNode()</div>
-<div class="line">{</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// DESTRUCTOR DEFINITION:</span></div>
-<div class="line">pointOnMeshInfoNode::~pointOnMeshInfoNode()</div>
-<div class="line">{</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// FOR CREATING AN INSTANCE OF THIS NODE:</span></div>
-<div class="line"><span class="keywordtype">void</span> *pointOnMeshInfoNode::creator()</div>
-<div class="line">{</div>
-<div class="line">   <span class="keywordflow">return</span> <span class="keyword">new</span> pointOnMeshInfoNode();</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// INITIALIZES THE NODE BY CREATING ITS ATTRIBUTES:</span></div>
-<div class="line"><a name="_a2"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> pointOnMeshInfoNode::initialize()</div>
-<div class="line">{</div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.inMesh&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a name="_a3"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_typed_attribute.html">MFnTypedAttribute</a> inMeshAttrFn;</div>
-<div class="line">   aInMesh = inMeshAttrFn.<a name="a4"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_typed_attribute.html#af785af0a66bd4a4da1d9f7bd74d4de0a">create</a>(<span class="stringliteral">&quot;inMesh&quot;</span>, <span class="stringliteral">&quot;im&quot;</span>, <a name="a5"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_data.html#a1d1cfd8ffb84e947f82999c682b666a7a19fd562fc0900a60162e6073df36cb62">MFnData::kMesh</a>);</div>
-<div class="line">   <a name="a6"></a><a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( inMeshAttrFn.<a name="a7"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( inMeshAttrFn.<a name="a8"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( inMeshAttrFn.<a name="a9"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( inMeshAttrFn.<a name="a10"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( inMeshAttrFn.<a name="a11"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#afa3d56222eae663308e11edc39e8d153">setCached</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aInMesh));</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.faceIndex&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a name="_a12"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> faceIndexAttrFn;</div>
-<div class="line">   aFaceIndex = faceIndexAttrFn.<a name="a13"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;faceIndex&quot;</span>, <span class="stringliteral">&quot;f&quot;</span>, <a name="a14"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7a762e1602488228e1b11b83501bb3832e">MFnNumericData::kLong</a>, 0);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> (faceIndexAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">true</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( faceIndexAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( faceIndexAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( faceIndexAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( faceIndexAttrFn.<a name="a15"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#aba21b33176bb831de026b78605c1dcf3">setMin</a>(0) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aFaceIndex) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.relative&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> relativeAttrFn;</div>
-<div class="line">   aRelative = relativeAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;relative&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>, <a name="a16"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7a8cfc0ab572a96edfc9db7c02f0d025d7">MFnNumericData::kBoolean</a>, 1);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( relativeAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( relativeAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">true</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( relativeAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( relativeAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aRelative) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.parameterU&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> parameterUAttrFn;</div>
-<div class="line">   aParameterU = parameterUAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;parameterU&quot;</span>, <span class="stringliteral">&quot;u&quot;</span>, <a name="a17"></a><a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.5);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterUAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterUAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterUAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) ) ;</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterUAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">true</span>) ) ;</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aParameterU) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.parameterV&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> parameterVAttrFn;</div>
-<div class="line">   aParameterV = parameterVAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;parameterV&quot;</span>, <span class="stringliteral">&quot;v&quot;</span>, <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.5);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterVAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterVAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterVAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( parameterVAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aParameterV) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.positionX&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> pointXAttrFn;</div>
-<div class="line">   aPositionX = pointXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;positionX&quot;</span>, <span class="stringliteral">&quot;px&quot;</span>, <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.0);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) ) ;</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aPositionX) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.positionY&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> pointYAttrFn;</div>
-<div class="line">   aPositionY = pointYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;positionY&quot;</span>, <span class="stringliteral">&quot;py&quot;</span>, <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.0);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aPositionY) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.positionZ&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> pointZAttrFn;</div>
-<div class="line">   aPositionZ = pointZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;positionZ&quot;</span>, <span class="stringliteral">&quot;pz&quot;</span>, <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.0);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aPositionZ) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.position&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> pointAttrFn;</div>
-<div class="line">   aPosition = pointAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;position&quot;</span>, <span class="stringliteral">&quot;p&quot;</span>, aPositionX, aPositionY, aPositionZ);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( pointAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aPosition) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.normalX&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> normalXAttrFn;</div>
-<div class="line">   aNormalX = normalXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;normalX&quot;</span>, <span class="stringliteral">&quot;nx&quot;</span>, <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.0);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalXAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aNormalX) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.normalY&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> normalYAttrFn;</div>
-<div class="line">   aNormalY = normalYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;normalY&quot;</span>, <span class="stringliteral">&quot;ny&quot;</span>, <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.0);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalYAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>) );</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> (addAttribute(aNormalY));</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.normalZ&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> normalZAttrFn;</div>
-<div class="line">   aNormalZ = normalZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;normalZ&quot;</span>, <span class="stringliteral">&quot;nz&quot;</span>, <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_data.html#a1d1cfd8ffb84e947f82999c682b666a7acd70f5d2b5e8c1bb8e83b0482a33e518">MFnNumericData::kDouble</a>, 0.0);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalZAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aNormalZ));</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// CREATE AND ADD &quot;.normal&quot; ATTRIBUTE:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html">MFnNumericAttribute</a> normalAttrFn;</div>
-<div class="line">   aNormal = normalAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_numeric_attribute.html#a5c08a5ce5e7123cc444c95a0e4a50f29">create</a>(<span class="stringliteral">&quot;normal&quot;</span>, <span class="stringliteral">&quot;n&quot;</span>, aNormalX, aNormalY, aNormalZ);</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a8d2be80de133a200a455bf9e2ac1b709">setStorable</a>(<span class="keyword">false</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a9e68a8b4af016b37f6567cfa6d68e551">setKeyable</a>(<span class="keyword">false</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#af41aae76c0dc31dbcd1f4ecea52d694e">setReadable</a>(<span class="keyword">true</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( normalAttrFn.<a class="code" href="#!/url=./cpp_ref/class_m_fn_attribute.html#a98bb3089ec3b7442383da68a5ef424c7">setWritable</a>(<span class="keyword">false</span>));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( addAttribute(aNormal) );</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// DEPENDENCY RELATIONS FOR &quot;.inMesh&quot;:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aPosition));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aPositionX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aPositionY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aPositionZ));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aNormal));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aNormalX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aNormalY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aInMesh, aNormalZ));</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// DEPENDENCY RELATIONS FOR &quot;.faceIndex&quot;:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aFaceIndex, aPosition));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aFaceIndex, aPositionX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aFaceIndex, aPositionY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aFaceIndex, aPositionZ));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aFaceIndex, aNormal));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aFaceIndex, aNormalX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> (attributeAffects(aFaceIndex, aNormalY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aFaceIndex, aNormalZ));</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// DEPENDENCY RELATIONS FOR &quot;.relative&quot;:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aRelative, aPosition));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aRelative, aPositionX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aRelative, aPositionY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> (attributeAffects(aRelative, aPositionZ));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aRelative, aNormal));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aRelative, aNormalX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aRelative, aNormalY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aRelative, aNormalZ));</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// DEPENDENCY RELATIONS FOR &quot;.parameterU&quot;:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> (  attributeAffects(aParameterU, aPosition));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterU, aPositionX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterU, aPositionY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterU, aPositionZ));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterU, aNormal));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterU, aNormalX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterU, aNormalY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterU, aNormalZ));</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// DEPENDENCY RELATIONS FOR &quot;.parameterV&quot;:</span></div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aPosition));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aPositionX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aPositionY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aPositionZ));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aNormal));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aNormalX));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aNormalY));</div>
-<div class="line">   <a class="code" href="#!/url=./cpp_ref/group___macros.html#gae3dc78724237805e00a767b587b7cf79">CHECK_MSTATUS</a> ( attributeAffects(aParameterV, aNormalZ));</div>
-<div class="line"></div>
-<div class="line">   <span class="keywordflow">return</span> <a name="a18"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"><span class="comment">// COMPUTE METHOD&#39;S DEFINITION:</span></div>
-<div class="line"><a class="code" href="#!/url=./cpp_ref/class_m_status.html">MStatus</a> pointOnMeshInfoNode::compute(<span class="keyword">const</span> <a name="_a19"></a><a class="code" href="#!/url=./cpp_ref/class_m_plug.html">MPlug</a> &amp;plug, <a name="_a20"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html">MDataBlock</a> &amp;data)</div>
-<div class="line">{</div>
-<div class="line"></div>
-<div class="line">   <span class="comment">// DO THE COMPUTE ONLY FOR THE *OUTPUT* PLUGS THAT ARE DIRTIED:</span></div>
-<div class="line">   <span class="keywordflow">if</span> ((plug == aPosition)  || (plug == aPositionX)  || (plug == aPositionY)  || (plug == aPositionZ)</div>
-<div class="line">    || (plug == aNormal) || (plug == aNormalX) || (plug == aNormalY) || (plug == aNormalZ))</div>
-<div class="line">   {</div>
-<div class="line">      <span class="comment">// READ IN &quot;.inMesh&quot; DATA:</span></div>
-<div class="line">      <a name="_a21"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> inMeshDataHandle = data.<a name="a22"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">inputValue</a>(aInMesh);</div>
-<div class="line">      <a class="code" href="#!/url=./cpp_ref/class_m_object.html">MObject</a> inMesh = inMeshDataHandle.<a name="a23"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#a301e7b7cdf9f9e1e206651cc6a1b67ec">asMesh</a>();</div>
-<div class="line"></div>
-<div class="line">      <span class="comment">// READ IN &quot;.faceIndex&quot; DATA:</span></div>
-<div class="line">      <a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> faceIndexDataHandle = data.<a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">inputValue</a>(aFaceIndex);</div>
-<div class="line">      <span class="keywordtype">int</span> faceIndex = faceIndexDataHandle.<a name="a24"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#a7e34eb0d7ccd3be001aebd8f5fa90675">asLong</a>();</div>
-<div class="line"></div>
-<div class="line">      <span class="comment">// READ IN &quot;.relative&quot; DATA:</span></div>
-<div class="line">      <a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> relativeDataHandle = data.<a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">inputValue</a>(aRelative);</div>
-<div class="line">      <span class="keywordtype">bool</span> relative = relativeDataHandle.<a name="a25"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#a69fdebf4dcdf33c1b313eb4a426e0d45">asBool</a>();</div>
-<div class="line"></div>
-<div class="line">      <span class="comment">// READ IN &quot;.parameterU&quot; DATA:</span></div>
-<div class="line">      <a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> parameterUDataHandle = data.<a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">inputValue</a>(aParameterU);</div>
-<div class="line">      <span class="keywordtype">double</span> parameterU = parameterUDataHandle.<a name="a26"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#ac1983b7d41a8dae60dc5b1eb9f44a53c">asDouble</a>();</div>
-<div class="line"></div>
-<div class="line">      <span class="comment">// READ IN &quot;.parameterV&quot; DATA:</span></div>
-<div class="line">      <a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> parameterVDataHandle = data.<a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#af4a356799acd4ed070d372ed7cfb4706">inputValue</a>(aParameterV);</div>
-<div class="line">      <span class="keywordtype">double</span> parameterV = parameterVDataHandle.<a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#ac1983b7d41a8dae60dc5b1eb9f44a53c">asDouble</a>();</div>
-<div class="line"></div>
-<div class="line">      <span class="comment">// GET THE POINT AND NORMAL:</span></div>
-<div class="line">      <a name="_a27"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html">MPoint</a> point;</div>
-<div class="line">      <a name="_a28"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html">MVector</a> normal;</div>
-<div class="line">      <a name="_a29"></a><a class="code" href="#!/url=./cpp_ref/class_m_dag_path.html">MDagPath</a> dummyDagPath;</div>
-<div class="line">      getPointAndNormal(dummyDagPath, faceIndex, relative, parameterU, parameterV, point, normal, inMesh);</div>
-<div class="line"></div>
-<div class="line">      <span class="comment">// WRITE OUT &quot;.position&quot; DATA:</span></div>
-<div class="line">      <a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> pointDataHandle = data.<a name="a30"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#a5e4082d6ab961bee4ec0281676bb4834">outputValue</a>(aPosition);</div>
-<div class="line">      pointDataHandle.<a name="a31"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#a2a75482f517f405a641c0eee0bd995ac">set</a>(point.<a name="a32"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, point.<a name="a33"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab927965981178aa1fba979a37168db2a">y</a>, point.<a name="a34"></a><a class="code" href="#!/url=./cpp_ref/class_m_point.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>);</div>
-<div class="line">      data.<a name="a35"></a><a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#aceb46f1065ef1cd730c4ab15d61466cc">setClean</a>(plug);</div>
-<div class="line"></div>
-<div class="line">      <span class="comment">// WRITE OUT &quot;.normal&quot; DATA:</span></div>
-<div class="line">      <a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html">MDataHandle</a> normalDataHandle = data.<a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#a5e4082d6ab961bee4ec0281676bb4834">outputValue</a>(aNormal);</div>
-<div class="line">      normalDataHandle.<a class="code" href="#!/url=./cpp_ref/class_m_data_handle.html#a2a75482f517f405a641c0eee0bd995ac">set</a>(normal.<a name="a36"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#af88b946fb90d5f08b5fb740c70e98c10">x</a>, normal.<a name="a37"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab927965981178aa1fba979a37168db2a">y</a>, normal.<a name="a38"></a><a class="code" href="#!/url=./cpp_ref/class_m_vector.html#ab3e6ed577a7c669c19de1f9c1b46c872">z</a>);</div>
-<div class="line">      data.<a class="code" href="#!/url=./cpp_ref/class_m_data_block.html#aceb46f1065ef1cd730c4ab15d61466cc">setClean</a>(plug);</div>
-<div class="line">   }</div>
-<div class="line">   <span class="keywordflow">else</span></div>
-<div class="line">      <span class="keywordflow">return</span> <a name="a39"></a><a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a7f858db05022c8bc860d685e13bab6ae">MS::kUnknownParameter</a>;</div>
-<div class="line"></div>
-<div class="line">   <span class="keywordflow">return</span> <a class="code" href="#!/url=./cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1">MS::kSuccess</a>;</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div><!-- contents -->
-</div><!-- doc-content -->
-          <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div><br></div>
-   </div></body>
+ </body>
 </html>
