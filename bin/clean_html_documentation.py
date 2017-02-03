@@ -5,6 +5,7 @@ Doxygen documentation to be usable as standalone.
 """
 import logging
 import os
+import shutil
 from bs4 import BeautifulSoup
 
 def main():
@@ -23,11 +24,13 @@ def main():
         raise IOError('The directory: {0} does not exist!'
                 .format(docs_path))
 
-    logger.debug('Formatting documentation...')
+    logger.info('Formatting documentation...')
 
     output_path = os.path.join(docs_path, 'output')
-    if not os.path.isdir(output_path):
-        os.makedirs(output_path)
+    if os.path.isdir(output_path):
+        logger.info('Removing existing directory...')
+        shutil.rmtree(output_path)
+    os.makedirs(output_path)
 
     # Format all hyperlinks so that they work
     all_files = os.listdir(docs_path)
@@ -44,8 +47,21 @@ def main():
                 new_href = href.replace('#!/url=./cpp_ref/', './')
                 link['href'] = new_href
 
+        # Also insert anchors in order for table of contents to work
+        for td in soup.find_all('td'):
+            if td.get('class') and 'memname' in td.get('class') and td.a:
+                member_name = td.contents[-1]
+                if member_name and len(member_name) > 2:
+                    member_name = member_name.split(' ')[-2]
+                    new_tag = soup.new_tag('a')
+                    new_tag['name'] = '//apple_ref/cpp/Function/{0}'.format(member_name)
+                    new_tag['class'] = 'dashAnchor'
+                    td.insert(0, new_tag)
+
         with open(os.path.join(output_path, f), 'w') as of:
-            of.write(soup.prettify().encode('utf8'))
+            of.write(str(soup))
+
+    logger.info('Finished!')
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)

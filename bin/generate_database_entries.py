@@ -58,6 +58,11 @@ def main():
                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                         ' VALUES (\'{name}\', \'Struct\', \'{path}\')'.format(name=struct_name, path=f))
 
+            elif f.startswith('namespace'):
+                namespace_name = ''.join([a[0].upper() + a[1:] for a in os.path.splitext(f)[0].replace('namespace', '').split('_') if a])
+                cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
+                        ' VALUES (\'{name}\', \'Namespace\', \'{path}\')'.format(name=namespace_name, path=f))
+
             elif '-example' in f:
                 example_name = ''.join([a[0].upper() + a[1:] for a in os.path.splitext(f)[0].split('-example')[0].split('_') if a]) + 'Example'
                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
