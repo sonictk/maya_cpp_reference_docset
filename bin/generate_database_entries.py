@@ -84,10 +84,47 @@ def write_entries(database_file_path, filenames, docs_root, timeout=120.0):
                             method_url = m.a.get('href')
                             if method_name and method_url:
                                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
+                                        ' VALUES (\'{class_name}::{method_name}\', \'Method\', \'{path}\')'
+                                        .format(class_name=class_name,
+                                                method_name=method_name,
+                                                path=method_url))
+                    elif h2.a and h2.a.get('name') == 'pub-static-methods':
+                        pub_methods = h2.parent.parent.parent.find_all(
+                            'td',
+                            {'class' : 'memItemRight'}
+                        )
+                        # Do not consider inherited functions
+                        for m in pub_methods:
+                            if 'el' not in m.a.get('class'):
+                                continue
+                            if 'inherit' in m.parent.get('class'):
+                                continue
+                            method_name = m.a.string
+                            method_url = m.a.get('href')
+                            if method_name and method_url:
+                                cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                                         ' VALUES (\'{class_name}::{method_name}\', \'Function\', \'{path}\')'
                                         .format(class_name=class_name,
                                                 method_name=method_name,
                                                 path=method_url))
+                    elif h2.a and h2.a.get('name') == 'pro-methods':
+                        pub_methods = h2.parent.parent.parent.find_all(
+                            'td',
+                            {'class' : 'memItemRight'}
+                        )
+                        # Do not consider inherited functions
+                        for m in pub_methods:
+                            if 'el' not in m.a.get('class'):
+                                continue
+                            method_name = m.a.string
+                            method_url = m.a.get('href')
+                            if method_name and method_url:
+                                cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
+                                        ' VALUES (\'{class_name}::{method_name}\', \'Method\', \'{path}\')'
+                                        .format(class_name=class_name,
+                                                method_name=method_name,
+                                                path=method_url))
+
 
             elif f.startswith('struct_'):
                 struct_name = ''.join([a[0].upper() + a[1:] for a in os.path.splitext(f)[0].split('struct_')[-1].split('_') if a])
@@ -110,7 +147,7 @@ def write_entries(database_file_path, filenames, docs_root, timeout=120.0):
         time.sleep(5)
         conn.commit()
     finally:
-        logger.debug('Job complete, closing connection to database...')
+        logger.debug('Job {0} complete, closing connection to database...'.format(os.getpid()))
         conn.close()
 
 
