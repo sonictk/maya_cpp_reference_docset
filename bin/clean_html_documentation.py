@@ -8,10 +8,7 @@ import multiprocessing
 import os
 import shutil
 from bs4 import BeautifulSoup
-
-
-def chunk(l, n):
-    return [l[i:i+n] for i in range(0, len(l), n)]
+from lib import chunk
 
 
 def format_file(all_files, docs_path, output_path):
