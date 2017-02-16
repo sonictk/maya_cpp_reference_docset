@@ -9,7 +9,7 @@
     <key>DashDocSetFamily</key>
     <string>dashtoc</string>
 	<key>DocSetPlatformFamily</key>
-	<string>maya</string>
+	<string>maya16</string>
 	<key>isDashDocset</key>
 	<true/>
 	<key>isJavascriptEnabled</key>

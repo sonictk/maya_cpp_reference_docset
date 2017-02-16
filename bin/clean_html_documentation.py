@@ -3,6 +3,7 @@
 This module is a script that cleans up the default HTML Maya Doxygen
 documentation to be usable as standalone.
 """
+import argparse
 import logging
 import multiprocessing
 import os
@@ -46,14 +47,14 @@ def format_file(all_files, docs_path, output_path):
     logger.debug('Job complete!')
 
 
-def main():
+def main(maya_version='2016'):
     """This is the main entry point of the program."""
 
     logger = logging.getLogger(__name__)
     docs_path = os.path.join(os.path.dirname(
                             os.path.dirname(os.path.abspath(__file__))
                         ),
-                          'maya-2016-cpp-reference.docset',
+                          'maya-{0}-cpp-reference.docset'.format(maya_version),
                           'Contents',
                           'Resources',
                           'Documents')
@@ -84,4 +85,10 @@ def main():
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
-    main()
+    parser = argparse.ArgumentParser(description='This program formats the HTML documentation so that it is usable in the docset.')
+    parser.add_argument('-mv',
+                        '--mayaVersion',
+                        default='2016',
+                        help='The Maya version to generate the docset for.')
+    args = parser.parse_args()
+    main(args.mayaVersion)
