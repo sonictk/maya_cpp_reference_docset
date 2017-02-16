@@ -30,7 +30,7 @@ def clean_database(database_file_path):
         cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 
 
-def write_entries(database_file_path, filenames, docs_root, timeout=120.0):
+def write_entries(database_file_path, filenames, docs_root, maya_version='2016', timeout=120.0):
     """This function writes search entries to the database."""
     logger = logging.getLogger(__name__)
     conn = sqlite3.connect(database_file_path, timeout=timeout)
@@ -66,6 +66,11 @@ def write_entries(database_file_path, filenames, docs_root, timeout=120.0):
                                 continue
                             type_name = pub_type_item.a.string
                             type_url = pub_type_item.a.get('href')
+
+                            # NOTE: For Maya 2017, it seems the URL is
+                            # formatted differently
+                            if maya_version == '2017':
+                                type_url = type_url.replace('#!/url=./cpp_ref/', '')
                             if type_name and type_url:
                                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                                         ' VALUES (\'{class_name}::{type_name}\', \'Type\', \'{path}\')'
@@ -83,6 +88,10 @@ def write_entries(database_file_path, filenames, docs_root, timeout=120.0):
                                 continue
                             method_name = m.a.string
                             method_url = m.a.get('href')
+                            # NOTE: For Maya 2017, it seems the URL is
+                            # formatted differently
+                            if maya_version == '2017':
+                                method_url = method_url.replace('#!/url=./cpp_ref/', '')
                             if method_name and method_url:
                                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                                         ' VALUES (\'{class_name}::{method_name}\', \'Method\', \'{path}\')'
@@ -102,6 +111,10 @@ def write_entries(database_file_path, filenames, docs_root, timeout=120.0):
                                 continue
                             method_name = m.a.string
                             method_url = m.a.get('href')
+                            # NOTE: For Maya 2017, it seems the URL is
+                            # formatted differently
+                            if maya_version == '2017':
+                                method_url = method_url.replace('#!/url=./cpp_ref/', '')
                             if method_name and method_url:
                                 cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                                         ' VALUES (\'{class_name}::{method_name}\', \'Function\', \'{path}\')'
@@ -180,7 +193,7 @@ def main(maya_version='2016'):
     jobs = []
     for s in chunk(all_files, 500):
         job = multiprocessing.Process(target=write_entries,
-                args=(database_file_path, s, docs_root))
+                args=(database_file_path, s, docs_root, maya_version))
         jobs.append(job)
 
     logger.debug('Num. of jobs scheduled: {0}'.format(len(jobs)))
