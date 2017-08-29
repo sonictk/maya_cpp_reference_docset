@@ -1,0 +1,43 @@
+body {background-color: white; color: black;}
+a:link {color: #B10000; text-decoration: none;}
+a:visited {color: #B10000; text-decoration: none;}
+a:hover {color: #800000; text-decoration: underline;}
+p {font-family:Palatino, Times New Roman, serif;}
+#navBar p {margin: 0;}
+.navBox {}
+.navHead {color: #666; margin: 0; padding: 0; font-size: 90%;}
+.navMinor {font-size: 85%;}
+
+#parents {margin: 1em 0 0 0; color: #666;}
+
+body {margin-top: 0px; padding: 0;}
+
+h1 {font-size: 150%; margin: 0;font-family:sans-serif;}
+h2 {font-size: 130%;font-family:sans-serif;}
+h3 {font-size: 110%;font-family:sans-serif;}
+
+th {text-align: left; background-color: #AAA; color: white; padding: 4px;}
+th p {margin: 0; padding: 0;}
+td {vertical-align: top;}
+td p {margin: 0; padding: 0;}
+td ul {margin-left: 12px; padding-left: 0;}
+td ol {margin-left: 12px; padding-left: 0;}
+
+.basicCell1,.basicCell2 {width: 20%; border-style: solid; border-width: 0 0 2px 0; border-color: white;}
+.basicCell1 {background-color: #F6F6F3;}
+.basicCell2 {background-color: #FCFCF9;}
+.basicCell1 .basicImage {border-style: solid; border-width: 1px; border-color: #CCC;}
+.basicCell2 .basicImage {border-style: solid; border-width: 1px; border-color: #CCC;}
+
+.noteTable	{background-color: #FFFFF4; border-color: #CC9;
+			border-style: dashed; border-width: 1px;
+			-moz-border-radius: 10px;}
+.noteTable P {margin-top: 0.3em; margin-bottom: 0.3em;}
+
+li	{margin-top: 0.5em; margin-bottom: 0.5em;}
+ul,ol {margin-left: 24px; padding-left: 0;}
+ol p {margin-top: 0.5em; margin-bottom: 0.5em;}
+ul p {margin-top: 0.5em; margin-bottom: 0.5em;}
+ul>li {list-style-type: disc;}
+
+.option {font-weight: bold;}
