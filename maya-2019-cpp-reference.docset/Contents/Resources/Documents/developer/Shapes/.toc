@@ -1,0 +1,12 @@
+Shapes-in-Maya
+Shape-classes
+Writing-a-shape
+Drawing-and-refresh
+Selection
+Components
+Tweaks-and-internal-attributes
+Geometry-data
+File-IO
+Deformers
+Marking-Menus
+Example-Shapes

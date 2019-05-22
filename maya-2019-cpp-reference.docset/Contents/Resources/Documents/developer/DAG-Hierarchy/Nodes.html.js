@@ -1,0 +1,25 @@
+var topic = "<!-- saved from url=(0024)http://docs.autodesk.com -->\n\
+<html>\n\
+   <head>\n\
+<link href=\"../../style/prettify.css\" type=\"text/css\" rel=\"stylesheet\">\n\
+<script type=\"text/javascript\" src=\"../../scripts/prettify.js\"></script><script src=\"../../scripts/lib/jquery-1.11.1.min.js\" type=\"text/javascript\"></script><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta http-equiv=\"Content-Style-Type\" content=\"text/css\"><meta name=\"generator\" content=\"pandoc\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\" src=\"../../scripts/utils/adsk.redirect.js\"></script>\n\
+      <title>Nodes</title>\n\
+   <meta name=\"topic-subtype\" content=\"C++\"></head>\n\
+   <body height=\"100%\"><div class=\"body_content\" id=\"body-content\"><style type=\"text/css\">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs(\"./scripts/multireflink.js\"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$(\"div#WidgetFloaterPanels,link[href*=\'microsofttranslator.com\'],script[src*=\'microsofttranslator.com\'],script[src*=\'bing.com\']\").remove();</script><script type=\'text/javascript\'>$(\"div#navigation,div#breadcrumbs,div#banner\").attr(\"translate\",\"no\"); var mtLocation = ((location && location.href && location.href.indexOf(\'https\') == 0)?\'https://ssl.microsofttranslator.com\':\'http://www.microsofttranslator.com\')+\'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages=\'; yepnope.injectJs(mtLocation, function() {}, { charset:\'utf-8\', type:\'text/javascript\' } );</script><script></script><script></script><!-- begin MT -->\n\
+            \n\
+            <div id=\'MicrosoftTranslatorWidget\' class=\'Dark\' style=\'float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden\'></div><div id=\"reflinkdiv\"></div>\n\
+      <div>\n\
+         <div class=\"head\">\n\
+            <h1>Nodes</h1>\n\
+         </div>\n\
+\n\
+<div class=\'section\'><a id=\"nodes\"></a></div>\n\
+<p>Transform nodes can have multiple child nodes—the child nodes are &quot;grouped&quot; beneath the transformation node. Node grouping allows the same shape to be shared among multiple DAG paths. A DAG path is the set of transforms you encounter when traveling from the root node to the shape node.</p>\n\
+<div class=\'section\'><a id=\"instancing\"></a><h2 id=\"instancing\">Instancing</h2></div>\n\
+<p>Whenever a transform or shape node has multiple parent nodes, the node is considered to be instanced. Instancing can be useful to reduce the amount of geometry for a model. For example, if you model a tree, you could create a thousand unique leaves to populate the tree. This would make for a very data heavy model, since each leaf would have its own transformation nodes, shape nodes, and NURBS or polygon data. Instead, you can create a single leaf and instance it a thousand times to create a thousand identical leaves and position them independently around the branches of the tree. This way the shape node and NURBS or polygon data is shared.</p>\n\
+<div class=\'figure\'><img src=\'developer/images/comp_Transform01.png\' title=\'\'></div>\n\
+<p>This DAG hierarchy has three transform nodes (Transform1, Transform2, Transform3) and one shape node (Leaf). This DAG hierarchy would cause two leaves to be displayed since Transform3 and the Leaf is instanced (it has two parents). The two valid DAG paths in this example are: Transform 1 - Transform 3 - Leaf and Transform 2 - Transform 3 - Leaf.</p>\n\
+      <div class=\"footer-block\"><a href=\"../html/ac.cmtdialog.htm\" class=\"comments-anchor\" target=\"_blank\"><span class=\"comments-link\">Please send us your comment about this page</span></a></div></div>\n\
+   </div></body>\n\
+</html>\n\
+";

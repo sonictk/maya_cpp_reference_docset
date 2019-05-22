@@ -1,0 +1,69 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Installing the Maya Developer Toolkit on a MacOS Environment</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Installing the Maya Developer Toolkit on a MacOS Environment</h1>
+         </div>
+
+<div class='section'><a id="installing-the-maya-developer-toolkit-on-a-macos-environment"></a></div>
+<p>The Maya Developer Toolkit, also referred to as the Maya devkit, is used to create custom plug-ins, scripts, and applications that extend Maya&#39;s capabilities.</p>
+<blockquote>
+<p><strong>Important:</strong> Maya sets the <span class='code'>SSL_CERT_FILE</span> environment variable to point to the <span class='code'>cert.pem</span> file within its embedded Python Framework if <span class='code'>SSL_CERT_FILE</span> is unset.</p>
+<p>If you need <span class='code'>SSL_CERT_FILE</span> to remain unset because you are using other means of controlling Python&#39;s certificate usage, set <span class='code'>MAYA_DO_NOT_SET_SSL_CERT_FILE</span> <strong>before</strong> launching Maya:</p>
+<div class="codeBlock"><pre class="prettyprint">  export MAYA_DO_NOT_SET_SSL_CERT_FILE=1
+</pre></div></blockquote>
+<div class='section'><a id="requirements"></a><h2 id="requirements">Requirements</h2></div>
+<p>Xcode version 7.3.1 and CMake are required.</p>
+<p>CMake is available to download from <a href='https://cmake.org/download/' title='' target='_blank'>https://cmake.org/download/</a>.</p>
+<div class='section'><a id="download-and-set-up-the-developer-toolkit"></a><h2 id="download-and-set-up-the-developer-toolkit">Download and Set Up the Developer Toolkit</h2></div>
+<p>The Maya devkit is available from <a href='#!/url=./developer/Setting-up-your-build/https://www.autodesk.com/developmaya/' title=''>The Maya Developer Center</a>.</p>
+<p>Scroll to the bottom of the Maya Developer Center page to find the devkit packages. Click on the appropriate link to download the devkit.</p>
+<ol>
+<li><p>Unarchive the devkit <span class='code'>dmg</span> package. This will create a mounted disk image name <span class='code'>devkitBase</span>.</p></li>
+<li><p>Create a <span class='code'>devkitBase</span> directory on your machine. It can be located anywhere except within the Maya insallation directory.</p></li>
+<li><p>Copy the contents of the <span class='code'>devkitBase</span> disk image to your <span class='code'>devkitbase</span> directory.</p></li>
+<li><p>Create a directory named <span class='code'>plug-ins</span> under your <span class='code'>devkitBase</span> directory. This is where you will store your own plug-ins and scripts.</p></li>
+<li><p>Create the <span class='code'>plug-ins</span>, <span class='code'>scripts</span>, and <span class='code'>icons</span> directories under your <span class='code'>devkitBase/plug-ins/</span> directory.</p></li>
+<li><p>Edit the <span class='code'>$HOME/Library/Preferences/Autodesk/maya/2019/Maya.env</span> file to define path variables pointing to your <span class='code'>plug-ins</span>, <span class='code'>scripts</span>, and <span class='code'>icons</span> directories:</p>
+<div class="codeBlock"><pre class="prettyprint">MAYA_PLUG_IN_PATH=$HOME/devkitBase/plug-ins/plug-ins/
+MAYA_SCRIPT_PATH=$HOME/devkitBase/plug-ins/scripts/
+XBMLANGPATH=$HOME/devkitBase/plug-ins/icons/
+</pre></div><p>Maya will use these paths to automatically discover the plug-ins and scripts in these directories. If these paths are not set, you will need to open Maya&#39;s Plug-ins Manager and manually browse to the location of the plug-ins and scripts to load them.</p>
+<blockquote>
+<p><strong>Note:</strong> The <span class='code'>$HOME/Library/Preferences/Autodesk/maya/2019/</span> directory is created when Maya is launched for the first time. It may also not be visible from Finder. If you do not see this directory in the Finder after launching Maya, navigate to it from a terminal window.</p>
+</blockquote></li>
+<li><p>Set the <span class='code'>MAYA_LOCATION</span>, <span class='code'>DYLD_LIBRARY_PATH</span>, <span class='code'>DYLD_FRAMEWORK_PATH</span>, and <span class='code'>DEVKIT_LOCATION</span> environment variables.</p>
+<blockquote>
+<p><strong>Important:</strong> Do not add a terminating slash to the end of your path variables.</p>
+</blockquote>
+<p>Open a terminal window and enter the following commands:</p>
+<div class="codeBlock"><pre class="prettyprint">&gt; export MAYA_LOCATION=/Applications/Autodesk/maya2019/Maya.app/Contents
+&gt; export DYLD_LIBRARY_PATH=$MAYA_LOCATION/MacOS
+&gt; export DYLD_FRAMEWORK_PATH=$MAYA_LOCATION/Frameworks
+</pre></div><p><span class='code'>DEVKIT_LOCATION</span> must point to the location of your <span class='code'>devkitBase</span> directory.</p>
+<p>For example, if you created <span class='code'>/Users/&lt;your_username&gt;/devkitBase</span> directory, open a terminal, and type in the following command:</p>
+<div class="codeBlock"><pre class="prettyprint">&gt; export DEVKIT_LOCATION=/Users/&lt;your_username&gt;/devkitBase
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> Before compiling any plug-ins or applications, or running any applications, use the <span class='code'>echo</span> command to verify that these environment variables are set in the window where the plug-in or application will be built or run.</p>
+<div class="codeBlock"><pre class="prettyprint">  echo $DEVKIT_LOCATION
+</pre></div><p>If <span class='code'>echo</span> does not return the expected path, reset the environment variable.</p>
+</li>
+<li><p>Add <span class='code'>cmake</span> to your <span class='code'>PATH</span> variable. This will allow you to call <span class='code'>cmake</span> from the terminal window.</p>
+<div class="codeBlock"><pre class="prettyprint">&gt; export PATH=&quot;Applications/CMake.app/Contents/bin&quot;:$PATH
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> Before compiling any plug-ins or applications in a terminal window, verify that you can call <span class='code'>cmake</span> from the command line using <span class='code'>which</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">  &gt; which cmake
+</pre></div><p>If this command does not return the path to <span class='code'>cmake</span>, set your <span class='code'>PATH</span> variable again.</p>
+</li>
+</ol>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

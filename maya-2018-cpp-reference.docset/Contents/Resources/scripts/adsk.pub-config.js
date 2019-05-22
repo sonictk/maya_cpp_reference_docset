@@ -3,7 +3,7 @@
          config: {
              
              productFullName: "Maya Developer Help",
-             defaultPage:  "./files/GUID-6CB5FC23-3775-4210-993A-1C82B05B2996.htm",
+             defaultPage:  "",
              locale: "en_US",
 
              // Labels (captions).
@@ -12,7 +12,7 @@
  labels: {
      locateInContent: "Show in Contents",
      addToFavorites: "Add to Favorites",
-     home: "Home: Maya Developer Help",
+     home: "Home: ",
      print: "Print Frame",
 
      tabs: {
@@ -57,7 +57,7 @@
              // Default publication search options.
              searchOptions: { caseInsensitiveEnabled: true, caseSensitiveSwitch: true, wholeWordsEnabled: true, wholeWordsSwitch: true, searchMethod: 'or', highlightEnabled: true, searchInThisBook: true, searchStopWords: 'stop-words.js',
 contentFilters: [
-{ id: 'prog', filter: 'files/.*htm', enabled: true, label: 'Search Programming Guide?' },
+{ id: 'prog', filter: 'developer/.*htm', enabled: true, label: 'Search Programming Guide?' },
 { id: 'cpp_ref', filter: 'cpp_ref/((?!8h_source).)*\.html', enabled: true, label: 'Search C++ API Reference?' },
 { id: 'python_api_2', filter: 'py_ref/.*\.html', enabled: true, label: 'Search Python API 2.0 Reference?' }
 ]

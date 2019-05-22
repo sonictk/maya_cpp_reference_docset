@@ -1,0 +1,58 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../../scripts/prettify.js"></script><script src="../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Translated version of the closestPointOnCurve.pres.mel resource file</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Translated version of the closestPointOnCurve.pres.mel resource file</h1>
+         </div>
+
+<div class='section'><a id="translated-version-of-the-closestpointoncurve.pres.mel-resource-file"></a></div>
+<p>The translated version of the resource file for Japanese is shown below. The closestPointOnCurve plug-in is a plug-in module, which is installed within a standard module directory structure defined along the MAYA_MODULE_PATH. The Japanese version of the <span class='code'>closestPointOnCurve.pres.mel</span> file is placed in the <span class='code'>resources/ja_JP</span> directory.</p>
+<div class="codeBlock"><pre class="prettyprint">// Resources for Plug-in: closestPointOnCurve
+// 
+// ----------------------------
+// Registered string resources:
+// ----------------------------
+setPluginResource( &quot;closestPointOnCurve&quot;, &quot;kAETitle&quot;, &quot;カーブ上の最近接ポイント アトリビュート&quot;);
+setPluginResource( &quot;closestPointOnCurve&quot;, &quot;kInputCurve&quot;, &quot;入力カーブ&quot;);
+setPluginResource( &quot;closestPointOnCurve&quot;, &quot;kInvalidType&quot;, &quot;オブジェクト ^1s は無効なタイプです。 カーブまたはトランスフォームのみ指定できます。&quot;);
+setPluginResource( &quot;closestPointOnCurve&quot;, &quot;kNoQueryFlag&quot;, &quot;最低 1 つの照会可能なフラグまたは照会モードを指定する必要があります。 help コマンドを使用して利用可能なすべてのフラグをリストします。&quot;);
+setPluginResource( &quot;closestPointOnCurve&quot;, &quot;kNoValidObject&quot;, &quot;1 つのカーブまたはトランスフォーム ノードをコマンド引数として、またはカレントの選択項目を使用して指定する必要があります。&quot;);
+setPluginResource( &quot;closestPointOnCurve&quot;, &quot;kResults&quot;, &quot;結果&quot;);
+// 
+// --------------------------
+// Registered node resources:
+// --------------------------
+// 
+// Node: closestPointOnCurve
+// 
+setNodeNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;カーブ上の最近接ポイント&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;ic&quot;, &quot;入力カーブ&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;ip&quot;, &quot;入力位置&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;ipx&quot;, &quot;入力位置 X&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;ipy&quot;, &quot;入力位置 Y&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;ipz&quot;, &quot;入力位置 Z&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;p&quot;, &quot;位置&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;px&quot;, &quot;位置 X&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;py&quot;, &quot;位置 Y&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;pz&quot;, &quot;位置 Z&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;n&quot;, &quot;法線&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;nx&quot;, &quot;法線 X&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;ny&quot;, &quot;法線 Y&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;nz&quot;, &quot;法線 Z&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;t&quot;, &quot;接線&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;tx&quot;, &quot;接線 X&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;ty&quot;, &quot;接線 Y&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;tz&quot;, &quot;接線 Z&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;u&quot;, &quot;パラメータ U&quot; );
+setAttrNiceNameResource( &quot;closestPointOnCurve&quot;, &quot;d&quot;, &quot;距離&quot; );
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

@@ -1,0 +1,44 @@
+var topic = "<!-- saved from url=(0024)http://docs.autodesk.com -->\n\
+<html>\n\
+   <head>\n\
+<link href=\"../../style/prettify.css\" type=\"text/css\" rel=\"stylesheet\">\n\
+<script type=\"text/javascript\" src=\"../../scripts/prettify.js\"></script><script src=\"../../scripts/lib/jquery-1.11.1.min.js\" type=\"text/javascript\"></script><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta http-equiv=\"Content-Style-Type\" content=\"text/css\"><meta name=\"generator\" content=\"pandoc\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\" src=\"../../scripts/utils/adsk.redirect.js\"></script>\n\
+      <title>Anatomy of a shading node plug-in</title>\n\
+   <meta name=\"topic-subtype\" content=\"C++\"></head>\n\
+   <body height=\"100%\"><div class=\"body_content\" id=\"body-content\"><style type=\"text/css\">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs(\"./scripts/multireflink.js\"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$(\"div#WidgetFloaterPanels,link[href*=\'microsofttranslator.com\'],script[src*=\'microsofttranslator.com\'],script[src*=\'bing.com\']\").remove();</script><script type=\'text/javascript\'>$(\"div#navigation,div#breadcrumbs,div#banner\").attr(\"translate\",\"no\"); var mtLocation = ((location && location.href && location.href.indexOf(\'https\') == 0)?\'https://ssl.microsofttranslator.com\':\'http://www.microsofttranslator.com\')+\'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages=\'; yepnope.injectJs(mtLocation, function() {}, { charset:\'utf-8\', type:\'text/javascript\' } );</script><script></script><script></script><!-- begin MT -->\n\
+            \n\
+            <div id=\'MicrosoftTranslatorWidget\' class=\'Dark\' style=\'float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden\'></div><div id=\"reflinkdiv\"></div>\n\
+      <div>\n\
+         <div class=\"head\">\n\
+            <h1>Anatomy of a shading node plug-in</h1>\n\
+         </div>\n\
+\n\
+<div class=\'section\'><a id=\"anatomy-of-a-shading-node-plug-in\"></a></div>\n\
+<p>Maya Shading node plug-ins include the header file <`maya pxnode.h`\\=\"\"> and then derive from the class <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"MPxNode\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">MPxNode</a></span>. While this command has a rich set of methods, only a few are actually necessary to create a working shading node.<p>\n\
+<div class=\'section\'><a id=\"constructor\"></a><h2 id=\"constructor\">Constructor</h2></div>\n\
+<p>Initializes elements of the new class itself.</p>\n\
+<div class=\'section\'><a id=\"destructor\"></a><h2 id=\"destructor\">Destructor</h2></div>\n\
+<p>Deletes anything created by the class.</p>\n\
+<div class=\'section\'><a id=\"creator\"></a><h2 id=\"creator\">Creator</h2></div>\n\
+<p>This static method is responsible for actually creating instances of your new class (which is derived from <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"MPxNode\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">MPxNode</a></span>). When you register a new object you are actually registering its <span class=\'code\'>creator()</span> method which Maya can then call to allocate a new instance of an object. In virtually all cases, is should look like:</p>\n\
+<div class=\"codeBlock\"><pre class=\"prettyprint\">void* NodeClassName::creator()\n\
+{\n\
+     return new NodeClassName;\n\
+}\n\
+\n\
+</pre></div><div class=\'section\'><a id=\"initializepluginuninitializeplugin\"></a><h2 id=\"initializepluginuninitializeplugin\">initializePlugin/uninitializePlugin</h2></div>\n\
+<p>The first of these methods is called by Maya when the plug-in is loaded. Its purpose is to create an instance of the <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"MFnPlugin\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">MFnPlugin</a></span> class (initialized with the <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"MObject\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">MObject</a></span> passed to the routine) and call register methods in that class to inform Maya what it is capable of doing.</p>\n\
+<blockquote>\n\
+<p><strong>Important:</strong> Both <span class=\'code\'>initializePlugin()</span> and <span class=\'code\'>uninitializePlugin()</span> must be present in all plug-ins. If both or either is absent the plug-in will not be loaded.</p>\n\
+</blockquote>\n\
+<div class=\'section\'><a id=\"initialize\"></a><h2 id=\"initialize\">initialize</h2></div>\n\
+<p>All the attributes of your new node are declared as static <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"MObject\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">MObject</a></span> members of the derived class. The initialize method is responsible for making <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"MFnAttribute\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_attribute.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">MFnAttribute</a></span> calls to actually provide the type information on the attributes. In addition, it sets default values, ranges etc. Like the creator function, this is a static method on the class, and will only be called once by Maya.</p>\n\
+<div class=\'section\'><a id=\"id-string\"></a><h2 id=\"id-string\">Id String</h2></div>\n\
+<p>One of the required attributes of your node has to be of the type <span class=\'code\'>MTypeID</span>. This maps to Maya’s internal IFF flag, and must be unique. The value of this attribute is set in the <span class=\'code\'>MTypeID</span> constructor.</p>\n\
+<p>For local node testing, you can use any identifier between 0x00000000 and 0x0007ffff, but for any node that you plan to use for permanent purposes, you should get a universally unique id from <a href=\'http://mayaid.autodesk.io/\' title=\'\' target=\'_blank\'>http://mayaid.autodesk.io/</a>. You will be assigned a unique range that you can then manage on your own.</p>\n\
+<div class=\'section\'><a id=\"compute-method\"></a><h2 id=\"compute-method\">compute method</h2></div>\n\
+<p>This is just like the compute method for an internal dependency node. It is passed a Data Handle to a Data Block and is responsible for extracting its input attributes from the datablock in order to compute the new values of the requested output attributes.</p>\n\
+</`maya>      <div class=\"footer-block\"><a href=\"../html/ac.cmtdialog.htm\" class=\"comments-anchor\" target=\"_blank\"><span class=\"comments-link\">Please send us your comment about this page</span></a></div></div>\n\
+   </div></body>\n\
+</html>\n\
+";

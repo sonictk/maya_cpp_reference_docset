@@ -1,0 +1,110 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Maya module paths, folders and versions</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Maya module paths, folders and versions</h1>
+         </div>
+
+<div class='section'><a id="maya-module-paths-folders-and-versions"></a></div>
+<p>Creating a plug-in module allows you to create a distributable installation of a plug-in that can be saved locally or at any network location. This obviates the need to write files into the Maya installation or other hard to manage locations. Through the module file, you can easily change the distribution of your module, such as re-directing the location of many installed plug-ins to a different script folder.</p>
+<p>Maya allows you to have multiple versions of a plug-in and load a different version depending on your OS, your Maya version, and language setting.</p>
+<blockquote>
+<p><strong>Note:</strong> All module files, regardless of extension, are read by Maya.</p>
+</blockquote>
+<div class='section'><a id="module-folder-structure"></a><h2 id="module-folder-structure">Module folder structure</h2></div>
+<p>In the module file, specify the location of the module. The location can be specified either as an absolute path or as a path relative to the location of the <span class='code'>.mod</span> file being read.</p>
+<p>The module folder structure can be overwritten using the syntax <span class='code'>&lt;folder to override&gt;: &lt;new location for this folder&gt;</span>.</p>
+<p>For example, to specify a new location for the scripts folder of a module, add the line:</p>
+<p><span class='code'>scripts: ../commonModuleFiles/scripts</span></p>
+<p>This can be a useful mechanism to share scripts/icons/presets files between modules.</p>
+<blockquote>
+<p><strong>Important:</strong> You must add a space after <span class='code'>scripts:</span> when specifying the path of your scripts folder; for example, <span class='code'>scripts: c:\myScripts</span>.</p>
+</blockquote>
+<div class='section'><a id="example"></a><h3 id="example">Example</h3></div>
+<p>Location of modules and script files:</p>
+<ul>
+<li><span class='code'>C:\CustomModule\Modules\win64</span></li>
+<li><span class='code'>C:\CustomModule\Modules\mac</span></li>
+<li><span class='code'>C:\CustomModule\CommonFiles\scripts</span></li>
+</ul>
+<p>Location of mod file:</p>
+<ul>
+<li><span class='code'>C:\ModulesMOD\CustomModule.mod</span></li>
+</ul>
+<p>The <span class='code'>.mod</span> file would contain the following lines:</p>
+<p><span class='code'>+ PLATFORM:win64 CustomModule 3.10.5 ..\CustomModule\Modules\win64</span></p>
+<p><span class='code'>scripts: ..\..\CommonFiles\scripts</span></p>
+<p>A relative path was used in the first line that specified the location of the module relative to the location of the mod file (<span class='code'>C:\ModulesMOD\CustomModule.mod</span>). In the second line, a relative path was used to specify the location of the scripts folder relative to the module location (<span class='code'>..\CustomModule\Modules\win64</span>).</p>
+<div class='section'><a id="subfolders-of-a-module-folder"></a><h2 id="subfolders-of-a-module-folder">Subfolders of a module folder</h2></div>
+<p>By default, Maya ignores all subfolders included in a module. In order for Maya to consider subfolders of a module, you must request recursive behavior for that folder using the <span class='code'>[r]</span> keyword; for example, as follows:</p>
+<div class="codeBlock"><pre class="prettyprint">[r] scripts: ..\..\CommonFiles\scripts
+</pre></div><p>.folders (that is, folders starting with a ‘.’, also known as hidden folders) are ignored even if the \[r\] keyword is set. The folder is not parsed recursively, nor is it added to Maya as a search path.</p>
+<div class='section'><a id="specifying-the-conditions-for-loading-the-module"></a><h2 id="specifying-the-conditions-for-loading-the-module">Specifying the conditions for loading the module</h2></div>
+<p>You can specify the conditions under which the module will load. Choose among these conditions:</p>
+<ul>
+<li>Maya version</li>
+<li>operating system</li>
+<li>system locale</li>
+</ul>
+<p>The following operating system conditions are supported:</p>
+<ul>
+<li><a href='#!/url=./developer/Distributing-Maya-Plug-ins/PLATFORM:win64/' title=''>PLATFORM:win64</a></li>
+<li><a href='#!/url=./developer/Distributing-Maya-Plug-ins/PLATFORM:mac/' title=''>PLATFORM:mac</a></li>
+<li><a href='#!/url=./developer/Distributing-Maya-Plug-ins/PLATFORM:linux/' title=''>PLATFORM:linux</a></li>
+</ul>
+<p>For system locale, the following conditions are supported:</p>
+<ul>
+<li>LOCALE:en_US <em>(for English (US))</em></li>
+<li>LOCALE:ja_JP <em>(for Japanese)</em></li>
+<li>LOCALE:zh_CN <em>(for Simplified Chinese)</em></li>
+</ul>
+<p>Use MAYAVERSION: to denote the Maya version.</p>
+<blockquote>
+<p><strong>Important:</strong> You must specify the conditions between the + and your module name.</p>
+</blockquote>
+<div class='section'><a id="example-1"></a><h3 id="example-1">Example</h3></div>
+<p><span class='code'>+ MAYAVERSION:2016 PLATFORM:win64 LOCALE:ja_JP CustomModule 3.10.5 ..\CustomModule\Modules\win64</span></p>
+<p>In this example, the CustomModule plug-in would only be loaded for Maya 2016, with an operating system of WIN 64-bit, and with the system locale set to Japanese.</p>
+<div class='section'><a id="environment-variables"></a><h2 id="environment-variables">Environment variables</h2></div>
+<p>You can set custom environment variables using the following syntax:</p>
+<p>MYVAR=MYVALUE</p>
+<p>It is also possible to specify environment variables with values that are relative to the module location. To do so use the “:=” syntax.</p>
+<div class='section'><a id="example-2"></a><h3 id="example-2">Example</h3></div>
+<p>In the example above, if you want to set PYTHONPATH to <span class='code'>C:\CustomModule\Modules\win64\python</span>, you can simply set:</p>
+<p>PYTHONPATH:=python</p>
+<div class='section'><a id="append-to-the-current-value-of-a-variable"></a><h3 id="append-to-the-current-value-of-a-variable">Append to the current value of a variable</h3></div>
+<p>You can append to the current value of a variable using the + and/or : operators. Examples as follows:</p>
+<p><span class='code'>PATH += c:/myModule/bin</span> adds <span class='code'>;c:/myModule/bin</span> to the current value of the environment variable PATH.</p>
+<p><span class='code'>PATH +:= bin</span> adds <span class='code'>;’module location’/bin</span> to the current value of the environment variable PATH.</p>
+<div class='section'><a id="obtaining-the-module-path"></a><h2 id="obtaining-the-module-path">Obtaining the module path</h2></div>
+<p>To query the module path, use the MEL command <span class='code'>getModulePath</span> as follows:</p>
+<p><span class='code'>getModulePath –moduleName “MyModule”</span></p>
+<p>This query returns: <span class='code'>c:\MyModule</span>.</p>
+<div class='section'><a id="known-limitations"></a><h2 id="known-limitations">Known limitations</h2></div>
+<p>The following folder types are not supported as legal module resource paths and any folders named with the following extensions are ignored by the module system:</p>
+<ul>
+<li><span class='code'>.so</span></li>
+<li><span class='code'>.mll</span></li>
+<li><span class='code'>.bundle</span></li>
+<li><span class='code'>.py</span></li>
+<li><span class='code'>.dll</span></li>
+<li><span class='code'>.framework</span></li>
+<li><span class='code'>.plugin</span></li>
+<li><span class='code'>.plist</span></li>
+<li><span class='code'>.app</span></li>
+<li><span class='code'>.pkg</span></li>
+<li><span class='code'>.rtfd</span></li>
+<li><span class='code'>.download</span></li>
+<li><span class='code'>.sparsebundle</span></li>
+</ul>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

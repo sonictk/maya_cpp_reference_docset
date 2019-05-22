@@ -1,0 +1,78 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Drawing and refresh</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Drawing and refresh</h1>
+         </div>
+
+<div class='section'><a id="drawing-and-refresh"></a></div>
+<p>Drawing is a two step process. In the first, the geometry and materials are evaluated and all of the information necessary for drawing is placed onto a queue. In the second, the actual OpenGL drawing occurs. This two step process allows your shapes to take advantage of the multi-threaded drawing capabilities of Maya.</p>
+<p>Drawing occurs whenever the camera changes or the view has to be refreshed. When this happens, the <span class='code'>MPxSurfaceShapeUI::getDrawRequest</span> function is called. This is Maya’s way of asking the shape what it needs to draw. Inside this function you should query the drawing state, using <span class='code'><a href="javascript:void(0)" data-symbol="MDrawInfo" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_info.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_info.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawInfo</a></span>, and then construct a draw request (<span class='code'><a href="javascript:void(0)" data-symbol="MDrawRequest" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_request.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_request.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawRequest</a></span>) to place on the queue. You will often want to place multiple requests on the queue (<span class='code'><a href="javascript:void(0)" data-symbol="MDrawRequestQueue" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_request_queue.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawRequestQueue</a></span>) in this function. For instance, in shaded mode if your shape is selected you may want to add a request to draw the shaded object and another request to draw wireframe on top of the shaded object.</p>
+<p>The draw data (<span class='code'><a href="javascript:void(0)" data-symbol="MDrawData" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_data.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_data.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawData</a></span>) holds information specific to your shape which Maya does not intrinsically know about. The draw data acts as a container to pass your geometry through the draw request queue. For each draw request you must create and add a draw data object which contains geometry-specific information that you will need in the subsequent call to <span class='code'>MPxSurfaceShapeUI::draw</span>.</p>
+<p>To create draw data, use the function <span class='code'>MPxSurfaceShapeUI::getDrawData</span> and to add the data to a request use <span class='code'>MDrawRequest::setDrawData</span>. The following example shows how to create a draw request and draw data for your geometry.</p>
+<div class="codeBlock"><pre class="prettyprint">void yourShapeUI::getDrawRequests( const <a href="javascript:void(0)" data-symbol="MDrawInfo" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_info.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_info.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawInfo</a> &amp; info,
+ bool objectAndActiveOnly,
+ <a href="javascript:void(0)" data-symbol="MDrawRequestQueue" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_request_queue.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawRequestQueue</a> &amp; queue )
+{
+    <a href="javascript:void(0)" data-symbol="MDrawData" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_data.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_data.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawData</a> data;
+    <a href="javascript:void(0)" data-symbol="MDrawRequest" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_request.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_request.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawRequest</a> request = info.getPrototype( *this );
+    yourShape* shapeNode = (yourShape*)surfaceShape();
+    yourGeom* geom = shapeNode-&gt;geometry();
+    getDrawData( geom, data );
+    request.setDrawData( data );
+    ...
+}
+
+</pre></div><p>The draw request (<span class='code'><a href="javascript:void(0)" data-symbol="MDrawRequest" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_request.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_request.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawRequest</a></span>) should be created in the overridden <span class='code'>MPxSurfaceShapeUI::getDrawRequests</span> method. Once the request is created the appropriate &quot;set&quot; methods of this class should be used to define what is being requested. Then the request should be placed on the draw request queue using <span class='code'>MDrawRequestQueue::add</span>.</p>
+<p>The draw token is an integer value which you can use to specify what is to be drawn. This is object specific and so you should define an enum with the information you require to decide what is being drawn in your <span class='code'>MPxSurfaceShapeUI::draw</span> method. Here is an example of a draw token for a mesh object:</p>
+<div class="codeBlock"><pre class="prettyprint"> enum {
+          kDrawVertices, // component token
+          kDrawWireframe,
+          kDrawWireframeOnShaded,
+          kDrawSmoothShaded,
+          kDrawFlatShaded,
+          kLastToken
+      };
+
+</pre></div><p>Maya processes the draw request queue and for each draw request, calls the corresponding objects draw function. In the case of user defined shapes, your <span class='code'>MPxSurfaceShapeUI::draw</span> method is called.</p>
+<div class='section'><a id="drawing-in-shaded-mode"></a><h2 id="drawing-in-shaded-mode">Drawing in shaded mode</h2></div>
+<p>Supporting shaded mode display is a two step process. The first step occurs in your <span class='code'>getDrawRequests</span> function. Here you must &quot;evaluate&quot; or setup the material so that it can be displayed when your object is drawn. The second step occurs in your draw function where you must setup the view to display the material.</p>
+<p>The following code demonstrates how to setup the material in your <span class='code'>getDrawRequests</span> function if the request is for shaded mode display.</p>
+<div class="codeBlock"><pre class="prettyprint"> <a href="javascript:void(0)" data-symbol="MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_path.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDagPath</a> path = info.multiPath();
+ <a href="javascript:void(0)" data-symbol="M3dView" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m3d_view.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">M3dView</a> view = info.view();
+ <a href="javascript:void(0)" data-symbol="MMaterial" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_material.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MMaterial</a> material = <a href="javascript:void(0)" data-symbol="MPxSurfaceShapeUI::material" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_surface_shape_u_i.html#a94d753f8b614df1c5408e36219c06577&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxSurfaceShapeUI::material</a>( path );
+ material.evaluateMaterial( view, path );
+ if ( material.materialIsTextured() ) {
+     material.evaluateTexture( data );
+ }
+ request.setMaterial( material );
+
+</pre></div><p>In your draw function you will need to setup the scene view so that it can display the material. This is done using <span class='code'>MMaterial::setMaterial</span>. To set up the scene view to display textures, use <span class='code'>MMaterial::applyTexture</span>. The following code demonstrates this.</p>
+<div class="codeBlock"><pre class="prettyprint">void yourShapeUI::draw( const <a href="javascript:void(0)" data-symbol="MDrawRequest" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_draw_request.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_draw_request.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MDrawRequest</a>&amp; request,
+ <a href="javascript:void(0)" data-symbol="M3dView" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m3d_view.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">M3dView</a> &amp; view ) const
+{
+     ...
+     <a href="javascript:void(0)" data-symbol="MMaterial" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_material.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MMaterial</a> material = request.material();
+     material.setMaterial( request.isTransparent() );
+     drawTexture = material.materialIsTextured();
+     if ( drawTexture ) glEnable(GL_TEXTURE_2D);
+     if ( drawTexture ) {
+         material.applyTexture( view, data );
+     }
+     ...
+}
+
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> All OpenGL calls should be enclosed by calls to <span class='code'><a href="javascript:void(0)" data-symbol="M3dView::beginGL()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m3d_view.html#a0e318e5634c7aaf31c4eb7232d2013d4&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">M3dView::beginGL()</a></span> and <span class='code'><a href="javascript:void(0)" data-symbol="M3dView::endGL()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m3d_view.html#ab810c5a46d728df70ff5f44b604559f4&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">M3dView::endGL()</a></span>.</p>
+
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

@@ -1,5 +1,5 @@
 
-$(document).on('click','a.a_multireflink',function(e) { openRefLinkDiv(e, $(this).data()) });
+$(document).on('mousedown','a.a_multireflink',function(e) { openRefLinkDiv(e, $(this).data()) });
 $(document).on('scroll','div#topic div.content',function(e) { closeRefLinkDiv(e) });
 $(document).on('click',function(e) { closeRefLinkDiv(e) });
 

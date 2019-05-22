@@ -1,0 +1,807 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Example: Voxelizer Node</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Example: Voxelizer Node</h1>
+         </div>
+
+<div class='section'><a id="example-voxelizer-node"></a></div>
+<div class='section'><a id="example-voxelizer-node-1"></a><h2 id="example-voxelizer-node-1">Example: Voxelizer Node</h2></div>
+<p><strong>Filename:</strong> <span class='code'>voxelizerNode.py</span></p>
+<p><strong>Rendered Output:</strong> The following rendered image was obtained by voxelizing the mesh of a sphere. We applied a blue lambertian material to the original sphere, and a red surface shader to the voxelized mesh. The voxelized mesh was also assigned a Toon outline with a line width value of <span class='code'>0.223</span>.</p>
+<div class='figure'><img src='developer/images/voxelizerScene_redux.png' title=''></div>
+<p><strong>Program Summary:</strong> The plug-in code below creates a new <span class='code'><a href="javascript:void(0)" data-symbol="MPxNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxNode</a></span> which accepts a mesh as input, as well as user-defined attributes to determine the voxel width and inter-voxel distance. This voxelizer node transforms the input mesh into a new mesh consisting of cubes, which fill the volume occupied by the original mesh. The voxelization process makes use of <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh.allIntersections()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html#aee04693209b7ef8a299adb438bbb07b3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnMesh.allIntersections()</a></span> to cast rays from inside the bounding box of the original mesh towards the camera. Assuming that the mesh is closed, if the ray intersects with an odd number points along the mesh&#39;s surface, then the origin of the ray is contained within the mesh.</p>
+<blockquote>
+<p><strong>Note:</strong> This voxelizer was implemented as an <span class='code'><a href="javascript:void(0)" data-symbol="MPxNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxNode</a></span> plug-in. It would not be possible to create such a voxelized mesh by deriving from <span class='code'><a href="javascript:void(0)" data-symbol="MPxDeformerNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_deformer_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxDeformerNode</a></span> because a deformer cannot change the topology of the mesh. That is to say, the edge connections between the vertices cannot be modified within a deformer; a deformer can only modify the vertex positions.</p>
+</blockquote>
+<p>Python API 2.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># pyVoxelizerNode.py
+
+import sys
+import maya.api.OpenMaya as OpenMaya
+
+def maya_useNewAPI():
+    &quot;&quot;&quot;
+    The presence of this function tells Maya that the plugin produces, and
+    expects to be passed, objects created using the Maya Python API 2.0.
+    &quot;&quot;&quot;
+    pass
+    
+# Plug-in information:
+kPluginNodeName = &#39;voxelizerNode&#39;           # The name of the node.
+kPluginNodeId = <a href="javascript:void(0)" data-symbol="OpenMaya.MTypeId" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_type_id.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MTypeId</a>( 0xBEEF6 ) # A unique ID associated to this node type.
+
+# Default input values.
+defaultVoxelWidth = 0.9       # The width of a cubic voxel.
+defaultVoxelDistance = 1.0    # The distance which separates the center of two adjacent voxels.
+
+##########################################################
+# Plug-in 
+##########################################################
+class VoxelizerNode(<a href="javascript:void(0)" data-symbol="OpenMaya.MPxNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPxNode</a>):
+    # Static variables which will later be replaced by the node&#39;s attributes.
+    voxelWidthAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    voxelDistanceAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    inputMeshAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    outputMeshAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        # (!) Make sure you call the base class&#39;s constructor.
+        <a href="javascript:void(0)" data-symbol="OpenMaya.MPxNode.__init__" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html#a0769ac5b3ecf4060e81dfe4bdc6ed327&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPxNode.__init__</a>(self)
+        
+    
+    def compute(self, pPlug, pDataBlock):
+        &#39;&#39;&#39; Here, we will create a voxelized version of the input mesh. &#39;&#39;&#39;
+        
+        if( pPlug == VoxelizerNode.outputMeshAttribute ):
+            
+            # Get our custom input node attributes and values.
+            voxelWidthHandle = pDataBlock.inputValue( VoxelizerNode.voxelWidthAttribute )
+            voxelWidth = voxelWidthHandle.asFloat()
+            
+            voxelDistanceHandle = pDataBlock.inputValue( VoxelizerNode.voxelDistanceAttribute )
+            voxelDistance = voxelDistanceHandle.asFloat()
+            
+            inputMeshHandle = pDataBlock.inputValue( VoxelizerNode.inputMeshAttribute )
+            inputMeshObj = inputMeshHandle.asMesh()
+            
+            
+            # Compute the bounding box around the mesh vertices.
+            boundingBox = self.getBoundingBox( inputMeshObj )    
+            
+            # Determine which voxel centerpoints are contained within the mesh.
+            voxels = self.getVoxels( voxelDistance, inputMeshObj, boundingBox )
+            
+            # Create a mesh data container, which will store our new voxelized mesh.
+            meshDataFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMeshData" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh_data.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMeshData</a>()
+            newOutputMeshData = meshDataFn.create()
+            
+            # Create a cubic polygon for each voxel and populate the &#39;newOutputMeshData&#39; MeshData object.
+            self.createVoxelMesh( voxels, voxelWidth, newOutputMeshData)
+
+
+            # Set the output data.            
+            outputMeshHandle = pDataBlock.outputValue( VoxelizerNode.outputMeshAttribute )
+            outputMeshHandle.setMObject( newOutputMeshData )
+            
+        else:
+            return OpenMaya.kUnknownParameter
+    
+    
+    def getBoundingBox(self, pMeshObj):
+        &#39;&#39;&#39; Calculate a bounding box around the mesh vertices. &#39;&#39;&#39;
+        
+        # Create the bounding box object we will populate with the points of the mesh.
+        boundingBox = <a href="javascript:void(0)" data-symbol="OpenMaya.MBoundingBox" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_bounding_box.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MBoundingBox</a>()
+        
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>( pMeshObj )
+        
+        pointArray = <a href="javascript:void(0)" data-symbol="OpenMaya.MPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPointArray</a>()
+        
+        # Get the points of the mesh in its local coordinate space.
+        pointArray = meshFn.getPoints( <a href="javascript:void(0)" data-symbol="OpenMaya.MSpace.kTransform" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_space.html#adcf1dba26aeb417e59c4718fb0b05ff3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MSpace.kTransform</a>  ) 
+
+        for i in range( 0, len(pointArray) ):
+            point = pointArray[i]
+            boundingBox.expand( point )
+         
+        return boundingBox
+    
+    
+    def getVoxels(self, pVoxelDistance, pMeshObj, pBoundingBox):
+        &#39;&#39;&#39; 
+        Obtain a list of voxels as a set of (x,y,z) coordinates in the mesh local space. 
+        
+        We obtain these voxels by casting rays from points separated pVoxelDistance apart within the
+        mesh bounding box, and test whether or not these points are contained within the mesh.
+        
+        A point is contained within a closed mesh if the ray shot from the point intersects an odd
+        number of times with the surface of the mesh.
+        &#39;&#39;&#39;
+        # Initialize a list of voxels contained within the mesh.
+        voxels = []
+        
+        # Get a reference to the <a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnMesh</a> function set, and use it on the given mesh object.
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>( pMeshObj )
+        
+        # Compute an offset which we will apply to the min and max corners of the bounding box.
+        halfVoxelDist = 0.5 * pVoxelDistance
+        
+        # Offset the position of the minimum point to account for the inter-voxel distance.
+        minPoint = pBoundingBox.min
+        minPoint.x += halfVoxelDist
+        minPoint.y += halfVoxelDist
+        minPoint.z += halfVoxelDist
+        
+        # Offset the position of the maximum point to account for the inter-voxel distance.
+        maxPoint = pBoundingBox.max
+        maxPoint.x += halfVoxelDist
+        maxPoint.y += halfVoxelDist
+        maxPoint.z += halfVoxelDist
+        
+        # Define an iterator which will allow us to step through the pVoxelDistance
+        # point intervals contained within our bounding box. We use this iterator
+        # in the for loops that follow to visit each voxel center in the bounding box.
+        def floatIterator(start, stop, step):
+            r = start
+            while r &lt; stop:
+                yield r
+                r += step
+        
+        # Iterate over every point in the bounding box, stepping by pVoxelDistance...
+        for xCoord in floatIterator( minPoint.x, maxPoint.x, pVoxelDistance ):
+            for yCoord in floatIterator( minPoint.y, maxPoint.y, pVoxelDistance ):
+                for zCoord in floatIterator( minPoint.z, maxPoint.z, pVoxelDistance ):
+
+                    # 2D representation of a ray cast from the point within the bounding box:
+                    #
+                    #  (+) ^-----------------
+                    #      |                |
+                    #  y   |                |  - We are shooting the ray from the point: [*]
+                    # axis | &lt;======[*]     |  - The direction of the ray is parallel to the -Z axis.
+                    #      |                |
+                    #      |                |
+                    #  (-) ------------------&gt;
+                    #     (-)    z axis     (+)
+                    #
+                    # If the ray intersects with an odd number of points along the surface of the mesh, the
+                    # point is contained within the mesh (assuming a closed mesh). 
+                    raySource = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( xCoord, yCoord, zCoord )
+                    rayDirection = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatVector" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_vector.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatVector</a>( 0, 0, -1 )
+                    # intersectionPoints = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPointArray</a>()
+                    tolerance = 0.0001
+                    
+
+                    
+                    ret = meshFn.allIntersections( raySource,                  # raySource - where we are shooting the ray from.
+                                             rayDirection,               # rayDirection - the direction in which we are shooting the ray.
+                                             <a href="javascript:void(0)" data-symbol="OpenMaya.MSpace.kTransform" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_space.html#adcf1dba26aeb417e59c4718fb0b05ff3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MSpace.kTransform</a>, # coordinate space - the mesh&#39;s local coordinate space.
+                                             float(9999),                # maxParam - the range of the ray.
+                                             False,                      # testBothDirections - we are not checking both directions from the raySource
+                                             tolerance=tolerance,                  # tolerance - a numeric tolerance threshold which allow intersections to occur just outside the mesh.
+                                             )
+                                             
+                                             
+                    # Returns a tuple of:
+                        # -&gt; (hitPoints, hitRayParams, hitFaces, hitTriangles, hitBary1s, hitBary2s)
+
+                    
+                    # If there is an odd number of intersection points, then the point lies within the mesh. Otherwise,
+                    # the point lies outside the mesh. We are only concerned with voxels whose centerpoint lies within the mesh
+                    if( len(ret[0]) % 2 == 1 ):
+                        voxels.append( raySource )
+        
+        # Return the list of voxel coordinates which lie within the mesh.
+        return voxels
+    
+    
+    def createVoxelMesh(self, pVoxelPositions, pVoxelWidth, pOutMeshData):
+        &#39;&#39;&#39; Create a mesh containing one cubic polygon for each voxel in the pVoxelPositions list. &#39;&#39;&#39;
+        
+        numVoxels = len( pVoxelPositions )
+        
+        numVerticesPerVoxel = 8 # a cube has eight vertices.
+        numPolygonsPerVoxel = 6 # a cube has six faces.
+        numVerticesPerPolygon = 4  # four vertices are required to define a face of a cube.
+        numPolygonConnectsPerVoxel = numPolygonsPerVoxel * numVerticesPerPolygon # 24
+        
+        # Initialize the required arrays used to create the mesh in MFnMesh.create()
+        totalVertices = numVoxels * numVerticesPerVoxel
+        vertexArray = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPointArray</a>()
+        vertexArray.setLength( totalVertices )
+        vertexIndexOffset = 0
+        
+        totalPolygons = numVoxels * numPolygonsPerVoxel
+        polygonCounts = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonCounts.setLength( totalPolygons )
+        polygonCountsIndexOffset = 0
+        
+        totalPolygonConnects = numVoxels * numPolygonConnectsPerVoxel
+        polygonConnects = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonConnects.setLength( totalPolygonConnects )
+        polygonConnectsIndexOffset = 0
+        
+        # Populate the required arrays used in MFnMesh.create()
+        for i in range( 0, numVoxels ):
+            voxelPosition = pVoxelPositions[i]
+            
+            # Add a new cube to the arrays.
+            self.createCube( voxelPosition, pVoxelWidth,
+                             vertexArray, vertexIndexOffset, numVerticesPerVoxel,
+                             polygonCounts, polygonCountsIndexOffset, numPolygonsPerVoxel, numVerticesPerPolygon,
+                             polygonConnects, polygonConnectsIndexOffset )
+            
+            # Increment the respective index offsets.
+            vertexIndexOffset += numVerticesPerVoxel
+            polygonCountsIndexOffset += numPolygonsPerVoxel
+            polygonConnectsIndexOffset += numPolygonConnectsPerVoxel
+        
+        
+        # Create the mesh now that the arrays have been populated. The mesh is stored in pOutMeshData
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>()
+        meshFn.create(  vertexArray, polygonCounts, polygonConnects, parent=pOutMeshData )
+    
+    
+    def createCube(self, pVoxelPosition, pWidth, 
+                         pVertexArray, pVertexIndexOffset, pNumVerticesPerVoxel,
+                         pPolygonCountArray, pPolygonCountIndexOffset, pNumPolygonsPerVoxel, pNumVerticesPerPolygon,
+                         pPolygonConnectsArray, pPolygonConnectsIndexOffset ):
+        &#39;&#39;&#39; Add a cubic polygon to the specified arrays. &#39;&#39;&#39;
+        
+        # We are using half the given width to compute the vertices of the cube. 
+        halfWidth = float( pWidth / 2.0 )
+        
+        # Declare the eight corners of the cube. The cube is centered at pVoxelPosition.
+        
+        vertices = [<a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z), # 0
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z), # 1
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 2
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 3
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z), # 4
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 5
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 6
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z)] # 7
+        
+        # Declare the data structure which binds each vertex to a polygon corner 
+        polygonConnections = [ (0, 12, 16), # the vertex indexed at 0 corresponds to the polygon corners whose indexes are (0, 12, 16) in pPolygonConnectsArray. 
+                               (1, 19, 20),
+                               (2,  9, 23),
+                               (3,  8, 13),
+                               (4, 15, 17),
+                               (5, 11, 14),
+                               (6, 10, 22),
+                               (7, 18, 21) ]
+
+        # Store the eight corners of the cube in the vertex array.
+        for i in range( 0, pNumVerticesPerVoxel ):
+            # Store the vertex in the passed vertex array.
+            pVertexArray[pVertexIndexOffset + i] = vertices[i]
+            
+            # Assign the vertex in the pVertexArray to the relevant polygons.
+            for polygonConnectionIndex in polygonConnections[i]:
+                pPolygonConnectsArray[pPolygonConnectsIndexOffset + polygonConnectionIndex] =  pVertexIndexOffset + i
+        
+        # Declare the number of vertices for each face.
+        for i in range( 0, pNumPolygonsPerVoxel ):
+             # Set the number of vertices for the polygon at the given index.
+             pPolygonCountArray[pPolygonCountIndexOffset + i] =  pNumVerticesPerPolygon
+             
+
+##########################################################
+# Plug-in initialization.
+##########################################################
+def nodeCreator():
+    &#39;&#39;&#39; Creates an instance of our node class and delivers it to Maya as a pointer. &#39;&#39;&#39;
+    return VoxelizerNode() 
+
+def nodeInitializer():
+    &#39;&#39;&#39; Defines the input and output attributes as static variables in our plug-in class. &#39;&#39;&#39;
+    # The following <a href="javascript:void(0)" data-symbol="MFnNumericAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_numeric_attribute.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnNumericAttribute</a> function set will allow us to create our attributes.
+    numericAttributeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnNumericAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_numeric_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnNumericAttribute</a>()
+    
+    # This one allows us to create our input and output mesh attributes.
+    typedAttributeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnTypedAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_typed_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnTypedAttribute</a>()
+    
+    #==================================
+    # INPUT NODE ATTRIBUTE(S)
+    #==================================
+    # We will need a voxel width.
+    global defaultVoxelWidth
+    VoxelizerNode.voxelWidthAttribute = numericAttributeFn.create( &#39;voxelWidth&#39;, &#39;vw&#39;,
+                                                                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFnNumericData.kFloat" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_numeric_data.html#a5acb08282492d2ebdb11c2e7680bb48f&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnNumericData.kFloat</a>, defaultVoxelWidth )
+    numericAttributeFn.writable =  True 
+    numericAttributeFn.readable = False 
+    numericAttributeFn.storable =  True 
+    numericAttributeFn.hidden = False 
+    numericAttributeFn.setMin( 0.1 )
+    VoxelizerNode.addAttribute( VoxelizerNode.voxelWidthAttribute )
+
+    # We will need a voxel distance value (higher values means we can see more voxels within the volume of the mesh).
+    global defaultVoxelDistance
+    VoxelizerNode.voxelDistanceAttribute = numericAttributeFn.create( &#39;voxelDistance&#39;, &#39;vd&#39;, 
+                                                                       <a href="javascript:void(0)" data-symbol="OpenMaya.MFnNumericData.kFloat" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_numeric_data.html#a5acb08282492d2ebdb11c2e7680bb48f&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnNumericData.kFloat</a>, defaultVoxelDistance )
+    numericAttributeFn.writable =  True 
+    numericAttributeFn.readable = False 
+    numericAttributeFn.storable =  True 
+    numericAttributeFn.hidden = False 
+    numericAttributeFn.setMin( 0.1 )
+    VoxelizerNode.addAttribute( VoxelizerNode.voxelDistanceAttribute )
+    
+    # We will need an input mesh attribute.
+    VoxelizerNode.inputMeshAttribute = typedAttributeFn.create( &#39;inputMesh&#39;, &#39;im&#39;,
+                                                                <a href="javascript:void(0)" data-symbol="OpenMaya.MFnData.kMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_data.html#aa4fc8af047bca4a078a175379e10e9ec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnData.kMesh</a> )
+    typedAttributeFn.writable =  True 
+    typedAttributeFn.readable = False 
+    typedAttributeFn.storable =  False 
+    typedAttributeFn.hidden = False 
+    VoxelizerNode.addAttribute( VoxelizerNode.inputMeshAttribute )
+
+    #==================================
+    # OUTPUT NODE ATTRIBUTE(S)
+    #==================================
+    VoxelizerNode.outputMeshAttribute = typedAttributeFn.create( &#39;outputMesh&#39;, &#39;om&#39;,
+                                                                 <a href="javascript:void(0)" data-symbol="OpenMaya.MFnData.kMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_data.html#aa4fc8af047bca4a078a175379e10e9ec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnData.kMesh</a> )
+    typedAttributeFn.writable =  False 
+    typedAttributeFn.readable = True 
+    typedAttributeFn.storable =  False 
+    typedAttributeFn.hidden = False 
+    VoxelizerNode.addAttribute( VoxelizerNode.outputMeshAttribute )
+    
+    #==================================
+    # NODE ATTRIBUTE DEPENDENCIES
+    #==================================
+    # If any of the inputs change, the output mesh will be recomputed.
+    VoxelizerNode.attributeAffects( VoxelizerNode.voxelWidthAttribute, VoxelizerNode.outputMeshAttribute )
+    VoxelizerNode.attributeAffects( VoxelizerNode.voxelDistanceAttribute, VoxelizerNode.outputMeshAttribute )
+    VoxelizerNode.attributeAffects( VoxelizerNode.inputMeshAttribute, VoxelizerNode.outputMeshAttribute )
+    
+    
+def initializePlugin( mobject ):
+    &#39;&#39;&#39; Initialize the plug-in &#39;&#39;&#39;
+    mplugin = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnPlugin" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnPlugin</a>( mobject )
+    try:
+        mplugin.registerNode( kPluginNodeName, kPluginNodeId, nodeCreator, nodeInitializer )
+    except:
+        sys.stderr.write( &#39;Failed to register node: &#39; + kPluginNodeName )
+        raise
+    
+def uninitializePlugin( mobject ):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnPlugin" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnPlugin</a>( mobject )
+    try:
+        mplugin.deregisterNode( kPluginNodeId )
+    except:
+        sys.stderr.write( &#39;Failed to deregister node: &#39; + kPluginNodeName )
+        raise
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+
+cmds.file( newFile=True, force=True )
+
+cmds.unloadPlugin( &#39;pyVoxelizerNode.py&#39; )
+cmds.loadPlugin( &#39;pyVoxelizerNode.py&#39; )
+
+# Create a sphere which will act as our input shape.
+cmds.polySphere( r=5.0, sx=20, sy=20, name=&#39;sphere1&#39; )
+cmds.move( -20, 0, 0, &#39;sphere1&#39; ) # move it over to the side.
+
+# Create the voxelization node.
+cmds.createNode( &#39;voxelizerNode&#39;, name=&#39;voxelizerNode1&#39; )
+
+# Create a target shape.
+cmds.createNode( &#39;transform&#39;, name=&#39;target1&#39; )
+cmds.createNode( &#39;mesh&#39;, name=&#39;target1Shape&#39;, parent=&#39;target1&#39; )
+cmds.sets( &#39;target1Shape&#39;, add=&#39;initialShadingGroup&#39; )
+
+# Connect the attributes.
+cmds.connectAttr( &#39;sphere1Shape.outMesh&#39;, &#39;voxelizerNode1.inputMesh&#39; )
+cmds.connectAttr( &#39;voxelizerNode1.outputMesh&#39;, &#39;target1Shape.inMesh&#39; )
+
+&#39;&#39;&#39;
+</pre></div><p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># voxelizerNode.py
+
+import sys
+import maya.OpenMayaMPx as OpenMayaMPx
+import maya.OpenMaya as OpenMaya
+
+# Plug-in information:
+kPluginNodeName = &#39;voxelizerNode&#39;           # The name of the node.
+kPluginNodeId = <a href="javascript:void(0)" data-symbol="OpenMaya.MTypeId" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_type_id.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MTypeId</a>( 0xBEEF6 ) # A unique ID associated to this node type.
+
+# Default input values.
+defaultVoxelWidth = 0.9       # The width of a cubic voxel.
+defaultVoxelDistance = 1.0    # The distance which separates the center of two adjacent voxels.
+
+##########################################################
+# Plug-in 
+##########################################################
+class VoxelizerNode(OpenMayaMPx.MPxNode):
+    # Static variables which will later be replaced by the node&#39;s attributes.
+    voxelWidthAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    voxelDistanceAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    inputMeshAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    outputMeshAttribute = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        # (!) Make sure you call the base class&#39;s constructor.
+        OpenMayaMPx.MPxNode.__init__(self)
+        
+    
+    def compute(self, pPlug, pDataBlock):
+        &#39;&#39;&#39; Here, we will create a voxelized version of the input mesh. &#39;&#39;&#39;
+        
+        if( pPlug == VoxelizerNode.outputMeshAttribute ):
+            
+            # Get our custom input node attributes and values.
+            voxelWidthHandle = pDataBlock.inputValue( VoxelizerNode.voxelWidthAttribute )
+            voxelWidth = voxelWidthHandle.asFloat()
+            
+            voxelDistanceHandle = pDataBlock.inputValue( VoxelizerNode.voxelDistanceAttribute )
+            voxelDistance = voxelDistanceHandle.asFloat()
+            
+            inputMeshHandle = pDataBlock.inputValue( VoxelizerNode.inputMeshAttribute )
+            inputMeshObj = inputMeshHandle.asMesh()
+            
+            
+            # Compute the bounding box around the mesh&#39;s vertices.
+            boundingBox = self.getBoundingBox( inputMeshObj )    
+            
+            # Determine which voxel centerpoints are contained within the mesh.
+            voxels = self.getVoxels( voxelDistance, inputMeshObj, boundingBox )
+            
+            # Create a mesh data container, which will store our new voxelized mesh.
+            meshDataFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMeshData" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh_data.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMeshData</a>()
+            newOutputMeshData = meshDataFn.create()
+            
+            # Create a cubic polygon for each voxel and populate the &#39;newOutputMeshData&#39; MeshData object.
+            self.createVoxelMesh( voxels, voxelWidth, newOutputMeshData)
+
+
+            # Set the output data.            
+            outputMeshHandle = pDataBlock.outputValue( VoxelizerNode.outputMeshAttribute )
+            outputMeshHandle.setMObject( newOutputMeshData )
+            
+        else:
+            return OpenMaya.kUnknownParameter
+    
+    
+    def getBoundingBox(self, pMeshObj):
+        &#39;&#39;&#39; Calculate a bounding box around the mesh vertices. &#39;&#39;&#39;
+        
+        # Create the bounding box object we will populate with the points of the mesh.
+        boundingBox = <a href="javascript:void(0)" data-symbol="OpenMaya.MBoundingBox" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_bounding_box.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MBoundingBox</a>()
+        
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>( pMeshObj )
+        
+        pointArray = <a href="javascript:void(0)" data-symbol="OpenMaya.MPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPointArray</a>()
+        
+        # Get the points of the mesh in its local coordinate space.
+        meshFn.getPoints( pointArray, <a href="javascript:void(0)" data-symbol="OpenMaya.MSpace.kTransform" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_space.html#adcf1dba26aeb417e59c4718fb0b05ff3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MSpace.kTransform</a> ) 
+
+        for i in range( 0, pointArray.length() ):
+            point = pointArray[i]
+            boundingBox.expand( point )
+         
+        return boundingBox
+    
+    
+    def getVoxels(self, pVoxelDistance, pMeshObj, pBoundingBox):
+        &#39;&#39;&#39; 
+        Obtain a list of voxels as a set of (x,y,z) coordinates in the mesh local space. 
+        
+        We obtain these voxels by casting rays from points separated pVoxelDistance apart within the
+        mesh bounding box, and test whether or not these points are contained within the mesh.
+        
+        A point is contained within a closed mesh if the ray shot from the point intersects an odd
+        number of times with the surface of the mesh.
+        &#39;&#39;&#39;
+        # Initialize a list of voxels contained within the mesh.
+        voxels = []
+        
+        # Get a reference to the <a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnMesh</a> function set, and use it on the given mesh object.
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>( pMeshObj )
+        
+        # Compute an offset which we will apply to the min and max corners of the bounding box.
+        halfVoxelDist = 0.5 * pVoxelDistance
+        
+        # Offset the position of the minimum point to account for the inter-voxel distance.
+        minPoint = pBoundingBox.min()
+        minPoint.x += halfVoxelDist
+        minPoint.y += halfVoxelDist
+        minPoint.z += halfVoxelDist
+        
+        # Offset the position of the maximum point to account for the inter-voxel distance.
+        maxPoint = pBoundingBox.max()
+        maxPoint.x += halfVoxelDist
+        maxPoint.y += halfVoxelDist
+        maxPoint.z += halfVoxelDist
+        
+        # Define an iterator which will allow us to step through the pVoxelDistance
+        # point intervals contained within our bounding box. We use this iterator
+        # in the for loops that follow to visit each voxel center in the bounding box.
+        def floatIterator(start, stop, step):
+            r = start
+            while r &lt; stop:
+                yield r
+                r += step
+        
+        # Iterate over every point in the bounding box, stepping by pVoxelDistance...
+        for xCoord in floatIterator( minPoint.x, maxPoint.x, pVoxelDistance ):
+            for yCoord in floatIterator( minPoint.y, maxPoint.y, pVoxelDistance ):
+                for zCoord in floatIterator( minPoint.z, maxPoint.z, pVoxelDistance ):
+
+                    # 2D representation of a ray cast from the point within the bounding box:
+                    #
+                    #  (+) ^-----------------
+                    #      |                |
+                    #  y   |                |  - We are shooting the ray from the point: [*]
+                    # axis | &lt;======[*]     |  - The direction of the ray is parallel to the -Z axis.
+                    #      |                |
+                    #      |                |
+                    #  (-) ------------------&gt;
+                    #     (-)    z axis     (+)
+                    #
+                    # If the ray intersects with an odd number of points along the surface of the mesh, the
+                    # point is contained within the mesh (assuming a closed mesh). 
+                    raySource = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( xCoord, yCoord, zCoord )
+                    rayDirection = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatVector" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_vector.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatVector</a>( 0, 0, -1 )
+                    intersectionPoints = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPointArray</a>()
+                    tolerance = 0.0001
+                    
+                    meshFn.allIntersections( raySource,                  # raySource - where we are shooting the ray from.
+                                             rayDirection,               # rayDirection - the direction in which we are shooting the ray.
+                                             None,                       # faceIds - here, we do not care if specific faces are intersected)
+                                             None,                       # triIds - here, we do not care if specific tri&#39;s are intersected)
+                                             False,                      # idsSorted - here, we do not need to sort the faceId&#39;s or triId&#39;s indices.
+                                             <a href="javascript:void(0)" data-symbol="OpenMaya.MSpace.kTransform" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_space.html#adcf1dba26aeb417e59c4718fb0b05ff3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MSpace.kTransform</a>, # coordinate space - the mesh&#39;s local coordinate space.
+                                             float(9999),                # the range of the ray.
+                                             False,                      # testBothDirections - we are not checking both directions from the raySource
+                                             None,                       # accelParams - this object is not applicable here.
+                                             False,                      # sortHits - we do not need to sort the intersection points along the ray.
+                                             intersectionPoints,         # hitPoints - the array of points which have been intersected.
+                                             None,                       # hitRayParams - we do not need any parametric distances of the points along the ray.
+                                             None,                       # hitFaces - we do not need the id&#39;s of the faces intersected.
+                                             None,                       # hitTriangles - we do not need the id&#39;s of the triangles intersected.
+                                             None,                       # hitBary1s - we do not need the barycentric coordinates of the points within the triangles.
+                                             None,                       # hitBary2s - we do not need the barycentric coordinates of the points within the triangles.
+                                             tolerance                   # tolerance - a numeric tolerance threshold which allow intersections to occur just outside the mesh.
+                                             )
+                    
+                    # If there is an odd number of intersection points, then the point lies within the mesh. Otherwise,
+                    # the point lies outside the mesh. We are only concerned with voxels whose centerpoint lies within the mesh
+                    if( intersectionPoints.length() % 2 == 1 ):
+                        voxels.append( raySource )
+        
+        # Return the list of voxel coordinates which lie within the mesh.
+        return voxels
+    
+    
+    def createVoxelMesh(self, pVoxelPositions, pVoxelWidth, pOutMeshData):
+        &#39;&#39;&#39; Create a mesh containing one cubic polygon for each voxel in the pVoxelPositions list. &#39;&#39;&#39;
+        
+        numVoxels = len( pVoxelPositions )
+        
+        numVerticesPerVoxel = 8 # a cube has eight vertices.
+        numPolygonsPerVoxel = 6 # a cube has six faces.
+        numVerticesPerPolygon = 4  # four vertices are required to define a face of a cube.
+        numPolygonConnectsPerVoxel = numPolygonsPerVoxel * numVerticesPerPolygon # 24
+        
+        # Initialize the required arrays used to create the mesh in MFnMesh.create()
+        totalVertices = numVoxels * numVerticesPerVoxel
+        vertexArray = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPointArray</a>()
+        vertexArray.setLength( totalVertices )
+        vertexIndexOffset = 0
+        
+        totalPolygons = numVoxels * numPolygonsPerVoxel
+        polygonCounts = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonCounts.setLength( totalPolygons )
+        polygonCountsIndexOffset = 0
+        
+        totalPolygonConnects = numVoxels * numPolygonConnectsPerVoxel
+        polygonConnects = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonConnects.setLength( totalPolygonConnects )
+        polygonConnectsIndexOffset = 0
+        
+        # Populate the required arrays used in MFnMesh.create()
+        for i in range( 0, numVoxels ):
+            voxelPosition = pVoxelPositions[i]
+            
+            # Add a new cube to the arrays.
+            self.createCube( voxelPosition, pVoxelWidth,
+                             vertexArray, vertexIndexOffset, numVerticesPerVoxel,
+                             polygonCounts, polygonCountsIndexOffset, numPolygonsPerVoxel, numVerticesPerPolygon,
+                             polygonConnects, polygonConnectsIndexOffset )
+            
+            # Increment the respective index offsets.
+            vertexIndexOffset += numVerticesPerVoxel
+            polygonCountsIndexOffset += numPolygonsPerVoxel
+            polygonConnectsIndexOffset += numPolygonConnectsPerVoxel
+        
+        
+        # Create the mesh now that the arrays have been populated. The mesh is stored in pOutMeshData
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>()
+        meshFn.create( totalVertices, totalPolygons, vertexArray, polygonCounts, polygonConnects, pOutMeshData )
+    
+    
+    def createCube(self, pVoxelPosition, pWidth, 
+                         pVertexArray, pVertexIndexOffset, pNumVerticesPerVoxel,
+                         pPolygonCountArray, pPolygonCountIndexOffset, pNumPolygonsPerVoxel, pNumVerticesPerPolygon,
+                         pPolygonConnectsArray, pPolygonConnectsIndexOffset ):
+        &#39;&#39;&#39; Add a cubic polygon to the specified arrays. &#39;&#39;&#39;
+        
+        # We are using half the given width to compute the vertices of the cube. 
+        halfWidth = float( pWidth / 2.0 )
+        
+        # Declare the eight corners of the cube. The cube is centered at pVoxelPosition.
+        
+        vertices = [<a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z), # 0
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z), # 1
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 2
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x, -halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 3
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z), # 4
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 5
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y,  halfWidth + pVoxelPosition.z), # 6
+                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( halfWidth + pVoxelPosition.x,  halfWidth + pVoxelPosition.y, -halfWidth + pVoxelPosition.z)] # 7
+        
+        # Declare the data structure which binds each vertex to a polygon corner 
+        polygonConnections = [ (0, 12, 16), # the vertex indexed at 0 corresponds to the polygon corners whose indexes are (0, 12, 16) in pPolygonConnectsArray. 
+                               (1, 19, 20),
+                               (2,  9, 23),
+                               (3,  8, 13),
+                               (4, 15, 17),
+                               (5, 11, 14),
+                               (6, 10, 22),
+                               (7, 18, 21) ]
+
+        # Store the eight corners of the cube in the vertex array.
+        for i in range( 0, pNumVerticesPerVoxel ):
+            # Store the vertex in the passed vertex array.
+            pVertexArray.set( vertices[i], pVertexIndexOffset + i )
+            
+            # Assign the vertex in the pVertexArray to the relevant polygons.
+            for polygonConnectionIndex in polygonConnections[i]:
+                pPolygonConnectsArray.set( pVertexIndexOffset + i, pPolygonConnectsIndexOffset + polygonConnectionIndex )
+        
+        # Declare the number of vertices for each face.
+        for i in range( 0, pNumPolygonsPerVoxel ):
+             # Set the number of vertices for the polygon at the given index.
+             pPolygonCountArray.set( pNumVerticesPerPolygon, pPolygonCountIndexOffset + i )
+             
+
+##########################################################
+# Plug-in initialization.
+##########################################################
+def nodeCreator():
+    &#39;&#39;&#39; Creates an instance of our node class and delivers it to Maya as a pointer. &#39;&#39;&#39;
+    return OpenMayaMPx.asMPxPtr( VoxelizerNode() )
+
+def nodeInitializer():
+    &#39;&#39;&#39; Defines the input and output attributes as static variables in our plug-in class. &#39;&#39;&#39;
+    # The following <a href="javascript:void(0)" data-symbol="MFnNumericAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_numeric_attribute.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnNumericAttribute</a> function set will allow us to create our attributes.
+    numericAttributeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnNumericAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_numeric_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnNumericAttribute</a>()
+    
+    # This one allows us to create our input and output mesh attributes.
+    typedAttributeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnTypedAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_typed_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnTypedAttribute</a>()
+    
+    #==================================
+    # INPUT NODE ATTRIBUTE(S)
+    #==================================
+    # We will need a voxel width.
+    global defaultVoxelWidth
+    VoxelizerNode.voxelWidthAttribute = numericAttributeFn.create( &#39;voxelWidth&#39;, &#39;vw&#39;,
+                                                                    <a href="javascript:void(0)" data-symbol="OpenMaya.MFnNumericData.kFloat" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_numeric_data.html#a5acb08282492d2ebdb11c2e7680bb48f&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnNumericData.kFloat</a>, defaultVoxelWidth )
+    numericAttributeFn.setWritable( True )
+    numericAttributeFn.setReadable( False )
+    numericAttributeFn.setStorable( True )
+    numericAttributeFn.setHidden( False )
+    numericAttributeFn.setMin( 0.1 )
+    VoxelizerNode.addAttribute( VoxelizerNode.voxelWidthAttribute )
+
+    # We will need a voxel distance value (higher values means we can see more voxels within the volume of the mesh).
+    global defaultVoxelDistance
+    VoxelizerNode.voxelDistanceAttribute = numericAttributeFn.create( &#39;voxelDistance&#39;, &#39;vd&#39;, 
+                                                                       <a href="javascript:void(0)" data-symbol="OpenMaya.MFnNumericData.kFloat" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_numeric_data.html#a5acb08282492d2ebdb11c2e7680bb48f&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnNumericData.kFloat</a>, defaultVoxelDistance )
+    numericAttributeFn.setWritable( True )
+    numericAttributeFn.setReadable( False )
+    numericAttributeFn.setStorable( True )
+    numericAttributeFn.setHidden( False )
+    numericAttributeFn.setMin( 0.1 )
+    VoxelizerNode.addAttribute( VoxelizerNode.voxelDistanceAttribute )
+    
+    # We will need an input mesh attribute.
+    VoxelizerNode.inputMeshAttribute = typedAttributeFn.create( &#39;inputMesh&#39;, &#39;im&#39;,
+                                                                <a href="javascript:void(0)" data-symbol="OpenMaya.MFnData.kMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_data.html#aa4fc8af047bca4a078a175379e10e9ec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnData.kMesh</a> )
+    typedAttributeFn.setWritable( True )
+    typedAttributeFn.setReadable( False )
+    typedAttributeFn.setStorable( False )
+    typedAttributeFn.setHidden( False )
+    VoxelizerNode.addAttribute( VoxelizerNode.inputMeshAttribute )
+
+    #==================================
+    # OUTPUT NODE ATTRIBUTE(S)
+    #==================================
+    VoxelizerNode.outputMeshAttribute = typedAttributeFn.create( &#39;outputMesh&#39;, &#39;om&#39;,
+                                                                 <a href="javascript:void(0)" data-symbol="OpenMaya.MFnData.kMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_data.html#aa4fc8af047bca4a078a175379e10e9ec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnData.kMesh</a> )
+    typedAttributeFn.setWritable( False )
+    typedAttributeFn.setReadable( True )
+    typedAttributeFn.setStorable( False )
+    typedAttributeFn.setHidden( False )
+    VoxelizerNode.addAttribute( VoxelizerNode.outputMeshAttribute )
+    
+    #==================================
+    # NODE ATTRIBUTE DEPENDENCIES
+    #==================================
+    # If any of the inputs change, the output mesh will be recomputed.
+    VoxelizerNode.attributeAffects( VoxelizerNode.voxelWidthAttribute, VoxelizerNode.outputMeshAttribute )
+    VoxelizerNode.attributeAffects( VoxelizerNode.voxelDistanceAttribute, VoxelizerNode.outputMeshAttribute )
+    VoxelizerNode.attributeAffects( VoxelizerNode.inputMeshAttribute, VoxelizerNode.outputMeshAttribute )
+    
+    
+def initializePlugin( mobject ):
+    &#39;&#39;&#39; Initialize the plug-in &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.registerNode( kPluginNodeName, kPluginNodeId, nodeCreator, nodeInitializer )
+    except:
+        sys.stderr.write( &#39;Failed to register node: &#39; + kPluginNodeName )
+        raise
+    
+def uninitializePlugin( mobject ):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterNode( kPluginNodeId )
+    except:
+        sys.stderr.write( &#39;Failed to deregister node: &#39; + kPluginNodeName )
+        raise
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+
+cmds.file( newFile=True, force=True )
+
+cmds.unloadPlugin( &#39;voxelizerNode.py&#39; )
+cmds.loadPlugin( &#39;voxelizerNode.py&#39; )
+
+# Create a sphere which will act as our input shape.
+cmds.polySphere( r=5.0, sx=20, sy=20, name=&#39;sphere1&#39; )
+cmds.move( -20, 0, 0, &#39;sphere1&#39; ) # move it over to the side.
+
+# Create the voxelization node.
+cmds.createNode( &#39;voxelizerNode&#39;, name=&#39;voxelizerNode1&#39; )
+
+# Create a target shape.
+cmds.createNode( &#39;transform&#39;, name=&#39;target1&#39; )
+cmds.createNode( &#39;mesh&#39;, name=&#39;target1Shape&#39;, parent=&#39;target1&#39; )
+cmds.sets( &#39;target1Shape&#39;, add=&#39;initialShadingGroup&#39; )
+
+# Connect the attributes.
+cmds.connectAttr( &#39;sphere1Shape.outMesh&#39;, &#39;voxelizerNode1.inputMesh&#39; )
+cmds.connectAttr( &#39;voxelizerNode1.outputMesh&#39;, &#39;target1Shape.inMesh&#39; )
+
+&#39;&#39;&#39;
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

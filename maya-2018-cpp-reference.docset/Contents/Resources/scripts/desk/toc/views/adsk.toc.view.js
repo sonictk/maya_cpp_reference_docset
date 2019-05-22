@@ -12,10 +12,6 @@
         _$preloader: undefined,
         _$content: undefined,
         _html: '',
-        _entityMap: {
-            "<": "&lt;",
-            ">": "&gt;"
-        },
 
         _create: function() {
             console.log('tocview: _create');
@@ -122,8 +118,8 @@ if (data[i].attr.toc == '' || data[i].attr.toc === 'false') {
                         this._createAttributeWithValue('href', data[i].attr.href) +
                         this._createAttributeWithValue('data-href', data[i].attr.href) +
                     '>' +
-                        this._escapeHtml(data[i].data) +
-                        this._createDescription(nodeClass, this._escapeHtml(data[i].attr.desc)) +
+                        data[i].data +
+                        this._createDescription(nodeClass, data[i].attr.desc) +
                     '</a>');
 
                 if (hasChildren) {
@@ -265,15 +261,6 @@ if (data[i].attr.toc == '' || data[i].attr.toc === 'false') {
                         rect.right <= window.innerWidth
                     )
             }
-        },
-
-        // Escape < and > as it is impossible to do so via d-o-e.
-        _escapeHtml: function(string) {
-            var that = this;
-
-            return String(string).replace(/[<>]/g, function (s) {
-                return that._entityMap[s];
-            });
         },
 
         /* Public members. */
