@@ -61,10 +61,13 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                 if maya_version == '2017':
                     type_url = type_url.replace('#!/url=./cpp_ref/', '')
 
-                # TODO: For all categories in Maya 2019, need to change the
+                # NOTE: For all categories in Maya 2019, need to change the
                 # URLs to take out the filename, and re-join the URL after the
                 # filename instead.
-
+                if maya_version == '2019':
+                    idxSep = type_url.rfind('#')
+                    lenX = len('#!/url=./cpp_ref/')
+                    type_url = os.path.dirname(type_url[0:idxSep]) + type_url[idxSep + lenX:]
 
                 if type_name and type_url:
                     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
@@ -87,6 +90,10 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                 # formatted differently
                 if maya_version == '2017':
                     method_url = method_url.replace('#!/url=./cpp_ref/', '')
+                if maya_version == '2019':
+                    idxSep = method_url.rfind('#')
+                    lenX = len('#!/url=./cpp_ref/')
+                    method_url = os.path.dirname(method_url[0:idxSep]) + method_url[idxSep + lenX:]
                 if method_name and method_url:
                     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                             ' VALUES (\'{class_name}::{method_name}\', \'Method\', \'{path}\')'
@@ -110,6 +117,10 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                 # formatted differently
                 if maya_version == '2017':
                     method_url = method_url.replace('#!/url=./cpp_ref/', '')
+                if maya_version == '2019':
+                    idxSep = method_url.rfind('#')
+                    lenX = len('#!/url=./cpp_ref/')
+                    method_url = os.path.dirname(method_url[0:idxSep]) + method_url[idxSep + lenX:]
                 if method_name and method_url:
                     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                             ' VALUES (\'{class_name}::{method_name}\', \'Function\', \'{path}\')'
@@ -127,6 +138,10 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                     continue
                 method_name = m.a.string
                 method_url = m.a.get('href')
+                if maya_version == '2019':
+                    idxSep = method_url.rfind('#')
+                    lenX = len('#!/url=./cpp_ref/')
+                    method_url = os.path.dirname(method_url[0:idxSep]) + method_url[idxSep + lenX:]
                 if method_name and method_url:
                     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                             ' VALUES (\'{class_name}::{method_name}\', \'Method\', \'{path}\')'
