@@ -60,6 +60,12 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                 # formatted differently
                 if maya_version == '2017':
                     type_url = type_url.replace('#!/url=./cpp_ref/', '')
+
+                # TODO: For all categories in Maya 2019, need to change the
+                # URLs to take out the filename, and re-join the URL after the
+                # filename instead.
+
+
                 if type_name and type_url:
                     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
                             ' VALUES (\'{class_name}::{type_name}\', \'Type\', \'{path}\')'
