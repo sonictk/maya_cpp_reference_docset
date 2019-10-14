@@ -138,42 +138,6 @@
             window.open(url, null, specs);
         },
 
-        _showFallbackWhenNoSourceCouldBeDecoded: function(video) {
-            var $video = $(video),
-                $lastSource = $video.children('source').last();
-
-            $lastSource.error(function() {
-                $video.replaceWith($video.children('.embed-container'));
-            });
-        },
-
-        ﻿ _replaceObjectWithItsCopy: function(object) {
-                    ﻿
-            var div = document.createElement('div'),
-                params = document.createElement('div'),
-                classid = " classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000'";
-
-            $(params).append( $(object).children('param') );
-
-            // IE’s proprietary classid attribute and 'movie' param need to be created together,
-            // as well as 'flashvars' param (otherwise its value will not be passed to Flash).
-            var html = 	"<object" + classid + ">" +
-                            params.innerHTML +
-                            object.innerHTML +
-                        "</object>";
-
-            div.innerHTML = html;
-
-            var obj = div.firstChild;
-
-            obj.setAttribute("type", object.getAttribute('type'));
-            obj.setAttribute("data", object.getAttribute('data'));
-            obj.setAttribute("id", object.getAttribute('id'));
-
-            // Replace targeted DOM element with our new <object>.
-            object.parentNode.replaceChild(obj, object);
-        },
-
         /* Public members. */
 
         showPreloader: function() {
@@ -223,33 +187,15 @@
                 self._doCommentsHyperlinkHandler(this.getAttribute('href'));
             });
 
-            // Showing fallback content when no source could be decoded.
-            bodyContent.find('video').each(function() {
-                self._showFallbackWhenNoSourceCouldBeDecoded(this);
-            });
-
             // Flatten <source> element @src attribute value.
             bodyContent.find('source').each(function() {
                 this.setAttribute('src', self._flattenRelativeResourcePath(this.getAttribute('data-src')));
             });
 
-            // Flatten @data attribute value.
-            bodyContent.find('object[data]').each(function() {
-                this.setAttribute('data', self._flattenRelativeResourcePath(this.getAttribute('data')));
-            });
-
-            // Flatten <param name="movie"> @value.
-            bodyContent.find('param[name=movie]').each(function() {
+            // Replace <param name="src"> element @value attribute value.
+            bodyContent.find('param[name="src"]').each(function() {
                 this.setAttribute('value', self._flattenRelativeResourcePath(this.getAttribute('value')));
             });
-
-            // Replace current objects with copies to deal with IE issue when dynamically changed values not honored.
-            var isMSIE = /*@cc_on!@*/false;
-            if (isMSIE) {
-                bodyContent.find('object[data]').each(function() {
-                    self._replaceObjectWithItsCopy(this);
-                });
-            }
 
             // Add src attributes to <img> elements with slightly changed value of data-src attribute.
             var images = bodyContent.find('img');

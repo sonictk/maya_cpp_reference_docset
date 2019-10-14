@@ -1,0 +1,354 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Example: Using Time to Animate a Cube Mesh</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Example: Using Time to Animate a Cube Mesh</h1>
+         </div>
+
+<div class='section'><a id="example-using-time-to-animate-a-cube-mesh"></a></div>
+<div class='section'><a id="example-using-time-to-animate-a-cube-mesh-1"></a><h2 id="example-using-time-to-animate-a-cube-mesh-1">Example: Using Time to Animate a Cube Mesh</h2></div>
+<p><strong>Filename:</strong> <span class='code'>animCubeNode.py</span></p>
+<p><strong>Annotated Output:</strong> The dotted arrows in the image below point to the rear and bottom polygons of the cube, while the full arrows point to its forward and top polygons. The table which accompanies this image illustrates the various array parameters used in <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh.create()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html#a3571e84c33d2411e2909e1c6108e27f7&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnMesh.create()</a></span>.</p>
+<div class='figure'><img src='developer/images/cubeMesh_75%.png' title=''></div>
+<div class='figure'><img src='developer/images/polygonConnects_75%.png' title=''></div>
+<p><strong>Program Summary:</strong> The plug-in code below is an adaptation of the <span class='code'>animCubeNode.py</span> example provided with the Maya API documentation. Some variable names were refactored to be more closely aligned with the class documentation and annotated output above. This <span class='code'><a href="javascript:void(0)" data-symbol="MPxNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxNode</a></span> plug-in defines a typed input attribute which accepts Maya&#39;s time to determine the scale of the generated output cube mesh. Once this command is run, slide the timeline in the Maya user interface to view the animation.</p>
+<blockquote>
+<p><strong>Note:</strong> The way in which this cubic mesh is constructed is also used in <a href='#!/url=./developer/Maya-Python-API/Maya-Python-Plug-in-Learning/Dependency-Graph-Plug-in-Basics/Example-Voxelizer-Node.html' title=''>Example: Voxelizer Node</a> to create voxels.</p>
+</blockquote>
+<p>Python API 2.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># pyAnimCubeNode.py
+
+import sys
+import maya.api.OpenMaya as OpenMaya
+
+def maya_useNewAPI():
+    &quot;&quot;&quot;
+    The presence of this function tells Maya that the plugin produces, and
+    expects to be passed, objects created using the Maya Python API 2.0.
+    &quot;&quot;&quot;
+    pass
+    
+kPluginNodeName = &quot;spAnimCube&quot;
+kPluginNodeId = <a href="javascript:void(0)" data-symbol="OpenMaya.MTypeId" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_type_id.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MTypeId</a>(0x8700B)
+
+##########################################################
+# Plug-in 
+##########################################################
+class animCube(<a href="javascript:void(0)" data-symbol="OpenMaya.MPxNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPxNode</a>):
+    time = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    outputMesh = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        <a href="javascript:void(0)" data-symbol="OpenMaya.MPxNode.__init__" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html#a0769ac5b3ecf4060e81dfe4bdc6ed327&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPxNode.__init__</a>(self)
+    
+    
+    def createMesh(self, tempTime, outData):
+        &#39;&#39;&#39; 
+        Create a cube mesh, and scale it given the current frame number. 
+        The resulting mesh data is stored within outData.
+        &#39;&#39;&#39;
+        
+        frame = int(tempTime.asUnits(<a href="javascript:void(0)" data-symbol="OpenMaya.MTime.kFilm" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_time.html#acbb45b0d2b7db226a7e7dda9a7307a89&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MTime.kFilm</a>))
+        if frame is 0:
+            frame = 1
+
+        cubeSize = 0.5 * float(frame % 10)
+
+        numPolygons = 6
+        numVertices = 8
+        numPolygonConnects = 4 * numPolygons # four vertices are needed per polygon. (i.e. 24 numPolygonConnects)
+
+        vertexArray = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPointArray</a>()
+        vertexArray.setLength( numVertices )
+        vertexArray[0] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize, -cubeSize, -cubeSize)
+        vertexArray[1] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize, -cubeSize, -cubeSize)
+        vertexArray[2] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize, -cubeSize,  cubeSize)
+        vertexArray[3] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize, -cubeSize,  cubeSize)
+        vertexArray[4] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize,  cubeSize, -cubeSize)
+        vertexArray[5] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize,  cubeSize,  cubeSize)
+        vertexArray[6] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize,  cubeSize,  cubeSize)
+        vertexArray[7] = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize,  cubeSize, -cubeSize)
+        
+        polygonCounts = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonCounts.setLength( numPolygons )
+        for i in range (0,numPolygons):
+            polygonCounts[i] = 4
+
+        
+        polygonConnects = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonConnects.setLength( numPolygonConnects )
+        polygonConnects[0] = 0
+        polygonConnects[1] = 1
+        polygonConnects[2] = 2
+        polygonConnects[3] = 3
+        polygonConnects[4] = 4
+        polygonConnects[5] = 5
+        polygonConnects[6] = 6
+        polygonConnects[7] = 7
+        polygonConnects[8] = 3
+        polygonConnects[9] = 2
+        polygonConnects[10] = 6
+        polygonConnects[11] = 5
+        polygonConnects[12] = 0
+        polygonConnects[13] = 3
+        polygonConnects[14] = 5
+        polygonConnects[15] = 4
+        polygonConnects[16] = 0
+        polygonConnects[17] = 4
+        polygonConnects[18] = 7
+        polygonConnects[19] = 1
+        polygonConnects[20] = 1
+        polygonConnects[21] = 7
+        polygonConnects[22] = 6
+        polygonConnects[23] = 2
+
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>()
+        newMesh = meshFn.create(vertexArray, polygonCounts, polygonConnects, parent=outData)
+        
+
+    def compute(self, plug, data):
+        if plug == animCube.outputMesh:
+            timeData = data.inputValue(animCube.time)
+            tempTime = timeData.asTime()
+
+            outputHandle = data.outputValue(animCube.outputMesh)
+
+            dataCreator = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMeshData" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh_data.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMeshData</a>()
+            newOutputData = dataCreator.create()
+
+            self.createMesh(tempTime, newOutputData)
+
+            outputHandle.setMObject(newOutputData)
+            data.setClean(plug)
+        else:
+            return OpenMaya.kUnknownParameter
+        
+##########################################################
+# Plug-in initialization.
+##########################################################
+def nodeCreator():
+    &#39;&#39;&#39; Creates an instance of our node class and delivers it to Maya as a pointer. &#39;&#39;&#39;
+    return animCube()
+
+def nodeInitializer():
+    &#39;&#39;&#39; Defines the input and output attributes as static variables in our plug-in class. &#39;&#39;&#39;
+    unitAttr = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnUnitAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_unit_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnUnitAttribute</a>()
+    typedAttr = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnTypedAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_typed_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnTypedAttribute</a>()
+    
+    animCube.time = unitAttr.create(&quot;time&quot;, &quot;tm&quot;, <a href="javascript:void(0)" data-symbol="OpenMaya.MFnUnitAttribute.kTime" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_unit_attribute.html#ac8821de355f6b0b9d8692847c8218ed3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnUnitAttribute.kTime</a>, 0.0)
+    animCube.outputMesh = typedAttr.create(&quot;outputMesh&quot;, &quot;out&quot;, <a href="javascript:void(0)" data-symbol="OpenMaya.MFnData.kMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_data.html#aa4fc8af047bca4a078a175379e10e9ec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnData.kMesh</a>)
+
+    animCube.addAttribute(animCube.time)
+    animCube.addAttribute(animCube.outputMesh)
+
+    animCube.attributeAffects(animCube.time, animCube.outputMesh)
+
+
+def initializePlugin(mobject):
+    &#39;&#39;&#39; Initialize the plug-in &#39;&#39;&#39;
+    mplugin = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnPlugin" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnPlugin</a>(mobject)
+    try:
+        mplugin.registerNode( kPluginNodeName, kPluginNodeId, nodeCreator, nodeInitializer)
+    except:
+        sys.stderr.write( &quot;Failed to register node: &quot; + kPluginNodeName )
+        raise
+
+def uninitializePlugin(mobject):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnPlugin" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnPlugin</a>(mobject)
+    try:
+        mplugin.deregisterNode( kPluginNodeId )
+    except:
+        sys.stderr.write( &quot;Failed to deregister node: &quot; + kPluginNodeName )
+        raise
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &quot;pyAnimCubeNode.py&quot; )
+cmds.createNode( &quot;transform&quot;, name=&quot;animCube1&quot; )
+cmds.createNode( &quot;mesh&quot;, name=&quot;animCubeShape1&quot;, parent=&quot;animCube1&quot; )
+cmds.sets( &quot;animCubeShape1&quot;, add=&quot;initialShadingGroup&quot; )
+cmds.createNode( &quot;spAnimCube&quot;, name=&quot;animCubeNode1&quot; )
+cmds.connectAttr( &quot;time1.outTime&quot;, &quot;animCubeNode1.time&quot; )
+cmds.connectAttr( &quot;animCubeNode1.outputMesh&quot;, &quot;animCubeShape1.inMesh&quot; )
+
+&#39;&#39;&#39;
+</pre></div><p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># animCubeNode.py
+
+import sys
+import maya.OpenMaya as OpenMaya
+import maya.OpenMayaMPx as OpenMayaMPx
+
+kPluginNodeName = &quot;spAnimCube&quot;
+kPluginNodeId = <a href="javascript:void(0)" data-symbol="OpenMaya.MTypeId" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_type_id.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MTypeId</a>(0x8700B)
+
+##########################################################
+# Plug-in 
+##########################################################
+class animCube(OpenMayaMPx.MPxNode):
+    time = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+    outputMesh = <a href="javascript:void(0)" data-symbol="OpenMaya.MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MObject</a>()
+
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMayaMPx.MPxNode.__init__(self)
+    
+    
+    def createMesh(self, tempTime, outData):
+        &#39;&#39;&#39; 
+        Create a cube mesh, and scale it given the current frame number. 
+        The resulting mesh data is stored within outData.
+        &#39;&#39;&#39;
+        
+        frame = int(tempTime.asUnits(<a href="javascript:void(0)" data-symbol="OpenMaya.MTime.kFilm" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_time.html#acbb45b0d2b7db226a7e7dda9a7307a89&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MTime.kFilm</a>))
+        if frame is 0:
+            frame = 1
+
+        cubeSize = 0.5 * float(frame % 10)
+
+        numPolygons = 6
+        numVertices = 8
+        numPolygonConnects = 4 * numPolygons # four vertices are needed per polygon. (i.e. 24 numPolygonConnects)
+
+        vertexArray = <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPointArray</a>()
+        vertexArray.setLength( numVertices )
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize, -cubeSize, -cubeSize), 0)
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize, -cubeSize, -cubeSize), 1)
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize, -cubeSize,  cubeSize), 2)
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize, -cubeSize,  cubeSize), 3)
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize,  cubeSize, -cubeSize), 4)
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>(-cubeSize,  cubeSize,  cubeSize), 5)
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize,  cubeSize,  cubeSize), 6)
+        vertexArray.set( <a href="javascript:void(0)" data-symbol="OpenMaya.MFloatPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_float_point.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFloatPoint</a>( cubeSize,  cubeSize, -cubeSize), 7)
+        
+        polygonCounts = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonCounts.setLength( numPolygons )
+        polygonCounts.set(4, 0)
+        polygonCounts.set(4, 1)
+        polygonCounts.set(4, 2)
+        polygonCounts.set(4, 3)
+        polygonCounts.set(4, 4)
+        polygonCounts.set(4, 5)
+        
+        polygonConnects = <a href="javascript:void(0)" data-symbol="OpenMaya.MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_int_array.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MIntArray</a>()
+        polygonConnects.setLength( numPolygonConnects )
+        polygonConnects.set(0, 0)
+        polygonConnects.set(1, 1)
+        polygonConnects.set(2, 2)
+        polygonConnects.set(3, 3)
+        polygonConnects.set(4, 4)
+        polygonConnects.set(5, 5)
+        polygonConnects.set(6, 6)
+        polygonConnects.set(7, 7)
+        polygonConnects.set(3, 8)
+        polygonConnects.set(2, 9)
+        polygonConnects.set(6, 10)
+        polygonConnects.set(5, 11)
+        polygonConnects.set(0, 12)
+        polygonConnects.set(3, 13)
+        polygonConnects.set(5, 14)
+        polygonConnects.set(4, 15)
+        polygonConnects.set(0, 16)
+        polygonConnects.set(4, 17)
+        polygonConnects.set(7, 18)
+        polygonConnects.set(1, 19)
+        polygonConnects.set(1, 20)
+        polygonConnects.set(7, 21)
+        polygonConnects.set(6, 22)
+        polygonConnects.set(2, 23)
+
+        meshFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMesh</a>()
+        newMesh = meshFn.create(numVertices, numPolygons, vertexArray, polygonCounts, polygonConnects, outData)
+
+    def compute(self, plug, data):
+        if plug == animCube.outputMesh:
+            timeData = data.inputValue(animCube.time)
+            tempTime = timeData.asTime()
+
+            outputHandle = data.outputValue(animCube.outputMesh)
+
+            dataCreator = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnMeshData" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh_data.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnMeshData</a>()
+            newOutputData = dataCreator.create()
+
+            self.createMesh(tempTime, newOutputData)
+
+            outputHandle.setMObject(newOutputData)
+            data.setClean(plug)
+        else:
+            return OpenMaya.kUnknownParameter
+        
+##########################################################
+# Plug-in initialization.
+##########################################################
+def nodeCreator():
+    &#39;&#39;&#39; Creates an instance of our node class and delivers it to Maya as a pointer. &#39;&#39;&#39;
+    return OpenMayaMPx.asMPxPtr( animCube() )
+
+def nodeInitializer():
+    &#39;&#39;&#39; Defines the input and output attributes as static variables in our plug-in class. &#39;&#39;&#39;
+    unitAttr = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnUnitAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_unit_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnUnitAttribute</a>()
+    typedAttr = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnTypedAttribute" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_typed_attribute.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnTypedAttribute</a>()
+    
+    animCube.time = unitAttr.create(&quot;time&quot;, &quot;tm&quot;, <a href="javascript:void(0)" data-symbol="OpenMaya.MFnUnitAttribute.kTime" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_unit_attribute.html#ac8821de355f6b0b9d8692847c8218ed3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnUnitAttribute.kTime</a>, 0.0)
+    animCube.outputMesh = typedAttr.create(&quot;outputMesh&quot;, &quot;out&quot;, <a href="javascript:void(0)" data-symbol="OpenMaya.MFnData.kMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_data.html#aa4fc8af047bca4a078a175379e10e9ec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnData.kMesh</a>)
+
+    animCube.addAttribute(animCube.time)
+    animCube.addAttribute(animCube.outputMesh)
+
+    animCube.attributeAffects(animCube.time, animCube.outputMesh)
+
+
+def initializePlugin(mobject):
+    &#39;&#39;&#39; Initialize the plug-in &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin(mobject)
+    try:
+        mplugin.registerNode( kPluginNodeName, kPluginNodeId, nodeCreator, nodeInitializer)
+    except:
+        sys.stderr.write( &quot;Failed to register node: &quot; + kPluginNodeName )
+        raise
+
+def uninitializePlugin(mobject):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin(mobject)
+    try:
+        mplugin.deregisterNode( kPluginNodeId )
+    except:
+        sys.stderr.write( &quot;Failed to deregister node: &quot; + kPluginNodeName )
+        raise
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &quot;animCubeNode.py&quot; )
+cmds.createNode( &quot;transform&quot;, name=&quot;animCube1&quot; )
+cmds.createNode( &quot;mesh&quot;, name=&quot;animCubeShape1&quot;, parent=&quot;animCube1&quot; )
+cmds.sets( &quot;animCubeShape1&quot;, add=&quot;initialShadingGroup&quot; )
+cmds.createNode( &quot;spAnimCube&quot;, name=&quot;animCubeNode1&quot; )
+cmds.connectAttr( &quot;time1.outTime&quot;, &quot;animCubeNode1.time&quot; )
+cmds.connectAttr( &quot;animCubeNode1.outputMesh&quot;, &quot;animCubeShape1.inMesh&quot; )
+
+&#39;&#39;&#39;
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

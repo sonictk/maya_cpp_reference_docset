@@ -1,0 +1,434 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Querying the Scene Graph</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Querying the Scene Graph</h1>
+         </div>
+
+<div class='section'><a id="querying-the-scene-graph"></a></div>
+<p>This topic presents the basics of scene element organization in Maya.</p>
+<div class='section'><a id="the-directed-acyclic-graph-dag"></a><h2 id="the-directed-acyclic-graph-dag">The Directed Acyclic Graph (DAG)</h2></div>
+<p>The scene graph in Maya is commonly referred to as the &quot;<strong>Directed Acyclic Graph</strong>&quot;, or <strong>DAG</strong>. The DAG is actually a subset of a much larger graph, known as the <em>Dependency Graph</em>, which encompasses a much wider variety of node types including shaders, deformers, constraints, etc. For more information, consult the next section, <a href='#!/url=./developer/Maya-Python-API/Maya-Python-Plug-in-Learning/Dependency-Graph-Plug-in-Basics.html' title=''>Dependency Graph Plug-in Basics</a>. For now, we will focus our attention DAG nodes, which can be categorized in one of two ways:</p>
+<ol>
+<li><strong>Transform Nodes (<span class='code'>MFn.kTransform</span>):</strong> This node type defines a local 4x4 transformation matrix which affects all the objects beneath it in the hierarchy. This transformation data is manipulated by the <span class='code'><a href="javascript:void(0)" data-symbol="MFnTransform" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_transform.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_transform.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnTransform</a></span> function set. Transform nodes can have other transform nodes as their children to group scene elements together.</li>
+<li><strong>Shape Nodes (<span class='code'>MFn.kMesh</span>, <span class='code'>MFn.kCamera</span>, <span class='code'>MFn.kLight</span>, ... ):</strong> This node type contains the actual geometric information of a scene element, such as the vertices of a mesh. A shape node always has a transform node as its parent.</li>
+</ol>
+<p>The diagram below presents the simplified directed acyclic graph (DAG) of a basic scene. The <span class='code'>world</span> node represents the scene&#39;s root. The green circles correspond to the transform nodes (<span class='code'>kTransform</span>), and allow the shapes to be positioned in the scene. The shape nodes are identified by blue circles. In this DAG, <span class='code'>perspShape</span> corresponds to a camera in the scene, while <span class='code'>pCubeShape1</span> and <span class='code'>pointLightShape1</span> respectively represent a cubic mesh and a point light in the scene. Observe that the <span class='code'>pointLight1</span> transform node is a child of the <span class='code'>pCube1</span> transform node, which means that if the <span class='code'>pCube1</span> transform node is moved, the point light will be moved as well.</p>
+<div class='figure'><img src='developer/images/MayaSceneGraph.png' title=''></div>
+<blockquote>
+<p><strong>Note:</strong> Generally, a shape node cannot have any children under it. The exception to this rule is a special circumstance known as the <em>underworld</em>. The <em>underworld</em> is a DAG subgraph whose root is attached as a child to a shape node. This <em>underworld</em> graph defines the control points and dependencies of a NURBS curve or a NURBS surface.</p>
+</blockquote>
+<div class='section'><a id="dag-paths"></a><h2 id="dag-paths">DAG Paths</h2></div>
+<p>The location of a specific scene element within the DAG is identified by a <span class='code'><a href="javascript:void(0)" data-symbol="MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_path.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath</a></span> object.</p>
+<p>The <span class='code'><a href="javascript:void(0)" data-symbol="MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_path.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath</a></span> can return the <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> to which it corresponds in the DAG using <span class='code'><a href="javascript:void(0)" data-symbol="MDagPath.node()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html#a34b606120f12457f3128057a7b4740e3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath.node()</a></span>. The path itself can be extended to encompass a shape node (<span class='code'><a href="javascript:void(0)" data-symbol="MDagPath.extendToShape()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html#a6bbdc34b5bfd9747bfc59ad21771f7c6&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath.extendToShape()</a></span>), or return the lowest transform node (<span class='code'><a href="javascript:void(0)" data-symbol="MDagPath.transform()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html#a252aef07d234fb4f316d4fb32a41ea8b&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath.transform()</a></span>) to name a few convenient functions. The <span class='code'><a href="javascript:void(0)" data-symbol="MDagPath.fullPathName()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html#a8ad464725ea36f88c4608d5525b1cde3&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath.fullPathName()</a></span> function returns a string representation of the DAG path to a given node, formatted as a sequence of pipe-separated (&quot;<span class='code'>|</span>&quot;) node names starting at the nameless root of the DAG. In the diagram above, the string representation of the path from the root <span class='code'>world</span> node to <span class='code'>pointLightShape1</span> would be as follows: &quot;<span class='code'>|pCube1|pointLight1|pointLightShape1</span>&quot; (note that the root node has no name).</p>
+<p>To reduce memory consumption, a complex shape such as a particularly dense mesh can be <em>instanced</em> in multiple locations in the scene graph. In other words, the same shape can appear in different places in the scene without being copied. To achieve this, several transform nodes in the DAG can be the parents of the same shape node. As such, a single shape node can have multiple paths from the root of the DAG. Functions such as <span class='code'><a href="javascript:void(0)" data-symbol="MDagPath.isInstanced()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html#accfb22081f7c3c5421741f68ffd16378&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath.isInstanced()</a></span>, and <span class='code'><a href="javascript:void(0)" data-symbol="MDagPath.instanceNumber()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html#a0ef64fd5f3cbf426aed9c78ad40f9f85&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath.instanceNumber()</a></span> can be used to identify instanced shape nodes.</p>
+<div class='section'><a id="traversing-the-scene-graph"></a><h2 id="traversing-the-scene-graph">Traversing the Scene Graph</h2></div>
+<p>The scene graph can be traversed using an <span class='code'><a href="javascript:void(0)" data-symbol="MItDag" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_dag.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag</a></span> object, and optionally with an <span class='code'><a href="javascript:void(0)" data-symbol="MItDependencyGraph" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_dependency_graph.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dependency_graph.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDependencyGraph</a></span> object, since the DAG is a subset of the Dependency Graph.</p>
+<p>Classes prefixed with <span class='code'>MIt</span> are known as <em>iterators</em>, and allow you to inspect each object in a collection. In our case, <span class='code'><a href="javascript:void(0)" data-symbol="MItDag" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_dag.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag</a></span> will allow us to iterate over the DAG nodes in the scene. In the following code sample, we create a DAG iterator which will traverse the scene starting at the root, and which will visit each node in a depth-first manner. The <span class='code'>OpenMaya.MFn.kInvalid</span> parameter ensures that the <span class='code'><a href="javascript:void(0)" data-symbol="MItDag" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_dag.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag</a></span> object will not filter any node types.</p>
+<div class="codeBlock"><pre class="prettyprint">dagIterator = <a href="javascript:void(0)" data-symbol="OpenMaya.MItDag" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MItDag</a>( OpenMaya.MItDag.kDepthFirst, OpenMaya.MFn.kInvalid )
+
+# This reference to the <a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a> function set will be needed
+# to obtain information about the DAG objects.
+dagNodeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnDagNode</a>()
+</pre></div><p>The <span class='code'><a href="javascript:void(0)" data-symbol="MItDag.isDone()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html#afce691ae1306e9ca23e6e889dec9b54b&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag.isDone()</a></span> function determines whether or not there are objects remaining to be inspected. The <span class='code'><a href="javascript:void(0)" data-symbol="MItDag.currentItem()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html#a03b48b8d2d5b0bef88a48a362eac0eec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag.currentItem()</a></span> function returns the iterator&#39;s current DAG object whose depth relative to the root can be obtained using <span class='code'><a href="javascript:void(0)" data-symbol="MItDag.depth()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html#a6dac1beb1726dcab80704d0c921079ce&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag.depth()</a></span>. Calling <span class='code'><a href="javascript:void(0)" data-symbol="MItDag.next()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html#a7e119c3d34279c19f6f26780981f39b9&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag.next()</a></span> will cause the internal state of the iterator to advance to the next item, but will not return a DAG object; this is only achieved using <span class='code'><a href="javascript:void(0)" data-symbol="MItDag.currentItem()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html#a03b48b8d2d5b0bef88a48a362eac0eec&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag.currentItem()</a></span>. If there are no more items to continue the iteration, the <span class='code'><a href="javascript:void(0)" data-symbol="MItDag.isDone()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html#afce691ae1306e9ca23e6e889dec9b54b&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItDag.isDone()</a></span> function will return <span class='code'>True</span>. We can therefore construct a simple while loop to traverse the scene graph:</p>
+<div class="codeBlock"><pre class="prettyprint"># Traverse the scene.
+while( not dagIterator.isDone() ):
+
+    # Obtain the current item.
+    dagObject = dagIterator.currentItem()
+
+    # Extract the depth of the DAG object.
+    depth = dagIterator.depth()
+            
+    # Make our <a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a> function set operate on the current DAG object.
+    dagNodeFn.setObject( dagObject )
+                       
+    # Extract the DAG object&#39;s name.
+    name = dagNodeFn.name()
+            
+    print name + &#39; (&#39; + dagObject.apiTypeStr() + &#39;) depth: &#39; + str( depth )
+    
+    # Iterate to the next item.
+    dagIterator.next()
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> We elaborate on the use of <em>function sets</em> (ex: <span class='code'><a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a></span>) in <a href='#!/url=./developer/Maya-Python-API/Maya-Python-Plug-in-Learning/Command-Plug-in-Basics/Creating-and-Manipulating.html' title=''>Creating and Manipulating Objects</a>.</p>
+
+<div class='section'><a id="inspecting-selected-scene-elements"></a><h2 id="inspecting-selected-scene-elements">Inspecting Selected Scene Elements</h2></div>
+<p>When objects are selected from Maya&#39;s user interface (or through scripts), they are added to a global <em>active selection list</em>, accessible via <span class='code'><a href="javascript:void(0)" data-symbol="MGlobal.getActiveSelectionList()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a066fc800bd29827c3707102018d72ad9&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MGlobal.getActiveSelectionList()</a></span>. The <span class='code'><a href="javascript:void(0)" data-symbol="MGlobal" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MGlobal</a></span> static class provides a variety of functions pertaining to the Maya application, logging, object selection, command execution, 3D views (including the scene&#39;s up-axis), and model manipulation.</p>
+<p>The code below illustrates how to obtain the active selection list by populating a <span class='code'><a href="javascript:void(0)" data-symbol="MSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MSelectionList</a></span> object.</p>
+<p>Python API 2.0:</p>
+<div class="codeBlock"><pre class="prettyprint">selectionList = <a href="javascript:void(0)" data-symbol="OpenMaya.MGlobal.getActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a066fc800bd29827c3707102018d72ad9&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MGlobal.getActiveSelectionList</a>()
+</pre></div><p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint">selectionList = <a href="javascript:void(0)" data-symbol="OpenMaya.MSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MSelectionList</a>()
+<a href="javascript:void(0)" data-symbol="OpenMaya.MGlobal.getActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a066fc800bd29827c3707102018d72ad9&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MGlobal.getActiveSelectionList</a>( selectionList )
+</pre></div><p>We use an instance of <span class='code'><a href="javascript:void(0)" data-symbol="MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItSelectionList</a></span> to iterate over the selection list. The constructor of <span class='code'><a href="javascript:void(0)" data-symbol="MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItSelectionList</a></span> allows us to specify a filter to iterate over objects of a specific type. In the following example, our iterator filters for objects compatible with the <span class='code'><a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a></span> function set by specifying the <span class='code'>MFn.kDagNode</span> parameter:</p>
+<div class="codeBlock"><pre class="prettyprint">iterator = <a href="javascript:void(0)" data-symbol="OpenMaya.MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MItSelectionList</a>( selectionList, OpenMaya.MFn.kDagNode )
+</pre></div><p>With the Python API 2.0, you can use a selection list to iterate over the entire scene graph by selecting all nodes in the scene first, and calling <span class='code'>getDagPath()</span> on the iterator for each item. For example:</p>
+<div class="codeBlock"><pre class="prettyprint">dagNodeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnDagNode</a>()
+ 
+cmds.select(all=True)
+selectionList = <a href="javascript:void(0)" data-symbol="OpenMaya.MGlobal.getActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a066fc800bd29827c3707102018d72ad9&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MGlobal.getActiveSelectionList</a>()
+if sList.length()&gt;0:
+    iterator = <a href="javascript:void(0)" data-symbol="OpenMaya.MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MItSelectionList</a>(selectionList, OpenMaya.MFn.kDagNode)
+    while not iterator.isDone():  
+        print iterator.getDagPath()
+        iterator.next()
+</pre></div><div class='section'><a id="example-command-plug-in-printing-dag-paths"></a><h2 id="example-command-plug-in-printing-dag-paths">Example Command Plug-in: Printing DAG Paths</h2></div>
+<p><strong>Filename:</strong> <span class='code'>printPaths.py</span></p>
+<p><strong>Sample Script Editor Output:</strong></p>
+<div class='figure'><img src='developer/images/printPaths.png' title=''></div>
+<p><strong>Program Summary:</strong> The plug-in code below creates the <span class='code'>printPaths()</span> command. The behavior of this command depends on whether or not the <em>active selection list</em> contains DAG objects. If one or more DAG objects have been selected, their respective names, types, DAG paths and compatible function set types are printed to the Script Editor output. Otherwise, the scene graph is printed using each DAG node&#39;s name and type.</p>
+<p>Python API 2.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># pyPrintPaths.py
+
+import sys
+import maya.cmds as cmds
+import maya.api.OpenMaya as OpenMaya
+
+def maya_useNewAPI():
+    &quot;&quot;&quot;
+    The presence of this function tells Maya that the plugin produces, and
+    expects to be passed, objects created using the Maya Python API 2.0.
+    &quot;&quot;&quot;
+    pass
+    
+kPluginCmdName = &#39;pyPrintPaths&#39;
+
+##########################################################
+# Plug-in 
+##########################################################
+class printPathsCmd(<a href="javascript:void(0)" data-symbol="OpenMaya.MPxCommand" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_command.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPxCommand</a>):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        <a href="javascript:void(0)" data-symbol="OpenMaya.MPxCommand.__init__" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_command.html#a0e33c57b86f794759092176b16cc0b44&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MPxCommand.__init__</a>(self)
+        
+    def doIt(self, args):
+        &#39;&#39;&#39; 
+        Print the DAG paths of the selected objects.
+        If no DAG objects are selected, print the entire
+        scene graph.
+        &#39;&#39;&#39;
+        
+        # Populate the <a href="javascript:void(0)" data-symbol="MSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MSelectionList</a> with the currently selected
+        # objects using the static function MGlobal.getActiveSelectionList().
+        
+        #selectionList = <a href="javascript:void(0)" data-symbol="OpenMaya.MSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MSelectionList</a>()
+        selectionList = <a href="javascript:void(0)" data-symbol="OpenMaya.MGlobal.getActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a066fc800bd29827c3707102018d72ad9&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MGlobal.getActiveSelectionList</a>()
+        
+        # This selection list can contain more than just scene elements (DAG nodes),
+        # so we must create an iterator over this selection list (<a href="javascript:void(0)" data-symbol="MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItSelectionList</a>), 
+        # and filter for objects compatible with the <a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a> function set (MFn.kDagNode).
+        iterator = <a href="javascript:void(0)" data-symbol="OpenMaya.MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MItSelectionList</a>( selectionList, OpenMaya.MFn.kDagNode )
+        
+        if iterator.isDone():
+            # Print the whole scene if there are no DAG nodes selected.
+            print &#39;=====================&#39;
+            print &#39; SCENE GRAPH (DAG):  &#39;
+            print &#39;=====================&#39;
+            self.printScene()
+        else:
+            # Print the paths of the selected DAG objects. 
+            print &#39;=======================&#39;
+            print &#39; SELECTED DAG OBJECTS: &#39;
+            print &#39;=======================&#39;
+            self.printSelectedDAGPaths( iterator )
+    
+    def printSelectedDAGPaths(self, pSelectionListIterator):
+        &#39;&#39;&#39; Print the DAG path(s) of the selected object(s). &#39;&#39;&#39;
+        
+        # Create an <a href="javascript:void(0)" data-symbol="MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_path.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath</a> object which will be populated on each iteration.
+        dagPath = <a href="javascript:void(0)" data-symbol="OpenMaya.MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MDagPath</a>()
+        
+        # Obtain a reference to MFnDag function set to print the name of the DAG object
+        dagFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnDagNode</a>()
+        
+        
+        
+        # Perform each iteration.
+        while( not pSelectionListIterator.isDone() ):
+            
+            # Populate our <a href="javascript:void(0)" data-symbol="MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_path.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath</a> object. This will likely provide
+            # us with a Transform node.
+            dagPath = pSelectionListIterator.getDagPath()
+            try:
+                # Attempt to extend the path to the shape node.
+                dagPath.extendToShape()
+            except Exception as e:
+                # Do nothing if this operation fails.
+                pass
+            
+            # Obtain the name of the object.
+            dagObject = dagPath.node()
+            dagFn.setObject( dagObject )
+            name = dagFn.name()
+            
+            # Obtain the compatible function sets for this DAG object.
+            # These values refer to the enumeration values of <a href="javascript:void(0)" data-symbol="MFn" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFn</a>
+            fntypes = []
+            fntypes = <a href="javascript:void(0)" data-symbol="OpenMaya.MGlobal.getFunctionSetList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a89e813abc5d6f2fe65755bb0737aa628&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MGlobal.getFunctionSetList</a>( dagObject )
+            
+            # Print the DAG object information.
+            print name + &#39; (&#39; + dagObject.apiTypeStr + &#39;)&#39;
+            print &#39;\tDAG path: [&#39; + str( dagPath.fullPathName() ) + &#39;]&#39;
+            print &#39;\tCompatible function sets: &#39; + str( fntypes )
+            
+            # Advance to the next item
+            pSelectionListIterator.next()
+        
+        print &#39;=====================&#39;         
+            
+    def printScene(self):
+        &#39;&#39;&#39; Traverse and print the elements in the scene graph (DAG)  &#39;&#39;&#39;
+        
+        # Create a function set which we will re-use throughout our scene graph traversal.
+        dagNodeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnDagNode</a>()
+        
+        # Create an iterator to traverse the scene graph starting at the world node
+        # (the scene&#39;s origin). We use a depth-first traversal, and we do not filter for
+        # any scene elements, as indicated by the &#39;OpenMaya.MFn.kInvalid&#39; parameter.
+        dagIterator = <a href="javascript:void(0)" data-symbol="OpenMaya.MItDag" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MItDag</a>( OpenMaya.MItDag.kDepthFirst,
+                                       OpenMaya.MFn.kInvalid )
+       
+        # Traverse the scene.
+        while( not dagIterator.isDone() ):
+            
+            # Obtain the current item.
+            dagObject = dagIterator.currentItem()
+            depth = dagIterator.depth()
+            
+            # Make our <a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a> function set operate on the current DAG object.
+            dagNodeFn.setObject( dagObject )
+                       
+            # Extract the DAG object&#39;s name.
+            name = dagNodeFn.name()
+            
+            # Generate our output by first incrementing the tabs based on the depth
+            # of the current object. This formats our output nicely.
+            output = &#39;&#39;
+            for i in range( 0, depth ):
+                output += &#39;\t&#39;
+                
+            output += name + &#39; (&#39; + dagObject.apiTypeStr + &#39;)&#39;
+            print output
+            
+            # Increment to the next item.
+            dagIterator.next()
+        
+        print &#39;=====================&#39;
+
+    
+
+
+##########################################################
+# Plug-in initialization.
+##########################################################       
+def cmdCreator():
+    &#39;&#39;&#39; Creates an instance of our command class. &#39;&#39;&#39;
+    return printPathsCmd() 
+    
+def initializePlugin(mobject):
+    &#39;&#39;&#39; Initializes the plug-in.&#39;&#39;&#39;
+    mplugin = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnPlugin" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnPlugin</a>( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &quot;Failed to register command: %s\n&quot; % kPluginCmdName )
+
+def uninitializePlugin(mobject):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnPlugin" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_plugin.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnPlugin</a>( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &quot;Failed to unregister command: %s\n&quot; % kPluginCmdName )
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39;
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &#39;pyPrintPaths.py&#39; )
+cmds.pyPrintPaths()
+ 
+&#39;&#39;&#39;
+</pre></div><p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># printPaths.py
+
+import sys
+import maya.OpenMayaMPx as OpenMayaMPx
+import maya.OpenMaya as OpenMaya
+
+kPluginCmdName = &#39;printPaths&#39;
+
+##########################################################
+# Plug-in 
+##########################################################
+class printPathsCmd(OpenMayaMPx.MPxCommand):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMayaMPx.MPxCommand.__init__(self)
+        
+    def doIt(self, args):
+        &#39;&#39;&#39; 
+        Print the DAG paths of the selected objects.
+        If no DAG objects are selected, print the entire
+        scene graph.
+        &#39;&#39;&#39;
+        
+        # Populate the <a href="javascript:void(0)" data-symbol="MSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MSelectionList</a> with the currently selected
+        # objects using the static function MGlobal.getActiveSelectionList().
+        selectionList = <a href="javascript:void(0)" data-symbol="OpenMaya.MSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MSelectionList</a>()
+        <a href="javascript:void(0)" data-symbol="OpenMaya.MGlobal.getActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a066fc800bd29827c3707102018d72ad9&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MGlobal.getActiveSelectionList</a>( selectionList )
+        
+        # This selection list can contain more than just scene elements (DAG nodes),
+        # so we must create an iterator over this selection list (<a href="javascript:void(0)" data-symbol="MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MItSelectionList</a>), 
+        # and filter for objects compatible with the <a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a> function set (MFn.kDagNode).
+        iterator = <a href="javascript:void(0)" data-symbol="OpenMaya.MItSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_selection_list.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MItSelectionList</a>( selectionList, OpenMaya.MFn.kDagNode )
+        
+        if iterator.isDone():
+            # Print the whole scene if there are no DAG nodes selected.
+            self.printScene()
+        else:
+            # Print the paths of the selected DAG objects. 
+            self.printSelectedDAGPaths( iterator )
+    
+    def printSelectedDAGPaths(self, pSelectionListIterator):
+        &#39;&#39;&#39; Print the DAG path(s) of the selected object(s). &#39;&#39;&#39;
+        
+        # Create an <a href="javascript:void(0)" data-symbol="MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_path.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath</a> object which will be populated on each iteration.
+        dagPath = <a href="javascript:void(0)" data-symbol="OpenMaya.MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MDagPath</a>()
+        
+        # Obtain a reference to MFnDag function set to print the name of the DAG object
+        dagFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnDagNode</a>()
+        
+        print &#39;=======================&#39;
+        print &#39; SELECTED DAG OBJECTS: &#39;
+        print &#39;=======================&#39;
+        
+        # Perform each iteration.
+        while( not pSelectionListIterator.isDone() ):
+            
+            # Populate our <a href="javascript:void(0)" data-symbol="MDagPath" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_path.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_path.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagPath</a> object. This will likely provide
+            # us with a Transform node.
+            pSelectionListIterator.getDagPath( dagPath )
+            try:
+                # Attempt to extend the path to the shape node.
+                dagPath.extendToShape()
+            except Exception as e:
+                # Do nothing if this operation fails.
+                pass
+            
+            # Obtain the name of the object.
+            dagObject = dagPath.node()
+            dagFn.setObject( dagObject )
+            name = dagFn.name()
+            
+            # Obtain the compatible function sets for this DAG object.
+            # These values refer to the enumeration values of <a href="javascript:void(0)" data-symbol="MFn" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFn</a>
+            fntypes = []
+            <a href="javascript:void(0)" data-symbol="OpenMaya.MGlobal.getFunctionSetList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#a89e813abc5d6f2fe65755bb0737aa628&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MGlobal.getFunctionSetList</a>( dagObject, fntypes )
+            
+            # Print the DAG object information.
+            print name + &#39; (&#39; + dagObject.apiTypeStr() + &#39;)&#39;
+            print &#39;\tDAG path: [&#39; + str( dagPath.fullPathName() ) + &#39;]&#39;
+            print &#39;\tCompatible function sets: &#39; + str( fntypes )
+            
+            # Advance to the next item
+            pSelectionListIterator.next()
+        
+        print &#39;=====================&#39;
+            
+            
+    def printScene(self):
+        &#39;&#39;&#39; Traverse and print the elements in the scene graph (DAG)  &#39;&#39;&#39;
+        
+        # Create a function set which we will re-use throughout our scene graph traversal.
+        dagNodeFn = <a href="javascript:void(0)" data-symbol="OpenMaya.MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MFnDagNode</a>()
+        
+        # Create an iterator to traverse the scene graph starting at the world node
+        # (the scene&#39;s origin). We use a depth-first traversal, and we do not filter for
+        # any scene elements, as indicated by the &#39;OpenMaya.MFn.kInvalid&#39; parameter.
+        dagIterator = <a href="javascript:void(0)" data-symbol="OpenMaya.MItDag" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_dag.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">OpenMaya.MItDag</a>( OpenMaya.MItDag.kDepthFirst,
+                                       OpenMaya.MFn.kInvalid )
+
+        print &#39;=====================&#39;
+        print &#39; SCENE GRAPH (DAG):  &#39;
+        print &#39;=====================&#39;
+        
+        # Traverse the scene.
+        while( not dagIterator.isDone() ):
+            
+            # Obtain the current item.
+            dagObject = dagIterator.currentItem()
+            depth = dagIterator.depth()
+            
+            # Make our <a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a> function set operate on the current DAG object.
+            dagNodeFn.setObject( dagObject )
+                       
+            # Extract the DAG object&#39;s name.
+            name = dagNodeFn.name()
+            
+            # Generate our output by first incrementing the tabs based on the depth
+            # of the current object. This formats our output nicely.
+            output = &#39;&#39;
+            for i in range( 0, depth ):
+                output += &#39;\t&#39;
+                
+            output += name + &#39; (&#39; + dagObject.apiTypeStr() + &#39;)&#39;
+            print output
+            
+            # Increment to the next item.
+            dagIterator.next()
+        
+        print &#39;=====================&#39;
+
+
+##########################################################
+# Plug-in initialization.
+##########################################################       
+def cmdCreator():
+    &#39;&#39;&#39; Creates an instance of our command class. &#39;&#39;&#39;
+    return OpenMayaMPx.asMPxPtr( printPathsCmd() )
+    
+def initializePlugin(mobject):
+    &#39;&#39;&#39; Initializes the plug-in.&#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &quot;Failed to register command: %s\n&quot; % kPluginCmdName )
+
+def uninitializePlugin(mobject):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &quot;Failed to unregister command: %s\n&quot; % kPluginCmdName )
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39;
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &#39;printPaths.py&#39; )
+cmds.printPaths()
+ 
+&#39;&#39;&#39;
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

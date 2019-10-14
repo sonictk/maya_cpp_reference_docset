@@ -1,0 +1,7 @@
+Overview-of-selecting-with-the
+MGlobal-setActiveSelectionList-
+MSelectionList
+MItSelectionList
+setObject-method
+MFn-Type-enumeration
+MGlobal-selectByName-

@@ -1,0 +1,74 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Installing the Maya Developer Toolkit on a 64bit Windows Environment</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Installing the Maya Developer Toolkit on a 64bit Windows Environment</h1>
+         </div>
+
+<div class='section'><a id="installing-the-maya-developer-toolkit-on-a-64bit-windows-environment"></a></div>
+<p>The Maya Developer Toolkit, also referred to as the Maya devkit, is used to create custom plug-ins, scripts, and applications that extend Maya&#39;s capabilities.</p>
+<div class='section'><a id="requirements"></a><h2 id="requirements">Requirements</h2></div>
+<p>The Maya devkit requires Visual Studio 2015 Update 3 and CMake.</p>
+<p>CMake is available to download from <a href='https://cmake.org/download/' title='' target='_blank'>https://cmake.org/download/</a>.</p>
+<div class='section'><a id="download-and-set-up-the-developer-toolkit"></a><h2 id="download-and-set-up-the-developer-toolkit">Download and Set Up the Developer Toolkit</h2></div>
+<p>The Maya devkit is available from <a href='https://www.autodesk.com/developmaya' title='' target='_blank'>The Maya Developer Center</a>.</p>
+<p>Scroll to the bottom of the Maya Developer Center page to find the devkit packages. Click on the appropriate link to download the devkit.</p>
+<ol>
+<li><p>Unzip the devkit zip package to your <span class='code'>C:\Users\&lt;Username&gt;\</span> directory, creating the <span class='code'>C:\Users\&lt;Username&gt;\devkitBase\</span> directory.</p></li>
+<li><p>Create the <span class='code'>C:\Users\&lt;Username&gt;\devkitBase\plug-ins</span> directory. This will be where you will keep the plug-ins and scripts you create.</p></li>
+<li><p>Create the <span class='code'>plug-ins</span>, <span class='code'>scripts</span>, and <span class='code'>icons</span> directories under <span class='code'>C:\Users\&lt;Username&gt;\devkitBase\plug-ins</span> .</p></li>
+<li><p>Modify the <span class='code'>C:\Users\&lt;Username&gt;\Documents\maya\2019\Maya.env</span> file to create three path variables that point to your plug-ins and scripts:</p>
+<div class="codeBlock"><pre class="prettyprint">MAYA_PLUG_IN_PATH=C:\Users\&lt;Username&gt;\devkitBase\plug-ins\plug-ins
+MAYA_SCRIPT_PATH=C:\Users\&lt;Username&gt;\devkitBase\plug-ins\scripts
+XBMLANGPATH=C:\Users\&lt;Username&gt;\devkitBase\plug-ins\icons
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> The <span class='code'>C:\Users\&lt;Username&gt;\Documents\maya\2019\</span> directory is created when Maya is launched for the first time. Launch Maya if you do not see this directory.</p>
+
+<p>Maya will use these paths to automatically discover the plug-ins and scripts in these directories. If these paths are not set, you will need to open Maya&#39;s Plug-ins Manager and manually browse to the location of the plug-ins and scripts to load them.</p></li>
+<li><p>Set the <span class='code'>DEVKIT_LOCATION</span> and <span class='code'>MAYA_LOCATION</span> user environment variables.</p>
+<p><span class='code'>DEVKIT_LOCATION</span> must point to the location of your devkit installation.</p>
+<p><span class='code'>MAYA_LOCATION</span> must point to the location of your Maya installation.</p>
+<blockquote>
+<p><strong>Note:</strong> Maya is installed to <span class='code'>C:\Program Files\Autodesk\Maya2019</span> by default. Verify the location of your Maya installation before setting <span class='code'>MAYA_LOCATION</span>.</p>
+</blockquote>
+<p>In the Control Panel, navigate to <strong>Control Panel &gt; System and Security &gt; System</strong> and select <strong>Advanced System Settings</strong> from the left-hand menu. This will open the <strong>System Properties</strong> pop-up menu.</p>
+<p>Click on <strong>Environment Variables</strong></p>
+<div class='figure'><img src='developer/images/WindowsEnvVarPopUp.png' title='alt text'></div>
+<p>In the <strong>Environment Variables</strong> pop-up window, click on <strong>New</strong> under <strong>User Variables</strong>.</p>
+<div class='figure'><img src='developer/images/WindowsSelectNewEnvVar.png' title='alt text'></div>
+<p>Enter <span class='code'>DEVKIT_LOCATION</span> in the <strong>Variable name</strong> field, and enter the path to the devkit in the <strong>Variable value</strong> field.</p>
+<div class='figure'><img src='developer/images/SetDEVKIT_LOCATIONWindowsEnvVar.png' title='alt text'></div>
+<p>Click on <strong>OK</strong>. The new environment value will appear in the list of user variables.</p>
+<div class='figure'><img src='developer/images/DEVKIT_LOCATIONWindowsEnvVarSet.png' title='alt text'></div>
+<p>Repeat this process for <span class='code'>MAYA_LOCATION</span>.</p>
+<div class='figure'><img src='developer/images/MAYA_LOCATIONWindowsEnvVarSet.png' title='alt text'></div></li>
+<li><p>Add the path to the Maya <span class='code'>bin</span> directory to your <span class='code'>Path</span> environment variable.</p>
+<blockquote>
+<p><strong>Note</strong>: The Maya <span class='code'>bin</span> directory is located under the Maya installation directory. It will be located at <span class='code'>C:\Program Files\Autodesk\Maya2019\bin</span> by default. Verify its location before adding it to the <span class='code'>Path</span> variable.</p>
+</blockquote>
+<p>Select the <span class='code'>Path</span> variable and click on <strong>Edit</strong>.</p>
+<div class='figure'><img src='developer/images/SelectPathEnvVar.png' title='alt text'></div>
+<p>In the <strong>Edit environment variables</strong> window, select <strong>New</strong>.</p>
+<div class='figure'><img src='developer/images/WindowsAddNewPath.png' title='alt text'></div>
+<p>Once the path has been added, click on <strong>OK</strong>.</p>
+<div class='figure'><img src='developer/images/WindowsAddedPath.png' title='alt text'></div>
+<p>The window will close. You can now exit your system settings and the Control Panel.</p></li>
+<li><p>Open a new command prompt and verify that your environment variables are set.</p>
+<blockquote>
+<p><strong>Note:</strong> Because changes to environment variables are not applied to command prompts that are already open, it is important that you close open command prompts and open new command prompts before using the devkit.</p>
+</blockquote>
+<p>Use the <span class='code'>echo</span> command to verify that the changes to your environment variables have been applied. For example, to verify that the <span class='code'>MAYA_LOCATION</span> environment variable is set, type <span class='code'>echo %MAYA_LOCATION%</span>.</p>
+<div class='figure'><img src='developer/images/WindowsEchoMayaLocation.png' title='alt text'></div>
+<p>Once this is verified, you can begin using the Maya devkit.</p></li>
+</ol>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

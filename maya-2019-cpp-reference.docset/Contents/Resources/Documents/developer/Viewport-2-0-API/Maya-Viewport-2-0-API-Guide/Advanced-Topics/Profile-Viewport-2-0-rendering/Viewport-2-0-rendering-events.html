@@ -1,0 +1,108 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../../style/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="../../../../../scripts/prettify.js"></script><script src="../../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="generator" content="pandoc"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="../../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Viewport 2.0 rendering events Profiler examples</title>
+   <meta name="topic-subtype" content="C++"></head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$("div#WidgetFloaterPanels,link[href*='microsofttranslator.com'],script[src*='microsofttranslator.com'],script[src*='bing.com']").remove();</script><script type='text/javascript'>$("div#navigation,div#breadcrumbs,div#banner").attr("translate","no"); var mtLocation = ((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages='; yepnope.injectJs(mtLocation, function() {}, { charset:'utf-8', type:'text/javascript' } );</script><script></script><script></script><!-- begin MT -->
+            
+            <div id='MicrosoftTranslatorWidget' class='Dark' style='float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden'></div><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Viewport 2.0 rendering events Profiler examples</h1>
+         </div>
+
+<div class='section'><a id="viewport-2.0-rendering-events-profiler-examples"></a></div>
+<p>Profiler results will naturally vary depending on the scene being examined. The first set of examples examine the basics of UI and non-UI drawing, as well as the list building update events, and the overall sequencing for a scene render.</p>
+<p>The next set of examples discuss the differences in sequencing when a render override or plug-in renderer is active, as well as examine rendering into other viewports such as the UV Editor.</p>
+<div class='section'><a id="empty-scene"></a><h2 id="empty-scene">Empty scene</h2></div>
+<p>The simplest possible case is an empty scene with no UI. A snapshot of the higher level events is shown below. Event granularity increases from the bottom of the graph to the top.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_emptyScene.png' title=''></div>
+<ul>
+<li>Bottom row:
+<ul>
+<li>Vp2SceneRender: Event that encompasses the processing for a scene render</li>
+</ul></li>
+<li>Middle row:
+<ul>
+<li>Vp2UpdateScene: Event that encompasses the main update and rendering events</li>
+</ul></li>
+<li>Top row (left to right)
+<ul>
+<li>Vp2UpdateVisiblityTask: Is relatively minor as there is nothing to draw</li>
+<li>Vp2UpdateUI: UI drawable update</li>
+<li>Vp2BuildRenderLists: Relatively small percentage of time spent, as there is no non-UI to process</li>
+<li>Vp2Draw3dBeautyPass: Makes up the majority of the time spent for drawing</li>
+</ul></li>
+</ul>
+<div class='section'><a id="ui-drawing-grid"></a><h2 id="ui-drawing-grid">UI drawing (grid)</h2></div>
+<p>When the grid is enabled, the profile shows some of the lower level list drawing. At this level, the colorPass event dominates, with rendering of the beauty pass UI taking up most of the time.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_UIDrawing.png' title=''></div>
+<p>The rows above the colorPass event show a finer granularity breakdown that includes the pass semantic named events for drawing opaque UI list elements (opaqueUIList), which includes the grid. The uiGeometry semantic denotes that UI is being rendered. The preUIGeometry semantic indicates that it occurs before the beauty pass. The smaller events marked by the red box are postUIGeometry, which indicates processing of the UI after the beauty pass.</p>
+<p>To examine changes in the UI display, enable all HUD elements:</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_HUD_scene.png' title=''></div>
+<p>This change results in an increase in the percentage of processing time used for the UI update (Vp2UpdateUI) and a decrease for the Vp2BuildRenderLists.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_HUD.png' title=''></div>
+<div class='section'><a id="opaque-object-drawing-spheres"></a><h2 id="opaque-object-drawing-spheres">Opaque object drawing (spheres)</h2></div>
+<p>Conversely, adding a number of non-UI objects, such as a set of meshes as illustrated below, results in the render list building event becoming more pre-dominant. An additional event (opaqueGeometry semantic) also appears, which marks the drawing of the opaque geometry list (sphere).</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_opaque_scene.png' title=''></div>
+<div class='figure'><img src='developer/images/Profiler_VP2_opaqueGeom.png' title=''></div>
+<p>This sequence of events can be seen as a subset of events that occur when using a render override.</p>
+<div class='section'><a id="render-override-examples"></a><h2 id="render-override-examples">Render override examples</h2></div>
+<p>As with the previous set of examples (where an override was not used), this section will start with a simple example, and add complexity for subsequent examples.</p>
+<p>The following render overrides are available as example plug-ins in the Maya Developer Kit.</p>
+<div class='section'><a id="viewoverridesimple"></a><h3 id="viewoverridesimple">viewOverrideSimple</h3></div>
+<p>In this example, the “top” level event is labelled Vp2OverrideRender, which indicates that a render override is being used.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewOverrideSimple.png' title=''></div>
+<p>The graph increases in granularity from the bottom towards the top. The Vp2ExecuteRenderOverride shows the internal execution time while the Vp2*Operation events are performed. This example uses a scene, a HUD (outlined by the red box) and a present operation (Vp2SceneOperation, Vp2HUDOperation, and Vp2PresentOperation, respectively).</p>
+<p>As a color pass is required, an internal scene render event occurs (Vp2SceneRender). The Vp2DrawOperation event label indicates operation rendering, but as the yellow box illustrates, the sequence of events that occur in this graph are nearly identical to those shown in the opaque internal rendering example above.</p>
+<div class='section'><a id="viewimageblitoverride"></a><h3 id="viewimageblitoverride">viewImageBlitOverride</h3></div>
+<p>This example shows a different configuration wherein an external renderer is assumed to have produced an image, and what is required is an image blit, followed by rendering the UI elements in Maya.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewImageBlitOverride_zoomed.png' title=''></div>
+<p>For the update phase, the event outlined in red is the per operation update time (Vp2UpdateOverrideOperation).</p>
+<p>The basic operations are a quad, scene, HUD (outlined by the green box), and present operation (Vp2QuadOperation, Vp2SceneOperation, Vp2HUDOperation, and Vp2PresentOperation).</p>
+<p>The scene operation (outlined by the yellow box) has the same basic event sequence as discussed in the previous two examples.</p>
+<div class='section'><a id="viewrenderoverride"></a><h3 id="viewrenderoverride">viewRenderOverride</h3></div>
+<p>The final render override example examines a mix of quad, scene, user, HUD and presentation operations. The sample scene profiled is as follows:</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewRenderOverride_scene.png' title=''></div>
+<p>The basic rendering operation sequence is as follows:</p>
+<ol>
+<li>Draw a procedurally generated background; in this case, Mandelbrot.</li>
+<li>Draw the non-UI parts of the scene.</li>
+<li>Perform a 2d color intensity threshold function on the rendered image to produce a new image.</li>
+<li>Blur the thresholded image.</li>
+<li>Combine the thresholded image with the scene rendered in step 2. This results in a &quot;glow&quot;.</li>
+<li>Draw the UI parts of the scene.</li>
+<li>Perform a custom user pass for additional UI.</li>
+<li>Draw the 2D HUD.</li>
+<li>Present the final output.</li>
+</ol>
+<p>In the following graph, the relative event times are shown for each operation, and the first quad operation is more expensive than the others. For a simple scene with a few spheres, a fair percentage of the time is spent preparing render item lists as opposed to drawing the procedural Mandelbrot pattern (Vp2DrawOperation outlined in red).</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewRenderOverride.png' title=''></div>
+<p>The following graph shows the events that occur after the background render:</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewRenderOverride_zoomed.png' title=''></div>
+<p>The events outlined in yellow represent an opaque and a transparent scene draw operation. Both have disabled drawing of any UI elements. Note that the time spent for the transparent draw is much smaller than for the opaque due to processing that has already been done for the opaque draw, as well as the fact that there are fewer transparent items.</p>
+<p>The events outlined in red correspond to 4 quad render operations used for thresholding, a vertical blur, a horizontal blur and compositing with the original image.</p>
+<p>The final scene operation events outlined in green represent the drawing of UI elements. A longer event processing time occurs for UI elements (Vp2UpdateUI), such as the wireframe and bounding box drawing, as this event also includes custom UI drawables added in the plug-in.</p>
+<p>The user operation adds more UI drawables. Expanding the events in the Profiler demonstrates that opaque and transparent lists are handled differently, as a “default” front/back culling 2-pass drawing occurs for transparent objects. The opaque list handling is outlined in yellow and the transparency list handling in red. The green box outlines the processing for bitmap drawing. The user operation code itself is a non-operation.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewRenderOverride_uiDrawables.png' title=''></div>
+<p>Lastly, the separated HUD operation is very straight-forward and ends up rendering all items on the HUD list (Vp2HUD). The dark yellow colored event shows operation update processing.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewRenderOverride_HUD.png' title=''></div>
+<div class='section'><a id="non-3d-render-graphs"></a><h2 id="non-3d-render-graphs">Non-3d render graphs</h2></div>
+<div class='section'><a id="overlay-drawing"></a><h3 id="overlay-drawing">Overlay drawing</h3></div>
+<p>The following graph demonstrates the set of events found when profiling the 2d marquee select tool. Overlay drawing is indicated by the “Vp2DrawOverlay” label. The list drawn is the “Vp22d Overlay UI” list. There is no 3d rendering involved.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewRenderOverride_Overlay.png' title=''></div>
+<div class='section'><a id="plug-in-renderer-for-material-viewer"></a><h3 id="plug-in-renderer-for-material-viewer">Plug-in Renderer for Material Viewer</h3></div>
+<p>The following graph demonstrates the profiling results for a simple update of the plug-in renderer used in the Material Viewer of the Hypershade. The majority of time is spent in displaying the rendered image (Vp2DrawPluginRenderer).</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_viewRenderOverride_MatViewer.png' title=''></div>
+<div class='section'><a id="uv-editor"></a><h3 id="uv-editor">UV Editor</h3></div>
+<p>The UV Editor, for the most part, consists of drawing UI. This includes the opaque draw for the background image as well as the wireframe, grid and other decorations. The following sample scene with a checker on a Lambert shader is profiled.</p>
+<div class='figure'><img src='developer/images/Profiler_VP2_UVEditor_scene.png' title=''></div>
+<p>The following graph illustrates events for the background, as well as the UI rendered on top (Vp2Post Render UI). Vp2Post Render UI is an example of an event label of the form Vp2<ui list="" name="">.<p>
+<div class='figure'><img src='developer/images/Profiler_VP2_UVEditor.png' title=''></div>
+<p>When a manipulator is used to perform UV component transformation, additional UI events are added. Vp2Manipulator is another example of an event label of the form Vp2<ui list="" name="">.<p>
+<div class='figure'><img src='developer/images/Profiler_VP2_UVEditor_Manip.png' title=''></div>
+</ui></ui>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

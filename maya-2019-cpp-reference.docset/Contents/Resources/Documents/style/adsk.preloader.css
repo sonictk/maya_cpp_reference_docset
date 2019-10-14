@@ -1,0 +1,21 @@
+html {
+	overflow: hidden;
+}
+		
+.main-preloader {
+	display: none;
+}
+	  
+body.loading .main-preloader {
+	display: block;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	z-index: 1000;
+	background: rgb( 255, 255, 255 )
+	            url('../images/preloader.gif') 
+	            50% 50% 
+	            no-repeat;
+}

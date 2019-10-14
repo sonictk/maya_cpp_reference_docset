@@ -1,0 +1,120 @@
+var topic = "<!-- saved from url=(0024)http://docs.autodesk.com -->\n\
+<html>\n\
+   <head>\n\
+<link href=\"../../style/prettify.css\" type=\"text/css\" rel=\"stylesheet\">\n\
+<script type=\"text/javascript\" src=\"../../scripts/prettify.js\"></script><script src=\"../../scripts/lib/jquery-1.11.1.min.js\" type=\"text/javascript\"></script><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta http-equiv=\"Content-Style-Type\" content=\"text/css\"><meta name=\"generator\" content=\"pandoc\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\" src=\"../../scripts/utils/adsk.redirect.js\"></script>\n\
+      <title>Introduction</title>\n\
+   <meta name=\"topic-subtype\" content=\"C++\"></head>\n\
+   <body height=\"100%\"><div class=\"body_content\" id=\"body-content\"><style type=\"text/css\">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs(\"./scripts/multireflink.js\"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script>$(\"div#WidgetFloaterPanels,link[href*=\'microsofttranslator.com\'],script[src*=\'microsofttranslator.com\'],script[src*=\'bing.com\']\").remove();</script><script type=\'text/javascript\'>$(\"div#navigation,div#breadcrumbs,div#banner\").attr(\"translate\",\"no\"); var mtLocation = ((location && location.href && location.href.indexOf(\'https\') == 0)?\'https://ssl.microsofttranslator.com\':\'http://www.microsofttranslator.com\')+\'/ajax/v3/WidgetV3.ashx?ctf=True&ui=true&settings=Manual&from=en&hidelanguages=\'; yepnope.injectJs(mtLocation, function() {}, { charset:\'utf-8\', type:\'text/javascript\' } );</script><script></script><script></script><!-- begin MT -->\n\
+            \n\
+            <div id=\'MicrosoftTranslatorWidget\' class=\'Dark\' style=\'float:right;z-index:100;color:white;background-color:#bbbbbb;height:58px;overflow:hidden\'></div><div id=\"reflinkdiv\"></div>\n\
+      <div>\n\
+         <div class=\"head\">\n\
+            <h1>Introduction</h1>\n\
+         </div>\n\
+\n\
+<div class=\'section\'><a id=\"introduction\"></a></div>\n\
+<p>Autodesk® Maya® is an open product. This means that anyone outside of Autodesk can change Maya’s existing features or add entirely new features. There are two interfaces with which you can do this in Maya: via Maya commands or via the Maya API. Different language implementations are used for these two interfaces:</p>\n\
+<div class=\'figure\'><img src=\'developer/images/Introduction_API_Commands.png\' title=\'\'></div>\n\
+<p>Maya commands</p>\n\
+<p>Write scripts using either of the following languages:</p>\n\
+<ul>\n\
+<li>MEL™—(Maya Embedded Language) is a powerful and easy to learn scripting language. Used to execute Maya commands. Most common operations can be done using MEL.</li>\n\
+<li>Python™—is a powerful and easy to learn scripting language, which provides an interface to the Maya commands.</li>\n\
+</ul>\n\
+<p>See the <strong>Scripting</strong> section in the <strong>Maya User Guide</strong> for an introduction to MEL and Python, and the <strong>Technical Documentation</strong> section for reference documentation on individual MEL/Python commands.</p>\n\
+<p>Maya API</p>\n\
+<p>Write plug-ins using any of these 3 API&#39;s:</p>\n\
+<ul>\n\
+<li>C++ API (Application Programmer Interface) — provides better performance than MEL or Python. You can add new objects to Maya using the API, and code executes approximately ten times faster than when you perform the same task using MEL. Also, you are able to execute MEL commands from the API.</li>\n\
+<li>Python API — Based on the C++ API and allows the API to be used through the Python scripting language. There are two versions of the Python API: Python API 1.0 and Python API 2.0.</li>\n\
+<li>.NET API — The Maya .NET API is similar to the Maya Python API in that it is generated from the Maya C++ API. Most classes in the .NET API have a corresponding class in the C++ API with the same name and with a similar interface (that is, a set of functions and classes). It is a system that allows developers to create plug-ins and extensions for Maya using Microsoft’s .NET technology.</li>\n\
+</ul>\n\
+<p>The Maya Developer Help provides a technical introduction to the Maya API, Maya Python API and Maya .NET API.</p>\n\
+<div class=\'section\'><a id=\"overview-of-the-maya-api\"></a><h2 id=\"overview-of-the-maya-api\">Overview of the Maya API</h2></div>\n\
+<p>The Maya API is a C++ API that provides internal access to Maya and is available for Windows, Linux, and MacOS. You can use the API to implement two types of code resources: plug-ins which extend the functionality of Maya, or stand-alones such as console applications which can access and manipulate a Maya model.</p>\n\
+<p>Plug-ins can be built in two ways:</p>\n\
+<ul>\n\
+<li>As dynamic or relocatable libraries which are loaded into Maya using standard operating system functionality. Plug-ins work by accessing the symbol space of the host application Maya. Access to the symbol space of other loaded plug-ins is not available.</li>\n\
+<li>As scripts that use the Maya Python API.</li>\n\
+</ul>\n\
+<p>The Maya Developer Kit provides example plug-ins that use the API. Many of the examples are provided with both C++ and Python source codes. To allow both versions to be loaded into Maya at the same time, the convention of prefixing commands and nodes with <em>sp</em> (for example, spHelix) is used for Python API 1.0 plug-ins. You are not required to follow this convention. Python API 2.0 developer kit examples are named with the prefix <em>py</em> (for example, pyBlindDoubleDataCmd).</p>\n\
+<p>When you use dynamic libraries, the operating system that you develop on place various restrictions on how to build and name plug-ins. Compiled plug-ins use the following file extensions for the different platforms:</p>\n\
+<ul>\n\
+<li>Linux: <span class=\'code\'>.so</span></li>\n\
+<li>Windows: <span class=\'code\'>.mll</span></li>\n\
+<li>MacOS: <span class=\'code\'>.bundle</span></li>\n\
+<li>All platforms for Python plug-ins: <span class=\'code\'>.py</span></li>\n\
+</ul>\n\
+<p>Also, the rules for creating plug-ins and API applications differ on the various platforms. See <a href=\'#!/url=./developer/Setting-up-your-build.html\' title=\'\'>Setting up your build environment</a>.</p>\n\
+<p>In addition to the Maya API, a <strong>Bifröst API</strong> is also available and is located in the <span class=\'code\'>bifrostapi</span> folder of your Maya installation directory; for example:</p>\n\
+<div class=\"codeBlock\"><pre class=\"prettyprint\">C:\\Program Files\\Autodesk\\Bifrost\\Maya2018\\sdk\\include\\bifrostfluids\\bifrostapi\n\
+</pre></div><div class=\'section\'><a id=\"the-developer-kit\"></a><h3 id=\"the-developer-kit\">The Developer Kit</h3></div>\n\
+<p>The Developer Kit is available from the <a href=\'#!/url=./developer/Maya-API-introduction/https://www.autodesk.com/developmaya/\' title=\'\'>The Maya Developer Center</a> The Developer Kit contains 3 major components: include files, libraries, and examples.</p>\n\
+<p>The Developer Kit is also referred to as the devkit.</p>\n\
+<div class=\'section\'><a id=\"examples\"></a><h4 id=\"examples\">Examples</h4></div>\n\
+<p>Copy the Developer Kit archive to your local directory and unzip it, and a folder called <span class=\'code\'>devkitBase</span> is created. The Maya API examples are located within the <span class=\'code\'>devkitBase\\devkit</span> directory. This directory contains an <span class=\'code\'>applications</span> and <span class=\'code\'>plug-ins</span> folder. The <span class=\'code\'>applications</span> folder contains examples of stand-alone API applications while the <span class=\'code\'>plug-ins</span> folder contains Maya API plug-in examples. The method for building stand-alone or plug-ins varies on the different platforms. In most cases, <span class=\'code\'>Makefiles</span> are used. On Windows and MacOS, we have provided IDE solutions for building most of our examples. See <a href=\'#!/url=./developer/Setting-up-your-build.html\' title=\'\'>Setting up your build environment</a> for information on how to install and set up the Maya Developer Kit.</p>\n\
+<p>Both Python API 1.0 and API 2.0 examples are located in the <span class=\'code\'>devkitBase\\devkit\\plug-ins\\scripted</span> folder. Python API 2.0 examples are identified with a prefix <span class=\'code\'>py</span> in their filenames.</p>\n\
+<p>We do not provide the compiled plug-in and applications binaries on the Maya installation DVD. You must build these yourself. Building the Developer Kit examples is described in more detail in the <a href=\'#!/url=./developer/Setting-up-your-build.html\' title=\'\'>Setting up your build environment</a>.</p>\n\
+<div class=\'section\'><a id=\"include-files\"></a><h4 id=\"include-files\">Include Files</h4></div>\n\
+<p>Header files are located in the <span class=\'code\'>include/maya</span> directory. Maya header files normally start with the <span class=\'code\'>M</span> prefix. For certain types of header files the two letters following the M indicate the header file type: <span class=\'code\'>Fn</span> for function set, <span class=\'code\'>It</span> for iterator, <span class=\'code\'>Px</span> for proxy class. These naming conventions will be described in more detail later.</p>\n\
+<div class=\'section\'><a id=\"tinyxml\"></a><h4 id=\"tinyxml\">TinyXML</h4></div>\n\
+<p>Maya currently uses version 2.5.3 of TinyXML.</p>\n\
+<div class=\'section\'><a id=\"libraries\"></a><h4 id=\"libraries\">Libraries</h4></div>\n\
+<p>The API is packaged as a set of libraries that correspond to the different functional areas of Maya. These libraries are:</p>\n\
+<p>OpenMaya—Contains fundamental classes for defining nodes and commands and for assembling them into a plug-in.</p>\n\
+<p>OpenMayaUI—Contains classes necessary for creating new user interface elements such as manipulators, contexts, and locators.</p>\n\
+<p>OpenMayaAnim—Contains classes for animation, including deformers and inverse kinematics.</p>\n\
+<p>OpenMayaFX—Contains classes for Autodesk® Dynamics™.</p>\n\
+<p>OpenMayaRender—Contains classes for performing rendering functions.</p>\n\
+<p>These libraries are shared libraries so that many plug-ins can use them at the same time. The libraries are located in the <span class=\'code\'>lib</span> directory.</p>\n\
+<div class=\'section\'><a id=\"plug-ins-versus-scripts\"></a><h2 id=\"plug-ins-versus-scripts\">Plug-ins versus scripts</h2></div>\n\
+<p>As described above, plug-ins can extend the functionality of Maya. For example, they can do the following:</p>\n\
+<ul>\n\
+<li>Add a new node type to Maya.</li>\n\
+<li>Add a new command to Maya.</li>\n\
+<li>Add more detailed callbacks. (More detailed than scriptJob events/conditions. See scriptJob MEL/Python command reference documentation in the Technical Documentation section.)</li>\n\
+<li>Add new rendering pipelines, and so forth.</li>\n\
+</ul>\n\
+<div class=\'section\'><a id=\"c-versus-python-plug-ins\"></a><h3 id=\"c-versus-python-plug-ins\">C++ versus Python plug-ins</h3></div>\n\
+<p>Compiled C++ plug-ins are both platform and Maya version specific. You must compile a separate plug-in per version, per platform. Compiled C++ plug-ins also use different file extensions for different platforms.</p>\n\
+<p>A Python plug-in is platform independent, and if the APIs that it uses are consistent between Maya versions, then it is also version independent.</p>\n\
+<p>C++ plug-ins can be faster than Python plug-ins; therefore, for performance critical plug-ins, you may wish to write a C++ plug-in. In general, a Python plug-in achieves about 70-80% of the speed of a compiled C++ plug-in.</p>\n\
+<div class=\'section\'><a id=\"python-plug-ins-versus-scripts\"></a><h3 id=\"python-plug-ins-versus-scripts\">Python plug-ins versus scripts</h3></div>\n\
+<p>As described earlier, there are two interfaces with which you can perform operations in Maya: via Maya commands or via the Maya API. In addition, you can use Python for both of these interfaces. You can use the Python API to create a plug-in, or merely to script. You only need to define a Python plug-in if you plan to extend Maya (for example, to add a new node type, or to add a new command type, and so forth). Otherwise you can use the API in your scripts as you would the <span class=\'code\'>maya.cmds</span> module. See the <span class=\'code\'>widgetHierarchy.py</span> example in the <span class=\'code\'>devkitBase\\devkit\\pythonScripts</span> folder the Maya Developer Kit. This example imports the <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"OpenMayaUI\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;py_ref/namespace_open_maya_u_i.html&quot;,&quot;title&quot;:&quot;Maya Python API 2.0 Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">OpenMayaUI</a></span> module and calls methods in the <span class=\'code\'><a href=\"javascript:void(0)\" data-symbol=\"MQtUtil\" class=\"a_multireflink\" data-reflinkdata=\"[{&quot;path&quot;:&quot;cpp_ref/class_m_qt_util.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]\">MQtUtil</a></span> class. It is not a plug-in, and you can run the script directly using the <span class=\'code\'>execfile</span> Python command.</p>\n\
+<div class=\'section\'><a id=\"maya-commands-versus-maya-api\"></a><h3 id=\"maya-commands-versus-maya-api\">Maya commands versus Maya API</h3></div>\n\
+<p>The following are a couple of factors you may like to consider when deciding between whether to write a script or a plug-in, and whether to perform operations using the API or Maya commands:</p>\n\
+<ul>\n\
+<li><p>Often, the Maya API is faster than Maya commands. The Maya API provides lower level access to Maya, and therefore more wide reaching access to Maya in general. Tasks such as iterating over a graph with filters is easier to execute via the Maya API than it is via Maya commands. In addition, if you were, for example, programming a paint tool that operates on many vertices simultaneously, it could be beneficial to use the Maya API for heavier datasets. If the speed in the Python implementation is not sufficient, you could then port the plug-in to C++.</p></li>\n\
+<li><p>To decide between writing a Python plug-in or a Python script (whether using API or commands), consider whether or not you need to extend Maya, or if you want the ability to load/unload your script.</p></li>\n\
+</ul>\n\
+<div class=\'section\'><a id=\"documentation\"></a><h2 id=\"documentation\">Documentation</h2></div>\n\
+<p>The following documentation components are provided:</p>\n\
+<ul>\n\
+<li>This technical introduction to the Maya API</li>\n\
+<li>The API class descriptions</li>\n\
+</ul>\n\
+<p>This technical introduction to the Maya API includes a section for the Maya Python API and Maya .NET API. In addition, the C++ API Reference class description documentation can be used for both C++ and Python API development as it includes information for both of these development approaches. Maya Python API 2.0 Reference documentation is also available.</p>\n\
+<p>The Maya .NET API ships with Visual Studio integrated documentation generated from the C++ reference documentation. You can also obtain a <span class=\'code\'>.chm</span> of the reference documentation at <a href=\'http://www.autodesk.com/me-sdk-docs\' title=\'\' target=\'_blank\'>http://www.autodesk.com/me-sdk-docs</a>.</p>\n\
+<p>Related documentation includes:</p>\n\
+<ul>\n\
+<li>The Scripting section in the Maya User Guide. It consists of a MEL and Expressions section and a Python section.</li>\n\
+<li>The Technical Documentation section. It includes the MEL command reference and the Python command reference.</li>\n\
+<li>The Maya Nodes and Attributes reference in the Technical Documentation section. Working with Maya nodes is a normal part of programming the Maya API.</li>\n\
+<li>The <a href=\'#!/url=./developer/What-s-New-What-s-Changed-.html\' title=\'\'>What&#39;s New / What&#39;s Changed?</a> information provided with each release.</li>\n\
+<li>The Release Notes that provide items of interest for developers.</li>\n\
+</ul>\n\
+<p>You can access the first four items from the Maya Help. Release notes can be obtained from <a href=\'http://www.autodesk.com/maya-releasenotes\' title=\'\' target=\'_blank\'>http://www.autodesk.com/maya-releasenotes</a>.</p>\n\
+<div class=\'section\'><a id=\"other-requirements\"></a><h2 id=\"other-requirements\">Other Requirements</h2></div>\n\
+<p>Since the Maya API is a C++ API, it is best to have an understanding of the following:</p>\n\
+<ul>\n\
+<li>virtual functions</li>\n\
+<li>class inheritance (including multiple)</li>\n\
+<li>stream classes</li>\n\
+<li>operator methods (there are many operator methods in the Maya API)</li>\n\
+</ul>\n\
+<p>In addition, when building a plug-in or a standalone, you must use the compiler and linker that is recommended for the release. This information can be found in the <a href=\'#!/url=./developer/What-s-New-What-s-Changed-.html\' title=\'\'>What&#39;s New / What&#39;s Changed?</a> or in <a href=\'#!/url=./developer/Setting-up-your-build.html\' title=\'\'>Setting up your build environment</a> of the documentation.</p>\n\
+      <div class=\"footer-block\"><a href=\"../html/ac.cmtdialog.htm\" class=\"comments-anchor\" target=\"_blank\"><span class=\"comments-link\">Please send us your comment about this page</span></a></div></div>\n\
+   </div></body>\n\
+</html>\n\
+";
