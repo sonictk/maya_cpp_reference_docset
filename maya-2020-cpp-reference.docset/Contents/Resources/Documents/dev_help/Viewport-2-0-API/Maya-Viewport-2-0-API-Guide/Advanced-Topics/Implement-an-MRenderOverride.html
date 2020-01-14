@@ -1,0 +1,133 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Implement an MRenderOverride</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Implement an MRenderOverride</h1>
+         </div>
+
+<div class='section'><a id="implement-an-mrenderoverride"></a></div>
+<p>You can create a plug-in with an <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span> to completely replace the rendering pipeline. The plug-in can use standard operations (or passes) in the pipeline, as well as add other custom operations. To do this, the plug-in should first obtain the operation set that represents the current pipeline, then modify it by adding, inserting, or removing operations.</p>
+<p>The standard operations are controlled by a variety of settings and filters that determine how the pass operates. This provides ultimate control over the viewport, and provides a few conveniences for filtering the objects displayed, the display modes used, the material overrides, the post processes, and so forth.</p>
+<p>The advantage of creating an <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span> plug-in by populating the operation list is that the plug-in does not need to include target creation or management in its implementation. This is handled automatically by the system and pushed down to the operation level.</p>
+<p>The drawback to using an <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span> is that it must override the entire pipeline, and any customization to the pipeline must appear as a whole new renderer. For more information about <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span>, see <a href='#!/url=./dev_help/Viewport-2-0-API/Overview-of-the-Viewport-2-0-API/Rendering-Overrides.html' title=''>Rendering Overrides</a>.</p>
+<div class='section'><a id="classes-and-interfaces"></a><h2 id="classes-and-interfaces">Classes and interfaces</h2></div>
+<p>The following classes and interfaces enable you to create an <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span> as outlined above.</p>
+<p>The <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperationList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperationList</a></span> class holds and takes ownership of a collection of <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperation" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperation</a></span>s. This class has standard list methods for indexing, adding, removing, and replacing operations in the list, and also includes methods to take ownership of operations from a list.</p>
+<p>The <span class='code'><a href="javascript:void(0)" data-symbol="MRenderer::getStandardViewportOperations()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_renderer.html#a592e0903ce501733b7ff820aa2477774&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderer::getStandardViewportOperations()</a></span> interface allows you to fill a list with the standard viewport operations used for non-override drawing.</p>
+<p>The <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span> protected member:</p>
+<div class="codeBlock"><pre class="prettyprint">MRenderOperationList mOperations
+</pre></div><p>is the operation list for this override.</p>
+<div class='section'><a id="to-obtain-the-list-of-standard-operations"></a><h2 id="to-obtain-the-list-of-standard-operations">To obtain the list of standard operations</h2></div>
+<p>A class deriving from <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span> simply needs to populate the list with operations, either by getting the standard list of operations, by adding their own operations, or a combination of both.</p>
+<div class="codeBlock"><pre class="prettyprint">//Get the standard list of operations
+<a href="javascript:void(0)" data-symbol="MHWRender::MRenderer::theRenderer" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_renderer.html#a4678a72ac6959ed21d422d27928d0343&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MHWRender::MRenderer::theRenderer</a>()-&gt;getStandardViewportOperations(mOperations);
+
+//Create a custom quad render operation 
+PostQuadRender* swirlOp = new PostQuadRender( kSwirlPassName, &quot;FilterSwirl&quot;, &quot;&quot; );
+swirlOp-&gt;setEnabled(false); // swirl is disabled by default
+
+//Insert swirlOp in the pipeline after the kStandardSceneName operation
+mOperations.insertAfter(MHWRender::MRenderOperation::kStandardSceneName, swirlOp);
+
+</pre></div><p>A few standard operation names have been predefined for ease of use. These names can be used to locate operations in a standard operation list.</p>
+<div class="codeBlock"><pre class="prettyprint">static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kStandardBackgroundName;  
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kStandardSceneName;    
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kStandardHUDName;
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kStandardPresentName;
+</pre></div><div class='section'><a id="managing-targets-with-operations"></a><h2 id="managing-targets-with-operations">Managing targets with operations</h2></div>
+<p>Target management is handled at the operation level to allow operations to be more autonomous and be self-describing when added to a larger operation list.</p>
+<p>A class deriving from <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperation" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperation</a></span> must do the following to complete its implementation:</p>
+<ol>
+<li>Declare the names of the inputs it requires, and declare the names of the output targets it produces.</li>
+<li>Provide an <span class='code'><a href="javascript:void(0)" data-symbol="MRenderTargetDescription" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_target_description.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_target_description.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderTargetDescription</a></span> for its named inputs.</li>
+<li>Specify the start index and number of targets it will write to.</li>
+</ol>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperation" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperation</a></span> has two protected member variables that allow you to perform the first step above:</p>
+<ul>
+<li><p><span class='code'><a href="javascript:void(0)" data-symbol="MStringArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string_array.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MStringArray</a> mInputTargetNames</span></p></li>
+<li><p><span class='code'><a href="javascript:void(0)" data-symbol="MStringArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string_array.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MStringArray</a> mOutputTargetNames</span></p></li>
+</ul>
+<p>To declare the inputs and outputs, an operation must add the name (that is, the semantic) of the targets it want to use. A few common target types have been predefined in the <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperation" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperation</a></span> class:</p>
+<div class="codeBlock"><pre class="prettyprint">static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kColorTargetName;  
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kDepthTargetName;
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kAuxiliaryTargetName;
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kAuxiliaryTarget2Name;
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kAuxiliaryTarget3Name;
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kAuxiliaryTarget4Name;
+static const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> kAuxiliaryDepthTargetName;
+<blockquote>
+</blockquote></pre></div><p><strong>Tip:</strong> When writing post effects, auxiliary targets are required when you need to read from the current rendered result and write out new results. Because you cannot simultaneously read and write to the same buffer, you must create a new render target that is similar to the target used in previous passes. An auxiliary target should have the same size and format as the standard color target. After they are written to, the auxiliary target inputs are returned as the new standard color target to be read from or appended to in additional post passes. The previous standard color target should be returned as an auxiliary target so that it can be reused by other post effects that require an additional auxiliary target.</p>
+
+<p>By default, all <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperation" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperation</a></span>s use the standard color and depth target names for their inputs, so that they connect automatically to other operations in the list that write to or read from the standard targets. This is all that is required for operations that simply write to the currently active target, and is implemented for you in the base class.</p>
+<p>For example, the following code snippet declares two default inputs and two default outputs:</p>
+<div class="codeBlock"><pre class="prettyprint">mInputTargetNames.append(kColorTargetName);
+mInputTargetNames.append(kDepthTargetName);
+mOutputTargetNames.append(kColorTargetName);
+mOutputTargetNames.append(kDepthTargetName);
+</pre></div><p><span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperation" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperation</a></span> classes that want to read from or write to multiple targets can override the default inputs and outputs by clearing the lists and adding their own.</p>
+<div class="codeBlock"><pre class="prettyprint">mInputTargetNames.append(kAuxiliaryTargetName);
+mInputTargetNames.append(kAuxiliaryDepthTargetName);
+mInputTargetNames.append(“sceneTarget”);
+mInputTargetNames.append(“sceneDepthTarget”);
+
+mOutputTargetNames.append(kColorTargetName);
+mOutputTargetNames.append(kDepthTargetName);
+</pre></div><p>They can then supply descriptions for the named input targets in their custom passes. In the following example, the descriptions are copied from the auxiliary targets in order for the multi-sample anti-aliasing properties and size to match.</p>
+<div class="codeBlock"><pre class="prettyprint">bool PostQuadRender::getInputTargetDescription(const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a>&amp; name, 
+<a href="javascript:void(0)" data-symbol="MHWRender::MRenderTargetDescription" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_target_description.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MHWRender::MRenderTargetDescription</a>&amp; description) 
+{ 
+    if (name == “sceneTarget”)
+    {
+        <a href="javascript:void(0)" data-symbol="MHWRender::MRenderTarget" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_target.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MHWRender::MRenderTarget</a>* outTarget = getInputTarget(kAuxiliaryTargetName);
+        if (outTarget)
+            outTarget-&gt;targetDescription(description);
+        description.setName(&quot;_post_target_1&quot;);
+        return true;
+    }
+    else if (name == “sceneDepthTarget”)   
+    {
+        <a href="javascript:void(0)" data-symbol="MHWRender::MRenderTarget" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_target.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MHWRender::MRenderTarget</a>* outTarget = getInputTarget(kAuxiliaryDepthTargetName);
+        if (outTarget)
+            outTarget-&gt;targetDescription(description);
+        description.setName(&quot;_post_target_depth&quot;);
+        return true;
+    }
+    return false;
+}
+</pre></div><p>An <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOverride</a></span> plug-in can then connect operations by ensuring that the names match.</p>
+<div class="codeBlock"><pre class="prettyprint">//Get MRenderOperationList of the standard viewport operations
+<a href="javascript:void(0)" data-symbol="MHWRender::MRenderer::theRenderer" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_renderer.html#a4678a72ac6959ed21d422d27928d0343&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MHWRender::MRenderer::theRenderer</a>()-&gt;getStandardViewportOperations(mOperations);
+
+//Get the index of the operation kStandardSceneName
+int sceneOpID = mOperations.indexOf(MHWRender::MRenderOperation::kStandardSceneName);
+
+//Set sceneOp to point to the kStandardSceneName operation in the MRenderOperationList
+MRenderOperation* sceneOp = mOperations[sceneOpID];
+
+//Rename the output target of the kStandardSceneName operation from kColorTargetName to sceneTarget
+sceneOp-&gt;renameOutputTarget(MHWRender::MRenderOperation::kColorTargetName, “sceneTarget”);
+
+//Create the new MRenderOperation swirlOp
+PostQuadRender* swirlOp = new PostQuadRender( kSwirlPassName, &quot;FilterSwirl&quot;, &quot;&quot; );
+
+// Insert swirlOp after the operation named kStandardSceneName
+// Because swirlOp has an input named sceneTarget, and you have renamed the output target
+// of kStandardSceneName to sceneTarget, the two operations will share the same target.
+// The target is constructed from the description provided by the swirl
+// operation and is the target that the scene operation should render to.
+mOperations.insertAfter(MHWRender::MRenderOperation::kStandardSceneName, swirlOp);
+</pre></div><p>To specify the start index and number of targets an <span class='code'><a href="javascript:void(0)" data-symbol="MRenderOperation" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_operation.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderOperation</a></span> should write to, do as follows:</p>
+<div class="codeBlock"><pre class="prettyprint">int PostQuadRender::writableTargets(unsigned int&amp; count)
+{
+    count = 2;  
+    return 0;
+}
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

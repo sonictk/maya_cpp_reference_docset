@@ -1,0 +1,44 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../scripts/prettify.js"></script><script src="../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../scripts/utils/adsk.redirect.js"></script>
+      <title>Loading Plug-ins Into Maya</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Loading Plug-ins Into Maya</h1>
+         </div>
+
+<div class='section'><a id="loading-plug-ins-into-maya"></a></div>
+<p>If you set the <span class='code'>MAYA_PLUG_IN_PATH</span> in your <span class='code'>Maya.env</span> file as described in <a href='#!/url=./dev_help/Setting-up-your-build.html' title=''>Setting up your build environment</a>, plug-ins in the top-level of that directory will be loaded into Maya automatically. However, plug-ins that are not in that directory&#39;s top-level will need to be loaded manually.</p>
+<p>To load a plug-in into Maya,</p>
+<ol>
+<li><p>Open the Plug-in Manager. Click on <strong>Windows &gt; Settings/Preferences &gt; Plug-in Manager</strong> to open the Plug-in Manager.</p>
+<div class='figure'><img src='dev_help/images/SelectPlugInManagerFromMenu.png' title='alt text' /></div></li>
+<li><p>Click on <strong>Browse</strong> in the Plug-in Manager.</p>
+<div class='figure'><img src='dev_help/images/PlugInManagerBrowseWindows.png' title='alt text' /></div></li>
+<li><p>Navigate to the location of the plug-in and double-click on it.</p>
+<p>On Windows, samples are built to the <span class='code'>build\Debug\</span> directory under the sample name. Windows plug-ins have the <span class='code'>mll</span> suffix. For example, to load the Windows circleNode plug-in, navigate to <span class='code'>circleNode\build\Debug\</span> and select <span class='code'>circleNode.mll</span>.</p>
+<div class='figure'><img src='dev_help/images/PlugInManagerLoadWindows.png' title='alt text' /></div>
+<p>On Linux, samples are built to the <span class='code'>build</span> directory under the sample name. Linux plug-ins have the <span class='code'>so</span> suffix. For example, to load the Linux circleNode plug-in, navigate <span class='code'>circleNode/build/</span> and select <span class='code'>circleNode.so</span>.</p>
+<div class='figure'><img src='dev_help/images/PlugInManagerLoadLinux.png' title='alt text' /></div>
+<p>On MacOS, samples are built to <span class='code'>build/Debug/</span> if they were built with XCode. Otherwise, the sample plug-in will be located in the top level of the <span class='code'>build</span> directory. MacOS plug-ins have the <span class='code'>bundle</span> suffix. For example, to load the MacOS circleNode plug-in built with Xcode, navigate to <span class='code'>circleNode/build/Debug/</span> and select <span class='code'>circleNode.bundle</span>.</p>
+<div class='figure'><img src='dev_help/images/PlugInManagerLoadMac.png' title='alt text' /></div></li>
+<li><p>Plug-ins added manually will not be loaded into Maya automatically. They need to be reloaded into Maya every time Maya restarts.</p></li>
+</ol>
+<p>If you want your plug-in to be loaded automatically, select its <strong>Auto load</strong> option.</p>
+<div class="codeBlock"><pre class="prettyprint">![alt text](images/PlugInManagerInfoSelectAutoLoad.png)
+</pre></div><ol>
+<li>To find out how to use the plug-in, click on the plug-in&#39;s <strong>i</strong> icon in Plug-in Manager.</li>
+</ol>
+<div class='figure'><img src='dev_help/images/PlugInManagerInfoButton.png' title='alt text' /></div>
+<p>This will bring up the plug-in&#39;s information, including whether it is a dependency graph node or a command, and for which version of the API it was built.</p>
+<blockquote>
+<p><strong>Important:</strong> Plug-ins need to be rebuilt for each new version of Maya and its API.</p>
+</blockquote>
+<div class='figure'><img src='dev_help/images/PlugInInfo.png' title='alt text' /></div>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

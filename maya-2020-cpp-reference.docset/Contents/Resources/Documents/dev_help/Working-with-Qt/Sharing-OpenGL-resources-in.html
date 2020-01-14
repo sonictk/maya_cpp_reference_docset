@@ -1,0 +1,38 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Sharing OpenGL resources in QGLWidgets with Viewport 2.0</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Sharing OpenGL resources in QGLWidgets with Viewport 2.0</h1>
+         </div>
+
+<div class='section'><a id="sharing-opengl-resources-in-qglwidgets-with-viewport-2.0"></a></div>
+<div class='figure'><img src='dev_help/images/Updated%20_Odd-to-Even.png' title='' /></div>
+<p>You can directly access a QGLWidget whose context is shared with other Viewport 2.0 resources. This is useful in the case when your plug-in creates OpenGL resources for it&#39;s own QGLWidget and you want it to share the plug-in&#39;s OpenGL resources with Viewport 2.0.</p>
+<div class='section'><a id="using-python"></a><h2 id="using-python">Using Python</h2></div>
+<div class="codeBlock"><pre class="prettyprint">import PySide2
+import PySide2.QtOpenGL
+import PySide2.QtWidgets
+import shiboken2
+# Get the property from the application (as a QWidget)
+widget = QtWidgets.qApp.property(&quot;mayaSharedQGLWidget&quot;)
+# Get the raw C++ pointer
+ptr = long(shiboken2.getCppPointer(widget)[0])
+# Downcast to QGLWidget
+glWidget = shiboken2.wrapInstance(ptr, PySide2.QtOpenGL.QGLWidget)
+# Print the format of the current rendering context
+print glWidget.format()
+</pre></div><div class='section'><a id="using-c"></a><h2 id="using-c">Using C++</h2></div>
+<div class="codeBlock"><pre class="prettyprint">QVariant v = qApp-&gt;property(&quot;mayaSharedQGLWidget&quot;);
+if (v.isValid())
+{
+            QGLWidget glWidget = dynamic_cast&lt;QGLWidget*&gt;(v.value&lt;QWidget*&gt;());
+}
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

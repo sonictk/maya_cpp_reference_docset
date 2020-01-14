@@ -1,0 +1,641 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Example: Creating a Scene</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Example: Creating a Scene</h1>
+         </div>
+
+<div class='section'><a id="example-creating-a-scene"></a></div>
+<div class='section'><a id="example-creating-a-scene-1"></a><h2 id="example-creating-a-scene-1">Example: Creating a Scene</h2></div>
+<p><strong>Filename:</strong> <span class='code'>sampleScene.py</span></p>
+<p><strong>Sample Output:</strong></p>
+<div class='figure'><img src='dev_help/images/sampleScene_75%.png' title='' /></div>
+<p><strong>Program Summary:</strong> The plug-in code below creates a new command, <span class='code'>cmds.mySampleScene()</span>, by inheriting from the <span class='code'>OpenMayaMPx.MPxCommand</span> class. Running this command creates a red-shaded mesh whose polygons look like a simple house, creates a spotlight whose aiming direction is constrained to look at the house, and creates a new camera to define a new view point. Lastly, the scene graph (DAG) is traversed and printed to the Script Editor output window. Activate the viewer&#39;s &quot;smooth shading&quot;, &quot;wireframe on shaded&quot;, and &quot;use all lights&quot; buttons to match the sample output above.</p>
+<p>Python API 2.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># pySampleScene.py
+
+import sys
+import maya.api.OpenMaya as OpenMaya
+import maya.api.OpenMayaUI as OpenMayaUI
+
+def maya_useNewAPI():
+    &quot;&quot;&quot;
+    The presence of this function tells Maya that the plugin produces, and
+    expects to be passed, objects created using the Maya Python API 2.0.
+    &quot;&quot;&quot;
+    pass
+
+kPluginCmdName = &quot;pySampleScene&quot;
+
+# Vertices used to define a planar house shape within a single <a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnMesh</a> object:
+#
+#              [4]
+#             /   \
+#            /     \
+#          [3]-----[2]        where the bracketed numbers correspond
+#           |       |         to the vertex index.
+#           |       |
+#          [0]-----[1]
+#
+vertices = [ # Square plane:
+             OpenMaya.MPoint( -2, -2, 0), # index 0: bottom left corner
+             OpenMaya.MPoint(  2, -2, 0), # index 1: bottom right corner
+             OpenMaya.MPoint(  2,  2, 0), # index 2: top right corner
+             OpenMaya.MPoint( -2,  2, 0), # index 3: top left corner
+             # Vertex used to define the roof:
+             OpenMaya.MPoint(  0,  5, 0)  # index 4: tip of the roof.
+            ]
+   
+
+# Count the number of times this command has been instantiated.
+commandInstanceCounter = 1
+
+##########################################################
+# Plug-in 
+##########################################################
+class SampleSceneCommand(OpenMaya.MPxCommand):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMaya.MPxCommand.__init__(self)
+        
+        # We keep track of the number of times the command was instantiated, and we label this particular
+        # instance of the command with it. This will help us name the objects manipulated by this particular instance 
+        # of the command.
+        global commandInstanceCounter
+        self.commandExecution = commandInstanceCounter
+        commandInstanceCounter = commandInstanceCounter + 1
+    
+    
+    def doIt(self, args):
+        &#39;&#39;&#39; Set up the objects which the command will use. &#39;&#39;&#39;
+        
+        # This <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> object will allow us to undo and redo the creation of DAG nodes in our command.
+        self.dagModifier = OpenMaya.MDagModifier()
+        
+        # We first create the required MObjects using the MDagModifer assigned to self.dagModifier.
+        #   (!) The &#39;transform&#39;, &#39;spotLight&#39; and &#39;camera&#39; strings are recognized by the <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> as valid node type names. 
+        #       For a complete list of node type names, consult the Maya User Guide  &gt; Technical Documentation &gt; Nodes section.
+        self.meshTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.meshShapeObj = self.createHouseMesh() # This function will create a mesh under the self.meshTransformObj node.
+        
+        self.lightTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.lightShapeObj = self.dagModifier.createNode( &#39;spotLight&#39;, self.lightTransformObj )
+        
+        self.cameraTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.cameraShapeObj = self.dagModifier.createNode( &#39;camera&#39;, self.cameraTransformObj )
+        
+        # Create the shading node.
+        self.shadingNodeName = &#39;myMaterial&#39; + str( self.commandExecution )
+        self.dagModifier.commandToExecute( &#39;shadingNode -asShader -name &#39; + self.shadingNodeName + &#39; phong;&#39; )
+        self.dagModifier.commandToExecute( &#39;setAttr &quot;&#39; + self.shadingNodeName + &#39;.color&quot; -type double3 0.7 0.2 0.15;&#39;)
+        
+        # Create the shading group.
+        self.shadingGroupName = &#39;myShadingGroup&#39; + str( self.commandExecution )
+        self.dagModifier.commandToExecute( &#39;sets -renderable true -noSurfaceShader true -empty -name &#39; + self.shadingGroupName + &#39;;&#39;)
+        self.dagModifier.commandToExecute( &#39;connectAttr -f &#39; + self.shadingNodeName + &#39;.outColor &#39; + self.shadingGroupName + &#39;.surfaceShader;&#39; )
+        
+        # Invoke the command&#39;s redoIt() function to actually create and manipulate these objects.
+        self.redoIt()
+    
+    
+    def createHouseMesh(self):
+        &#39;&#39;&#39; Create a house mesh. &#39;&#39;&#39;
+        global vertices # we want to access the list of vertices defined as a static variable  
+
+        # Create the function set for operating on the mesh
+        meshFn = OpenMaya.MFnMesh( )
+
+        # Create a mesh and set this function set to operate on it.
+        # The mesh consists of 2 polygons: a square plane and a triangle roof. The second parameter gives the number of vertices for each.
+        # The third parameter is the sequence of vertices, partitioned according to the second parameter.
+        # Therefore, the 4 vertices numbered 0, 1, 2, 3 are used for the square, and the 3 vertices 2, 4, 3 for the triangle.
+        # The mesh is parented under the transform node.
+        meshShapeObj = meshFn.create(vertices, (4,3), (0,1,2,3,2,4,3), parent=self.meshTransformObj)
+                
+        # Set the name of the mesh.
+        meshFn.setName( &#39;myMeshShape&#39; + str( self.commandExecution ) )
+        
+        return meshShapeObj
+        
+    
+    def redoIt(self):
+        &#39;&#39;&#39; 
+        Manipulate the objects created in doIt(). This function is also called by Maya when
+        the user re-does the operation after undoing it.
+        &#39;&#39;&#39;
+        
+        # Perform the operations enqueued within our reference to MDagModifier.
+        self.dagModifier.doIt()
+        
+        #=======================================
+        # MESH MANIPULATION
+        #=======================================
+        # Set the translation value of the mesh&#39;s transform node, as well as its name.
+        transformFn = OpenMaya.MFnTransform( self.meshTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 0, 2, 0 ), OpenMaya.MSpace.kTransform )
+        transformFn.setName( &#39;myMeshTransform&#39; + str( self.commandExecution ) )
+        
+        # Obtain the DAG path of the mesh transform node. This will be used to create
+        # an aiming constraint between the light and the mesh.
+        
+        meshTransformDagPath = OpenMaya.MDagPath()
+        dagmeshNodeFn = OpenMaya.MFnDagNode( self.meshTransformObj )
+        meshTransformDagPath = dagmeshNodeFn.getPath()
+
+        # The DAG path of the mesh shape node will be used to apply a material.
+
+        meshShapeDagPath = OpenMaya.MDagPath()
+        dagshapeNodeFn = OpenMaya.MFnDagNode( self.meshShapeObj )
+        meshShapeDagPath = dagshapeNodeFn.getPath( )    
+                
+        #=======================================
+        # LIGHT MANIPULATION
+        #=======================================
+        # Set the translation value of the light&#39;s transform node, as well as its name.
+        transformFn = OpenMaya.MFnTransform( self.lightTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 4, 9.5, 12 ), OpenMaya.MSpace.kTransform )
+        transformFn.setName( &#39;myLightTransform&#39; + str( self.commandExecution ) )
+        
+        # Obtain the DAG path of the light transform node. This will be used to create
+        # an aiming constraint between the light and the mesh.
+
+        lightTransformDagPath = OpenMaya.MDagPath()
+        daglightNodeFn = OpenMaya.MFnDagNode( self.lightTransformObj  )
+        lightTransformDagPath = daglightNodeFn.getPath()
+        
+        # Change the name of the light shape
+        spotLightFn = OpenMaya.MFnDependencyNode( self.lightShapeObj )
+        spotLightFn.setName( &#39;myLightShape&#39; + str( self.commandExecution ) )
+
+        #=======================================
+        # CAMERA MANIPULATION
+        #=======================================
+        # Set the translation value of the camera&#39;s transform node, as well as its name. 
+        transformFn = OpenMaya.MFnTransform( self.cameraTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 0, 5, 30 ), OpenMaya.MSpace.kTransform )
+        transformFn.setName( &#39;myCameraTransform&#39; + str( self.commandExecution ) )
+        
+        # Change the name of the camera shape.
+        cameraFn = OpenMaya.MFnCamera( self.cameraShapeObj )
+        cameraFn.setName( &#39;myCameraShape&#39; + str( self.commandExecution ) )
+        
+        # Store the previous camera before we switch to the camera created within this command.
+        # In undo() we will revert to this previous camera.
+        self.previousCamera = OpenMaya.MDagPath()
+        currentView = OpenMayaUI.M3dView.active3dView()
+        self.previousCamera=currentView.getCamera()    # self.previousCamera is now populated with the current camera before we switch.
+
+        # Get the DAG path of our camera shape node.
+        cameraDagPath = OpenMaya.MDagPath()
+        dagNodeFn = OpenMaya.MFnDagNode( self.cameraShapeObj )
+        # dagNodeFn.getPath( cameraDagPath )
+        cameraDagPath = dagNodeFn.getPath()
+        
+        # Set the camera view to the one we switched
+        currentView.setCamera( cameraDagPath )
+        
+        #=======================================
+        # AIM CONSTRAINT
+        #=======================================
+        # Enqueue a MEL command to aim the light to the mesh&#39;s transform node. We must use MEL
+        # because there is currently no way to enqueue calls to the maya.cmds Python module.
+        self.dagModifier.commandToExecute( &#39;aimConstraint -aimVector 0.0 0.0 -1.0 &#39; 
+                                           + meshTransformDagPath.fullPathName() + &#39; &#39; 
+                                           + lightTransformDagPath.fullPathName() )
+        
+        # Execute the MEL command we just added to the MDagModifier. By adding this command to the <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a>,
+        # we are able to undo it using MDagModifier.undoIt() in our command&#39;s undoIt() method. 
+        self.dagModifier.doIt()
+        
+        #=======================================
+        # PHONG MATERIAL
+        #=======================================
+        # Include our mesh shape in the shading group we have defined in this command&#39;s doIt() function.
+        self.dagModifier.commandToExecute( &#39;sets -e -forceElement &#39; + self.shadingGroupName + &#39; &#39; + meshShapeDagPath.fullPathName() )
+        
+        # Execute the queued MEL command.
+        self.dagModifier.doIt()
+        
+        
+        # Print the contents of the scene.
+        self.printScene()
+        
+    
+    def undoIt(self):
+        &#39;&#39;&#39; Undo the command. &#39;&#39;&#39;
+        
+        # Switch back to the previous camera
+        currentView = OpenMayaUI.M3dView.active3dView()
+        currentView.setCamera( self.previousCamera )
+        
+        # This call to MDagModifier.undoIt() undoes all the operations within the MDagModifier.
+        # Observe that the number of calls to MDagModifier.undoIt() does not need to match the number of calls to MDagModifier.doIt().
+        self.dagModifier.undoIt()
+        
+    
+    def isUndoable(self):
+        &#39;&#39;&#39; This command must be undoable because it affects the structure of the DAG. &#39;&#39;&#39;
+        return True
+    
+        
+    def printScene(self):
+        &#39;&#39;&#39; Traverse and print the elements in the scene graph (DAG)  &#39;&#39;&#39;
+        # Create a function set which we will re-use throughout our scene graph traversal.
+        dagNodeFn = OpenMaya.MFnDagNode()
+        
+        # Create an iterator to traverse the scene graph starting at the world node
+        # (the scene&#39;s origin). We use a depth-first traversal, and we do not filter for
+        # any scene elements, as indicated by the &#39;OpenMaya.MFn.kInvalid&#39; parameter.
+        dagIterator = OpenMaya.MItDag( OpenMaya.MItDag.kDepthFirst,
+                                       OpenMaya.MFn.kInvalid )
+
+        print &#39;=====================&#39;
+        print &#39; SCENE GRAPH (DAG):  &#39;
+        print &#39;=====================&#39;
+        
+        # Traverse the scene.
+        while( not dagIterator.isDone() ):
+            
+            # Obtain the current item.
+            currentObj = dagIterator.currentItem()
+            depth = dagIterator.depth()
+            
+            # Make our dag node function set operate on the current object.
+            dagNodeFn.setObject( currentObj )
+                       
+            # Extract the dag node information to print.
+            name = dagNodeFn.name()
+            type = currentObj.apiTypeStr
+            path = dagNodeFn.fullPathName()
+            
+            # generate our output by first incrementing the tabs based on the depth
+            # of the current object. This formats our output nicely.
+            output = &#39;&#39;
+            for i in range( 0, depth ):
+                output += &#39;\t&#39;
+                
+            output += name + &#39;: &#39; + type + &#39; [&#39; + path + &#39;]&#39;
+            print output
+            
+            # Increment to the next item.
+            dagIterator.next()
+        
+        print &#39;=====================&#39;
+                
+        
+##########################################################
+# Plug-in initialization.
+##########################################################       
+def cmdCreator():
+    &#39;&#39;&#39; Creates an instance of the scripted command. &#39;&#39;&#39;
+    return SampleSceneCommand()
+    
+def initializePlugin(mobject):
+    &#39;&#39;&#39; Initializes the plug-in.&#39;&#39;&#39;
+    mplugin = OpenMaya.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &quot;Failed to register command: %s\n&quot; % kPluginCmdName )
+
+def uninitializePlugin(mobject):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = OpenMaya.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &quot;Failed to unregister command: %s\n&quot; % kPluginCmdName )
+
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin(&#39;pySampleScene.py&#39;)
+cmds.pySampleScene()
+
+&#39;&#39;&#39;
+</pre></div><p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># sampleScene.py
+
+import sys
+import maya.OpenMaya as OpenMaya
+import maya.OpenMayaUI as OpenMayaUI
+import maya.OpenMayaMPx as OpenMayaMPx
+
+kPluginCmdName = &quot;mySampleScene&quot;
+
+# Vertices used to define a planar house shape within a single <a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnMesh</a> object:
+#
+#              [4]
+#             /   \
+#            /     \
+#          [3]-----[2]        where the bracketed numbers correspond
+#           |       |         to the vertex index.
+#           |       |
+#          [0]-----[1]
+#
+vertices = [ # Square plane:
+             OpenMaya.MPoint( -2, -2, 0), # index 0: bottom left corner
+             OpenMaya.MPoint(  2, -2, 0), # index 1: bottom right corner
+             OpenMaya.MPoint(  2,  2, 0), # index 2: top right corner
+             OpenMaya.MPoint( -2,  2, 0), # index 3: top left corner
+             # Vertex used to define the roof:
+             OpenMaya.MPoint(  0,  5, 0)  # index 4: tip of the roof.
+           ]
+
+# Count the number of times this command has been instantiated.
+commandInstanceCounter = 1
+
+##########################################################
+# Plug-in 
+##########################################################
+class SampleSceneCommand(OpenMayaMPx.MPxCommand):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMayaMPx.MPxCommand.__init__(self)
+        
+        # We keep track of the number of times the command was instantiated, and we label this particular
+        # instance of the command with it. This will help us name the objects manipulated by this particular instance 
+        # of the command.
+        global commandInstanceCounter
+        self.commandExecution = commandInstanceCounter
+        commandInstanceCounter = commandInstanceCounter + 1
+    
+    
+    def doIt(self, args):
+        &#39;&#39;&#39; Set up the objects which the command will use. &#39;&#39;&#39;
+        
+        # This <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> object will allow us to undo and redo the creation of DAG nodes in our command.
+        self.dagModifier = OpenMaya.MDagModifier()
+        
+        # We first create the required MObjects using the MDagModifer assigned to self.dagModifier.
+        #   (!) The &#39;transform&#39;, &#39;spotLight&#39; and &#39;camera&#39; strings are recognized by the <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> as valid node type names. 
+        #       For a complete list of node type names, consult the Maya User Guide  &gt; Technical Documentation &gt; Nodes section.
+        self.meshTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.meshShapeObj = self.createHouseMesh() # This function will create a mesh under the self.meshTransformObj node.
+        
+        self.lightTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.lightShapeObj = self.dagModifier.createNode( &#39;spotLight&#39;, self.lightTransformObj )
+        
+        self.cameraTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.cameraShapeObj = self.dagModifier.createNode( &#39;camera&#39;, self.cameraTransformObj )
+        
+        # Create the shading node.
+        self.shadingNodeName = &#39;myMaterial&#39; + str( self.commandExecution )
+        self.dagModifier.commandToExecute( &#39;shadingNode -asShader -name &#39; + self.shadingNodeName + &#39; phong;&#39; )
+        self.dagModifier.commandToExecute( &#39;setAttr &quot;&#39; + self.shadingNodeName + &#39;.color&quot; -type double3 0.7 0.2 0.15;&#39;)
+        
+        # Create the shading group.
+        self.shadingGroupName = &#39;myShadingGroup&#39; + str( self.commandExecution )
+        self.dagModifier.commandToExecute( &#39;sets -renderable true -noSurfaceShader true -empty -name &#39; + self.shadingGroupName + &#39;;&#39;)
+        self.dagModifier.commandToExecute( &#39;connectAttr -f &#39; + self.shadingNodeName + &#39;.outColor &#39; + self.shadingGroupName + &#39;.surfaceShader;&#39; )
+        
+        # Invoke the command&#39;s redoIt() function to actually create and manipulate these objects.
+        self.redoIt()
+    
+    
+    def createHouseMesh(self):
+        &#39;&#39;&#39; Create a house mesh. &#39;&#39;&#39;
+        global vertices # we want to access the list of vertices defined as a static variable  
+        
+        meshFn = OpenMaya.MFnMesh()
+        mergeVertices = True   # a parameter indicating whether or not nearby vertices will be merged.
+        pointTolerance = 0.001 # the distance which determines if any two nearby vertices will be merged.
+        
+        # Create the base of the house.
+        squareVertexArray = OpenMaya.MPointArray()
+        squareVertexArray.setLength( 4 )
+        squareVertexArray.set( vertices[0], 0 )
+        squareVertexArray.set( vertices[1], 1 )
+        squareVertexArray.set( vertices[2], 2 )
+        squareVertexArray.set( vertices[3], 3 )
+        
+        # Add the square polygon to the mesh whose parent is self.meshTransformObj.
+        meshFn.addPolygon( squareVertexArray, mergeVertices, pointTolerance, self.meshTransformObj)
+        
+        # Create the roof of the house.
+        triangleVertexArray = OpenMaya.MPointArray()
+        triangleVertexArray.setLength( 3 )
+        triangleVertexArray.set( vertices[3], 0 )
+        triangleVertexArray.set( vertices[2], 1 )
+        triangleVertexArray.set( vertices[4], 2 ) 
+        
+        # Add a triangular polygon to the mesh whose parent is self.meshTransformObj. The returned meshShapeObj is
+        # a reference to the mesh geometry object.
+        meshShapeObj = meshFn.addPolygon( triangleVertexArray, mergeVertices, pointTolerance, self.meshTransformObj)
+        
+        # Set the name of the mesh.
+        meshFn.setName( &#39;myMeshShape&#39; + str( self.commandExecution ) )
+        
+        return meshShapeObj
+        
+    
+    def redoIt(self):
+        &#39;&#39;&#39; 
+        Manipulate the objects created in doIt(). This function is also called by Maya when
+        the user re-does the operation after undoing it.
+        &#39;&#39;&#39;
+        
+        # Perform the operations enqueued within our reference to MDagModifier.
+        self.dagModifier.doIt()
+        
+        #=======================================
+        # MESH MANIPULATION
+        #=======================================
+        # Set the translation value of the mesh&#39;s transform node, as well as its name.
+        transformFn = OpenMaya.MFnTransform( self.meshTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 0, 2, 0 ), OpenMaya.MSpace.kTransform )
+        transformFn.setName( &#39;myMeshTransform&#39; + str( self.commandExecution ) )
+        
+        # Obtain the DAG path of the mesh transform node. This will be used to create
+        # an aiming constraint between the light and the mesh.
+        meshTransformDagPath = OpenMaya.MDagPath()
+        transformFn.getPath( meshTransformDagPath )
+        
+        # The DAG path of the mesh shape node will be used to apply a material.
+        meshShapeDagPath = OpenMaya.MDagPath()
+        meshFn = OpenMaya.MFnMesh( self.meshShapeObj )
+        meshFn.getPath( meshShapeDagPath )
+                
+        #=======================================
+        # LIGHT MANIPULATION
+        #=======================================
+        # Set the translation value of the light&#39;s transform node, as well as its name.
+        transformFn = OpenMaya.MFnTransform( self.lightTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 4, 9.5, 12 ), OpenMaya.MSpace.kTransform )
+        transformFn.setName( &#39;myLightTransform&#39; + str( self.commandExecution ) )
+        
+        # Obtain the DAG path of the light transform node. This will be used to create
+        # an aiming constraint between the light and the mesh.
+        lightTransformDagPath = OpenMaya.MDagPath()
+        transformFn.getPath( lightTransformDagPath )
+        
+        # Change the name of the light shape
+        spotLightFn = OpenMaya.MFnSpotLight( self.lightShapeObj )
+        spotLightFn.setName( &#39;myLightShape&#39; + str( self.commandExecution ) )
+
+        #=======================================
+        # CAMERA MANIPULATION
+        #=======================================
+        # Set the translation value of the camera&#39;s transform node, as well as its name. 
+        transformFn = OpenMaya.MFnTransform( self.cameraTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 0, 5, 30 ), OpenMaya.MSpace.kTransform )
+        transformFn.setName( &#39;myCameraTransform&#39; + str( self.commandExecution ) )
+        
+        # Change the name of the camera shape.
+        cameraFn = OpenMaya.MFnCamera( self.cameraShapeObj )
+        cameraFn.setName( &#39;myCameraShape&#39; + str( self.commandExecution ) )
+        
+        # Store the previous camera before we switch to the camera created within this command.
+        # In undo() we will revert to this previous camera.
+        self.previousCamera = OpenMaya.MDagPath()
+        currentView = OpenMayaUI.M3dView.active3dView()
+        currentView.getCamera( self.previousCamera ) # self.previousCamera is now populated with the current camera before we switch.
+        
+        # Get the DAG path of our camera shape node.
+        cameraDagPath = OpenMaya.MDagPath()
+        dagNodeFn = OpenMaya.MFnDagNode( self.cameraShapeObj )
+        dagNodeFn.getPath( cameraDagPath )
+        
+        # Set the camera view to the one we switched
+        currentView.setCamera( cameraDagPath )
+        
+        #=======================================
+        # AIM CONSTRAINT
+        #=======================================
+        # Enqueue a MEL command to aim the light to the mesh&#39;s transform node. We must use MEL
+        # because there is currently no way to enqueue calls to the maya.cmds Python module.
+        self.dagModifier.commandToExecute( &#39;aimConstraint -aimVector 0.0 0.0 -1.0 &#39; 
+                                           + meshTransformDagPath.fullPathName() + &#39; &#39; 
+                                           + lightTransformDagPath.fullPathName() )
+        
+        # Execute the MEL command we just added to the MDagModifier. By adding this command to the <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a>,
+        # we are able to undo it using MDagModifier.undoIt() in our command&#39;s undoIt() method. 
+        self.dagModifier.doIt()
+        
+        #=======================================
+        # PHONG MATERIAL
+        #=======================================
+        # Include our mesh shape in the shading group we have defined in this command&#39;s doIt() function.
+        self.dagModifier.commandToExecute( &#39;sets -e -forceElement &#39; + self.shadingGroupName + &#39; &#39; + meshShapeDagPath.fullPathName() )
+        
+        # Execute the queued MEL command.
+        self.dagModifier.doIt()
+        
+        
+        # Print the contents of the scene.
+        self.printScene()
+        
+    
+    def undoIt(self):
+        &#39;&#39;&#39; Undo the command. &#39;&#39;&#39;
+        
+        # Switch back to the previous camera
+        currentView = OpenMayaUI.M3dView.active3dView()
+        currentView.setCamera( self.previousCamera )
+        
+        # This call to MDagModifier.undoIt() undoes all the operations within the MDagModifier.
+        # Observe that the number of calls to MDagModifier.undoIt() does not need to match the number of calls to MDagModifier.doIt().
+        self.dagModifier.undoIt()
+        
+    
+    def isUndoable(self):
+        &#39;&#39;&#39; This command must be undoable because it affects the structure of the DAG. &#39;&#39;&#39;
+        return True
+    
+        
+    def printScene(self):
+        &#39;&#39;&#39; Traverse and print the elements in the scene graph (DAG)  &#39;&#39;&#39;
+        # Create a function set which we will re-use throughout our scene graph traversal.
+        dagNodeFn = OpenMaya.MFnDagNode()
+        
+        # Create an iterator to traverse the scene graph starting at the world node
+        # (the scene&#39;s origin). We use a depth-first traversal, and we do not filter for
+        # any scene elements, as indicated by the &#39;OpenMaya.MFn.kInvalid&#39; parameter.
+        dagIterator = OpenMaya.MItDag( OpenMaya.MItDag.kDepthFirst,
+                                       OpenMaya.MFn.kInvalid )
+
+        print &#39;=====================&#39;
+        print &#39; SCENE GRAPH (DAG):  &#39;
+        print &#39;=====================&#39;
+        
+        # Traverse the scene.
+        while( not dagIterator.isDone() ):
+            
+            # Obtain the current item.
+            currentObj = dagIterator.currentItem()
+            depth = dagIterator.depth()
+            
+            # Make our dag node function set operate on the current object.
+            dagNodeFn.setObject( currentObj )
+                       
+            # Extract the dag node information to print.
+            name = dagNodeFn.name()
+            type = currentObj.apiTypeStr()
+            path = dagNodeFn.fullPathName()
+            
+            # generate our output by first incrementing the tabs based on the depth
+            # of the current object. This formats our output nicely.
+            output = &#39;&#39;
+            for i in range( 0, depth ):
+                output += &#39;\t&#39;
+                
+            output += name + &#39;: &#39; + type + &#39; [&#39; + path + &#39;]&#39;
+            print output
+            
+            # Increment to the next item.
+            dagIterator.next()
+        
+        print &#39;=====================&#39;
+                
+        
+##########################################################
+# Plug-in initialization.
+##########################################################       
+def cmdCreator():
+    &#39;&#39;&#39; Creates an instance of the scripted command. &#39;&#39;&#39;
+    return OpenMayaMPx.asMPxPtr( SampleSceneCommand() )
+    
+def initializePlugin(mobject):
+    &#39;&#39;&#39; Initializes the plug-in.&#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &quot;Failed to register command: %s\n&quot; % kPluginCmdName )
+
+def uninitializePlugin(mobject):
+    &#39;&#39;&#39; Uninitializes the plug-in &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &quot;Failed to unregister command: %s\n&quot; % kPluginCmdName )
+
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin(&#39;sampleScene.py&#39;)
+cmds.mySampleScene()
+
+&#39;&#39;&#39;
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

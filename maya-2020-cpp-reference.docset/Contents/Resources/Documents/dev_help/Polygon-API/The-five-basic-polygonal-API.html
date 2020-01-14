@@ -1,0 +1,179 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>The five basic polygonal API classes</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>The five basic polygonal API classes</h1>
+         </div>
+
+<div class='section'><a id="the-five-basic-polygonal-api-classes"></a></div>
+<p>The Poly API consists of five main classes:</p>
+<ul>
+<li><p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a></span></p>
+<p>See <a href='#!/url=./dev_help/Polygon-API/The-five-basic-polygonal-API.html#mitmeshpolygon' title=''>MItMeshPolygon</a>.</p></li>
+<li><p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshEdge" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshEdge</a></span></p>
+<p>See <a href='#!/url=./dev_help/Polygon-API/The-five-basic-polygonal-API.html#mitmeshedge' title=''>MItMeshEdge</a>.</p></li>
+<li><p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshVertex" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_vertex.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_vertex.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshVertex</a></span> and <span class='code'><a href="javascript:void(0)" data-symbol="MItMeshFaceVertex" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_face_vertex.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_face_vertex.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshFaceVertex</a></span></p>
+<p>See <a href='#!/url=./dev_help/Polygon-API/The-five-basic-polygonal-API.html#mitmeshvertex-and-mitmeshfacevertex' title=''>MItMeshVertex and MItMeshFaceVertex</a>.</p></li>
+<li><p><span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span></p>
+<p>See <a href='#!/url=./dev_help/Polygon-API/The-five-basic-polygonal-API.html#mfnmesh' title=''>MFnMesh</a>.</p></li>
+</ul>
+<p>The first four classes are iterators while the last class is a function set. The polygon iterators are primarily used to navigate or parse a mesh component by component and retrieve component specific information. The polygon function set, <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span>, is used to create, modify, and retrieve mesh specific data.</p>
+<blockquote>
+<p><strong>Note:</strong> Although the iterators contain a few methods that can be used to modify the mesh, it is good practice to rely on the iterators solely for navigating the mesh and accessing component specific data. <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span> provides all the necessary methods to perform any other desired operation on the mesh.</p>
+</blockquote>
+<div class='section'><a id="mitmeshpolygon"></a><h2 id="mitmeshpolygon">MItMeshPolygon</h2></div>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a></span> is a polygonal face iterator. Initializing this class to a specific mesh object lets you iterate over all faces in a mesh, in order of face ids. Alternatively, the iterator can be restricted to the faces adjacent to a given component (for example, edge or vertex) by initializing the class to both a DAG path referring to the mesh and an <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MObject</a></span> reference to certain components.</p>
+<p>This iterator is useful for parsing a mesh as it can traverse the mesh more quickly—there are fewer faces than edges and vertices and less overlap in data retrieval. As a face iterator, <span class='code'><a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a></span> provides methods to retrieve face-specific data mostly comprised of:</p>
+<ul>
+<li>Face composition (a number of edges greater than 2)</li>
+<li>Face-vertex data</li>
+<li>Face-edge data</li>
+<li>Adjacent component data</li>
+<li>UV data</li>
+<li>Color per vertex data</li>
+<li>And other miscellaneous data, such as blind data and smoothing information</li>
+</ul>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a></span> is ideal for cases where you would like to quickly search a mesh on a face-by-face basis or when you require face specific data from the mesh. To see how this class is used, refer to the <a href='#!/url=./dev_help/Polygon-API/splitUVCmd-example.html' title=''>splitUVCmd example</a>. The following example also illustrates the use of the <span class='code'><a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a></span> class. In this sample code, <span class='code'><a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a></span> is used to traverse the mesh for a specific face and then retrieve the edges making up the face.</p>
+<div class="codeBlock"><pre class="prettyprint"><a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> getFaceEdges( <a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MObject</a> mesh,
+                     int faceId,
+                     <a href="javascript:void(0)" data-symbol="MIntArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_int_array.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MIntArray</a> faceEdges )
+{
+    <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> status;
+    // Reset the faceEdges array
+    //
+    faceEdges.clear();
+    // Initialize a face iterator and function set
+    //
+    <a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a> faceIter( mesh, &amp;status );
+    MCheckStatus( status, &quot;<a href="javascript:void(0)" data-symbol="MItMeshPolygon" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_polygon.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshPolygon</a> constructor failed&quot; );
+    <a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a> meshFn( mesh, &amp;status );
+    MCheckStatus( status, &quot;<a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a> constructor failed&quot; );
+    // Check to make sure that the faceId passed in is valid
+    //
+    if( faceId &gt;= meshFn.numPolygons() || faceId &lt; 0 )
+    {
+        cerr &lt;&lt; &quot;Invalid faceId.\n&quot;;
+        status = MS::kFailure;
+    }
+    else
+    {
+        // Now parse the mesh for the given face and
+        // return the edges
+        //
+        for( ; !faceIter.isDone(); faceIter.next() )
+        {
+            // If we find the matching face, retrieve the
+            // edge indices
+            //
+            if( faceIter.index() == faceId )
+            {
+                faceIter.getEdges( faceEdges );
+                break;
+            }
+        }
+    }
+    return status;
+}
+
+</pre></div><div class='section'><a id="mitmeshedge"></a><h2 id="mitmeshedge">MItMeshEdge</h2></div>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshEdge" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshEdge</a></span> iterates over the mesh on an edge-by-edge basis and retrieves edge specific data. This edge iterator iterates over the edges in order of edge ids or it iterates over the edges adjacent to a passed in component. <span class='code'>MltMeshEdge</span> can retrieve the following types of data:</p>
+<ul>
+<li>Edge composition (two vertices)</li>
+<li>Edge-face data</li>
+<li>Edge-vertex data</li>
+<li>Edge smoothing</li>
+<li>Adjacent component data</li>
+</ul>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshEdge" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshEdge</a></span> is best suited for an edge-by-edge traversal of the mesh and for fetching edge specific data. The following sample code illustrates the use of the edge iterator. This example traverses each edge in the mesh and collects their start vertices, storing them inside an array indexed by edge id.</p>
+<div class="codeBlock"><pre class="prettyprint"><a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> getEdgeStartVertices( <a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MObject</a> mesh,
+                             <a href="javascript:void(0)" data-symbol="MPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_point_array.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPointArray</a>&amp; pointArray )
+{
+    <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> status;
+    // Clear the output array
+    //
+    pointArray.clear();
+    // Initialize our iterator
+    //
+    <a href="javascript:void(0)" data-symbol="MItMeshEdge" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshEdge</a> edgeIter( mesh, &amp;status );
+    MCheckStatus( status, &quot;<a href="javascript:void(0)" data-symbol="MItMeshEdge" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_edge.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshEdge</a> constructor failed&quot; );
+    // Now parse the mesh
+    //
+    for( ; !edgeIter.isDone(); edgeIter.next() )
+    {
+        // Retrieve the start vertex of each edge and append it to
+        // our point array. Use the default object coordinate
+        // system for our space
+        //
+        pointArray.append( edgeIter.point(0, MSpace::kObject) );
+    }
+    return status;
+}
+
+</pre></div><div class='section'><a id="mitmeshvertex-and-mitmeshfacevertex"></a><h2 id="mitmeshvertex-and-mitmeshfacevertex">MItMeshVertex and MItMeshFaceVertex</h2></div>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshVertex" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_vertex.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_vertex.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshVertex</a></span> iterates over the mesh on a vertex-by-vertex basis in order of vertex ids, retrieving vertex specific data. The vertex iterator is best suited for those two cases and can retrieve vertex specific data such as:</p>
+<ul>
+<li>Vertex composition (a 3D position)</li>
+<li>Vertex-face data</li>
+<li>Vertex-edge data</li>
+<li>Vertex normals</li>
+<li>UV data (specific to a vertex)</li>
+<li>Color data (specific to a vertex)</li>
+<li>Adjacent component data</li>
+</ul>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MItMeshFaceVertex" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_it_mesh_face_vertex.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_it_mesh_face_vertex.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MItMeshFaceVertex</a></span> iterates over the mesh on a face vertex-by-face vertex basis in order of face ids, retrieving face-vertex specific data. The face vertex iterator can retrieve data such as:</p>
+<ul>
+<li>Normal data</li>
+<li>UV data</li>
+<li>Color data</li>
+</ul>
+<div class='section'><a id="mfnmesh"></a><h2 id="mfnmesh">MFnMesh</h2></div>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span> contains several methods for retrieving mesh specific data and modifying a mesh. You could use an iterator to find a particular component and use <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span> to perform an operation on that component. This is shown in the <a href='#!/url=./dev_help/Polygon-API/splitUVCmd-example.html' title=''>splitUVCmd example</a> which searches the mesh for a given UV and uses <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span> to &quot;split&quot; the UVs.</p>
+<p>Although there is some overlap between the methods provided by <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span> and the <span class='code'>MItMesh</span>* iterators, <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span> represents more of a global library of operations for the mesh, while the iterators remain centric around their respective components. The following sample code demonstrates some things you might use <span class='code'><a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a></span> for. The example retrieves various data and modifies it. Note that this code cannot be compiled.</p>
+<div class="codeBlock"><pre class="prettyprint">// The argument list contains a &quot;...&quot; to represent a &quot;Fill in
+// the data you would like here&quot;
+//
+<a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> getRandomPolyData( <a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MObject</a> mesh, ... )
+{
+    <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> status;
+    // Initialize a function set to a polygonal mesh
+    //
+    <a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a> meshFn( mesh, &amp;status );
+    MCheckStatus( status, &quot;<a href="javascript:void(0)" data-symbol="MFnMesh" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_mesh.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnMesh</a> constructor failed&quot; );
+    // Retrieve topological information
+    //
+    int faceCount = meshFn.numPolygons();
+    int edgeCount = meshFn.numEdges();
+    int vertexCount = meshFn.numVertices();
+    int faceVertexCount = meshFn.polygonVertexCount();
+    int UVCount = meshFn.numUVs();
+    <a href="javascript:void(0)" data-symbol="MPointArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_point_array.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPointArray</a> vertexList;
+    meshFn.getPoints( vertexList );
+    <a href="javascript:void(0)" data-symbol="MFloatArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_float_array.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFloatArray</a> UArray;
+    <a href="javascript:void(0)" data-symbol="MFloatArray" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_float_array.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFloatArray</a> VArray;
+    meshFn.getUVs( UArray, VArray );
+    // Modify topological information
+    //
+    // Add a UV to the UV list – setUV will automatically grow
+    // the UV list, based on the given index
+    //
+    meshFn.setUV( numUVs, 0.0, 0.0 );
+    // Move vertex 0 to the origin of the world
+    //
+    <a href="javascript:void(0)" data-symbol="MPoint" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_point.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPoint</a> origin( 0.0, 0.0. 0.0 );
+    meshFn.setPoint( 0, origin, MSpace::kWorld );
+    // Can also work with:
+    //
+    // - Vertex Colors
+    // - Blind data
+    // - etc.
+    //
+}
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

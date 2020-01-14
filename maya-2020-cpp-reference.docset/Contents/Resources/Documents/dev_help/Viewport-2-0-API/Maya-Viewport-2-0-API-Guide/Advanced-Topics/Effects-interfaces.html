@@ -1,0 +1,272 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Effects interfaces</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Effects interfaces</h1>
+         </div>
+
+<div class='section'><a id="effects-interfaces"></a></div>
+<div class='section'><a id="ssao-screen-space-ambient-occlusion-control"></a><h2 id="ssao-screen-space-ambient-occlusion-control">SSAO (Screen-space ambient occlusion) control</h2></div>
+<p>The information in <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> provides sufficient information to indicate if a plug-in is being invoked to render passes that must support SSAO (screen-space ambient occlusion).</p>
+<p>The internal algorithm for SSAO requires a specific <em>normal-depth</em> pass to produce intermediate results. By default, the renderer sets up a specific shader to be used in this pass. In the case where a plug-in shader causes geometry to be displaced or normal to be modified, it is possible to override this default shader.</p>
+<p>This <em>normal-depth</em> pass can be detected by querying <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> information in a similar fashion to how shadow map passes can be detected (see <a href='#!/url=./dev_help/Viewport-2-0-API/Maya-Viewport-2-0-API-Guide/Advanced-Topics/Lighting-Interfaces.html#shadowing-control' title=''>Section 4.2.1 Shadowing control</a>). For this pass, the pass identifier is: <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext::kNormalDepthPassSemantic" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#a30804db03c6cccf4fd8d480fe4af0660&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext::kNormalDepthPassSemantic</a></span>.</p>
+<p>If any tessellation shaders are required, then the override should be added to an <span class='code'><a href="javascript:void(0)" data-symbol="MPxShaderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_shader_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_shader_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxShaderOverride</a></span> instead of an <span class='code'><a href="javascript:void(0)" data-symbol="MShaderInstance" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_shader_instance.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_shader_instance.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MShaderInstance</a></span>.</p>
+<p>To add support, any custom shader should take into account the following conditions.</p>
+<ul>
+<li>Two color targets are bound during the normal-depth pass:
+<ul>
+<li>Color target 0 is of the unsigned fixed-point RGB format</li>
+<li>Color target 1 is of the floating point single channel (R) format</li>
+<li>The current target information should be available from <span class='code'><a href="javascript:void(0)" data-symbol="MFrameContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_frame_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_frame_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFrameContext</a></span> when this is available to the plug-in.</li>
+</ul></li>
+<li>Geometry Requirements:
+<ul>
+<li>Object space normal stream.</li>
+<li>Object space position stream.</li>
+</ul></li>
+<li>Required output values:
+<ul>
+<li>Normalized normal values (unsigned and in view space) written to color target 0.</li>
+<li>Depth values (in view space) written to color target 1.</li>
+</ul></li>
+</ul>
+<p>The following is a sample of the shader used for this pass, written in HLSL:</p>
+<div class="codeBlock"><pre class="prettyprint">// Check if the back-facing normal needs to be flipped. 
+extern bool isSingleSided = false; 
+extern float mayaNormalMultiplier = 1.0f; 
+
+// Shader semantic supported by Viewport 2.0 to indicate whether 
+// the projection matrix flips the Z component of a point when transformed
+// -1.0 if so, otherwise 1.0. 
+float gProjZSense : ProjectionZSense; 
+
+// Vertex shader input structure.
+struct VS_INPUT_NormalDepth
+{
+    float3 Pos : POSITION;
+    float3 Normal: NORMAL;
+};
+
+// Vertex shader output structure.
+struct VS_TO_PS_NormalDepth
+{
+    float4 HPos : SV_Position;
+    float4 NormalDepth : TEXCOORD0;
+};
+
+// Vertex shader.
+VS_TO_PS_NormalDepth VS_NormalDepth(VS_INPUT_NormalDepth In)
+{
+    VS_TO_PS_NormalDepth Out;
+    
+    // Transform the vertex from object space to clip space.
+    Out.HPos = mul(float4(In.Pos, 1.0f), gWVPXf);
+    
+    // Record the normal and depth components for the pixel shader.
+    // Note:  This depends on whether the view direction is along the +Z or -Z axis.     
+    // The projection matrix &quot;Z sense&quot; determines this. 
+    Out.NormalDepth.xyz = mul(In.Normal, gWVITXf);
+    Out.NormalDepth.z = gProjZSense * Out.NormalDepth.z;     
+    Out.NormalDepth.w = gProjZSense * mul(float4(In.Pos, 1.0f), gWVXf).z; 
+
+    return Out;
+}
+
+// Pixel shader output structure.
+struct PS_OUT
+{
+    float4 Normal : SV_Target0;
+    float4 Depth : SV_Target1;
+};
+
+// Pixel shader.
+PS_OUT PS_NormalDepth(VS_TO_PS_NormalDepth In, bool isFrontFace : SV_IsFrontFace) 
+{
+    PS_OUT Out;
+
+    float3 normal = normalize(In.NormalDepth.xyz);     
+
+    if ( !isSingleSided )     
+    {         
+        float normalMul = isFrontFace ? mayaNormalMultiplier : -mayaNormalMultiplier;
+        normal *= normalMul;     
+    }     
+
+    // Set the normal for an unsigned normalized integer target, and depth for a floating-point target.     
+    Out.Normal = float4((normal + 1.0f) * 0.5f, 0.0f); 
+    Out.Depth  = In.NormalDepth.wwww;
+
+    return Out;
+}
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> Described above is the behavior of the internal pass for Maya 2016.</p>
+
+<div class='section'><a id="motion-blur-control"></a><h2 id="motion-blur-control">Motion blur control</h2></div>
+<p>The information in <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> provides sufficient information to indicate if a plug-in is being invoked to render passes that are required to support motion blur.</p>
+<p>The internal algorithm for motion blur requires a specific motion-vector pass that produces intermediate results. By default, the renderer sets up a specific shader to be used in this pass. In the case where a plug-in shader causes geometry to be displaced, it is possible to override this default shader.</p>
+<p>This motion-vector pass can be detected by querying <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> information and checking for a pass semantic matching this string: <span class='code'>motionVectorPass</span> or <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext::kMotionVectorPassSemantic" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#a2781bebea5ef7c30f94bda5bf9c38a36&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext::kMotionVectorPassSemantic</a></span>.</p>
+<p>If any tessellation shaders are required, then the override should be added to an <span class='code'><a href="javascript:void(0)" data-symbol="MPxShaderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_shader_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_shader_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxShaderOverride</a></span> instead of an <span class='code'><a href="javascript:void(0)" data-symbol="MShaderInstance" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_shader_instance.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_shader_instance.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MShaderInstance</a></span>.</p>
+<p>To add support, a custom shader should take into account the following conditions.</p>
+<ul>
+<li>One color target is bound during the normal-depth pass:
+<ul>
+<li>Color target 0 is of the fp32 RGBA format.</li>
+<li>The current target information should be available from <span class='code'><a href="javascript:void(0)" data-symbol="MFrameContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_frame_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_frame_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFrameContext</a></span> when it is available to the plug-in.</li>
+</ul></li>
+<li>Geometry Requirements:
+<ul>
+<li>Object space position stream.</li>
+</ul></li>
+<li><p>Required output values:</p>
+<ul>
+<li>Motion vectors written to color target 0.</li>
+</ul>
+<p>The following is a sample of the shader used for this pass, written in HLSL:</p></li>
+</ul>
+<div class="codeBlock"><pre class="prettyprint">// Shader semantics supported by Viewport 2.0.
+extern float4x4 World : world;
+extern float4x4 previousWorld : previousWorld;
+extern float4x4 WorldViewProj : worldviewprojection;
+extern float4x4 viewProjection : viewProjection;
+extern float4x4 previousViewProjection : previousViewProjection;
+extern float2 viewportSize : viewportPixelSize;
+
+// The uniform variable will be set by Viewport 2.0 with the value of the
+// hardwareRenderingGlobals.motionBlurShutterOpenFraction attribute,
+// which denotes the percentage of frame time for which the shutter
+// is open, with 0 denoting that the shutter is not open at all, and 1
+// denoting that the shutter is open for 100% of the frame time.
+extern float shutterOpenFraction = 0.200000f;
+
+// Vertex Shader
+VS_TO_PS_MotionVector VS_MotionVector(VS_INPUT_MotionVector In ) 
+{ 
+    VS_TO_PS_MotionVector Out; 
+    Out.Pw = mul( float4(In.pm,1), World).xyz;
+    Out.OtherFramePw = mul( float4(In.pm,1), previousWorld).xyz; 
+    Out.Pc = mul( float4(In.pm,1), WorldViewProj );
+    return Out; 
+} 
+
+// Pixel Shader
+float4 PS_MotionVector(VS_TO_PS_MotionVector In ) : SV_Target
+{ 
+    float k = shutterOpenFraction * 100.0f; 
+    float4 Pc = mul( float4(In.Pw, 1.0f), viewProjection ); 
+    float4 prevPc = mul( float4(In.OtherFramePw, 1.0f), previousViewProjection ); 
+    float2 curUV  = Pc.xy / Pc.w; 
+    float2 prevUV = prevPc.xy / prevPc.w; 
+    float2 vec = (curUV - prevUV) * shutterOpenFraction * 0.5f; 
+    vec *= viewportSize; 
+    float vecLength = length(vec); 
+    vec *= min(k / vecLength, 1.0f); 
+    vec /= viewportSize; 
+    return float4( vec.x, -vec.y, 1.0f - (Pc.z / Pc.w), vecLength ); 
+} 
+
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong>The algorithm above applies to Maya 2016 and is only one example of how motion vectors may be computed. A custom shader may implement motion blur in any manner appropriate.</p>
+
+<p>The XML wrapper for this implementation for a given release can be found using the MEL command:</p>
+<div class="codeBlock"><pre class="prettyprint">ogs -xml mayaMotionVector;
+</pre></div><p>From the API, the <span class='code'>MFragmentManager:: getFragmentXML()</span> method can be used to query this fragment. The sample plug-in <em>fragmentDumper</em> demonstrates the use of this method to dump out fragments: :</p>
+<div class="codeBlock"><pre class="prettyprint">dumpFragment -fn mayaMotionVector;
+</pre></div><div class='section'><a id="depth-of-field-control"></a><h2 id="depth-of-field-control">Depth of field control</h2></div>
+<p>The information in <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> provides sufficient information to indicate if a plug-in is being invoked to render passes that must support depth of field (DOF).</p>
+<p>The internal algorithm for DOF requires a specific pass to produce intermediate results. By default, the renderer sets up a specific shader for this pass.</p>
+<p>The pass can be detected by querying <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> information and checking for a pass semantic matching this string: <span class='code'>dofPass</span> or <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext::kDOFPassSemantic" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#a730755c181d1c16d7abde72c447fac04&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext::kDOFPassSemantic</a></span>.</p>
+<p>In the case where a plug-in shader causes geometry to be displaced, it is possible to override this default shader.</p>
+<p>The shader must compute the circle-of-confusion (CoC) value and depth values per pixel. These values are written to the R and G channels of a floating point output target (R32G32), which are bound as color target 0. Depth testing is performed with a locally bound depth target.</p>
+<p>The computation is as follows:</p>
+<div class="codeBlock"><pre class="prettyprint">0.5 * alpha * abs( Z - Zf ) / Z, where alpha = F*F/(A*(Zf-F))
+</pre></div><p>Where:</p>
+<ul>
+<li><p>F is the focal length of the lens</p></li>
+<li><p>A is the aperture number</p></li>
+<li><p>Zf is the focus distance</p></li>
+<li><p>alpha is the CoC at infinity</p></li>
+</ul>
+<p>The following is an example of a shader used for this pass, written in HLSL:</p>
+<div class="codeBlock"><pre class="prettyprint">float4 mayaCoCDepth( float alpha, float focusDist, float3 Pw, float4x4 view ) 
+{
+    float z = abs( mul( float4(Pw, 1), view ).z );
+    float CoC = 0.5f * alpha * (z - focusDist) / z; 
+    // Write to R, G channels of output
+    return float4( CoC, z, 0, 1 ); 
+} 
+</pre></div><p>Where Pw is the world space position and view is the view matrix.</p>
+<p>The current internal computation for alpha and focus distance is given below:</p>
+<div class="codeBlock"><pre class="prettyprint">float ItoM = 0.0254f; // inches converted to m
+float CMtoM = 0.01f; // cm converted to m
+
+// Obtain the hyperfocal distance from the camera in m.
+//
+float focus = &lt;camera shape’s focusDistance&gt; * CMtoM;
+focusDist = focus * 100; // Convert back to cm.
+
+// Compute alpha, the COC at infinity, in m
+//
+float fStop = &lt;camera shape’s fStop&gt; * &lt;camera shape’s focus region scale&gt; // Apply region scale
+float F = &lt;camera shape’s camera scale&gt; * &lt;camera shape’s focal length&gt; * 0.001f; // in m
+float alpha = F * F / (fStop * (focus - F));
+
+// Convert to UV space
+float apertureX = &lt;camera shape’s horizontal film aperture&gt; * 0.001f;
+float apertureY = &lt;camera shape’s vertical film aperture&gt; * 0.001f;
+alpha /= min( apertureX, apertureY );
+
+</pre></div><p>Camera shape parameters are denoted by the &lt;&gt; delimiters in the above pseudo-code.</p>
+<blockquote>
+<p><strong>Note:</strong> The algorithm above applies to Maya 2016 and is only one example of how COC may be computed. A custom shader may implement COC in any manner appropriate, and does not need to use Maya’s camera node attributes.</p>
+</blockquote>
+<div class='section'><a id="compositing-control"></a><h2 id="compositing-control">Compositing control</h2></div>
+<p>The information in <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> provides sufficient information to indicate if a plug-in is being invoked to render passes that must composite a beauty pass output without post effects over one with post effects.</p>
+<p>The internal algorithm for compositing requires a post-effect pattern pass and a non post effect pattern pass to produce an alpha mask.</p>
+<p>During a post effect pattern pass, each render item included in post effects is drawn with color write disabled and depth write enabled by default in order to fill an intermediate depth target with depth values of visible surfaces (regardless of whether they are opaque or transparent because both alpha testing and blending are disabled). This pass can be detected by querying <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> information and checking for a pass semantic matching this string: <span class='code'>PEPatternPass</span> or <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext::kPEPatternPassSemantic" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#a21eddbaf1720cec960972c79d2cde72a&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext::kPEPatternPassSemantic</a></span>.</p>
+<p>During a non post effect pattern pass, each render item excluded from post effects is drawn with respect to the above depth target, but the color write is enabled in this pass so that the alpha mask target and the depth target can be updated when passing the depth test. Similar to the beauty pass, the shader assigned to each render item is used to shade its geometry by default, but only the alpha channel of the shading output is written to the alpha mask target. This pass can be detected by querying <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext</a></span> information and checking for a pass semantic matching this string: <span class='code'>nonPEPatternPass</span> or <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext::kNonPEPatternPassSemantic" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#a8f503e129a06c3b3e69d38572579cf63&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext::kNonPEPatternPassSemantic</a></span>.</p>
+<p>Render items are excluded from post effects by default. The <span class='code'><a href="javascript:void(0)" data-symbol="MPxGeometryOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_geometry_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_geometry_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxGeometryOverride</a></span> and <span class='code'><a href="javascript:void(0)" data-symbol="MPxSubSceneOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_sub_scene_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_sub_scene_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxSubSceneOverride</a></span> interfaces have render item level control, and if needed, they can specify that certain render items be included in post effects by setting <span class='code'><a href="javascript:void(0)" data-symbol="MRenderItem::setExcludedFromPostEffects()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_render_item.html#a634faadbe865d745bc8ed447efe671da&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_render_item.html#a0704932795c36669268b767a9db4e38a&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MRenderItem::setExcludedFromPostEffects()</a></span> to false. The <span class='code'><a href="javascript:void(0)" data-symbol="MPxDrawOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_draw_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_draw_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxDrawOverride</a></span> interface has object-level control, and it can be included in post effects by either overriding its virtual function <span class='code'>MPxDrawOverride::excludedFromPostEffect()</span> to return false, or by starting the draw classification with <span class='code'>drawdb/geometry/includePostEffects/</span> during registration.</p>
+<p>In the case where a plug-in wants to produce a customized pattern during a non post effect pattern pass, <span class='code'><a href="javascript:void(0)" data-symbol="MPxShaderOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_shader_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_shader_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxShaderOverride</a></span> and <span class='code'><a href="javascript:void(0)" data-symbol="MPxDrawOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_draw_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_draw_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxDrawOverride</a></span> can use this information to perform either a more or less complex rendering, and <span class='code'><a href="javascript:void(0)" data-symbol="MShaderInstance" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_shader_instance.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_shader_instance.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MShaderInstance</a></span> can be used from within either interface for convenience. To add support, any custom shader should take into account the following conditions:</p>
+<ul>
+<li>One intermediate color target is bound during the non post effect pattern pass:
+<ul>
+<li>The color target is of the 8-bit alpha format.</li>
+<li>The color target information should be available from <span class='code'><a href="javascript:void(0)" data-symbol="MDrawContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_draw_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_draw_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDrawContext</a></span> when this is available to the plug-in.</li>
+</ul></li>
+<li>Required output values:
+<ul>
+<li>Alpha values written to the color target.</li>
+</ul></li>
+</ul>
+<p>After a non post effect pattern pass, the intermediate color target is bound as AlphaMask during internal compositing as shown below, while the beauty pass output with post effects is bound as SrcTarget and the beauty pass output without post effects is bound as DstTarget. The compositing operation combines the two such that SrcTarget appears in the backgournd and DstTarget appears in the foreground, and it can be expressed as DstTarget over SrcTarget.</p>
+<div class="codeBlock"><pre class="prettyprint">float4 CompositeWithAlphaMask( float3 UV,
+                               texture2D SrcTarget, sampler SrcTargetSampler,
+                               texture2D DstTarget, sampler DstTargetSampler,
+                               texture2D AlphaMask, sampler AlphaMaskSampler )
+{
+    float4 srcColor = SrcTarget.Sample( SrcTargetSampler, UV.xy ); // Color with post effects
+    float4 dstColor = DstTarget.Sample( DstTargetSampler, UV.xy ); // Color with no post effects
+    float alphaMask = AlphaMask.Sample( AlphaMaskSampler, UV.xy ).a;
+    return lerp( srcColor, dstColor, alphaMask );
+}
+
+</pre></div><p>The XML wrapper for this implementation for a given release can be found using the MEL command:</p>
+<div class="codeBlock"><pre class="prettyprint">ogs -xml maya_CompositeWithAlphaMask;
+</pre></div><p>From the API, the <span class='code'>MFragmentManager:: getFragmentXML()</span> method can be used to query this fragment. The example plug-in <em>fragmentDumper</em> in the Developer Kit demonstrates the use of this method to dump out fragments:</p>
+<div class="codeBlock"><pre class="prettyprint">dumpFragment -fn maya_CompositeWithAlphaMask;
+</pre></div><div class='section'><a id="frame-and-draw-context"></a><h2 id="frame-and-draw-context">Frame and draw context</h2></div>
+<p>For information regarding frame and draw context, see <a href='#!/url=./dev_help/Viewport-2-0-API/Maya-Viewport-2-0-API-Guide/API-constructs/Frame-and-draw-contexts.html' title=''>Frame and draw contexts</a>.</p>
+<blockquote>
+<p><strong>Note:</strong> If <span class='code'><a href="javascript:void(0)" data-symbol="MPassContext::shaderOverrideInstance()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_pass_context.html#aef8d7620ddd58e44e45ea0f0dfaa6fb4&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_pass_context.html#aec50485f6a2efbcdc89f5926342fa406&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPassContext::shaderOverrideInstance()</a></span> is called to obtain an override shader at draw time, then the plug-in must update the <span class='code'>isSingleSided</span> parameter based on the lighting state obtained from <span class='code'><a href="javascript:void(0)" data-symbol="MFrameContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_frame_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_frame_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFrameContext</a></span>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Important:</strong> For geometry requirements on a custom shader, if the appropriate input streams are not provided, then the renderer internally attempts to create them. This may occur per frame and thus affect performance. As an example, if an <span class='code'><a href="javascript:void(0)" data-symbol="MPxGeometryOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_geometry_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_geometry_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxGeometryOverride</a></span> were written to provide the geometry for the custom shader, and the code only returns position but not normal streams, then an attempt to internally derive normal values occurs.</p>
+</blockquote>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

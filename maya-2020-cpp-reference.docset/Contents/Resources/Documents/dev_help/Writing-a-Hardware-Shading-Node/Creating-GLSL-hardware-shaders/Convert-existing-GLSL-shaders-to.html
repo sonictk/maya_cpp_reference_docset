@@ -1,0 +1,492 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../scripts/prettify.js"></script><script src="../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Convert existing GLSL shaders to OGSFX format</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Convert existing GLSL shaders to OGSFX format</h1>
+         </div>
+
+<div class='section'><a id="convert-existing-glsl-shaders-to-ogsfx-format"></a></div>
+<p>The following sections use typical scenarios with simple examples to demonstrate how to convert your existing GLSL shaders to <span class='code'>.ogsfx</span> format. Equivalent code in GLSL versus OGSFX is provided for comparison for each example. It begins with the simplest case, and builds up to more complex scenarios.</p>
+<blockquote>
+<p><strong>Note:</strong> If you edit an effects file in an external text editor <strong>after</strong> you have already loaded it in your scene, you must reload the file by clicking the <img src='dev_help/images/Icon_reload_file.png' title='' /> icon in order for the shader to recognize your latest changes.</p>
+</blockquote>
+<div class='section'><a id="a-fixed-solid-color-material"></a><h2 id="a-fixed-solid-color-material">A fixed solid color material</h2></div>
+<p>The shader takes a <strong>single input</strong>: the <strong>position stream</strong>.</p>
+<p>In GLSL, each of the shader stages: the vertex shader and the pixel (or fragment) shader, must be compiled separately and linked to the same program. Therefore, the pixel and vertex shaders are usually saved in two different files, often with extensions <span class='code'>.glslv</span> and <span class='code'>.glslf</span> respectively.</p>
+<p>An <span class='code'>.ogsfx</span> file encapsulates all the stages in a single file.</p>
+<div class='section'><a id="glsl"></a><h3 id="glsl">GLSL</h3></div>
+<p><span class='code'>fixed_solid_color.glslv</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf;
+
+// The vertex shader input - coming from the application
+in vec3 in_position;
+ 
+// The vertex shader ouput - going to the pixel shader
+// None
+ 
+void main()
+{
+    gl_Position = gWVPXf*vec4(in_position, 1);
+}
+</pre></div><p><span class='code'>fixed_solid_color.glslf</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// The pixel shader input - coming from the vertex shader
+// None
+ 
+// The pixel shader output - going to the target
+out vec4 out_color;
+ 
+void main()
+{
+    out_color = vec4(1, 0, 0, 1);
+}
+</pre></div><div class='section'><a id="ogsfx"></a><h3 id="ogsfx">OGSFX</h3></div>
+<p><span class='code'>fixed_solid_color.ogsfx</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+// The vertex shader input - coming from the application
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+};
+ 
+// The vertex shader ouput and also the pixel shader input
+attribute vs_to_ps
+{
+    // None
+};
+ 
+// The pixel shader output
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+// All the functions or constants that will be used by the vertex shader
+GLSLShader VS
+{
+    // Only the main function, which is the same as the main function of the .glslv
+    void main() 
+    {
+        gl_Position = gWVPXf*vec4(in_position, 1);
+    }
+}
+ 
+// All the functions or constants that will be used by the pixel shader
+GLSLShader PS
+{
+    // Only the main function, which is the same as the main function of the .glslf
+    void main()
+    {
+        out_color = vec4(1, 0, 0, 1);
+    }
+}
+ 
+// Declaration of the techniques and passes - for this example, 1 technique with 1 pass
+technique Main
+{
+    pass p0
+    {
+        // We have 1 vertex shader stage that uses :
+        // - the vs_input attribute as input,
+        // - the vs_to_ps attribute as output,
+        // - all functions declared in the GLSLShader block VS - must contain main()
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+ 
+        // We have 1 pixel shader stage that uses :
+        // - the vs_to_ps attribute as input,
+        // - the ps_output attribute as output,
+        // - all functions declared in the GLSLShader block PS - must contain main()
+        PixelShader (in vs_to_ps, out ps_output) = PS;
+    }
+}
+</pre></div><div class='section'><a id="an-editable-solid-color-material"></a><h2 id="an-editable-solid-color-material">An editable solid color material</h2></div>
+<p>The shader takes two inputs:</p>
+<ul>
+<li>the solid color parameter (uniform)</li>
+<li>the position stream</li>
+</ul>
+<div class='section'><a id="glsl-1"></a><h3 id="glsl-1">GLSL</h3></div>
+<p><span class='code'>editable_solid_color.glslv</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf;
+
+// No uniform for the vertex shader
+
+in vec3 in_position;
+ 
+void main() 
+{
+    gl_Position = gWVPXf*vec4(in_position, 1);
+}
+</pre></div><p><span class='code'>editable_solid_color.glslf</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// The solid color uniform and its default value
+uniform vec4 gSolidColor = vec4(1, 0, 0, 1);
+ 
+out vec4 out_color;
+ 
+void main()
+{
+    out_color = gSolidColor;
+}
+</pre></div><div class='section'><a id="ogsfx-1"></a><h3 id="ogsfx-1">OGSFX</h3></div>
+<p><span class='code'>editable_solid_color.ogsfx</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+// The solid color uniform, its default value and several extra parameters
+uniform vec4 gSolidColor : DIFFUSE
+&lt;
+    // The UI name for this parameter in the Attribute Editor (AE)
+    // If not set (or empty), the name of the uniform itself will be used
+    string UIName = &quot;Solid Color&quot;;
+ 
+    // The group in which to put this parameter in the AE
+    // If not set (or empty), the parameter will not be added to any named group
+    string UIGroup = &quot;Editable Parameters&quot;;
+ 
+    // The value used to sort the parameters within the same group
+    // If not set, the parameter will be placed in the same order as it appears
+    // in the shader file, but after the parameters with a specified UIOrder 
+    int UIOrder = 1;
+ 
+    // Specify the widget used to control the uniform value in the AE
+    // Currently only &quot;None&quot; - the parameter will not be visible in the AE -
+    // and &quot;ColorPicker&quot; - use the color picked widget - are supported;
+    // any other value such as &quot;Color&quot; below will be ignored.
+    // The GLSLShader plug-in will try to find the proper widget
+    // based on the name of the attribute and its semantic (here DIFFUSE).
+    string UIWidget = &quot;Color&quot;;
+ 
+&gt; = {1, 0, 0, 1};
+ 
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+};
+ 
+attribute vs_to_ps
+{
+    // None
+};
+ 
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+GLSLShader VS
+{
+    void main() 
+    {
+        gl_Position = gWVPXf*vec4(in_position, 1);
+    }
+}
+ 
+GLSLShader PS
+{
+    void main()
+    {
+        out_color = gSolidColor;
+    }
+}
+ 
+technique Main
+{
+    pass p0
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS;
+    }
+}
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> See also <a href='#!/url=./dev_help/Viewport-2-0-API/Semantics-and-annotations.html' title=''>Semantics and annotations supported by the dx11Shader and glslShader plug-ins in Viewport 2.0</a> for more information regarding the semantics used above.</p>
+
+<div class='section'><a id="a-textured-material"></a><h2 id="a-textured-material">A textured material</h2></div>
+<p>The shader takes three inputs:</p>
+<ul>
+<li>the solid color parameter (uniform)</li>
+<li>the position stream</li>
+<li>the texture coordinate (UV) stream</li>
+</ul>
+<div class='section'><a id="glsl-2"></a><h3 id="glsl-2">GLSL</h3></div>
+<p><span class='code'>textured.glslv</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf;
+
+// No uniform for the vertex shader
+ 
+in vec3 in_position;
+in vec2 in_texcoord;
+ 
+out vec2 out_texcoord;
+ 
+void main() 
+{
+    gl_Position = gWVPXf*vec4(in_position, 1);
+    out_texcoord = in_texcoord;
+}
+</pre></div><p><span class='code'>textured.glslf</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// The texture sampler uniform bound to the application&#39;s texture parameter
+uniform sampler2D gTextureSampler;
+ 
+in vec2 in_texcoord;
+ 
+out vec4 out_color;
+ 
+void main()
+{
+    out_color = texture2D(gTextureSampler, in_texcoord);
+}
+</pre></div><div class='section'><a id="ogsfx---implementation-version-1"></a><h3 id="ogsfx---implementation-version-1">OGSFX - implementation version 1</h3></div>
+<p><span class='code'>textured.ogsfx</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+// The texture parameter will be visible in the Attribute Editor (AE)
+uniform texture2D gTexture
+&lt;
+    string UIName = &quot;Texture&quot;;
+    string UIGroup = &quot;Editable Parameters&quot;;
+    int UIOrder = 1;
+     
+    // Default texture file to load
+    string ResourceName = &quot;default_texture.png&quot;;
+ 
+    // Specify the type of texture : 1D, 2D, Cube ...
+    string ResourceType = &quot;2D&quot;;
+&gt;;
+ 
+// The texture sampler linked to the texture parameter, will not be visible in the AE
+uniform sampler2D gTextureSampler = sampler_state
+{
+    // This sample belongs to the texture &quot;gTexture&quot;
+    Texture = &lt;gTexture&gt;;
+};
+ 
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+    vec2 in_texcoord : TEXCOORD0;
+};
+ 
+attribute vs_to_ps
+{
+    vec2 out_texcoord;
+};
+ 
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+GLSLShader VS
+{
+    void main() 
+    {
+        gl_Position = gWVPXf*vec4(in_position, 1);
+        out_texcoord = in_texcoord;
+    }
+}
+ 
+GLSLShader PS
+{
+    void main()
+    {
+        out_color = texture2D(gTextureSampler, out_texcoord);
+    }
+}
+ 
+technique Main
+{
+    pass p0
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS;
+    }
+}
+</pre></div><div class='section'><a id="ogsfx---implementation-version-2"></a><h3 id="ogsfx---implementation-version-2">OGSFX - implementation version 2</h3></div>
+<p>In the previous <span class='code'>ogsfx</span> implementation, the texture coordinate values are passed from the vertex shader to the pixel shader using the <span class='code'>out_texcoord</span> variable of the <span class='code'>vs_to_ps</span> attribute structure. While this is reasonable in the vertex shader stage, using the variable name <span class='code'>out_texcoord</span> as an input to the pixel shader may be inappropriate. It is possible to name the input and output structures of the shader stages (except for the vs input and ps output that should remain unnamed). For example, name the variable <span class='code'>texcoord</span> in the <span class='code'>vs_to_ps</span> attribute structure, and name the vs output structure <span class='code'>vsOut</span> and the ps input structure <span class='code'>psIn</span>.</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+uniform texture2D gTexture
+&lt;
+    string UIName = &quot;Texture&quot;;
+    string UIGroup = &quot;Editable Parameters&quot;;
+    int UIOrder = 1;
+    string ResourceName = &quot;default_texture.png&quot;;
+    string ResourceType = &quot;2D&quot;;
+&gt;;
+ 
+uniform sampler2D gTextureSampler = sampler_state
+{
+    Texture = &lt;gTexture&gt;;
+};
+ 
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+    vec2 in_texcoord : TEXCOORD0;
+};
+ 
+attribute vs_to_ps
+{
+    vec2 texcoord;
+};
+ 
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+GLSLShader VS
+{
+    void main() 
+    {
+        gl_Position = gWVPXf*vec4(in_position, 1);
+        // Use the texcoord variable of the output structure
+        vsOut.texcoord = in_texcoord;
+    }
+}
+ 
+GLSLShader PS
+{
+    void main()
+    {
+        // Use the texcoord variable of the input structure
+        out_color = texture2D(gTextureSampler, psIn.texcoord);
+    }
+}
+ 
+technique Main
+{
+    pass p0
+    {
+        VertexShader (in vs_input, out vs_to_ps vsOut) = VS;
+        PixelShader (in vs_to_ps psIn, out ps_output) = PS;
+    }
+}
+</pre></div><div class='section'><a id="applying-two-pixel-shaders-to-the-same-geometry"></a><h2 id="applying-two-pixel-shaders-to-the-same-geometry">Applying two pixel shaders to the same geometry</h2></div>
+<p>In order to apply a red solid color and then a green solid color to the same geometry, you can use two different pixel shaders.</p>
+<p>In GLSL, you have 3 files : one for the vertex shader and one for each of the pixel shaders.</p>
+<p>For <span class='code'>.ogsfx</span>, all is included in a single file as follows.</p>
+<div class='section'><a id="glsl-3"></a><h3 id="glsl-3">GLSL</h3></div>
+<p><span class='code'>two_pixel_shaders.glslv</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf;
+
+in vec3 in_position;
+ 
+void main() 
+{
+    gl_Position = gWVPXf*vec4(in_position, 1);
+}
+</pre></div><p><span class='code'>two_pixel_shaders_ps1.glslf</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">out vec4 out_color;
+ 
+void main()
+{
+    // red with some transparency
+    out_color = vec4(1, 0, 0, 0.3);
+} 
+</pre></div><p><span class='code'>two_pixel_shaders_ps2.glslf</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">out vec4 out_color;
+ 
+void main()
+{
+    // green with some transparency
+    out_color = vec4(0, 1, 0, 0.3);
+}
+</pre></div><div class='section'><a id="ogsfx-2"></a><h3 id="ogsfx-2">OGSFX</h3></div>
+<p><span class='code'>two_pixel_shaders.ogsfx</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+};
+ 
+attribute vs_to_ps
+{
+    // None
+};
+ 
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+GLSLShader VS
+{
+    void main() 
+    {
+        gl_Position = gWVPXf*vec4(in_position, 1);
+    }
+}
+ 
+// The pixel shader that draws the red color
+GLSLShader PS_red
+{
+    void main()
+    {
+        out_color = vec4(1, 0, 0, 0.3);
+    }
+}
+ 
+// The pixel shader that draws the green color
+GLSLShader PS_green
+{
+    void main()
+    {
+        out_color = vec4(0, 1, 0, 0.3);
+    }
+}
+ 
+// Declare the technique with two passes,
+// one for the red color and another for the green
+technique Main
+{
+    pass p_red
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS_red;
+    }
+ 
+    pass p_green
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS_green;
+    }
+}
+ 
+// It is also possible to declare another technique
+// that can be selected via the GLSLShader Attribute Editor
+// or when loading the effect using the API
+// <a href="javascript:void(0)" data-symbol="MHWRender::MShaderManager::getEffectsFileShader" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_shader_manager.html#a581c659670f0e3168750382c61a91a25&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../&quot;}]">MHWRender::MShaderManager::getEffectsFileShader</a>(fileName, techniqueName, ...)
+// For this technique, the order of the passes is inverted.
+technique Inverse
+{
+    pass p_green
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS_green;
+    }
+ 
+    pass p_red
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS_red;
+    }
+}
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

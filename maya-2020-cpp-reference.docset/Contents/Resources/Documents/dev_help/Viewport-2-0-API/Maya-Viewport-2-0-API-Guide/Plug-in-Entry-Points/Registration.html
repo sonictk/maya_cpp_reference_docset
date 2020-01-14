@@ -1,0 +1,105 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Registration</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Registration</h1>
+         </div>
+
+<div class='section'><a id="registration"></a></div>
+<p>The attachment model for DG nodes or DAG objects is supported by the registration interface <span class='code'><a href="javascript:void(0)" data-symbol="MDrawRegistry" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_draw_registry.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_draw_registry.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDrawRegistry</a></span>. The attachment model for render loop overrides is discussed in greater detail in the section: <a href='#!/url=./dev_help/Viewport-2-0-API/Maya-Viewport-2-0-API-Guide/Plug-in-Entry-Points/Render-Loop-Overrides.html' title=''>3.6 Render Loop Overrides</a>.</p>
+<p>For draw, shader, shading node, geometry and sub-scene overrides, the association is implicitly provided via the use of node classification strings. Override classification and Maya node/object classification matching forms this implicit link. The matching is performed hierarchically from broad to specific via the usage of “sub-classifications.”</p>
+<p>The format required of a classification string is as follows:</p>
+<p />“<strong>drawdb</strong>/<object classification="">/[<sub-classification>]/<override classification="">”<p />
+<ul>
+<li><strong>drawdb</strong> : Is root string used to identify registration with the rendering database. This is always required.</li>
+<li>&lt;<strong>object classification</strong>&gt; :
+<ul>
+<li>“<strong>shader</strong>” : To be recognized as a shader, this string is required.</li>
+<li>“<strong>geometry</strong>” : To be recognized as something that can draw geometry for a renderable object, this string is required.</li>
+<li>“<strong>subscene</strong>“ : To be recognized as a DAG object that is evaluated with an <span class='code'><a href="javascript:void(0)" data-symbol="MPxSubSceneOverride" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_h_w_render_1_1_m_px_sub_scene_override.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_render_1_1_m_px_sub_scene_override.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MPxSubSceneOverride</a></span> implementation, this string is required.</li>
+<li>“<strong>light</strong>” : To be recognized as a lighting contributor, this string is required. It is recommended that both <span class='code'>“drawdb/light”</span> and <span class='code'>“light”</span> be used.</li>
+</ul></li>
+<li><p>&lt;<strong>sub-classification</strong>&gt; : This provides additional levels of classification which are useful, and in some cases, required for grouping and managing overrides. In particular, shading nodes that are used as surface shaders (connected to the Maya shading engine) must use a classification which starts with <span class='code'>“drawdb/shader/surface/”</span>. Sub-classification is optional for DAG overrides.</p>
+<p>In general, the more sub-classifications specified, the more specific the type of objects/nodes associated with a given entry point. For example, in these two examples:</p>
+<ol>
+<li><span class='code'>“drawdb/shader/surface/myLibrary/myShader”</span></li>
+<li><span class='code'>“drawdb/shader/surface/myLibrary”</span></li>
+</ol>
+<p>The first classification string, when used, would match fewer objects/nodes than the more-generic second string.</p>
+<p>For either existing or new plug-in node types, it is the responsibility of the plug-in writer to ensure that the appropriate classifications are used for both the override and for the node itself so that the correct classification string matching (association) is performed.</p>
+<p><strong>Light classification</strong></p>
+<p>If the classification is <span class='code'>“light”</span>, then the only possible sub-classifications are those available for internal Maya lights. This include <span class='code'>“ambientLight”</span>, <span class='code'>“pointLight”</span>, <span class='code'>“directionalLight”</span>, <span class='code'>“spotlight”</span> and <span class='code'>“volumeLight”</span>.</p>
+<p>The lights sub-classification indicates the internal lighting fragment that will be used during the computation of illumination. The parameters for these fragments are updated if an appropriate attribute is found on the node. The attributes may be a 1:1 match or an approximate match.</p>
+<p>For example, if a node of classification <span class='code'>“drawdb/geometry/mynode”</span> has the following attributes:</p>
+<ul>
+<li>intensity attribute</li>
+<li>use dmap shadows</li>
+<li>use rtrace shadows</li>
+</ul>
+<p>And the light fragment has the following attributes:</p>
+<ul>
+<li>intensity parameter</li>
+<li>shadows enabled</li>
+</ul>
+<p>Then the intensity attributes map to each other, but the &quot;use dmap shadows&quot; and &quot;use rtrace shadows&quot; attributes both map to the same “shadows enabled” parameter.</p>
+<p>If a match is possible, then the unmapped (unconnected) value is used. If a match for an attribute is not found, then the appropriate default value for the attribute is used.</p>
+<blockquote>
+<p><strong>Note:</strong> If you use the <span class='code'>“light”</span> classification, <strong>you must include these light attributes</strong>: <em>intensity</em>, <em>color</em>, <em>emitDiffuse</em>, and <em>emitSpecular</em>, in order for the light to behave like a Maya light. The attributes can be static or dynamic.</p>
+</blockquote>
+<p>If you use the <span class='code'>“light”</span> classification, then the only possible sub-classifications are those available for internal Maya lights:</p>
+<ul>
+<li>ambientLight</li>
+<li>pointLight</li>
+<li>directionalLight</li>
+<li>spotlight</li>
+<li>volumeLight</li>
+<li><a href='#!/url=./dev_help/Viewport-2-0-API/Maya-Viewport-2-0-API-Guide/Advanced-Topics/Image-based-lighting.html' title=''>image</a>.</li>
+</ul>
+<p>The <em>exposure</em> attribute is also parsed for internal light evaluation.</p>
+<p>The <em>apiDirectionalLightShape</em> Developer Kit example plug-in and the Arnold for Maya plug-in lights have implementations that show support for the various classifications and attribute handling, including exposure.</p>
+<p>No drawing override is required as the internal drawing for the given light type is provided automatically.</p></li>
+<li><p>&lt;<strong>override classification</strong>&gt; : Unique override classification. Often, this is the name of the node type the override is to be used with (if it is not used with multiple node types).</p></li>
+</ul>
+<div class='figure'><img src='dev_help/images/LightRegistration_Classification.png' title='' /></div>
+<p>Figure 35: For each override type the classification matches any objects or nodes specified in the classification.</p>
+<div class='figure'><img src='dev_help/images/aa0f8ccb.jpg' title='' /></div>
+<p>Figure 36: Example demonstrating that, depending on how on how specific the classification is, different matches results. The “<span class='code'>drawdb/geometry/parametricSurface/B-spline</span>” DAG object classification matches more closely to the override with the identical classification string, rather than the more generic “<span class='code'>drawdb/geometry/parametricSurface</span>” string. The classification with the closest match is used.</p>
+<p>The <span class='code'>getClassification</span> command documentation contains a list of classifications recognized by Viewport 2.0.</p>
+<p><strong>Draw a custom object that performs lighting in Viewport 2.0</strong></p>
+<p>For dag objects that wish to contribute lighting as well as have custom drawing, it is possible to have two <span class='code'>“drawdb”</span> classifications: one that starts with <span class='code'>“light”</span> and one that starts with <span class='code'>“geometry”</span>. This is shown with the <span class='code'>“drawdb/geometry/light/myLight”</span> classification on the node and corresponding geometry override, as well as a <span class='code'>“light”</span> and <span class='code'>“drawdb/light/directionalLight”</span> classification.</p>
+<p>A simple example is given in the <em>apiDirectionalLightShape</em> plug-in example, which draws the following custom geometry (in blue) as compared to the default internal drawing of a directional light.</p>
+<div class='figure'><img src='dev_help/images/LightRegistration_PluginExample.png' title='' /></div>
+<p>Only classifications for draw and geometry overrides may be registered along with <span class='code'>“drawdb/light”</span>. Overrides such as <span class='code'>“drawdb/subscene”</span>, for example, are not allowed.</p>
+<p>In order for the override of a plug-in node to represent the drawing of a light, the <span class='code'>“drawdb/geometry/light”</span> classification string should be used when registering the override; for example, a classification string such as <span class='code'>“drawdb/geometry/light/myLight”</span> could be used. Support for display type filters becomes available when this classification is used, such that the drawing of these plug-in nodes are filtered when lights are filtered.</p>
+<p><strong>Register transform node plug-ins</strong></p>
+<p>Plug-in writers should be aware that, in order for a plug-in transform to be recognized in Viewport 2.0, the appropriate classification string <em>drawdb/geometry/transform</em> must be added when registering the transform. This must be done so that:</p>
+<ul>
+<li>Local rotation axis and pivots draw.</li>
+<li>Transforming the object moves any children parented under it in the DAG.</li>
+</ul>
+<p>For example, for the rockingTransform plug-in, the code is as follows:</p>
+<div class="codeBlock"><pre class="prettyprint">// Classify the node as a transform.  This causes Viewport
+// 2.0 to treat the node the same way it treats a regular
+// transform node.
+const <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MString</a> classification = &quot;drawdb/geometry/transform&quot;;
+status = plugin.registerTransform(&quot;rockingTransform&quot;,                               
+                                   rockingTransformNode::id,                                    
+                                   &amp;rockingTransformNode::creator,                              
+                                   &amp;rockingTransformNode::initialize,
+                                   &amp;rockingTransformMatrix::creator,
+                                   rockingTransformMatrix::id,
+                                   &amp;classification);
+
+</pre></div><p>If this is not done, then <span class='code'>registerTransform()</span> automatically adds the <span class='code'>drawdb/geometry/transform</span> classification if no other <span class='code'>drawdb</span> classification is specified.</p>
+<div class='section'><a id="registering-display-filters"></a><h2 id="registering-display-filters">Registering Display Filters</h2></div>
+<p>New display filter types can be added for plug-in objects via a registration interface. If the classification string used matches the classification string used for registering a draw override, the override may be filtered out when visibility checking is performed. The UI name for the filter appears as an option for display filter interfaces for 3d viewports and batch rendering.</p>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MFnPlugin::registerDisplayFilter()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_plugin.html#acb7cf054c95bb6517d378a26a8d48956&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnPlugin::registerDisplayFilter()</a></span> is the interface to register a new display filter type. The <em>gpuCache</em> SDK plug-in contains code which demonstrates its usage.</p>
+</override></sub-classification></object>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

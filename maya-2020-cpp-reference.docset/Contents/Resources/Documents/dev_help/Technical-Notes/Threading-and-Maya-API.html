@@ -1,0 +1,191 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Threading and Maya API</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Threading and Maya API</h1>
+         </div>
+
+<div class='section'><a id="threading-and-maya-api"></a></div>
+<p>Plug-ins can utilize threaded code if certain guidelines are followed. Below are some notes that provide guidance for this issue:</p>
+<ol>
+<li>Maya uses the following types of threads:
+<ul>
+<li>Linux - pthreads</li>
+<li>Mac OS X - pthreads</li>
+<li>Windows - Native Windows API threads</li>
+</ul></li>
+<li>The components of Maya that are available in the API are single threaded. It is always best to call into the Maya API from the main Maya thread. It is acceptable to thread your code as long as it is independent of calls to the Maya API. The exception to this rule is <span class='code'><a href="javascript:void(0)" data-symbol="MPxNode::compute()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html#a6e1aa1e50774080d5aee55f20ffa5503&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html#ae17c4b226f482e2d77c3f99375d1eea0&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxNode::compute()</a></span> can have threaded calls for software shaders. But this depends on the setup of the node and the software renderer.</li>
+<li>Although some operations in Maya have been threaded, they are not exposed in the API.</li>
+<li>It is possible to call into Maya from an secondary thread using the <span class='code'><a href="javascript:void(0)" data-symbol="MGlobal::executeCommandOnIdle()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a2c877a6e116f8fd3a6e76387403c023a&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_global.html#ab9dab071d5c2efab3397f2fa6ed0299c&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::executeCommandOnIdle()</a></span> method. In Python, the equivalent <span class='code'><a href="javascript:void(0)" data-symbol="MGlobal::executePythonCommandOnIdle()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#ab999a152a46888cb5dfc2871466f9c40&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::executePythonCommandOnIdle()</a></span> method would be used. The command will not execute immediately; instead, the command will be added to the idle event queue and executed as idle processing allows. The result of the command will not be returned to the caller. This call can be useful for updating items such as the progress bar from another thread.</li>
+<li><p>There are four C++ API classes for threading:</p>
+<ul>
+<li><span class='code'><a href="javascript:void(0)" data-symbol="MThreadPool" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool</a></span></li>
+<li><span class='code'><a href="javascript:void(0)" data-symbol="MThreadAsync" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_async.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadAsync</a></span></li>
+<li><span class='code'><a href="javascript:void(0)" data-symbol="MSpinLock" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_spin_lock.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MSpinLock</a></span></li>
+<li><span class='code'><a href="javascript:void(0)" data-symbol="MMutexLock" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_mutex_lock.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MMutexLock</a></span></li>
+</ul>
+<p>These classes can be used to implement threaded algorithms for non-Maya API functionality. Several examples that utilize these classes can be found in the developer kit. (These classes are not available in the Maya Python API.)</p>
+<p><strong>MThreadPool</strong> gives access to a pool of threads to which tasks can be assigned. The number of tasks does not have to equal the number of threads, in fact for load balancing it is usually better if the number of tasks exceeds the number of threads. Maya will internally balance the work among the threads for optimal efficiency. The number of threads in the pool is equal to the number of logical processors. It is not necessary to delete the thread pool after each usage, and for performance reasons it is better not to do so, since the threads will be put to sleep when a parallel region finishes, which means they can be restarted quickly.</p>
+<p><strong>MThreadAsync</strong> allows the creation of one of more threads that can run for a long time. They are not drawn from the thread pool created and managed by <span class='code'><a href="javascript:void(0)" data-symbol="MThreadPool" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool</a></span>, but are independent threads. These threads can be used for longer running tasks. Since they are not created from the thread pool, the number and workload of such threads should be managed carefully to avoid oversubscription issues, where the number of busy threads exceeds the hardware resources available.</p>
+<p><strong>MMutexLock</strong> is a locking primitive that can be used with both <span class='code'><a href="javascript:void(0)" data-symbol="MThreadPool" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool</a></span> and <span class='code'><a href="javascript:void(0)" data-symbol="MThreadAsync" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_async.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadAsync</a></span> threads. It allows standard mutex locking of threads.</p>
+<p><strong>MSpinLock</strong> is a lock that spin-waits, so can be more efficient than a mutex lock in situations where the lock is likely to be held for a very short time. However since the lock spin waits, it is a heavy CPU consumer, and should not be used when locks are likely to be held for a long time.</p></li>
+<li><p>Threading with Python is possible with the built-in thread module. The thread module can be used to implement threaded algorithms for non-Maya API functionality. Please see the Python and threading section of the <em>Python</em> Guide for more details.</p></li>
+</ol>
+<p>The following example demonstrates how to find primes using a serial and a threaded approach. The threaded approach uses the <span class='code'><a href="javascript:void(0)" data-symbol="MThreadPool" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool</a></span> class.</p>
+<div class="codeBlock"><pre class="prettyprint">#include &lt;math.h&gt;
+#include &lt;maya/MIOStream.h&gt;
+#include &lt;maya/MSimple.h&gt;
+#include &lt;maya/MTimer.h&gt;
+#include &lt;maya/MGlobal.h&gt;
+#include &lt;maya/MThreadPool.h&gt;
+<a href="javascript:void(0)" data-symbol="DeclareSimpleCommand" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/group___macros.html#gaf3b44fe07495c3792b926494fca7b517&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">DeclareSimpleCommand</a>( threadTestCmd, PLUGIN_COMPANY, &quot;2017&quot;);
+typedef struct _threadDataTag
+{
+    int threadNo;
+    long primesFound;
+    long start, end;
+} threadData;
+
+typedef struct _taskDataTag
+{
+    long start, end, totalPrimes;
+} taskData;
+
+#define NUM_TASKS   16
+// No global information used in function
+
+static bool TestForPrime(int val)
+{
+    int limit, factor = 3;
+    limit = (long)(sqrtf((float)val)+0.5f);
+    while( (factor &lt;= limit) &amp;&amp; (val % factor))
+        factor ++;
+    return (factor &gt; limit);
+}
+
+// Primes finder. This function is called from multiple threads
+MThreadRetVal Primes(void *data)
+{
+    threadData *myData = (threadData *)data;
+    for( int i = myData-&gt;start + myData-&gt;threadNo*2; i &lt;= myData-&gt;end; i += 2*NUM_TASKS )
+    {
+        if( TestForPrime(i) )
+        myData-&gt;primesFound++;
+    }
+    return (MThreadRetVal)0;
+}
+
+// Function to create thread tasks
+void DecomposePrimes(void *data, MThreadRootTask *root)
+{
+    taskData *taskD = (taskData *)data;
+    threadData tdata[NUM_TASKS];
+    for( int i = 0; i &lt; NUM_TASKS; ++i )
+    {
+        tdata[i].threadNo = i;
+        tdata[i].primesFound = 0;
+        tdata[i].start = taskD-&gt;start;
+        tdata[i].end = taskD-&gt;end;
+        <a href="javascript:void(0)" data-symbol="MThreadPool::createTask" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html#a611da972604ffe306fdb87b4ab06ed16&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool::createTask</a>(Primes, (void *)&amp;tdata[i], root);
+    }
+    <a href="javascript:void(0)" data-symbol="MThreadPool::executeAndJoin" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html#ae9e9c1be8def42f1040adf93edf4d5e7&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool::executeAndJoin</a>(root);
+    for( int i = 0; i &lt; NUM_TASKS; ++i )
+    {
+        taskD-&gt;totalPrimes += tdata[i].primesFound;
+    }
+}
+
+// Single threaded calculation
+int SerialPrimes(int start, int end)
+{
+    int primesFound = 0;
+    for( int i = start; i &lt;= end; i+=2)
+    {
+        if( TestForPrime(i) )
+            primesFound++;
+    }
+    return primesFound;
+}
+
+// Set up and tear down parallel tasks
+int ParallelPrimes(int start, int end)
+{
+    <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> stat = <a href="javascript:void(0)" data-symbol="MThreadPool::init" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html#a81616e4d1ab97b678585e86b19e3cdff&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool::init</a>();
+    if( <a href="javascript:void(0)" data-symbol="MStatus::kSuccess" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus::kSuccess</a> != stat ) {
+        <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a> str = <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;Error creating threadpool&quot;);
+        <a href="javascript:void(0)" data-symbol="MGlobal::displayError" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::displayError</a>(str);
+        return 0;
+    }
+
+    taskData tdata;
+    tdata.totalPrimes = 0;
+    tdata.start = start;
+    tdata.end = end;
+    <a href="javascript:void(0)" data-symbol="MThreadPool::newParallelRegion" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html#a943a1eb7bb753be409a66388900890e4&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool::newParallelRegion</a>(DecomposePrimes, (void *)&amp;tdata);
+    // pool is reference counted. Release reference to current thread instance
+    <a href="javascript:void(0)" data-symbol="MThreadPool::release" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html#a23b477d0e2d399f75d585d154c346591&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool::release</a>();
+    // release reference to whole pool which deletes all threads
+    <a href="javascript:void(0)" data-symbol="MThreadPool::release" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_thread_pool.html#a23b477d0e2d399f75d585d154c346591&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MThreadPool::release</a>();
+    return tdata.totalPrimes;
+}
+
+// MSimple command that invokes the serial and parallel thread calculations
+<a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> threadTestCmd::doIt( const <a href="javascript:void(0)" data-symbol="MArgList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_arg_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MArgList</a>&amp; args )
+{
+    <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a> introStr = <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;Computation of primes using the Maya API&quot;);
+    <a href="javascript:void(0)" data-symbol="MGlobal::displayInfo" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a3d14e9f9ed022a80f664eac0136c2f7a&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::displayInfo</a>(introStr);
+    if(args.length() != 2) {
+        <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a> str = <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;Invalid number of arguments, usage: threadTestCmd 1 10000&quot;);
+        <a href="javascript:void(0)" data-symbol="MGlobal::displayError" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::displayError</a>(str);
+        return <a href="javascript:void(0)" data-symbol="MStatus::kFailure" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus::kFailure</a>;
+    }
+    <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> stat;
+    int start = args.asInt( 0, &amp;stat );
+    if ( MS::kSuccess != stat ) {
+        <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a> str = <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;Invalid argument 1, usage: threadTestCmd 1 10000&quot;);
+        <a href="javascript:void(0)" data-symbol="MGlobal::displayError" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::displayError</a>(str);
+        return <a href="javascript:void(0)" data-symbol="MStatus::kFailure" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus::kFailure</a>;
+    }
+    int end = args.asInt( 1, &amp;stat );
+    if ( MS::kSuccess != stat ) {
+        <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a> str = <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;Invalid argument 2, usage: threadTestCmd 1 10000&quot;);
+        <a href="javascript:void(0)" data-symbol="MGlobal::displayError" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::displayError</a>(str);
+        return <a href="javascript:void(0)" data-symbol="MStatus::kFailure" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus::kFailure</a>;
+    }
+
+    // start search on an odd number
+    if((start % 2) == 0 ) start++;
+    // run single threaded
+    <a href="javascript:void(0)" data-symbol="MTimer" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_timer.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MTimer</a> timer;
+    timer.beginTimer();
+    int serialPrimes = SerialPrimes(start, end);
+    timer.endTimer();
+    double serialTime = timer.elapsedTime();
+    // run multithreaded
+    timer.beginTimer();
+    int parallelPrimes = ParallelPrimes(start, end);
+    timer.endTimer();
+    double parallelTime = timer.elapsedTime();
+    // check for correctness
+    if ( serialPrimes != parallelPrimes ) {
+        <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a> str(&quot;Error: Computations inconsistent&quot;);
+        <a href="javascript:void(0)" data-symbol="MGlobal::displayError" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a4ddbe97e58a90e1ab05d45a62c006cf0&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::displayError</a>(str);
+        return <a href="javascript:void(0)" data-symbol="MStatus::kFailure" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80a1ef6c2d725fb4bec3e7e840d28adbc00&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus::kFailure</a>;
+    }
+    // print results
+    double ratio = serialTime/parallelTime;
+    <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a> str = <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;\nElapsed time for serial computation: &quot;) + serialTime + <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;s\n&quot;);
+    str += <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;Elapsed time for parallel computation: &quot;) + parallelTime + <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;s\n&quot;);
+    str += <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;Speedup: &quot;) + ratio + <a href="javascript:void(0)" data-symbol="MString" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_string.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MString</a>(&quot;x\n&quot;);
+    <a href="javascript:void(0)" data-symbol="MGlobal::displayInfo" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a3d14e9f9ed022a80f664eac0136c2f7a&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::displayInfo</a>(str);
+    return <a href="javascript:void(0)" data-symbol="MStatus::kSuccess" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html#a02ab596f4febca68da503aaf8dde3a80af0536797208144380691e2b376ffc1d1&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus::kSuccess</a>;
+}
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

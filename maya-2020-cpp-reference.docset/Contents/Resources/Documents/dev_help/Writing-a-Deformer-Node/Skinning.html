@@ -1,0 +1,136 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Skinning</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Skinning</h1>
+         </div>
+
+<div class='section'><a id="skinning"></a></div>
+<p>Skinning is the process of deforming a shape according to the transformation of joints or other influence objects. There are two types of skinning: smooth and rigid. Smooth skinning produces a skin that is smooth around joints as soon as it is bound and you can modify the weights to achieve more customized affects. Rigid skinning produces a skin that initially behaves as if it is parented to the attached joint. Either flexors can be added to produce smoothing around joints, or weights on the rigid jointCluster node can be modified for customized effects. The following table lists the differences between smooth skinning and rigid skinning.</p>
+<table cellpadding="0" cellspacing="0" class="ruled">
+<colgroup>
+<col width="33.33333333333333%" />
+<col width="33.33333333333333%" />
+<col width="33.33333333333333%" />
+</colgroup>
+<tbody>
+<tr class="ruled-heading">
+<th class="table-heading">
+Detail
+</th>
+<th class="table-heading">
+Smooth Skinning
+</th>
+<th class="table-heading">
+Rigid Skinning
+</th>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+Node Type
+</td>
+<td class="table-body">
+skinCluster
+</td>
+<td class="table-body">
+jointCluster
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+API Type
+</td>
+<td class="table-body">
+<span class="code">MFn::kSkinCluster</span>
+</td>
+<td class="table-body">
+<span class="code"><a href="javascript:void(0)" data-symbol="MFn::kJointCluster" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn.html#a1d1cfd8ffb84e947f82999c682b666a7a7ed171bc0bc9f329160fbb2fda14769e&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFn::kJointCluster</a></span>
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+API function set
+</td>
+<td class="table-body">
+<span class="code"><a href="javascript:void(0)" data-symbol="MFnSkinCluster" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_skin_cluster.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_anim_1_1_m_fn_skin_cluster.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnSkinCluster</a></span>
+</td>
+<td class="table-body">
+<span class="code"><a href="javascript:void(0)" data-symbol="MFnWeightGeometryFilter" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_weight_geometry_filter.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MFnWeightGeometryFilter</a></span>
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+Influence objects
+</td>
+<td class="table-body">
+Any type of transform
+</td>
+<td class="table-body">
+Joints
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+Number of deformers
+</td>
+<td class="table-body">
+One per skin
+</td>
+<td class="table-body">
+One per joint
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+Number of weights
+</td>
+<td class="table-body">
+Up to one per influence/per CV
+</td>
+<td class="table-body">
+One per CV
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+MEL command to edit weights
+</td>
+<td class="table-body">
+<span class="code">skinPercent</span>
+</td>
+<td class="table-body">
+<span class="code">Percent</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The most significant difference is that rigid skinning produces a single jointCluster per joint. The jointCluster is then shared by all skins that are rigidly bound to the joint. Unlike rigid skinning, smooth skinning produces one skinCluster per skin, and all of the influences that affect that skin are connected to the skinCluster.</p>
+<p>Smooth skinning in general is easier and its algorithm is quicker to compute depending on the number of influences that are given weights.</p>
+<div class='section'><a id="node-configuration-in-smooth-skinning"></a><h2 id="node-configuration-in-smooth-skinning">Node Configuration in Smooth Skinning</h2></div>
+<p>In smooth skinning, there is one skinCluster per skin. Unlike other deformers, you cannot modify the set membership of a skinCluster to add more skins. Each skin must have its own skinCluster. You can modify the set membership of a skinCluster by removing vertices, for example, if you want to skin only half of an object.</p>
+<p>In a skinCluster there can be any number of influence objects. The worldMatrix output of the influence objects are connected to the skinCluster&#39;s matrix attribute. The attribute logicalIndex of this connection is used by the skinCluster to correlate influences with their weights. The API method <span class='code'>MFnSkinCluster::indexForInfluenceObject</span> enables you to query the skinCluster for determining the index of the associated influence object.</p>
+<p>The weights for the skinCluster are stored in the multi-multi attribute called weightList[].weights[]. The first index of the multi is the index of the vertex. The second is the index of the influence object. The weights are in general stored sparsely, so if you weigh a vertex by two of the 50 influence objects, only two elements exist in the weights array for that vertex. The exception is that if data exists in the data block and is later set to zero by some operation, the zero-valued data remains in the data block until the file is saved. When the file is saved, the file save code determines that the value zero is the default data, which does not need to be saved. The next time the file is read, only the non-zero valued elements will exist in the skinCluster.</p>
+<p>The transformation of the joints at the time of the bind is called the bindPose. The skinning algorithm uses this information to perform the deformation. The bindPose is stored in a node called the dagPose node. It is stored in detail by the skinning algorithm because the extra details are needed to help in restoring the bindPose.</p>
+<p>The dagPose node stores the worldMatrix for all of the influences at the time of the bind. It also stores the local matrix as a full transformation matrix (<span class='code'><a href="javascript:void(0)" data-symbol="MTransformationMatrix" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_transformation_matrix.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_transformation_matrix.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MTransformationMatrix</a></span>), and stores the parenting information. Only the worldMatrix is used by the skinning algorithm and is contained in the skinCluster node of the bindPreMatrix attribute. The bindPreMatrix is a multi-attribute that correlates its multi-index to the related influence object.</p>
+<p>For joints only, the bindMatrix is also stored in the bindPose attribute. The joint has some other bind-related attributes, but they are obsolete in Maya 4.0 and remain only for backward compatibility.</p>
+<p><strong>Algorithm</strong></p>
+<p>Each point P is assigned a set of weights {w1,w2,...,wn}. One weight for each of the <em>n</em> influence objects affecting the skin with the default weight value of zero. Typically, the following equation holds:</p>
+<p><em>w1 + w2 + ... + wn = 1.0</em></p>
+<p>If <em>Ti</em> is the current world transformation matrix of influence <em>i</em> and <em>Bi</em> is the world transformation matrix of the same influence at the time of the bind. If <em>W(p)</em> is the world position of <em>P</em> at the time of the bind, then <em>Li(p)</em> can be computed as the position of point <em>P</em> in the local coordinate system of influence <em>i</em> as shown in the following equation:</p>
+<p><em>Li(p) = Bi - 1 x W(p)</em></p>
+<p>You can then compute what the world position of the point will be if it is parented under transform <em>i</em> as shown in the following equation:</p>
+<p><em>Ni(p) = Ti x Li(p)</em></p>
+<p>You can multiply this world position by the corresponding weight for influence <em>i</em> and get <em>Mi(p)</em> as shown in the following equation:</p>
+<p><em>Mi(p) = wi x Ni(p)</em></p>
+<p>Now, add all the Mi(p) to get the deformed position of the point in world space as shown in the following equation:</p>
+<p><em>NewWorldPos(p) = M1(p) + M2(p) + ... + Mn(p)</em></p>
+<p>All the rotations happen at the joint/transform pivots and a linear interpolation is done using the weight to compute the final point positions.</p>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>
