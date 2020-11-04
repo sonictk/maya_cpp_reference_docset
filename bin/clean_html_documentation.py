@@ -22,7 +22,7 @@ def format_file(all_files, docs_path, output_path):
         if os.path.splitext(f)[-1] != '.html':
             continue
 
-        html = open(os.path.join(docs_path, f)).read()
+        html = open(os.path.join(docs_path, f), encoding='utf-8').read()
         soup = BeautifulSoup(html, 'html.parser')
         for link in soup.find_all('a'):
             href = link.get('href')
@@ -41,13 +41,13 @@ def format_file(all_files, docs_path, output_path):
                     new_tag['class'] = 'dashAnchor'
                     td.insert(0, new_tag)
 
-        with open(os.path.join(output_path, f), 'w') as of:
-            of.write(str(soup))
+        with open(os.path.join(output_path, f), 'w', encoding='utf-8') as of:
+            of.write(soup.decode('utf-8'))
 
     logger.debug('Job complete!')
 
 
-def main(maya_version='2016'):
+def main(maya_version='2020'):
     """This is the main entry point of the program."""
 
     logger = logging.getLogger(__name__)
@@ -81,6 +81,8 @@ def main(maya_version='2016'):
     logger.debug('Num. of jobs scheduled: {0}'.format(len(jobs)))
     [j.start() for j in jobs]
     logger.info('Jobs submitted, please wait for them to complete!')
+
+    #format_file(all_files, docs_path, output_path)
 
 
 if __name__ == '__main__':

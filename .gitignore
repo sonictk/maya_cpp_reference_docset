@@ -2,3 +2,4 @@
 backup/
 maya-2016-cpp-reference.docset/Contents/Resources/Documents/output/
 *.pyc
+*.vscode/
