@@ -1,0 +1,26 @@
+var class_m_fn_anisotropy_shader =
+[
+    [ "~MFnAnisotropyShader", "class_m_fn_anisotropy_shader.html#ad511f8b88008ea0d1a2bb97d58a83b92", null ],
+    [ "MFnAnisotropyShader", "class_m_fn_anisotropy_shader.html#ad98f75cf933b04ad744ab0db465d2459", null ],
+    [ "MFnAnisotropyShader", "class_m_fn_anisotropy_shader.html#a7ea4974ad5cb2fb590497657e91ac845", null ],
+    [ "MFnAnisotropyShader", "class_m_fn_anisotropy_shader.html#ad8ba4628acb9731c4b2c00aa74d807c8", null ],
+    [ "type", "class_m_fn_anisotropy_shader.html#adc3250674414e8a0b2f4584959c6ec4c", null ],
+    [ "className", "class_m_fn_anisotropy_shader.html#a428d79a409e4896c1585d9667e58af0e", null ],
+    [ "create", "class_m_fn_anisotropy_shader.html#a407ee76c6cb600206505fe034e637e34", null ],
+    [ "tangentUCamera", "class_m_fn_anisotropy_shader.html#a08b0219a6a05bc0eb9d348e4220cb655", null ],
+    [ "setTangentUCamera", "class_m_fn_anisotropy_shader.html#aac43a494a11320f5587401f4e050b85e", null ],
+    [ "tangentVCamera", "class_m_fn_anisotropy_shader.html#a6b23a627de3cc9587f84dfc05c1e4483", null ],
+    [ "setTangentVCamera", "class_m_fn_anisotropy_shader.html#a5952092c4d1a1a711ba84ed68252f4fa", null ],
+    [ "correlationX", "class_m_fn_anisotropy_shader.html#a09d1e0bcf7a0a3849f22cebdb5645bdf", null ],
+    [ "setCorrelationX", "class_m_fn_anisotropy_shader.html#a3543abce31b091037ff50e0dd0e207ee", null ],
+    [ "correlationY", "class_m_fn_anisotropy_shader.html#af9df6842735a03f80f48c1df12a9e939", null ],
+    [ "setCorrelationY", "class_m_fn_anisotropy_shader.html#a9a3f7f6f2d80d24ea1df374d510d07ba", null ],
+    [ "roughness", "class_m_fn_anisotropy_shader.html#a323e7653ba76442dd0817e8fdce2c429", null ],
+    [ "setRoughness", "class_m_fn_anisotropy_shader.html#a4b549c876c5abfd8dab281c48544da94", null ],
+    [ "rotateAngle", "class_m_fn_anisotropy_shader.html#a83d05ff5773208f8eb8bd0768f98cfa7", null ],
+    [ "setRotateAngle", "class_m_fn_anisotropy_shader.html#ae2025bfa273bdd403a1b61fe937deed5", null ],
+    [ "refractiveIndex", "class_m_fn_anisotropy_shader.html#a8cbd57dabb3329e93455cea0aca4aa61", null ],
+    [ "setRefractiveIndex", "class_m_fn_anisotropy_shader.html#a17622044c0aff460d682ed6ba9709b41", null ],
+    [ "anisotropicReflectivity", "class_m_fn_anisotropy_shader.html#a5388e145235738cc44e42b2ef6d4e390", null ],
+    [ "setAnisotropicReflectivity", "class_m_fn_anisotropy_shader.html#a1cea5d51e594e0943aeb53b975396a3a", null ]
+];

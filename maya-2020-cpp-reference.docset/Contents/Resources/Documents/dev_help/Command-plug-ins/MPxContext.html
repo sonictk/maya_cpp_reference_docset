@@ -1,0 +1,186 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>MPxContext</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>MPxContext</h1>
+         </div>
+
+<div class='section'><a id="mpxcontext"></a></div>
+<p>This topic describes the API class and interfaces used to create context in the Legacy Default Viewport. For information on how to work with tool contexts in Viewport 2.0, see <a href='#!/url=./dev_help/Viewport-2-0-API/Maya-Viewport-2-0-API-Guide/Plug-in-Entry-Points/Tool-Contexts.html' title=''>3.11 Tool Contexts</a>.</p>
+<p>The <span class='code'><a href="javascript:void(0)" data-symbol="MPxContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxContext</a></span> class allows you to create your own context.</p>
+<p>The realization of a context in the Maya application is done through a special command which creates the context. In this regard, a context is similar to a shape—it is created and modified by a command and has state which defines its behavior or appearance. When you write a context by subclassing <span class='code'><a href="javascript:void(0)" data-symbol="MPxContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxContext</a></span>, you must also define a command for it by subclassing from <span class='code'><a href="javascript:void(0)" data-symbol="MPxContextCommand" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_context_command.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_context_command.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxContextCommand</a></span> described in the following.</p>
+<p>The following is the marqueeTool example which does simple selection using a user drawn SGI® OpenGL® selection box. For the purposes of brevity, the header files have been left out. See the example code in the <span class='code'>devkitBase/devkit/plug-ins</span> directory of your Developer Kit installation for the complete example.</p>
+<div class="codeBlock"><pre class="prettyprint">const char helpString[] =
+    &quot;Click with left button or drag with middle button to select&quot;;
+class marqueeContext : public <a href="javascript:void(0)" data-symbol="MPxContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxContext</a>
+{
+public:
+    marqueeContext();
+    virtual void toolOnSetup( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event );
+    virtual <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> doPress( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event );
+    virtual <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> doDrag( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event );
+    virtual <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> doRelease( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event );
+    virtual <a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> doEnterRegion( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event );
+
+</pre></div><p>The methods on <span class='code'><a href="javascript:void(0)" data-symbol="MPxContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxContext</a></span> provide default actions if they are not overridden so you need only define those methods which are necessary for the proper functioning of your context. What each of these methods does is described below.</p>
+<div class="codeBlock"><pre class="prettyprint">private:
+    short start_x, start_y;
+    short last_x, last_y;
+    MGlobal::ListAdjustment listAdjustment
+    <a href="javascript:void(0)" data-symbol="M3dView" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m3d_view.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">M3dView</a> view;
+};
+marqueeContext::marqueeContext()
+{
+    setTitleString ( &quot;Marquee Tool&quot; );
+}
+
+</pre></div><p>The constructor sets the title that will appear in the UI when this tool is selected.</p>
+<div class="codeBlock"><pre class="prettyprint">void marqueeContext::toolOnSetup ( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; )
+{
+    setHelpString( helpString );
+}
+
+</pre></div><p>When the tool is selected this method is called to put user help information on the prompt line and so that you can do any initialization that may be required.</p>
+<div class="codeBlock"><pre class="prettyprint"><a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> marqueeContext::doPress( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event )
+{
+
+</pre></div><p>This method is called after the tool has been selected and you have pressed a mouse button. The <span class='code'><a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a></span> object contains the relevant information to the user’s mouse down event, such as the co-ordinates the user clicked on.</p>
+<div class="codeBlock"><pre class="prettyprint">    if (event.isModifierShift() || event.isModifierControl() ) {
+        if ( event.isModifierShift() ) {
+            if ( event.isModifierControl() ) {
+                // both shift and control pressed, merge new selections
+                listAdjustment = MGlobal::kAddToList;
+            } 
+            else 
+            {
+                    // shift only, xor new selections with previous ones
+                    listAdjustment = MGlobal::kXORWithList;
+            }
+        } 
+        else if ( event.isModifierControl() ) {
+                // control only, remove new selections from the previous list
+                listAdjustment = MGlobal::kRemoveFromList; 
+        }
+    }
+    else
+        listAdjustment = MGlobal::kReplaceList;
+
+</pre></div><p>Since the mode of selection can be varied by what modifier keys are held down, the mouse up event is checked to see what if any modifiers were down, and then adjusts the type of selection accordingly.</p>
+<div class="codeBlock"><pre class="prettyprint">     event.getPosition( start_x, start_y );
+
+</pre></div><p>The positions of the selection are determined. This method returns screen co-ordinates.</p>
+<div class="codeBlock"><pre class="prettyprint">    view = <a href="javascript:void(0)" data-symbol="M3dView::active3dView" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m3d_view.html#a3cda809eff914b04ff47de958c365f09&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">M3dView::active3dView</a>();
+    view.beginGL();
+
+</pre></div><p>This determines the active view and enables OpenGl rendering into it.</p>
+<div class="codeBlock"><pre class="prettyprint">    view.beginOverlayDrawing();
+    return MS::kSuccess;
+}
+<a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> marqueeContext::doDrag( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event )
+{
+
+</pre></div><p>This method is called while the mouse button is down and you drag the cursor around the screen.</p>
+<div class="codeBlock"><pre class="prettyprint">    event.getPosition( last_x, last_y );
+    view.clearOverlayPlane();
+
+</pre></div><p>Each time this method is called the overlay planes are cleared before rendering the new selection box.</p>
+<div class="codeBlock"><pre class="prettyprint">    glMatrixMode( GL_PROJECTION );
+    glLoadIdentity();
+    gluOrtho2D(
+        0.0, (GLdouble) view.portWidth(),
+        0.0, (GLdouble) view.portHeight() );
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
+    glTranslatef(0.375, 0.375, 0.0);
+
+</pre></div><p>This sets up the view transformations to make sure that the rendering correctly appears in the active view.</p>
+<div class="codeBlock"><pre class="prettyprint">    glLineStipple( 1, 0x5555 );
+    glLineWidth( 1.0 );
+    glEnable( GL_LINE_STIPPLE );
+    glIndexi( 2 );
+
+</pre></div><p>Next the line style is selected.</p>
+<div class="codeBlock"><pre class="prettyprint">    // Draw marquee
+    //
+    glBegin( GL_LINE_LOOP );
+    glVertex2i( start_x, start_y );
+    glVertex2i( last_x, start_y );
+    glVertex2i( last_x, last_y );
+    glVertex2i( start_x, last_y );
+    glEnd();
+
+</pre></div><p>The selection box is drawn.</p>
+<div class="codeBlock"><pre class="prettyprint">    #ifndef _WIN32
+        glXSwapBuffers(view.display(), view.window() );
+    #else
+        SwapBuffers(view.deviceContext() );
+    #endif
+
+</pre></div><p>The buffers are swapped.</p>
+<div class="codeBlock"><pre class="prettyprint">    glDisable( GL_LINE_STIPPLE );
+
+</pre></div><p>Finally the special draw mode for the lines is disabled.</p>
+<div class="codeBlock"><pre class="prettyprint">    return MS::kSuccess;
+}
+<a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> marqueeContext::doRelease( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; event )
+{
+
+</pre></div><p>This method is called when the mouse button is released.</p>
+<div class="codeBlock"><pre class="prettyprint">    <a href="javascript:void(0)" data-symbol="MSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_selection_list.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MSelectionList</a> incomingList, marqueeList;
+    MGlobal::ListAdjustment listAdjustment;
+    view.clearOverlayPlane();
+    view.endOverlayDrawing();
+    view.endGL();
+
+</pre></div><p>All OpenGL rendering is done so the overlay planes are cleared and OpenGL rendering is turned off for the active view.</p>
+<div class="codeBlock"><pre class="prettyprint">    event.getPosition( last_x, last_y );
+
+</pre></div><p>This determines the co-ordinates where the mouse button was released.</p>
+<div class="codeBlock"><pre class="prettyprint">    <a href="javascript:void(0)" data-symbol="MGlobal::getActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a6d81d38246555884897fb153c93aaf42&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::getActiveSelectionList</a>(incomingList);
+
+</pre></div><p>This gets the current selection list and saves a copy for later use.</p>
+<div class="codeBlock"><pre class="prettyprint">    if ( abs(start_x - last_x) &lt; 2 &amp;&amp; abs(start_y - last_y) &lt; 2 )
+       MGlobal::selectFromScreen( start_x, start_y, MGlobal::kReplaceList );
+
+</pre></div><p>If the co-ordinates are the same at the beginning and end, then a click-pick was done rather than a bounding box pick.</p>
+<div class="codeBlock"><pre class="prettyprint">    else
+        // Select all the objects or components within the marquee.
+        MGlobal::selectFromScreen( start_x, start_y, last_x, last_y,
+            MGlobal::kReplaceList );
+
+</pre></div><p>Do a bounding box pick.</p>
+<div class="codeBlock"><pre class="prettyprint">    // Get the list of selected items
+    <a href="javascript:void(0)" data-symbol="MGlobal::getActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a6d81d38246555884897fb153c93aaf42&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::getActiveSelectionList</a>(marqueeList);
+
+</pre></div><p>This gets the list of objects just selected.</p>
+<div class="codeBlock"><pre class="prettyprint">    <a href="javascript:void(0)" data-symbol="MGlobal::setActiveSelectionList" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a33e6a7c8fa1c06fd64063bd08d4e4aef&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::setActiveSelectionList</a>(incomingList, \
+        MGlobal::kReplaceList);
+
+</pre></div><p>Restore the original selection list.</p>
+<div class="codeBlock"><pre class="prettyprint">    <a href="javascript:void(0)" data-symbol="MGlobal::selectCommand" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_global.html#a527b2aeb16d0fbbe515ff407383f31a1&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MGlobal::selectCommand</a>(marqueeList, listAdjustment);
+
+</pre></div><p>Modify the original selection list using your modifier and the selected object’s.</p>
+<div class="codeBlock"><pre class="prettyprint">    return MS::kSuccess;
+}
+<a href="javascript:void(0)" data-symbol="MStatus" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_status.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MStatus</a> marqueeContext::doEnterRegion( <a href="javascript:void(0)" data-symbol="MEvent" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_event.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_event.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MEvent</a> &amp; )
+{
+    return setHelpString( helpString );
+}
+
+</pre></div><p>This method is called whenever you move the mouse on top of one of the modeling views.</p>
+<div class="codeBlock"><pre class="prettyprint">class marqueeContextCmd : public <a href="javascript:void(0)" data-symbol="MPxContextCommand" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_context_command.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_context_command.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxContextCommand</a>
+{
+    public: 
+        marqueeContextCmd();
+        virtual <a href="javascript:void(0)" data-symbol="MPxContext" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_context.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_context.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxContext</a>* makeObj();
+        static void* creator();
+};
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

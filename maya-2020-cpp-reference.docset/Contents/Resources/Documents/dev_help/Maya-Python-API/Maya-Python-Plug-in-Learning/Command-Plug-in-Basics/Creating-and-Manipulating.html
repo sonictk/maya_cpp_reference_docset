@@ -1,0 +1,574 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Creating and Manipulating Objects</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Creating and Manipulating Objects</h1>
+         </div>
+
+<div class='section'><a id="creating-and-manipulating-objects"></a></div>
+<p>In the context of command plug-ins, object creation and manipulation is intimately tied to Maya&#39;s undo/redo system. In fact, commands which manipulate the state of the <a href='#!/url=./dev_help/Maya-Python-API/Maya-Python-Plug-in-Learning/Dependency-Graph-Plug-in-Basics.html' title=''>Dependency Graph</a> and its nodes (which includes the <a href='#!/url=./dev_help/Maya-Python-API/Maya-Python-Plug-in-Learning/Command-Plug-in-Basics/Querying-the-Scene-Graph.html' title=''>DAG</a>) should implement an undo operation to reverse the action to ensure that Maya&#39;s internal state remains in sync with its undo stack. In this topic, we illustrate how to create and manipulate objects within an undoable command.</p>
+<div class='section'><a id="sample-undoable-command"></a><h2 id="sample-undoable-command">Sample Undoable Command</h2></div>
+<p>We begin by presenting the structure of an undoable command. Later in this topic, we will present an undoable command which creates and manipulates a camera.</p>
+<p>Python API 2.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># pySampleUndoableCommand.py
+
+import sys
+import maya.api.OpenMaya as OpenMaya
+# ... additional imports here ...
+
+def maya_useNewAPI():
+    &quot;&quot;&quot;
+    The presence of this function tells Maya that the plugin produces, and
+    expects to be passed, objects created using the Maya Python API 2.0.
+    &quot;&quot;&quot;
+    pass
+
+kPluginCmdName = &#39;myUndoableCommandName&#39;
+
+
+##########################################################
+# Plug-in 
+##########################################################
+class MyUndoableCommand( OpenMaya.MPxCommand ):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMaya.MPxCommand.__init__(self)
+    
+    
+    def doIt(self, args):
+        &#39;&#39;&#39; doIt() is called once when the command is first executed. &#39;&#39;&#39;
+        
+        # ... Perform any object creation here, since doIt() is only called once per command instance ...
+        
+        # Call self.redoIt() to perform the command&#39;s actual work. This function call flow
+        # is useful for code re-use.
+        self.redoIt()
+        
+        
+    def redoIt(self):
+        &#39;&#39;&#39; redoIt() is called every time the instance of this command is re-done from
+        the undo queue. &#39;&#39;&#39;
+        
+        # ... Perform any object manipulation here ...
+        pass
+    
+    
+    def undoIt(self):
+        &#39;&#39;&#39; undoIt() is called every time the instance of this command is undone. &#39;&#39;&#39;
+        
+        # ... Reverse any object creation or manipulations here ...
+        pass
+    
+    
+    def isUndoable(self):
+        &#39;&#39;&#39; This function indicates whether or not the command is undoable. If the
+        command is undoable, each executed instance of that command is added to the
+        undo queue. &#39;&#39;&#39;
+        
+        # We must return True to specify that this command is undoable.
+        return True
+    
+    
+##########################################################
+# Plug-in initialization.
+##########################################################
+def cmdCreator():
+    &#39;&#39;&#39; Create an instance of our command. &#39;&#39;&#39;
+    return MyUndoableCommand() 
+
+def initializePlugin( mobject ):
+    &#39;&#39;&#39; Initialize the plug-in when Maya loads it. &#39;&#39;&#39;
+    mplugin = OpenMaya.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &#39;Failed to register command: &#39; + kPluginCmdName )
+
+def uninitializePlugin( mobject ):
+    &#39;&#39;&#39; Uninitialize the plug-in when Maya un-loads it. &#39;&#39;&#39;
+    mplugin = OpenMaya.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &#39;Failed to unregister command: &#39; + kPluginCmdName )
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &#39;pySampleUndoableCommand.py&#39; )
+cmds.myUndoableCommandName()
+
+&#39;&#39;&#39;
+</pre></div><p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># sampleUndoableCommand.py
+
+import sys
+import maya.OpenMayaMPx as OpenMayaMPx
+# ... additional imports here ...
+
+kPluginCmdName = &#39;myUndoableCommandName&#39;
+
+##########################################################
+# Plug-in 
+##########################################################
+class MyUndoableCommand( OpenMayaMPx.MPxCommand ):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMayaMPx.MPxCommand.__init__(self)
+    
+    
+    def doIt(self, args):
+        &#39;&#39;&#39; doIt() is called once when the command is first executed. &#39;&#39;&#39;
+        
+        # ... Perform any object creation here, since doIt() is only called once per command instance ...
+        
+        # Call self.redoIt() to perform the command&#39;s actual work. This function call flow
+        # is useful for code re-use.
+        self.redoIt()
+        
+        
+    def redoIt(self):
+        &#39;&#39;&#39; redoIt() is called every time the instance of this command is re-done from
+        the undo queue. &#39;&#39;&#39;
+        
+        # ... Perform any object manipulation here ...
+        pass
+    
+    
+    def undoIt(self):
+        &#39;&#39;&#39; undoIt() is called every time the instance of this command is undone. &#39;&#39;&#39;
+        
+        # ... Reverse any object creation or manipulations here ...
+        pass
+    
+    
+    def isUndoable(self):
+        &#39;&#39;&#39; This function indicates whether or not the command is undoable. If the
+        command is undoable, each executed instance of that command is added to the
+        undo queue. &#39;&#39;&#39;
+        
+        # We must return True to specify that this command is undoable.
+        return True
+    
+    
+##########################################################
+# Plug-in initialization.
+##########################################################
+def cmdCreator():
+    &#39;&#39;&#39; Create an instance of our command. &#39;&#39;&#39;
+    return OpenMayaMPx.asMPxPtr( MyUndoableCommand() )
+
+def initializePlugin( mobject ):
+    &#39;&#39;&#39; Initialize the plug-in when Maya loads it. &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &#39;Failed to register command: &#39; + kPluginCmdName )
+
+def uninitializePlugin( mobject ):
+    &#39;&#39;&#39; Uninitialize the plug-in when Maya un-loads it. &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &#39;Failed to unregister command: &#39; + kPluginCmdName )
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &#39;sampleUndoableCommand.py&#39; )
+cmds.myUndoableCommandName()
+
+&#39;&#39;&#39;
+</pre></div><p>The command plug-in above contains four important functions which are called by Maya during the command execution process:</p>
+<ul>
+<li><p><strong>isUndoable()</strong> - If the command&#39;s <span class='code'>isUndoable()</span> function returns <span class='code'>True</span>, the instance of that command will be added to Maya&#39;s undo stack.</p>
+<div class="codeBlock"><pre class="prettyprint">    def isUndoable(self):
+        &#39;&#39;&#39; This function indicates whether or not the command is undoable. If the
+        command is undoable, each executed instance of that command is added to the
+        undo queue. &#39;&#39;&#39;
+
+        # We must return True to specify that this command is undoable.
+        return True</pre></div></li>
+<li><p><strong>doIt()</strong> - The <span class='code'>doIt()</span> function of each command instance is invoked <em>once</em> when the command is first executed. To maximize code re-use, it is recommended to have the <span class='code'>doIt()</span> function instantiate all the objects and variables your command instance will require, and to subsequently call <span class='code'>redoIt()</span> from within <span class='code'>doIt()</span> function body.</p>
+<div class="codeBlock"><pre class="prettyprint">    def doIt(self, args):
+        &#39;&#39;&#39; doIt() is called once when the command is first executed. &#39;&#39;&#39;
+
+        # Parse any arguments when doIt() is invoked.
+        self.parseArgs( args )
+
+        # ... Perform any object creation here, since doIt() is only called once per command instance ...
+
+        # Call self.redoIt() to perform the command&#39;s actual work. This function call flow
+        # is useful for code re-use.
+        self.redoIt()</pre></div></li>
+<li><p><strong>redoIt()</strong> - The <span class='code'>redoIt()</span> function is invoked by Maya every time the command is re-done. <span class='code'>redoIt()</span> should therefore be used manipulate the state of the objects used in your command. Keep in mind that this state manipulation should be reversed in the <span class='code'>undoIt()</span> function.</p>
+<div class="codeBlock"><pre class="prettyprint">    def redoIt(self):
+        &#39;&#39;&#39; redoIt() is called every time the instance of this command is re-done from
+        the undo queue. &#39;&#39;&#39;
+
+        # ... Perform any object manipulation here ...
+        pass</pre></div></li>
+<li><p><strong>undoIt()</strong> - The <span class='code'>undoIt()</span> function is called when the command is undone. The objective of the <span class='code'>undoIt()</span> function is to ensure that each object manipulated by your command has its state reversed to before your command was executed. If the instance of the command does not reverse its manipulations correctly, Maya&#39;s internal state will be inconsistent in regards to its undo/redo stack.</p>
+<div class="codeBlock"><pre class="prettyprint">    def undoIt(self):
+        &#39;&#39;&#39; undoIt() is called every time the instance of this command is undone. &#39;&#39;&#39;
+
+        # ... Reverse any object creation or manipulations here ...
+        pass</pre></div></li>
+</ul>
+<div class='section'><a id="creating-objects-with-mdagmodifier"></a><h2 id="creating-objects-with-mdagmodifier">Creating Objects with MDagModifier</h2></div>
+<p>To facilitate the creation of DAG nodes, and the undoing of DAG node manipulations, the Maya API provides the <span class='code'><a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a></span> class. This class is derived from <span class='code'><a href="javascript:void(0)" data-symbol="MDGModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_d_g_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_d_g_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDGModifier</a></span>, which is used to create and manipulate Dependency Graph nodes. Recall that the DAG is a subset of the Dependency Graph, and so the functions provided by <span class='code'><a href="javascript:void(0)" data-symbol="MDGModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_d_g_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_d_g_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDGModifier</a></span> are also provided by <span class='code'><a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a></span> - this may help you when consulting the class documentation of the function calls made to <span class='code'><a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a></span> in this topic.</p>
+<p>In the undoable command that follows, we create and manipulate a camera, and also set the current view to this newly created camera:</p>
+<p>Python API 2.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># pySampleCameraCommand.py
+
+import sys
+import maya.api.OpenMaya as OpenMaya
+import maya.api.OpenMayaUI as OpenMayaUI
+
+def maya_useNewAPI():
+    &quot;&quot;&quot;
+    The presence of this function tells Maya that the plugin produces, and
+    expects to be passed, objects created using the Maya Python API 2.0.
+    &quot;&quot;&quot;
+    pass
+    
+kPluginCmdName = &#39;myCameraCommand&#39;
+
+##########################################################
+# Plug-in 
+##########################################################
+class MyCameraCommand( OpenMaya.MPxCommand ):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMaya.MPxCommand.__init__(self)
+    
+    
+    def doIt(self, args):
+        &#39;&#39;&#39; doIt() is called once when the command is first executed. &#39;&#39;&#39; 
+        
+        # This <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> object will allow us to undo and redo the creation of DAG nodes in our command.
+        self.dagModifier = OpenMaya.MDagModifier()
+        
+        # Create the camera transform node.
+        self.cameraTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.dagModifier.renameNode( self.cameraTransformObj, &#39;myCameraTransform&#39; )
+        
+        # Create the camera shape node as a child of the camera transform node.
+        self.cameraShapeObj = self.dagModifier.createNode( &#39;camera&#39;, self.cameraTransformObj )
+        self.dagModifier.renameNode( self.cameraShapeObj, &#39;myCameraShape&#39; )
+        
+        # Call self.redoIt() to perform the command&#39;s actual work. This function call flow
+        # is useful for code re-use.
+        self.redoIt()
+        
+        
+    def redoIt(self):
+        &#39;&#39;&#39; redoIt() is called every time the instance of this command is re-done from
+        the undo queue. &#39;&#39;&#39;
+        
+        # Perform the operations enqueued within our reference to MDagModifier. This effectively
+        # creates the DAG nodes specified using self.dagModifier.createNode().
+        self.dagModifier.doIt()
+        
+        # Set the translation value of the camera&#39;s transform node. 
+        transformFn = OpenMaya.MFnTransform( self.cameraTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 0, 5, 30 ), OpenMaya.MSpace.kTransform )
+        
+        # Store the previous camera before we switch to the camera created within this command.
+        # In undo() we will revert to this previous camera.
+        self.previousCamera = OpenMaya.MDagPath()
+        currentView = OpenMayaUI.M3dView.active3dView()
+        self.previousCamera=currentView.getCamera() # self.previousCamera is now populated with the current camera before we switch.
+        
+        # Get the DAG path of our camera shape node.
+        cameraDagPath = OpenMaya.MDagPath()
+        dagNodeFn = OpenMaya.MFnDagNode( self.cameraShapeObj )
+        cameraDagPath = dagNodeFn.getPath()
+        
+        # Set the camera view to the one we switched
+        currentView.setCamera( cameraDagPath )
+    
+    
+    def undoIt(self):
+        &#39;&#39;&#39; undoIt() is called every time the instance of this command is undone. &#39;&#39;&#39;
+        
+        # Switch back to the previous camera. We do not have to reverse the translation of 
+        # self.cameraTransformObj because it will be excluded from the DAG once 
+        # self.dagModifier.undoIt() is called below.
+        currentView = OpenMayaUI.M3dView.active3dView()
+        self.previousCamera = currentView.getCamera()
+        
+        # This call to MDagModifier.undoIt() undoes all the operations within the MDagModifier.
+        self.dagModifier.undoIt()
+    
+    
+    def isUndoable(self):
+        &#39;&#39;&#39; This function indicates whether or not the command is undoable. If the
+        command is undoable, each executed instance of that command is added to the
+        undo queue. &#39;&#39;&#39;
+        
+        # We must return True to specify that this command is undoable.
+        return True
+    
+    
+##########################################################
+# Plug-in initialization.
+##########################################################
+def cmdCreator():
+    &#39;&#39;&#39; Create an instance of our command. &#39;&#39;&#39;
+    return  MyCameraCommand() 
+
+def initializePlugin( mobject ):
+    &#39;&#39;&#39; Initialize the plug-in when Maya loads it. &#39;&#39;&#39;
+    mplugin = OpenMaya.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &#39;Failed to register command: &#39; + kPluginCmdName )
+
+def uninitializePlugin( mobject ):
+    &#39;&#39;&#39; Uninitialize the plug-in when Maya un-loads it. &#39;&#39;&#39;
+    mplugin = OpenMaya.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &#39;Failed to unregister command: &#39; + kPluginCmdName )
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &#39;pySampleCameraCommand.py&#39; )
+cmds.myCameraCommand()
+cmds.undo()
+cmds.redo()
+
+&#39;&#39;&#39;
+</pre></div><p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># sampleCameraCommand.py
+
+import sys
+import maya.OpenMayaMPx as OpenMayaMPx
+import maya.OpenMaya as OpenMaya
+import maya.OpenMayaUI as OpenMayaUI
+
+kPluginCmdName = &#39;myCameraCommand&#39;
+
+##########################################################
+# Plug-in 
+##########################################################
+class MyCameraCommand( OpenMayaMPx.MPxCommand ):
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMayaMPx.MPxCommand.__init__(self)
+    
+    
+    def doIt(self, args):
+        &#39;&#39;&#39; doIt() is called once when the command is first executed. &#39;&#39;&#39; 
+        
+        # This <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> object will allow us to undo and redo the creation of DAG nodes in our command.
+        self.dagModifier = OpenMaya.MDagModifier()
+        
+        # Create the camera transform node.
+        self.cameraTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.dagModifier.renameNode( self.cameraTransformObj, &#39;myCameraTransform&#39; )
+        
+        # Create the camera shape node as a child of the camera transform node.
+        self.cameraShapeObj = self.dagModifier.createNode( &#39;camera&#39;, self.cameraTransformObj )
+        self.dagModifier.renameNode( self.cameraShapeObj, &#39;myCameraShape&#39; )
+        
+        # Call self.redoIt() to perform the command&#39;s actual work. This function call flow
+        # is useful for code re-use.
+        self.redoIt()
+        
+        
+    def redoIt(self):
+        &#39;&#39;&#39; redoIt() is called every time the instance of this command is re-done from
+        the undo queue. &#39;&#39;&#39;
+        
+        # Perform the operations enqueued within our reference to MDagModifier. This effectively
+        # creates the DAG nodes specified using self.dagModifier.createNode().
+        self.dagModifier.doIt()
+        
+        # Set the translation value of the camera&#39;s transform node. 
+        transformFn = OpenMaya.MFnTransform( self.cameraTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 0, 5, 30 ), OpenMaya.MSpace.kTransform )
+        
+        # Store the previous camera before we switch to the camera created within this command.
+        # In undo() we will revert to this previous camera.
+        self.previousCamera = OpenMaya.MDagPath()
+        currentView = OpenMayaUI.M3dView.active3dView()
+        currentView.getCamera( self.previousCamera ) # self.previousCamera is now populated with the current camera before we switch.
+        
+        # Get the DAG path of our camera shape node.
+        cameraDagPath = OpenMaya.MDagPath()
+        dagNodeFn = OpenMaya.MFnDagNode( self.cameraShapeObj )
+        dagNodeFn.getPath( cameraDagPath )
+        
+        # Set the camera view to the one we switched
+        currentView.setCamera( cameraDagPath )
+    
+    
+    def undoIt(self):
+        &#39;&#39;&#39; undoIt() is called every time the instance of this command is undone. &#39;&#39;&#39;
+        
+        # Switch back to the previous camera. We do not have to reverse the translation of 
+        # self.cameraTransformObj because it will be excluded from the DAG once 
+        # self.dagModifier.undoIt() is called below.
+        currentView = OpenMayaUI.M3dView.active3dView()
+        currentView.setCamera( self.previousCamera )
+        
+        # This call to MDagModifier.undoIt() undoes all the operations within the MDagModifier.
+        self.dagModifier.undoIt()
+    
+    
+    def isUndoable(self):
+        &#39;&#39;&#39; This function indicates whether or not the command is undoable. If the
+        command is undoable, each executed instance of that command is added to the
+        undo queue. &#39;&#39;&#39;
+        
+        # We must return True to specify that this command is undoable.
+        return True
+    
+    
+##########################################################
+# Plug-in initialization.
+##########################################################
+def cmdCreator():
+    &#39;&#39;&#39; Create an instance of our command. &#39;&#39;&#39;
+    return OpenMayaMPx.asMPxPtr( MyCameraCommand() )
+
+def initializePlugin( mobject ):
+    &#39;&#39;&#39; Initialize the plug-in when Maya loads it. &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator )
+    except:
+        sys.stderr.write( &#39;Failed to register command: &#39; + kPluginCmdName )
+
+def uninitializePlugin( mobject ):
+    &#39;&#39;&#39; Uninitialize the plug-in when Maya un-loads it. &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &#39;Failed to unregister command: &#39; + kPluginCmdName )
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &#39;sampleCameraCommand.py&#39; )
+cmds.myCameraCommand()
+cmds.undo()
+cmds.redo()
+
+&#39;&#39;&#39;
+</pre></div><p>In the sample above, the key functions we are interested in (for now) are: <span class='code'>MDagModifer.createNode()</span>, <span class='code'>MDagModifier.doIt()</span> and <span class='code'>MDagModifier.undoIt()</span>. These functions are respectively distributed among our command&#39;s <span class='code'>doIt()</span>, <span class='code'>redoIt()</span> and <span class='code'>undoIt()</span> methods:</p>
+<ol>
+<li><p><strong>MDagModifier.createNode()</strong> - When <span class='code'>MDagModifier.createNode()</span> is called, the operation is queued within the <span class='code'><a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a></span>, and an instance of <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> is returned. This <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> is a handle to a newly created Maya DAG node which has <em>not yet</em> been included into DAG. Observe that we are invoking the method signature of <span class='code'>MDagModifier.createNode()</span> which accepts a string as the first parameter. This string represents the created node type&#39;s name. Valid node type names are listed under <strong>Maya User Guide &gt; Technical Documentation &gt; Nodes</strong>, for example: <span class='code'>&#39;transform&#39;</span> and <span class='code'>&#39;camera&#39;</span>. The call to <span class='code'>MDagModifier.renameNode()</span> is also queued within the <span class='code'><a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a></span>, and is used to do/undo the renaming of a node.</p>
+<div class="codeBlock"><pre class="prettyprint">    def doIt(self, args):
+        &#39;&#39;&#39; doIt() is called once when the command is first executed. &#39;&#39;&#39; 
+
+        # This <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> object will allow us to undo and redo the creation of DAG nodes in our command.
+        self.dagModifier = OpenMaya.MDagModifier()
+
+        # Create the camera transform node.
+        self.cameraTransformObj = self.dagModifier.createNode( &#39;transform&#39; )
+        self.dagModifier.renameNode( self.cameraTransformObj, &#39;myCameraTransform&#39; )
+
+        # Create the camera shape node as a child of the camera transform node.
+        self.cameraShapeObj = self.dagModifier.createNode( &#39;camera&#39;, self.cameraTransformObj )
+        self.dagModifier.renameNode( self.cameraShapeObj, &#39;myCameraShape&#39; )
+
+        # Call self.redoIt() to perform the command&#39;s actual work. This function call flow
+        # is useful for code re-use.
+        self.redoIt()</pre></div></li>
+<li><p><strong>MDagModifier.doIt()</strong> - When <span class='code'>MDagModifier.doIt()</span> is called, the previously queued operations are effectively executed. As such, the queued <span class='code'>MDagModifier.createNode()</span> operation will complete by adding the created node into the DAG. The call to <span class='code'>MDagModifier.doIt()</span> in our command&#39;s <span class='code'>redoIt()</span> method effectively lets us operate on the same set of created nodes defined in our command&#39;s <span class='code'>doIt()</span> method. Observe that we are not creating new nodes repeatedly when our command&#39;s <span class='code'>redoIt()</span> method is invoked.</p>
+<div class="codeBlock"><pre class="prettyprint">    def redoIt(self):
+        &#39;&#39;&#39; redoIt() is called every time the instance of this command is re-done from
+        the undo queue. &#39;&#39;&#39;
+
+        # Perform the operations enqueued within our reference to MDagModifier.
+        self.dagModifier.doIt()
+
+        # ... object manipulations ...
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> <span class='code'>MDagModifier.doIt()</span> can be called several times in the same command. This is necessary when a node must be disconnected and deleted. Consult the <span class='code'><a href="javascript:void(0)" data-symbol="MDGModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_d_g_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_d_g_modifier.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDGModifier</a></span> class documentation for more information.</p>
+</li>
+<li><p><strong>MDagModifier.undoIt()</strong> - When <span class='code'>MDagModifier.undoIt()</span> is called, all the queued operations which have been completed in calls to <span class='code'>MDagModifier.doIt()</span> are undone.</p>
+<div class="codeBlock"><pre class="prettyprint">    def undoIt(self):
+        &#39;&#39;&#39; undoIt() is called every time the instance of this command is undone. &#39;&#39;&#39;
+
+        # ... revert object manipulations ...
+
+        # This call to MDagModifier.undoIt() undoes all the operations queued within the MDagModifier.
+        self.dagModifier.undoIt()
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> It is sufficient to call <span class='code'>MDagModifier.undoIt()</span> only once, despite the number of calls to <span class='code'>MDagModifier.doIt()</span> within the command.</p>
+</li>
+</ol>
+<div class='section'><a id="manipulating-objects"></a><h2 id="manipulating-objects">Manipulating Objects</h2></div>
+<p>In our command&#39;s <span class='code'>redoIt()</span> method body, we change the position of our camera&#39;s transform node via a call to <span class='code'>MFnCamera.setTranslation()</span>:</p>
+<div class="codeBlock"><pre class="prettyprint">    def redoIt(self):
+        &#39;&#39;&#39; redoIt() is called every time the instance of this command is re-done from
+        the undo queue. &#39;&#39;&#39;
+        
+        # ...
+        
+        # Set the translation value of the camera&#39;s transform node. 
+        transformFn = OpenMaya.MFnTransform( self.cameraTransformObj )
+        transformFn.setTranslation( OpenMaya.MVector( 0, 5, 30 ), OpenMaya.MSpace.kTransform )
+        
+        # ...
+</pre></div><p>This introduces the use of <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span>s and <em>function sets</em> in the Maya API.</p>
+<ul>
+<li><p><strong>Maya Objects (<span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span>)</strong> - The Maya API provides access to Maya objects as instances of the <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> wrapper class. Instances of <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> can therefore represent cameras, lights, meshes, transforms, and dependency graph nodes. The internal state of an <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> is manipulated via a compatible <em>function set</em> (classes derived from <span class='code'><a href="javascript:void(0)" data-symbol="MFnBase" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_base.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_base.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnBase</a></span>). All instances of <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> have one and only one Maya Object type (<span class='code'>MObject.apiType()</span>), for example: <span class='code'>MFn.kTransform</span>, or <span class='code'>MFn.kCamera</span>, which may be compatible with multiple types of <em>function sets</em>. The <span class='code'>MObject.hasFn()</span> method determines if an instance of <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> is compatible with a given function set.</p></li>
+<li><p><strong>Function Sets (<span class='code'><a href="javascript:void(0)" data-symbol="MFnBase" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_base.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_base.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnBase</a></span> and subclasses)</strong> - <em>Function sets</em> are provided in the Maya API to manipulate the state of compatible <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span>s. They exist as singletons, meaning that Maya contains only one <em>function set</em> of each type internally. A <em>function set</em> can only manipulate one <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> at a time, though this object can be changed using <span class='code'>MFnBase.setObject()</span>. A reference to a specific <em>function set</em> is obtained via its constructor, which can accept an <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> to set the current working object.</p>
+<p>An <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span>&#39;s function set compatibility follows the class hierarchy up to the <span class='code'><a href="javascript:void(0)" data-symbol="MFnBase" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_base.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_base.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnBase</a></span> class. An instance of <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> with a Maya Object type of <span class='code'>MFn.kCamera</span> is therefore compatible with the following function sets: <span class='code'><a href="javascript:void(0)" data-symbol="MFnCamera" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_camera.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_camera.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnCamera</a></span>, <span class='code'><a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a></span>, <span class='code'><a href="javascript:void(0)" data-symbol="MFnDependencyNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dependency_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dependency_node.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDependencyNode</a></span>, and <span class='code'><a href="javascript:void(0)" data-symbol="MFnBase" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_base.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_base.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnBase</a></span></p>
+<p>The code sample and diagram below illustrate the use of the <span class='code'><a href="javascript:void(0)" data-symbol="MFnTransform" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_transform.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_transform.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnTransform</a></span> <em>function set</em> to set the translation of a compatible <span class='code'><a href="javascript:void(0)" data-symbol="MObject" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_object.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_object.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MObject</a></span> (of type <span class='code'>Mfn.kTransform</span>), namely the transform node we had previously assigned to <span class='code'>self.cameraTransformObj</span> and named as <span class='code'>&#39;myCameraTransform&#39;</span>.</p>
+<div class="codeBlock"><pre class="prettyprint"># Set the translation value of the camera&#39;s transform node. 
+transformFn = OpenMaya.MFnTransform( self.cameraTransformObj )
+transformFn.setTranslation( OpenMaya.MVector( 0, 5, 30 ), OpenMaya.MSpace.kTransform )
+<div class='figure'><img src='dev_help/images/Maya_Camera_MFnTransform_75%.png' title=''></div>
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> The second parameter (<span class='code'>OpenMaya.MSpace.kTransform</span>) in the call to <span class='code'>MFnTransform.setTranslation()</span> specifies that the translation should be applied in the transform node&#39;s local coordinate space.</p>
+</li>
+</ul>
+<div class='section'><a id="warning-creating-and-manipulating-nodes-without-mdagmodifier"></a><h2 id="warning-creating-and-manipulating-nodes-without-mdagmodifier">Warning: Creating and Manipulating Nodes Without MDagModifier</h2></div>
+<p>You will notice that the majority of <em>function sets</em> also provide a <span class='code'>create()</span> function, for example: <span class='code'>MFnCamera.create()</span>, which takes care of instantiating an appropriate shape and transform node for you. We recommend only using these functions within one-time-use, non-undoable commands, for example to initialize a scene. An exception to this guideline is <span class='code'>MFnMesh.create()</span>, whose use in a command is illustrated in <a href='#!/url=./dev_help/Maya-Python-API/Maya-Python-Plug-in-Learning/Command-Plug-in-Basics/Example-Creating-a-Scene.html' title=''>Example: Creating a Scene</a>. In this example, we create a parent transform node with <span class='code'>MDagModifier.createNode()</span>, and must use <span class='code'>MFnMesh.create()</span> to define the mesh data under it as a child node.</p>
+<p>In a similar fashion, you may notice that the <span class='code'><a href="javascript:void(0)" data-symbol="MFnDagNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_fn_dag_node.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MFnDagNode</a></span> <em>function set</em> contains <span class='code'>MFnDagNode.addChild()</span>, <span class='code'>MFnDagNode.removeChild()</span>, and other DAG hierarchy manipulation functions. Unless you are creating a single-use, non-undoable command, or want to manually implement your command&#39;s <span class='code'>undoIt()</span> logic to reverse these actions, it is preferable to use the <span class='code'>MDagModifier.reparentNode()</span> function, followed by a call to <span class='code'>MDagModifier.doIt()</span>.</p>
+<div class='section'><a id="warning-node-deletion-with-mglobal.deletenode"></a><h2 id="warning-node-deletion-with-mglobal.deletenode">Warning: Node Deletion with MGlobal.deleteNode()</h2></div>
+<p>You may also be tempted to reverse your command&#39;s node creations via calls to <span class='code'>MGlobal.deleteNode()</span> within your command&#39;s <span class='code'>undoIt()</span> method. Doing so is not advisable, as calling <span class='code'>MGlobal.deleteNode()</span> actually executes the MEL node deletion command internally, thereby causing Maya to add a command to the undo stack while it is in the process of undoing a command. This causes an inconsistency within Maya&#39;s undo stack, and can result in a crash.</p>
+<blockquote>
+<p><strong>Note:</strong> For the same reason, we do not recommend invoking <span class='code'>maya.cmds</span> functions within a command plug-in. The safe alternative is to use the <span class='code'>MDagModifier.commandToExecute()</span> function to enqueue MEL commands which will be safely executed when <span class='code'>MDagModifier.doIt()</span> is called. The same MEL commands will be safely undone when <span class='code'>MDagModifier.undoIt()</span> is called, thus avoiding any undo stack inconsistencies within Maya. Consult <a href='#!/url=./dev_help/Maya-Python-API/Maya-Python-Plug-in-Learning/Command-Plug-in-Basics/Example-Creating-an-IK-Joint.html' title=''>Example: Creating an IK Joint Chain</a> for more information.</p>
+</blockquote>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

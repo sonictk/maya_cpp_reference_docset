@@ -1,0 +1,37 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Writing your own .NET plug-in</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Writing your own .NET plug-in</h1>
+         </div>
+
+<div class='section'><a id="writing-your-own-.net-plug-in"></a></div>
+<p>The Maya .NET SDK is available in 64-bit only. Ensure that your Maya .NET plug-in projects are also compiled in x64.</p>
+<p>The plug-in must implement the <span class='code'>Autodesk.Maya.OpenMaya.IExtensionPlugin</span> interface. It can be a default implementation that does nothing.</p>
+<p>The SDK searches for the first class implementing this interface, but to accelerate the discovery of the <span class='code'>IExtensionPlugin</span> implementation, .NET plug-ins may optionally contain a single <span class='code'>ExtensionPlugin</span> assembly attribute, as so:</p>
+<p><span class='code'>[assembly: ExtensionPlugin(typeof(MayaNetPlugin.helloWorldPlugin), &quot;Autodesk&quot;, &quot;1.0&quot;, &quot;Any&quot;)]</span></p>
+<p>For more information regarding assembly attributes, see <a href='#!/url=./dev_help/Maya-NET-API/Using-NET-assembly-attributes.html' title=''>Using .Net assembly attributes</a>.</p>
+<p>This assembly attribute can appear in any source file of your library outside of the namespace, usually after the using declarations.</p>
+<p>A plug-in library can contain any number of custom .NET commands, or .NET nodes.</p>
+<p>The documentation for the Maya .NET SDK methods support Intellisense, and pops up as you type your code.</p>
+<blockquote>
+<p><strong>Note:</strong> - When creating your custom .NET plug-in project, you must set the <strong>Copy Local</strong> property of the Maya assembly references to false.</p>
+<p>When the <em>Copy Local</em> property is enabled (default), Visual Studio copies the references that are required to run your code to the <span class='code'>\bin</span> output folder of your .NET project, and will load them each time. However, because your plug-in will run in Maya, the references are already available with the Maya install and loaded.</p>
+<p>Your plug-in may fail to initialize as a result.</p>
+<p>To set <em>Copy Local</em> to false, right-click your reference in the Solution Explorer in Visual Studio. Select Properties, then set ‘Copy Local’ to false in the Properties window that appears. - If your plug-in references assemblies that are not in the Maya <span class='code'>bin</span> folder, you must add the path of these assemblies to the PATH environment variable in order for Maya to load your plug-in.</p>
+</blockquote>
+<div class='section'><a id="comparing-object-instances"></a><h2 id="comparing-object-instances">Comparing object instances</h2></div>
+<p>Comparing two object references using <strong>==</strong> or <strong>!=</strong> may not work as expected in all cases. For example, an object <em>deriving</em> from a .NET base class might be moved to a new memory instance. To compare Maya objects, use the member functions <span class='code'>MObject.equalEqual</span> and <span class='code'>MObject.notEqual</span> instead.</p>
+<div class='section'><a id="about-internal-swig-types"></a><h2 id="about-internal-swig-types">About internal SWIG types</h2></div>
+<p>Some types exposed in the API have the substring <em>swig</em> in their name. These are for internal use only and are not supported.</p>
+<div class='section'><a id="creating-a-dockable-wpf-control"></a><h2 id="creating-a-dockable-wpf-control">Creating a dockable WPF control</h2></div>
+<p>The <span class='code'>MDockStation</span> class provides facilities for docking a WPF control in the windows control. See the DAGExplorer example under the <span class='code'>devkit\dotnet\wpfexamples</span> folder of your Developer Kit installation.</p>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

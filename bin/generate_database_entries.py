@@ -36,7 +36,7 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
 
     # Now start finding items within the class pages to add
     # additional entries for
-    html = open(os.path.join(docs_root, path)).read()
+    html = open(os.path.join(docs_root, path), encoding='utf8').read()
     soup = BeautifulSoup(html, 'html.parser')
 
     for h2 in soup.find_all('h2', {'class': 'groupheader'}):
@@ -58,7 +58,7 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
 
                 # NOTE: For Maya 2017, it seems the URL is
                 # formatted differently
-                if maya_version == '2017':
+                if maya_version in ('2017', '2020'):
                     type_url = type_url.replace('#!/url=./cpp_ref/', '')
 
                 if type_name and type_url:
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='This program generates the database entries for the docset.program')
     parser.add_argument('-mv',
                         '--mayaVersion',
-                        default='2016',
+                        default='2020',
                         help='The Maya version to generate the docset for.')
     args = parser.parse_args()
     main(args.mayaVersion)

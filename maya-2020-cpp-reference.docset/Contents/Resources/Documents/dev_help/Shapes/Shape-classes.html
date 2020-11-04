@@ -1,0 +1,36 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Shape classes</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Shape classes</h1>
+         </div>
+
+<div class='section'><a id="shape-classes"></a></div>
+<p>The following lists the proxy classes you will be deriving from:</p>
+<ul>
+<li><a href='#!/url=./dev_help/Shapes/Shape-classes.html#mpxsurfaceshape-or-mpxcomponentshape--required-' title=''>MPxSurfaceShape or MPxComponentShape (required)</a>: the DG node class</li>
+<li><a href='#!/url=./dev_help/Shapes/Shape-classes.html#mpxsurfaceshapeui--required-' title=''>MPxSurfaceShapeUI (required)</a>: drawing and selection</li>
+<li><a href='#!/url=./dev_help/Shapes/Shape-classes.html#mpxgeometryiterator--optional-' title=''>MPxGeometryIterator (optional)</a>: iterator for components (optional)</li>
+<li><a href='#!/url=./dev_help/Shapes/Shape-classes.html#mpxgeometrydata--optional-' title=''>MPxGeometryData (optional)</a>: used to pass geometry through the DG</li>
+<li>&quot;MTextureEditorDrawInfo (optional)&quot;: used by the drawUV() method of MPxSurfaceShapeUI to specify the current object drawing state</li>
+</ul>
+<p><span class='code'><a href="javascript:void(0)" data-symbol="MPxSurfaceShape" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_surface_shape.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_surface_shape.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxSurfaceShape</a></span> and <span class='code'><a href="javascript:void(0)" data-symbol="MPxSurfaceShapeUI" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_surface_shape_u_i.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_surface_shape_u_i.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxSurfaceShapeUI</a></span> are mandatory. The main functionality for shapes is split between these two classes to separate the drawing and selection code from the evaluation code.</p>
+<div class='section'><a id="mpxsurfaceshape-or-mpxcomponentshape-required"></a><h2 id="mpxsurfaceshape-or-mpxcomponentshape-required">MPxSurfaceShape or MPxComponentShape (required)</h2></div>
+<p>This class defines the non UI part of a shape. The goal of this class is to represent some user-defined geometry in Maya’s DAG. The <span class='code'><a href="javascript:void(0)" data-symbol="MPxComponentShape" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_component_shape.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxComponentShape</a></span> class derives from <span class='code'><a href="javascript:void(0)" data-symbol="MPxSurfaceShape" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_surface_shape.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_surface_shape.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxSurfaceShape</a></span> and provides basic functionality for supporting shapes with components.</p>
+<div class='section'><a id="mpxsurfaceshapeui-required"></a><h2 id="mpxsurfaceshapeui-required">MPxSurfaceShapeUI (required)</h2></div>
+<p>This class defines the drawing and selection part of a shape.</p>
+<div class='section'><a id="mpxgeometryiterator-optional"></a><h2 id="mpxgeometryiterator-optional">MPxGeometryIterator (optional)</h2></div>
+<p>This class provides Maya with a control point iterator for your geometry. The iterator queries and sets points in your geometry generically. Iterators are used when your shape has components associated with its attributes.</p>
+<div class='section'><a id="mpxgeometrydata-optional"></a><h2 id="mpxgeometrydata-optional">MPxGeometryData (optional)</h2></div>
+<p>This class is used to provide Maya with a container for your geometry that can be passed through DG connections. It is often more efficient to pass all of the information about your geometry as data than as separate attributes. If you want your shape to work with Maya’s deformers then you must provide a data class as input and output attributes to your shape.</p>
+<div class='section'><a id="mtextureeditordrawinfo-optional"></a><h2 id="mtextureeditordrawinfo-optional">MTextureEditorDrawInfo (optional)</h2></div>
+<p>This class is used by the <span class='code'>drawUV</span> method of <span class='code'><a href="javascript:void(0)" data-symbol="MPxSurfaceShapeUI" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_surface_shape_u_i.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_surface_shape_u_i.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxSurfaceShapeUI</a></span> to specify the current UV drawing state for a user defined shape. API users must override the <span class='code'>canDrawUV</span> method on <span class='code'><a href="javascript:void(0)" data-symbol="MPxSurfaceShapeUI" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_surface_shape_u_i.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_u_i_1_1_m_px_surface_shape_u_i.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxSurfaceShapeUI</a></span> to receive <span class='code'>drawUV</span> calls.</p>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

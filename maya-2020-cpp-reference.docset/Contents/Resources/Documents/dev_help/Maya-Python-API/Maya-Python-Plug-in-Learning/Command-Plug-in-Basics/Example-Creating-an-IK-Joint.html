@@ -1,0 +1,211 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../../scripts/prettify.js"></script><script src="../../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Example: Creating an IK Joint Chain</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Example: Creating an IK Joint Chain</h1>
+         </div>
+
+<div class='section'><a id="example-creating-an-ik-joint-chain"></a></div>
+<div class='section'><a id="example-creating-an-inverse-kinematic-joint-chain"></a><h2 id="example-creating-an-inverse-kinematic-joint-chain">Example: Creating an Inverse Kinematic Joint Chain</h2></div>
+<p><strong>Filename:</strong> <span class='code'>jointChain.py</span></p>
+<p><strong>Sample Output:</strong></p>
+<div class='figure'><img src='dev_help/images/jointChain_75%.png' title='' /></div>
+<p><strong>Program Summary:</strong> The plug-in code below creates a new command which takes one argument, &quot;<span class='code'>length</span>&quot;, to define the number of joints in an inverse kinematic joint chain, for example: <span class='code'>cmds.myJointChain(length=4)</span>. The joint chain is created in an arc, at the end of which is placed an inverse kinematic (IK) effector coupled with an IK handle. The IK handle allows the user to manipulate the entire joint chain using only the IK effector. When the IK effector moves, it causes the rest of the joints to move while maintaining their constrained orientations towards one another.</p>
+<blockquote>
+<p><strong>Note:</strong> Observe that we use <span class='code'>MDagModifier.commandToExecute()</span> to facilitate the creation of our inverse kinematic handle. The MEL command reference can be found under <strong>Maya User Guide &gt; Technical Documentation &gt; Commands</strong>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong> This sample plug-in script uses <span class='code'>OpenMayaAnim.MFnIkJoint()</span>, which is not exposed in the Maya Python API 2.0. Therefore, there is no 2.0 version of this sample plug-in.</p>
+</blockquote>
+<p>Python API 1.0:</p>
+<div class="codeBlock"><pre class="prettyprint"># jointChain.py
+
+import sys
+import maya.OpenMaya as OpenMaya
+import maya.OpenMayaMPx as OpenMayaMPx
+import maya.OpenMayaAnim as OpenMayaAnim
+
+kPluginCmdName = &#39;myJointChain&#39;
+
+# The length of the chain.
+kLengthFlag = &#39;-l&#39;
+kLengthLongFlag = &#39;-length&#39;
+defaultLength = 3
+
+jointDistance = 5     # the distance between two joints
+jointOrientation = 20 # degrees.
+
+##########################################################
+# Plug-in 
+##########################################################
+class JointChainCommand(OpenMayaMPx.MPxCommand):
+    
+    
+    def __init__(self):
+        &#39;&#39;&#39; Constructor. &#39;&#39;&#39;
+        OpenMayaMPx.MPxCommand.__init__(self)
+    
+    
+    def parseArgs(self, pArguments):
+        &#39;&#39;&#39; Parses the command&#39;s arguments. &#39;&#39;&#39;
+        
+        # Set the default chain length in case there are no arguments.
+        global defaultLength
+        self.length = defaultLength
+        
+        # Obtain the flag value, if the flag is set.
+        argData = OpenMaya.MArgParser( self.syntax(), pArguments )
+        if argData.isFlagSet( kLengthFlag ):
+            
+            # Get the value associated with the flag as an integer.
+            flagValue = argData.flagArgumentInt( kLengthFlag, 0 )
+            
+            # Make sure this value is larger than the default length.
+            if flagValue &gt; defaultLength:
+                self.length = flagValue
+    
+    
+    def doIt(self, pArguments):
+        &#39;&#39;&#39; Command Execution. &#39;&#39;&#39;
+        
+        # Parse the passed arguments.
+        self.parseArgs( pArguments )
+        
+        # Create an instance of an <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> to keep track of the created objects,
+        # and to undo their creation in our undoIt() function.
+        self.dagModifier = OpenMaya.MDagModifier()
+        
+        # Create the joint MObjects we will be manipulating.
+        self.jointObjects = []
+        for i in range(0, self.length):
+            if i == 0:
+                # The first joint has no parent.
+                newJointObj = self.dagModifier.createNode( &#39;joint&#39; )
+            else:
+                # Assign the new joint as a child to the previous joint.
+                newJointObj = self.dagModifier.createNode( &#39;joint&#39;, self.jointObjects[i-1] )
+            # Keep track of all the joints created.
+            self.jointObjects.append( newJointObj )
+        
+        # Create the inverse kinematic effector MObject. The effector is a child of the last joint object.
+        # The [-1] index is a Python-specific way of referring to the last item in a list.
+        self.effectorObj = self.dagModifier.createNode( &#39;ikEffector&#39;, self.jointObjects[-1] )
+        
+        # Invoke the command&#39;s redoIt() function to actually create and manipulate these objects.
+        self.redoIt()
+        
+    
+    def redoIt(self):
+        &#39;&#39;&#39; Create and manipulate the nodes to form the joint chain. &#39;&#39;&#39;
+        
+        # Perform the operations enqueued within our reference to MDagModifier.
+        self.dagModifier.doIt()
+        
+        #=======================================
+        # JOINT MANIPULATION
+        #=======================================
+        # We can now use the function sets on the newly created DAG objects.
+        jointFn = OpenMayaAnim.MFnIkJoint()
+        
+        for i in range( 1, len( self.jointObjects ) ):
+
+            jointFn.setObject( self.jointObjects[i] )
+            # We set the orientation for our joint to be &#39;jointOrientation&#39; degrees, to form an arc. 
+            # We use MFnIkJoint.setOrientation() instead of MFnTransform.setRotation() to let the
+            # inverse-kinematic handle maintain the curvature.
+            global jointOrientation
+            rotationAngle = OpenMaya.MAngle( jointOrientation, OpenMaya.MAngle.kDegrees )
+            jointFn.setOrientation( OpenMaya.MEulerRotation( rotationAngle.asRadians(), 0 , 0, OpenMaya.MEulerRotation.kXYZ ) )
+            
+            # We translate the joint by &#39;jointDistance&#39; units along its parent&#39;s y axis.
+            global jointDistance
+            translationVector = OpenMaya.MVector( 0, jointDistance, 0 )
+            jointFn.setTranslation( translationVector, OpenMaya.MSpace.kTransform )
+
+        #=======================================
+        # IK HANDLE MANIPULATION
+        #=======================================
+        # We will use the MEL command &#39;ikHandle&#39; to create the handle which will move our joint chain. This command
+        # will be enqueued in our reference to the <a href="javascript:void(0)" data-symbol="MDagModifier" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_dag_modifier.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../../../&quot;}]">MDagModifier</a> so that it can be undone in our call to MDagModifier.undoIt().
+        
+        # Obtain the DAG path of the first joint.
+        startJointDagPath = OpenMaya.MDagPath()
+        jointFn.setObject( self.jointObjects[0] )
+        jointFn.getPath( startJointDagPath )
+             
+        # Obtain the DAG path of the effector.
+        effectorDagPath = OpenMaya.MDagPath()
+        effectorFn = OpenMayaAnim.MFnIkEffector( self.effectorObj )
+        effectorFn.getPath( effectorDagPath )
+        
+        # Enqueue the following MEL command with the DAG paths of the start joint and the end effector.
+        self.dagModifier.commandToExecute( &#39;ikHandle -sj &#39; + startJointDagPath.fullPathName() + &#39; -ee &#39; + effectorDagPath.fullPathName() )
+        
+        # We call MDagModifier.doIt() to effectively execute the MEL command and create the ikHandle. 
+        self.dagModifier.doIt()
+        
+    
+    def undoIt(self):
+        &#39;&#39;&#39; Undo the command. &#39;&#39;&#39;
+        # This call to MDagModifier.undoIt() undoes all the operations within the MDagModifier.
+        # Observe that the number of calls to MDagModifier.undoIt() does not need to match the number of calls to MDagModifier.doIt().
+        self.dagModifier.undoIt()
+        
+        
+    def isUndoable(self):
+        &#39;&#39;&#39; This function must return True to indicate that it is undoable. &#39;&#39;&#39; 
+        return True
+        
+
+##########################################################
+# Plug-in initialization.
+##########################################################
+def cmdCreator():
+    &#39;&#39;&#39; Creates an instance of the command. &#39;&#39;&#39;
+    return OpenMayaMPx.asMPxPtr( JointChainCommand() )
+
+def syntaxCreator():
+    &#39;&#39;&#39; Defines the argument and flag syntax for this command. &#39;&#39;&#39;
+    syntax = OpenMaya.MSyntax()
+    syntax.addFlag( kLengthFlag, kLengthLongFlag, OpenMaya.MSyntax.kDouble )
+    return syntax
+
+def initializePlugin( mobject ):
+    &#39;&#39;&#39; Initializes the plug-in. &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.registerCommand( kPluginCmdName, cmdCreator, syntaxCreator )
+    except:
+        sys.stderr.write( &#39;Failed to register command: &#39; + kPluginCmdName )
+        raise
+    
+def uninitializePlugin( mobject ):
+    &#39;&#39;&#39; Uninitializes the plug-in. &#39;&#39;&#39;
+    mplugin = OpenMayaMPx.MFnPlugin( mobject )
+    try:
+        mplugin.deregisterCommand( kPluginCmdName )
+    except:
+        sys.stderr.write( &#39;Failed to unregister command: &#39; + kPluginCmdName )
+        raise
+
+
+##########################################################
+# Sample usage.
+##########################################################
+&#39;&#39;&#39; 
+# Copy the following lines and run them in Maya&#39;s Python Script Editor:
+
+import maya.cmds as cmds
+cmds.loadPlugin( &#39;jointChain.py&#39; )
+cmds.myJointChain( length=4 )
+
+&#39;&#39;&#39;
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

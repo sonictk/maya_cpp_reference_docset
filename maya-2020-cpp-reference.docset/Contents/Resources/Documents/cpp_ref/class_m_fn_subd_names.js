@@ -1,0 +1,28 @@
+var class_m_fn_subd_names =
+[
+    [ "MFnSubdNames", "class_m_fn_subd_names.html#a9776974094d5764f46e4c6bbe86619a5", null ],
+    [ "~MFnSubdNames", "class_m_fn_subd_names.html#ab7d58d26d2e30c829348c564c640672f", null ],
+    [ "base", "class_m_fn_subd_names.html#aff61fafcba00bd1f5bc8276e673d5bec", null ],
+    [ "first", "class_m_fn_subd_names.html#a16690be36a8af9c09bbe2e7f7277f1ca", null ],
+    [ "level", "class_m_fn_subd_names.html#a4a9a325a38bbd9f2d9f373cfd85634bc", null ],
+    [ "path", "class_m_fn_subd_names.html#a1ffd32ad01a4165faef4279891e7cda1", null ],
+    [ "corner", "class_m_fn_subd_names.html#ab87e4743a17e1064a5a31552695a9aa8", null ],
+    [ "fromMUint64", "class_m_fn_subd_names.html#ad1028ff3a6b23df5416b3af47cf22515", null ],
+    [ "toMUint64", "class_m_fn_subd_names.html#ac042cc55225d3fe572a474f2f15a36a1", null ],
+    [ "baseFaceId", "class_m_fn_subd_names.html#aee226641cb6db3dec611e3cae403c053", null ],
+    [ "baseFaceIndex", "class_m_fn_subd_names.html#a92ccf70e33566ade84fe2a7599f43e2d", null ],
+    [ "baseFaceIndexFromId", "class_m_fn_subd_names.html#a57f41a8f2b19a2cb081562dcf1a1f085", null ],
+    [ "levelOneFaceId", "class_m_fn_subd_names.html#af9091b0e9c4bb9deb7ba7e4afc6a556c", null ],
+    [ "levelOneFaceAsLong", "class_m_fn_subd_names.html#a8eb1db23221ad1b467bb8db331ea4f12", null ],
+    [ "levelOneFaceIndexFromId", "class_m_fn_subd_names.html#a4f03a647d197765584d623534f3e7023", null ],
+    [ "levelOneFaceIdFromLong", "class_m_fn_subd_names.html#a7352d86b9a73508077e509e6dd531e61", null ],
+    [ "levelOneFaceIdFromIndex", "class_m_fn_subd_names.html#a43fd5fd94252bf0d5c27e20dcefdf80a", null ],
+    [ "baseFaceIdFromLong", "class_m_fn_subd_names.html#a5f42b496e1256226c27adfb02c9b3817", null ],
+    [ "baseFaceIdFromIndex", "class_m_fn_subd_names.html#ae77e9b1cbf5f4ad631238dd1f470b1fe", null ],
+    [ "parentFaceId", "class_m_fn_subd_names.html#abc856f339d28b8a381cb70cf2b66ced1", null ],
+    [ "nonBaseFaceVertices", "class_m_fn_subd_names.html#a6c729102e5aaf7a5eb09482d73901b6b", null ],
+    [ "nonBaseFaceEdges", "class_m_fn_subd_names.html#a287ea36081960a1a108b531542e1a156", null ],
+    [ "fromSelectionIndices", "class_m_fn_subd_names.html#a135a3158ffcf4b7870e65c9d5dd43e11", null ],
+    [ "toSelectionIndices", "class_m_fn_subd_names.html#a15c178e6e378fa7539d04120baced3d0", null ],
+    [ "className", "class_m_fn_subd_names.html#a774cd5d8fbebe8e7ed82a5aa587d1f04", null ]
+];

@@ -1,0 +1,152 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>About the dependency graph</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>About the dependency graph</h1>
+         </div>
+
+<div class='section'><a id="about-the-dependency-graph"></a></div>
+<p>This page provides a brief description of how the dependency graph works.</p>
+<p>The dependency graph (DG) is a collection of entities connected together. Unlike the DAG, these connections can be cyclic, and do not represent a parenting relationship. Instead, the connections in the graph allow data to move from one entity in the graph to another. The entities in the graph which accept input, perform computations, and output new data, are called dependency graph nodes. Dependency graph nodes are used for almost everything in Maya such as model creation, deformation, animation, simulation, and audio processing.</p>
+<p>Nodes are the engines which drive the dependency graph. Data comes in to nodes, they perform an operation on the data, and they make the new data available again. The data comes in through the input plugs (instantiations of the nodes attributes) and goes out through the output plugs. At no time should a node require any additional external data beyond what is available through its plugs.</p>
+<p>Most objects in Maya are dependency graph nodes, or networks of nodes (several nodes connected together). For example, DAG nodes are dependency graph nodes, and shaders are networks of nodes.</p>
+<p>When dependency graph nodes are connected together they can affect DAG nodes and thus affect what is rendered.</p>
+<div class='figure'><img src='dev_help/images/comp_Transform05.png' title='' /></div>
+<p>This illustration combines a DAG hierarchy with a dependency graph. Transform1, Transform2, Transform3, and Sphere are all DAG nodes (and also dependency graph nodes) while Time is just a dependency graph node.</p>
+<p>The x, y, and z scale parameters of Transform3 are driven by time. Alternatively, you can think of the output of Time being plugged into the x, y, and z scale connections of Transform3. When the animation is played back, the two instances of the sphere increase in size.</p>
+<p>The data which flows through the graph can be as simple as numbers, or as complicated as a surface. It can also be a completely user-defined object.</p>
+<p>The dependency graph consists of a very complex architecture, and a complete explanation of how it works would require a separate manual. A brief explanation is provided instead.</p>
+<p>As noted before, the dependency graph is a directed graph, the edges of the graph connect plugs on different nodes. Data is sent along these edges, and includes basic types such as numbers, vectors, and matrices, and complex types such as curves, surfaces, and user defined types.</p>
+<p>As part of the definition of Maya nodes, you are required to specify which input attributes affect which output attributes (in the API this is done with the <span class='code'><a href="javascript:void(0)" data-symbol="MPxNode::attributeAffects()" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html#aef755adb241fbe273368fefae14047a4&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html#adf19fe538d775ac2ec0169e6bc300f1c&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxNode::attributeAffects()</a></span> method).</p>
+<p>When an attribute of a node is changed, the dependency graph checks to see if that attribute affects any output. If it does, each of those outputs is marked dirty, meaning that its cached value is stale and needs to be recomputed. Then for each of those output attributes, the dependency graph checks to see if they are the source for a connection. If so, then the connection is followed, and the destination attribute is marked dirty also. This process recurs, and at the end all attributes of nodes in the graph which need to be recomputed are marked dirty. It is important to note that at this time no attributes have been recomputed, instead the state has just been updated so we know which data is no longer valid. The evaluation and re-computation of those invalid attributes occurs as part of a separate step.</p>
+<p>Certain events cause the dependency graph to re-evaluate itself, examples being screen refresh, and animation playback. During a refresh for example, the system will walk down the DAG and for each DAG node check to see whether it needs to be re-evaluated (by checking if any plugs on it are dirty), if so, the compute method of the node affecting the plug will be called. This compute method may be dependent on plugs which may also be dirty, so the affecting nodes’ compute methods would also be called, and in this way the pertinent parts of the DG will be re-evaluated, but only those parts that require re-evaluation.</p>
+<p>One optimization is that the DG does not re-evaluate the graph unless it needs to. For example, imagine a revolved surface where there are three nodes, a curve DAG node used as input to the second node, a node which revolves the curve and generates a surface, which is the output to the third node, a DAG node which puts the surface into the DAG. If the input curve was modified, the surface would not be regenerated immediately, it may not happen until the next screen refresh. To make sure that the surface does eventually get rebuilt, modifying the curve would cause all plugs connected to the curve’s output plug to be marked dirty, hence the input to the revolve node would be marked dirty (the curve’s output plug itself would not be marked dirty since it has just been recomputed). When declaring attributes it’s necessary to indicate what attributes affect each other, so in the revolve node, the output attribute is dependent on the input attribute, then marking the input attribute dirty causes the output attribute to be marked dirty. The output of the revolve node is connected to the surface node, marking the revolve node’s output dirty marks the surface as being dirty. So, when the DAG is walked during a screen refresh, since the surface is marked dirty, everything that it is dependent on which has also been marked dirty needs to be re-evaluated.</p>
+<p>Re-evaluation stops at the first node which doesn’t have any dirty inputs. For example if the number of degrees to revolve a curve was changed but the curve itself was not, then rebuilding the revolved surface would cause the revolve node to be recomputed, but the curve would not be affected.</p>
+<p>This is a high level description, the actual implementation provides a great deal of intelligence so that unnecessary evaluations are avoided.</p>
+<p>The data flowing through the graph is analogous to water flowing through pipes. The pipes themselves are the connections but unless they have data to redirect and modify they are not actually doing anything.</p>
+<p>Extending this analogy, the nodes are like taps, showers, or fountains. They all do something with the water in their own unique way but they must have water to operate.</p>
+<p>An interesting side effect of using the DG is that it can make it difficult to directly affect an object.</p>
+<p>For example, consider the sphere in the above figure. If no DG node is connected to Transform3 to affect the sphere’s scale, any values set through the UI or API will be the new scale. However, if as in the figure Time affects the scale of the sphere, the effect would be different when Transform3’s scale is additionally modified through the UI or API. If you set the scale it would override the scale being set by Time only until the next re-evaluation of the dependency graph, when the scale of the sphere would again be set by Time and the value you set through the UI or API would be lost.</p>
+<p>A more complex example would be a revolved surface. What would happen if you tried to move a CV on the generated surface? The CV would be moved to its new position only until the DG is re-evaluated, at which time the CV would be moved back to the position dictated by the revolve node.</p>
+<p>However, fine-tuning or &quot;tweaking&quot; a model is a necessary operation for building complex models and scenes. So Maya has designed a mechanism for handling these tweaks. Mesh shapes have an attribute, pnts, which stores local changes made to the mesh vertices. Any upstream connection to the mesh shape node which generates a new set of vertices for the mesh will not disturb the pnts attribute. The values in the pnts attribute are added to the coordinates of the mesh. For NURBS surfaces and other control point based nodes, the controlPoints attribute stores tweak information. Maya also has implemented a tweak node which will store tweak information for a control point based node. The tweak node is placed between the control point based node and an upstream deforming node which operates on the control points. The tweak node integrates the tweak information in with the deformed control points to generate the final set of control points that is then passed to the shape. Refer to the manual pages for the tweak node as well as the mesh and NURBS surface shape nodes for more information on the attributes which handle tweak information.</p>
+<div class='section'><a id="node-states"></a><h2 id="node-states">Node states</h2></div>
+<p>Every dependency graph node has a state value that indicates how it should be evaluated. Maya users can set and retrieve these values in the Maya UI, through MEL or Python commands, and through the API. The state is stored as an integer in the <span class='code'><a href="javascript:void(0)" data-symbol="MPxNode::state" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html#ab1315838f80fd570104dc41d834d8ff5&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxNode::state</a></span> attribute.</p>
+<table cellpadding="0" cellspacing="0" class="ruled">
+<colgroup>
+<col />
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr class="ruled-heading">
+<th class="table-heading">
+state value
+</th>
+<th class="table-heading">
+state
+</th>
+<th class="table-heading">
+description
+</th>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<a name="GUID-B269E42C-C79D-4E1A-8666-A9F9BDB378F3"></a>
+<p class="table-body">
+0
+</p>
+</td>
+<td class="table-body">
+<a name="GUID-95953C77-5DA0-4A33-9099-6DCA9B52B2BC"></a>
+<p class="table-body">
+<em class="mild">Normal</em>
+</p>
+</td>
+<td class="table-body">
+This is the normal, default node state. A node in this state should be evaluated normally.
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+<a name="GUID-62B73B22-5B43-45A5-A425-2ABAB990349C"></a>
+<p class="table-body">
+1
+</p>
+</td>
+<td class="table-body">
+<a name="GUID-507F955D-9B14-40DD-9871-1731FC578DC1"></a>
+<p class="table-body">
+<em class="mild">HasNoEffect</em>
+</p>
+</td>
+<td class="table-body">
+<a name="GUID-3B16A136-F192-4767-BF34-C603202321C8"></a>
+<p class="table-body">
+The <em class="mild">HasNoEffect</em>, or <em class="mild">pass-through</em>, state indicates that the node should allow its input data to pass through the node unchanged. It is used in cases where the node performs some computations on an input value and produces an output of the same type. This allows a user to easily disable the computations in a node without disconnecting the node from the surrounding graph.
+</p>
+<a name="GUID-7DA6F259-0F16-4F83-9211-F45DCEC605DA"></a>
+<p class="table-body">
+For example, nearly all deformers support this state by sending the input geometry directly to the output attribute without deforming it. However, nodes that produce different types of outputs from the inputs they accept typically do not support this state.
+</p>
+<a name="GUID-C666459A-1803-4C93-8DDB-A42BE7C184CD"></a>
+<p class="table-body">
+When you write a custom dependency node class, you may choose to support this state. For details, see <span class="char_link"><a href="#!/url=./dev_help/Dependency-graph-plug-ins/Implementing-the-compute-method.html">Implementing the compute() method for a dependency graph node</a></span>.
+</p>
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<a name="GUID-8F35A7DE-2116-466B-9C94-9ABEFC88E5F1"></a>
+<p class="table-body">
+2
+</p>
+</td>
+<td class="table-body">
+<a name="GUID-7649EE46-85AF-4230-9756-A09D375A54B7"></a>
+<p class="table-body">
+<em class="mild">Blocking</em>
+</p>
+</td>
+<td class="table-body">
+<a name="GUID-73C70745-28B5-43CF-9EAF-DAFC07BF95AC"></a>
+<p class="table-body">
+The <em class="mild">Blocking</em> state is implemented in the dependency node base class, and applies to all nodes. Blocking is applied to connections during the evaluation phase. An evaluation request to a blocked connection will fail, causing the destination plug to retain its current value. Since blocked connections are never cleaned, this state affects dirty propagation.
+</p>
+<a name="GUID-CBED54B6-EC79-4A98-90BD-09CFB5ADEC14"></a>
+<p class="table-body">
+When a node is set to <em class="mild">Blocking</em>, the behavior is supposed to be the same as if all outgoing connections were broken. As long as nobody requests evaluation of the blocked node directly, it will not evaluate again. Note that a blocked node will still respond to <span class="code">getAttr()</span> requests, but a <span class="code">getAttr()</span> of a downstream node will not re-evaluate the blocked node.
+</p>
+<a name="GUID-5F040A13-4D9F-46AE-B56A-88399C1C75DA"></a>
+<p class="table-body">
+Setting the root transform of a hierarchy to <em class="mild">Blocking</em> won’t automatically influence child transforms in the hierarchy. Instead, you must explicitly set each child node to the <span class="code">Blocking</span> state. For example, you could use the following script:
+</p>
+<pre><code>import maya.cmds as cmds
+def blockTree(root):
+    nodesToBlock = []
+    for node in {child:1 for child in cmds.listRelatives( root, path=True, allDescendents=True )}.keys():
+        nodesToBlock += cmds.listConnections(node, source=True, destination=True )
+    for node in {source:1 for source in nodesToBlock}.keys():
+        cmds.setAttr( '%s.nodeState' % node, 2 )
+</code></pre>
+<a name="GUID-DAB96228-28F1-49A4-9C97-C3E35DB3FFE6"></a>
+<p class="table-body">
+Applying this script would continue to draw objects, but child nodes would not be animated.
+</p>
+<a name="GUID-516E6C9D-C104-4C9B-876F-ADEEC6DEA153"></a>
+<p class="table-body">
+When you write a custom dependency node class, you do not need to check for this case, since it is handled automatically by the base <span class="code"><a href="javascript:void(0)" data-symbol="MPxNode" class="a_multireflink" data-reflinkdata="[{&quot;path&quot;:&quot;cpp_ref/class_m_px_node.html&quot;,&quot;title&quot;:&quot;C++ API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;},{&quot;path&quot;:&quot;py_ref/class_open_maya_1_1_m_px_node.html&quot;,&quot;title&quot;:&quot;Python 2.0 API Reference&quot;,&quot;relpathtoroot&quot;:&quot;../../&quot;}]">MPxNode</a></span> class.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Three other states exist for internal use only: <em>Waiting-Normal</em>, <em>Waiting-HasNoEffect</em>, and <em>Waiting-Blocking</em>. These nodes temporarily shut off parts of the graph during user interaction (e.g. while manipulating the graph). Once the interaction is done, Maya will reset the node state appropriately. You should never need to worry about these states.</p>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

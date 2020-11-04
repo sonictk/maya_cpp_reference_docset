@@ -1,0 +1,197 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Finding and Identifying Samples</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Finding and Identifying Samples</h1>
+         </div>
+
+<div class='section'><a id="finding-and-identifying-samples"></a></div>
+<p>There are four types of samples included in the Maya devkit. All samples can be found under the <span class='code'>devkit</span> directory in <span class='code'>devkitBase</span>.</p>
+<ol>
+<li><p>C++ plug-ins. These compiled plug-ins are located in the <span class='code'>plug-ins</span> directory.</p></li>
+<li><p>Python scripted plug-ins. These scripts are located in the <span class='code'>scripted</span> directory under <span class='code'>plug-ins</span>. Samples beginning in &quot;py&quot; use Maya Python API 2.0. All other samples use Maya Python API 1.0.</p></li>
+<li><p>C# plug-ins. These compiled plug-ins are located in the <span class='code'>dotnet</span> folder.</p></li>
+<li><p>Standalone applications. These applications make API calls to access Maya in batch mode. Samples are located in the <span class='code'>applications</span> directory. A sample standalone Python script is available under the <span class='code'>scripted</span> subdirectory.</p></li>
+</ol>
+<blockquote>
+<p><strong>Important:</strong> Some samples require third-party libraries to compile or run. Most notably, any plug-in sample that begins with <span class='code'>abc</span> cannot be built without additional libraries not included with Maya. Do not attempt to build these samples.</p>
+</blockquote>
+<div class='section'><a id="sample-naming-conventions"></a><h2 id="sample-naming-conventions">Sample Naming Conventions</h2></div>
+<p>The following naming convention is used for the samples.</p>
+<table cellpadding="0" cellspacing="0" class="ruled">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody>
+<tr class="ruled-heading">
+<th class="table-heading">
+Suffix
+</th>
+<th class="table-heading">
+Description
+</th>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC57"></a>
+<p class="table-body">
+Cmd
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC58"></a>
+<p class="table-body">
+Plug-ins that create new commands.
+</p>
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC59"></a>
+<p class="table-body">
+Tool
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC5A"></a>
+<p class="table-body">
+Plug-ins that create new interactive tools.
+</p>
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC5B"></a>
+<p class="table-body">
+Node
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC5C"></a>
+<p class="table-body">
+Plug-ins that create new node types.
+</p>
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC5D"></a>
+<p class="table-body">
+Translator
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC5E"></a>
+<p class="table-body">
+Plug-ins that create new file translators.
+</p>
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC5F"></a>
+<p class="table-body">
+Shader
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC60"></a>
+<p class="table-body">
+Plug-ins that create new shading nodes.
+</p>
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC61"></a>
+<p class="table-body">
+Manip
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC62"></a>
+<p class="table-body">
+Plug-ins that create new manipulators.
+</p>
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC63"></a>
+<p class="table-body">
+Field
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC64"></a>
+<p class="table-body">
+Plug-ins that create new dynamic fields.
+</p>
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC65"></a>
+<p class="table-body">
+Emitter
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC66"></a>
+<p class="table-body">
+Plug-ins that create new dynamic emitters.
+</p>
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC67"></a>
+<p class="table-body">
+Spring
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC68"></a>
+<p class="table-body">
+Plug-ins that create new dynamic springs.
+</p>
+</td>
+</tr>
+<tr class="ruled-even-row">
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC69"></a>
+<p class="table-body">
+Shape
+</p>
+</td>
+<td class="table-body">
+<a name="WS73099CC142F48755-3D114B7511841AEFA9FC6A"></a>
+<p class="table-body">
+Plug-ins that create new shapes.
+</p>
+</td>
+</tr>
+<tr class="ruled-odd-row">
+<td class="table-body">
+<p class="table-body">
+Shader
+</p>
+</td>
+<td class="table-body">
+<p class="table-body">
+Plug-ins that create shader nodes.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

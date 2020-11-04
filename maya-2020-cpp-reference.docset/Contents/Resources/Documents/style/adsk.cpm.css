@@ -1,0 +1,2046 @@
+/* Consolidation of many .css files. Controls the pages in the files folder */
+
+.body_content {
+    background-color: #fff;
+    font-family: 'RobotoRegular', Arial, Tahoma, sans-serif;
+    font-size: 11pt;
+    font-style: normal;
+    font-weight: normal;
+    color: rgb(65, 65, 65);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: 145%;
+    text-align: left;
+    text-indent: 0pt;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    height: auto;
+}
+
+.body_content p {
+    margin-top: 1em;
+    margin-bottom: 0px;
+}
+
+.body_content div.body_content {
+    margin: 0 12pt;
+}
+
+/* ----------------------------------------------------------------------------
+										Link styles
+ ---------------------------------------------------------------------------- */
+
+.body_content a:link,
+.body_content a:active {
+    color: #088ecf; /* blue */
+    text-decoration: none;
+}
+
+.body_content a:visited {
+    color: #088ecf; /* blue */
+    text-decoration: none;
+}
+
+.body_content a:hover {
+    color: #00abe5; /* light blue */
+    text-decoration: underline;
+}
+
+.body_content a:visited:hover {
+    color: #00abe5; /* light blue */
+    text-decoration: none;
+}
+
+/* Styles for debug purposes. */
+.body_content a.link-without-href:link,
+.body_content a.link-without-href:active {
+    color: #9900FF;
+    text-decoration: none;
+    background-color: #CCCCFF;
+}
+
+.body_content a.link-without-href:visited {
+    color: #909090;
+    text-decoration: none;
+    background-color: #E8E8E8;
+}
+
+.body_content a.link-without-href:hover {
+    color: #9900FF;
+    text-decoration: underline;
+    background-color: #CCCCFF;
+}
+
+@media print {
+	.body_content a {
+		color: #000;
+		word-wrap: break-word;
+	}
+
+	/* Show external links */
+	.body_content a[href^="http://"]:after,
+	.body_content a[href^="https://"]:after {
+		content: " (" attr(href) ")";
+	}
+
+	/* Hide internal links */
+	.body_content a[href^="#"]:after {
+		display: none;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+										Table styles
+ ---------------------------------------------------------------------------- */
+
+.body_content table {
+    background-color: transparent;
+    margin-top: 5pt;
+}
+
+.body_content p.table-title {
+    font-weight: bold;
+    color: #088ecf /* blue */
+}
+
+.body_content p.table-title + table.table {
+    margin-top: -5pt;
+}
+
+/* Table after it's title should have small top margin */
+
+.body_content table.table th {
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+/* Head row cells */
+
+.body_content table.table tr td {
+    vertical-align: top;
+}
+
+/* Body cells */
+
+.body_content table.ruled,
+.body_content table.ruled-wide {
+    margin: 1.4em 0;
+    border-bottom: 3px solid #3D3D3D;
+    border-top: 4px solid #3D3D3D;
+    background-color: #F2F2F2;
+}
+
+.body_content table.ruled-wide {
+    width: 97%;
+}
+
+.body_content th.table-heading {
+    text-align: left;
+    font-weight: bold;
+    color: #3D3D3D;
+}
+
+.body_content table.ruled th,
+.body_content table.ruled-wide th {
+    color: white;
+    background-color: #3D3D3D;
+    padding: 4px 10px 7px 12px;
+    vertical-align: middle;
+}
+
+.body_content table.ruled td,
+.body_content table.ruled-wide td {
+    padding: 6px 10px 7px 12px;
+    border-bottom: 1px solid #3D3D3D;
+    vertical-align: baseline;
+}
+
+.body_content tr.ruled-heading,
+.body_content tr.ruled-wide-heading {
+    background-color: transparent;
+}
+
+.body_content tr.ruled-even-row,
+.body_content tr.ruled-wide-even-row {
+    background-color: transparent;
+}
+
+.body_content tr.ruled-odd-row,
+.body_content tr.ruled-wide-odd-row {
+    background-color: transparent;
+}
+
+
+/* Not ruled Tables */
+
+.body_content table.not-ruled,
+.body_content table.not-ruled-wide {
+    margin: 1em 0;
+}
+
+.body_content table.not-ruled-wide {
+    width: 97%;
+}
+
+.body_content table.not-ruled th,
+.body_content table.not-ruled-wide th {
+    color: #088ecf /* blue */
+    padding: 4px 20px 2px 0;
+    vertical-align: text-bottom;
+}
+
+.body_content table.not-ruled td,
+.body_content table.not-ruled-wide td {
+    padding: 4px 20px 2px 0;
+    vertical-align: top;
+}
+
+.body_content table.not-ruled td div.figure-anchor,
+.body_content table.not-ruled-wide td div.figure-anchor {
+    margin-top: 5pt;
+}
+
+/* tables in list elements */
+.body_content li table.ruled,
+.body_content li table.ruled-wide,
+.body_content li table.not-ruled,
+.body_content li table.not-ruled-wide {
+
+}
+
+/* paras within tables */
+.body_content table.ruled p,
+.body_content table.ruled-wide p,
+.body_content table.not-ruled p,
+.body_content table.not-ruled-wide p {
+    margin: 2pt 0;
+}
+
+/* div.note_xx within tables */
+.body_content table.ruled div.note-note,
+.body_content table.ruled-wide div.note-note,
+.body_content table.not-ruled div.note-note,
+.body_content table.not-ruled-wide div.note-note {
+    margin: 2pt 0;
+}
+
+/* ul's within tables*/
+.body_content table.ruled ul,
+.body_content table.ruled-wide ul,
+.body_content table.not-ruled ul,
+.body_content table.not-ruled-wide ul {
+    margin: 6pt 0 0 12pt;
+    list-style-type: disc;
+}
+
+.body_content table.ruled ul p,
+.body_content table.ruled-wide ul p,
+.body_content table.not-ruled ul p,
+.body_content table.not-ruled-wide ul p {
+    margin-top: 6pt;
+}
+
+.body_content table.ruled ul li,
+.body_content table.ruled-wide ul li,
+.body_content table.not-ruled ul li,
+.body_content table.not-ruled-wide ul li {
+    margin: 4pt 0 0 0;
+}
+
+/* ol's within tables */
+.body_content table.ruled ol,
+.body_content table.ruled-wide ol,
+.body_content table.not-ruled ol,
+.body_content table.not-ruled-wide ol {
+    margin: 6pt 0 0 18pt;
+}
+
+.body_content table.ruled ol p,
+.body_content table.ruled-wide ol p,
+.body_content table.not-ruled ol p,
+.body_content table.not-ruled-wide ol p {
+    margin-top: 6pt;
+}
+
+.body_content table.ruled ol li,
+.body_content table.ruled-wide ol li,
+.body_content table.not-ruled ol li,
+.body_content table.not-ruled-wide ol li {
+    margin: 4pt 0 0 0;
+}
+
+@media print {
+
+    .body_content table.ruled-wide th.table-heading {
+        color: #3D3D3D;
+        background-color: transparent;
+        padding-top: 4pt;
+        border-bottom: 4px solid #3D3D3D;
+    }
+e``
+}
+
+/* @media print */
+
+.body_content p.table-body {
+}
+
+/* Paragraph within table body */
+.body_content p.table-heading {
+}
+
+/* Paragraph within table body */
+.body_content p.table-footing {
+}
+
+/* Paragraph within table body */
+
+/* data table */
+/* also used in dialog box topics */
+.body_content table.ref-data {
+    margin: 0;
+    border: none;
+    font-size: 9pt;
+}
+
+/* data table td */
+.body_content table.ref-data td {
+    padding: 0 0 12pt 0;
+    width: 0;
+}
+
+/* ----------------------------------------------------------------------------
+										List styles
+ ---------------------------------------------------------------------------- */
+
+.body_content ul {
+    margin: 6pt 0 0 12pt;
+    list-style-type: disc;
+}
+
+.body_content ul p {
+    margin-top: 6pt;
+}
+
+.body_content ul li {
+    margin: 10pt 0 0 6pt;
+}
+
+.body_content ul.bullet_no {
+    list-style-type: none;
+}
+
+.body_content ol {
+    margin: 6pt 0 0 18pt;
+}
+
+.body_content ol p {
+    margin-top: 6pt;
+}
+
+.body_content ol li {
+    margin: 10pt 0 0 0;
+    padding-left: 0pt;
+}
+
+.body_content div.single_step_instruction ol {
+    list-style-image: url(../images/ac.menuaro.gif);
+}
+
+.body_content div.see-also ul ul {
+    margin-left: 0px;
+}
+
+.body_content div.see-also li {
+    margin-top: 4pt;
+}
+
+.body_content div.see-also {
+    margin-top: 18pt;
+    padding-top: 2pt;
+    border-top: 1px solid #449;
+}
+
+.body_content span.see-also {
+    color: #088ecf /* blue */
+    font-weight: bold;
+}
+
+.body_content div.topic-list li {
+    margin-top: auto;
+}
+
+.body_content div.dl_section {
+    margin-left: 30pt;
+}
+
+/* section titles (break heads within topics) */
+.body_content div.dl_section p.title,
+.body_content div.dl_section p.section_title_h1,
+.body_content div.section p.section_title_h1 {
+    background-color: #959595;
+    font-weight: bold;
+    font-size: 10pt;
+    color: #fff;
+    padding: 2pt 6pt 3pt 4pt;
+    margin-top: 20pt;
+}
+
+.body_content div.section h2 {
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(85, 85, 85);
+    margin-bottom: 4px;
+    margin-top: 20pt;
+    padding: 4px 0 0;
+}
+
+@media print {
+
+    .body_content div.dl_section p.title,
+    .body_content div.dl_section p.section_title_h1,
+    .body_content div.section p.section_title_h1 {
+        background-color: transparent;
+        padding-left: 0pt;
+    }
+
+}
+
+.body_content dl {
+}
+
+.body_content dl p {
+    margin-top: 6pt;
+}
+
+.body_content dt {
+    margin-top: 12pt;
+    margin-bottom: 0px;
+}
+
+.body_content dd {
+    margin-top: 0pt;
+    margin-bottom: 0px;
+}
+
+.body_content ul.jumplist {
+    margin-left: 20pt;
+    margin-bottom: 10pt;
+}
+
+.body_content ol[start] {
+    margin-top: 2pt
+}
+
+/* continued list */
+
+.body_content div.list-intro {
+    font-size: 10pt;
+    margin-bottom: 5pt;
+    font-weight: bold;
+    color: #990000;
+}
+
+.body_content div.enclosed-list {
+    margin-top: -5pt;
+    padding: 0 0 0 15pt;
+}
+
+/* Block to indent enclosed lists */
+
+.body_content div.enclosed-list div.list-intro {
+    padding-top: 10pt;
+}
+
+/* Subsequent list into */
+
+.body_content div.enclosed-list ul {
+    margin: 0;
+}
+
+.body_content div.enclosed-list ol {
+    margin: 0;
+}
+
+.body_content div.topic-list h4.related {
+    font-weight: bold;
+    font-size: 15px;
+    color: black;
+    margin: 16pt 0 8pt 0;
+}
+
+.body_content div.topic-list {
+    margin: 25px 12pt 20px;
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+.body_content .topiclist-litem {
+    margin-bottom: 6pt;
+}
+
+/* definition list */
+.body_content table.dl {
+    font-size: 10pt;
+}
+
+/* in a definition list, a term-definition pair */
+.body_content tr.dl-pair {
+}
+
+.body_content td.term {
+    width: 100pt;
+    vertical-align: baseline;
+    padding: 0 12pt 0 0;
+}
+
+.body_content td.definiton {
+    vertical-align: baseline;
+    padding: 0;
+}
+
+/* Civil 3D quick reference sections */
+
+.body_content div.section {
+    margin-top: 12pt;
+}
+
+.body_content span.term {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #36c;
+}
+
+.body_content div.definition {
+    margin-bottom: 10pt;
+}
+
+.body_content div.definition p {
+    margin-top: 4pt;
+}
+
+.body_content div.definition ul {
+    margin-top: 0pt;
+}
+
+.body_content div.definition li {
+    margin-top: 4pt;
+}
+
+/* definition links (glossary links) */
+.body_content span.term a {
+    color: green; /* 'green' = #070 */
+    text-decoration: none;
+    border-bottom: 1px dotted green;
+}
+
+/* definition links */
+.body_content span.term a:visited {
+    color: green;
+}
+
+/* collapsible */
+
+.body_content div.collapsible {
+    margin-top: 10pt;
+    margin-bottom: 5pt;
+}
+
+.body_content img.collapsible {
+    cursor: pointer;
+    background-image: url('../images/desktop-accordion-closed.png');
+    background-repeat: no-repeat;
+    height: 0px;
+    width: 0px;
+    padding: 12px;
+    vertical-align: middle;
+}
+
+@media print {
+	.body_content img.collapsible {
+		display: none;
+		visibility: hidden;
+	}
+}
+
+.body_content img.collapsible.opened {
+    background-image: url('../images/desktop-accordion-opened.png');
+}
+
+.body_content div.collapsible-section { }
+
+@media print {
+	.body_content div.collapsible-section {
+		visibility: visible;
+		display: initial;
+	}
+}
+
+.body_content span.collapsible-section-title {
+    color: #027;
+    font-weight: bold;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+/* ----------------------------------------------------------------------------
+										Note styles
+ ---------------------------------------------------------------------------- */
+
+.body_content .label-original-language {
+    display: none;
+    visibility: hidden;
+}
+
+.body_content div.note-note,
+.body_content div.note-warning,
+.body_content div.note-tip,
+.body_content div.note-related,
+.body_content div.note-important,
+.body_content div.note-bestpractice {
+    margin-top: 10pt;
+    margin-bottom: 0px;
+}
+
+/* Notes within table */
+.body_content table.table div.note-note,
+.body_content table.table div.note-warning,
+.body_content table.table div.note-tip,
+.body_content table.table div.note-related,
+.body_content table.table div.note-important,
+.body_content table.table div.note-bestpractice {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* Notes within lists */
+.body_content li div.note-note,
+.body_content li div.note-warning,
+.body_content li div.note-tip,
+.body_content li div.note-related,
+.body_content li div.note-important,
+.body_content li div.note-bestpractice {
+    margin-left: 0pt;
+    margin-top: 2pt;
+    margin-bottom: 8pt;
+}
+
+/*  Note label styles */
+.body_content div.note-important span.label {
+    color: #c00; /* blue */
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.body_content div.note-warning span.label {
+    color: #c00; /* blue */
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.body_content div.note-note span.label {
+    color: #338; /* blue */
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.body_content div.note-tip span.label {
+    color: #338; /* blue */
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.body_content div.note-related span.label {
+    color: #027;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.body_content div.note-important span.label {
+    color: #c00; /* blue */
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.body_content div.note-bestpractice span.label {
+    color: #c00; /* blue */
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+/* ---------------------------------------------------------------------------------------------
+                                        Code elements
+ --------------------------------------------------------------------------------------------- */
+.body_content span.code,
+.body_content div.codeBlock,
+.body_content p.codeLine,
+.body_content span.codeComment,
+.body_content span.codeLiteral {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10pt;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.body_content span.code { }
+
+.body_content div.codeBlock div.codeBlock {
+    margin-left: 30pt;
+} /* Only descendant code blocks should have indents */
+
+.body_content p.codeLine,
+.body_content span.codeComment {
+    padding: 1px;
+    margin: 1px;
+}
+
+.body_content p.codeSpace { }
+
+.body_content span.codeLiteral { }
+
+.body_content div.codeBlock {
+    margin-top: 8pt;
+    padding: 8pt;
+    background-color: #f7f7f7;
+}
+
+/* Fixes word wrap in code block */
+.body_content pre {
+  white-space: pre;
+  overflow: auto;
+  word-wrap: normal;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.body_content div.codeBlock pre.codeLine {
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+}
+
+@media print {
+
+    .body_content div.codeBlock {
+        background: #fff;
+        border: 1px solid #000;
+    }
+
+} /* @media print */
+
+
+/* ---------------------------------------------------------------------------------------------
+							Charspan
+--------------------------------------------------------------------------------------------- */
+.body_content span.charspan-keyboardEntry { }
+
+.body_content span.charspan-strong {
+    font-weight: bold;
+}
+
+.body_content span.charspan-special { }
+
+/*
+Note that CharSpan[@class='Emphasis'], CharSpan[@class='Subscript'] and CharSpan[@class='Superscript'] elements
+are being formatted as <em>, <sub> and <sub> html elements so please change element css definitions instead of class
+*/
+
+/* ---------------------------------------------------------------------------------------------
+							Emphasis
+--------------------------------------------------------------------------------------------- */
+.body_content em,
+.body_content em.mild {
+    font-style: italic;
+}
+
+.body_content em.strong {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.body_content em.extreme {
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* ---------------------------------------------------------------------------------------------
+							UIString
+--------------------------------------------------------------------------------------------- */
+.body_content span.uis-promptMessage {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.body_content span.uis-dialogCaption {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.body_content span.uis-entryField {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.body_content span.uis-menuText { }
+
+.body_content span.uis-stringTable { }
+
+.body_content span.uis-unspecified { }
+
+/* -------------------------------------------------------------------------------------------
+							Comments
+------------------------------------------------------------------------------------------- */
+.body_content div.comments-editor {
+    font-weight: bold;
+    color: red;
+}
+
+.body_content div.comments-localizer {
+    font-weight: bold;
+    color: red;
+}
+
+.body_content div.comments-special {
+    font-weight: bold;
+    color: red;
+}
+
+.body_content div.comments-author {
+    color: #cc0000;
+    margin-left: 24pt;
+    margin-right: 48pt;
+}
+
+/* ------------------------------------------------------------------------------------------
+							Misc
+------------------------------------------------------------------------------------------ */
+/* UI Finder customization. */
+.body_content .uifinderbtn {
+   cursor: pointer;
+   color: #347;
+   text-decoration: underline;
+}
+
+.body_content .title,
+.body_content .list-intro {
+    font-weight: bold;
+    color: #990000;
+    margin-top: 10pt;
+    margin-bottom: -5pt;
+}
+
+.body_content p.title {
+    font-weight: bold;
+    font-size: 10pt;
+    color: #088ecf /* blue */
+    margin: 16pt 0 0 0;
+}
+
+.body_content p.section_title_h1 {
+    font-weight: bold;
+    font-size: 10pt;
+    color: #088ecf /* blue */
+    margin: 16pt 0 0 0;
+}
+
+.body_content p.list-intro {
+    font-weight: bold;
+    color: #088ecf /* blue */
+    margin: 16pt 0 0 0;
+}
+
+.body_content p.prompt {
+    margin-left: 12pt;
+    color: #00c;
+}
+
+.body_content p.entryField {
+    font-style: normal;
+    font-weight: bold;
+} 	/* The same as 'uis-entryField'? */
+
+.body_content span.keyboardEntry { } 	/* The same as 'charspan-keyboardEntry'? */
+
+.body_content span.keyCaps {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.body_content span.filePath {
+    font-style: italic;
+}
+
+.body_content span.appSetting { }
+
+.body_content span.bookTitle { }
+
+.body_content span.coord { }
+
+.body_content span.codeIdentifier {}
+
+.body_content span.dialogCaption{
+    font-style: italic;
+}
+
+.body_content span.menuText{
+    font-style: normal;
+    font-weight: bold;
+}
+
+.body_content span.glyphCopyright { }
+
+.body_content span.glyphTM { }
+
+.body_content span.glyphArrow { }
+
+.body_content span.glyphEllipsis { }
+
+.body_content span.glyphSpecial { }
+
+.body_content span.glyphRegistered { }
+
+.body_content span.glyph_additional {
+    font-family: Symbol;
+}
+
+.body_content span.glyph_square {
+    font-family: Wingdings;
+}
+
+.body_content a.webLink { }
+
+.body_content span.fileName { }
+
+.body_content span.term {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #36c;
+}
+
+.body_content dd div.definition { }
+
+.body_content dd div.brief_example {
+    font-size: 9pt;
+    color: #000;
+    background-color : #77aacc;
+    padding: 7pt 15pt;
+    margin: 0pt;
+}
+
+.body_content div.section { }
+
+.body_content p.summary { }
+
+/* -----------------------------------------------------------------------------------------------
+   New DITA tags
+----------------------------------------------------------------------------------------------- */
+
+.body_content span.MenuCascade { }
+
+/* -----------------------------------------------------------------------------------------------
+								Topic heading elements
+ ----------------------------------------------------------------------------------------------- */
+
+/* head region */
+.body_content div.head {
+    font-family: arial;
+    background-color: transparent;
+    margin: 0;
+    width: 100%;
+}
+
+
+.body_content div.head h1 {
+    border-bottom: 1px #c2c2c2 solid;
+    color: rgb(85, 85, 85);
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 0 0 1em;
+    padding: 5px 0px 12px 0px;
+}
+
+
+@media print {
+
+    .body_content div.head {
+        background-image: none;
+    }
+
+} /* @media print */
+
+
+/* nav group - contains browse buttons */
+.body_content div.nav-group {
+    position: relative;
+    height: 30px;
+}
+
+@media print {
+
+    .body_content div.nav-group {
+        display: none;
+    }
+
+} /* @media print */
+
+/* ask-me stuff */
+
+.body_content form.ask-me {
+    width: 275px;
+    padding: 0px;
+    margin: 0px;
+    height: 0px;
+    float: left;
+}
+
+.body_content input.ask-me-image {
+    cursor:  pointer;
+    margin: 2pt 0;
+    height: 21px;
+}
+
+.body_content input.ask-me-text {
+    width: 160pt;
+    padding: 1pt 0 0 5px;
+    height: 23px;
+    margin-bottom: 2pt;
+}
+
+/* link to parent topic */
+
+.body_content div.head-parent-link span.head-parent-link {
+    font-weight: normal;
+    font-style: normal;
+    font-family: verdana;
+    font-size: 8pt;
+}
+
+.body_content div.head-parent-link a {
+    color: #347;
+    text-decoration: underline;
+}
+
+.body_content div.head-parent-link a:hover {
+    color: #347;
+    text-decoration: underline;
+}
+
+.body_content div.head-parent-link a:visited {
+    color: #347;
+    text-decoration: underline;
+}
+
+/* browse button set */
+.body_content div.browse {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px 1px 0;
+}
+
+/* browse button */
+.body_content div.browse div {
+    float: left;
+}
+
+/* home button separator */
+.body_content div.browse span.home-button-separator {
+    float: left;
+}
+
+/* browse button images */
+.body_content div.browse img {
+    margin-left: 2px;
+}
+
+/* browse button info bar */
+.body_content div.button-info {
+    text-align: right;
+    font-size: 8pt;
+    height: 15px;
+}
+
+/* browse button info text */
+.body_content span#infoline {
+    padding: 1px 15px 1px 0;
+    /*visibility: hidden;*/
+    color: #959595;
+    width: 100%;
+    text-align: right;
+}
+
+/* bread crumbs */
+
+.body_content div.ancestry {
+    color: #959595;
+    background-color: #212121;
+    margin: 2px 0 0 0;
+    padding: 1px 0 5px 17px;
+    font-size: 8pt;
+}
+
+.body_content div.ancestry a {
+    color: #959595;
+    text-decoration: none;
+}
+
+.body_content div.ancestry a:link {
+    color: #959595;
+    text-decoration: none;
+}
+
+.body_content div.ancestry a:visited {
+color: #959595;
+text-decoration: none;
+}
+
+div.ancestry a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+@media print {
+
+    .body_content div.ancestry {
+        display: none;
+    }
+
+} /* @media print */
+
+/* head-text bar */
+.body_content div.head-text {
+    background: -moz-gradient(linear, left top, left bottom, from( #52EDC7), to(#5AC8F8));
+    background: -webkit-gradient(linear, left top, left bottom, from( #52EDC7), to(#5AC8F8));
+    padding: 8px 18px 8px 16px;
+}
+
+/* head-text */
+.body_content div.head-text span {
+    color: #fff;
+    font-size: 16pt;
+    line-height: 18pt;
+}
+
+@media print {
+
+    .body_content div.head-text span {
+        font-size: 18pt;
+        color: #666;
+        filter: glow-off;
+    }
+
+} /* @media print */
+
+/* collapse-expand block */
+/* contains the collapse block () and the expand block (), only
+   one of which is visible depending on collapse-expand state */
+.body_content div.collapse-expand {
+    width: 200px;
+    float: right;
+    font-weight: normal;
+    white-space: nowrap;
+    position: relative;
+    top: -6px;
+}
+
+@media print {
+
+    .body_content div.collapse-expand {
+        display: none;
+    }
+
+} /* @media print */
+
+/* collapse block */
+/* initial state: hidden */
+.body_content div#collapseAllSection {
+    display: none;
+}
+
+/* expand block */
+/* initial state: hidden */
+.body_content div#expandAllSection {
+    display: none;
+}
+
+/* collapse-expand images */
+.body_content img.expandcollapse_img {
+    display: none;
+}
+
+/* collapse-expand label */
+.body_content div.collapse-expand-label {
+    text-align: right;
+    width: 100%;
+    position: absolute;
+    top: -4px;
+    right: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.body_content div.collapse-expand-label span {
+    font-weight: normal;
+    color: #959595;
+    cursor: pointer;
+    font-size: 10px
+}
+
+/* collapse-expand description */
+.body_content div.collapse-expand-description {
+    font-weight: normal;
+    color: #959595;
+    text-align: right;
+    width: 100%;
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    padding: 0px 0 0 10px;
+    margin: 0px;
+}
+
+/*--new added by patricia 11/3/2011--*/
+.body_content div.head-text h1 {
+    padding: 0px;
+    margin: 0px;
+    color: white;
+    background: none;
+    font-size: 16pt;
+    font-weight: normal;
+    line-height: 18pt;
+    font-weight: 100;
+    border: none;
+    text-transform: uppercase;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+
+/* -----------------------------------------------------------------------------------------------
+                                               Head Tabs elements
+ ----------------------------------------------------------------------------------------------- */
+
+/* head tabs */
+.body_content div.head-tabs {
+    background-image: url(../images/tab-bkg.gif);
+    background-color: #fff;
+}
+
+/* head-tab table */
+.body_content div.head-tabs table {
+    font-size: 10pt;
+    margin: 0px;
+    padding: 0px;
+    background: transparent;
+    border: none;
+}
+
+/* head-tab row */
+.body_content div.head-tabs tr {
+    vertical-align: middle;
+    height: 28px;
+}
+
+@media print {
+
+    .body_content div.head-tabs table {
+        margin-left: 2px;
+    }
+
+    .body_content div.head-tabs tr {
+        position: relative;
+        left: -2px;
+    }
+
+}
+
+/* head-tab */
+.body_content div.head-tabs td {
+    border-right: 0;
+    padding: 0;
+}
+
+/* head-tab sides */
+.body_content td.tab-edge {
+    background-color: #fff;
+    display: inline;
+    padding: 0;
+    border-right: 0;
+}
+
+@media print {
+
+    .body_content td.tab-edge {
+        display: none;
+    }
+
+} /* @media print */
+
+/* head-tab, selectable */
+.body_content td.tab {
+    background-image: url(../images/tab-bkg2.gif);
+    padding: 0 1em;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+@media print {
+
+    .body_content td.tab {
+        border: none;
+        background-image: none;
+    }
+
+} /* @media print */
+
+/* head-tab, selected */
+.body_content td.tab-active {
+    background-color: #fff;
+    cursor: default;
+    vertical-align: middle;
+    background-image: url(../images/tab-bkg-xn.gif);
+    background-repeat: repeat;
+}
+
+@media print {
+
+    .body_content td.tab-active {
+        border: none;
+        background-image: none;
+    }
+
+} /* @media print */
+
+/* head-tab bodies, dimmed */
+.body_content td.tab-disabled {
+    padding: 0 1em;
+    background-image: url(../images/tab-bkg-o.gif);
+    cursor: default;
+    vertical-align: middle;
+}
+
+/* head-tab text */
+.body_content td.tab span {
+    color: #0033BB;
+    text-decoration: underline;
+    width: 100%;
+    padding: 0px;
+}
+
+@media print {
+
+    .body_content td.tab span {
+        color: #666;
+    }
+
+} /* @media print */
+
+/* head-tab text, selected */
+.body_content td.tab-active span {
+    color: #000;
+    font-weight: bold;
+    padding: 0px;
+    position: relative;
+    top: 0px;
+}
+
+/* head-tab text, dimmed */
+.body_content td.tab-disabled span {
+    width: 100%;
+    color: #666;
+    position: relative;
+    top: 0px;
+    visibility: hidden;
+}
+
+/* head-region bottom margin */
+.body_content div.head-margin {
+    line-height: 0pt;
+    padding-bottom: 6pt;
+}
+
+/* Temporary fix for grey lines in Quick Reference Tabs */
+.body_content div.quickReferenceList div.section p.section_title_h1  {
+    background-color: #FFFFFF
+}
+
+/* -----------------------------------------------------------------------------------------------
+								Topic footing (comments section) elements
+ ----------------------------------------------------------------------------------------------- */
+
+.body_content div.footer-block {
+    margin: 25pt 0 0 0;
+    border-top: 1px #959595 dashed;
+    border-bottom: 1px #959595 dashed;
+    text-align: right;
+    padding: 8px 15px 14px 0;
+    display: none;
+}
+
+
+@media print {
+
+    .body_content div.footer-block {
+        display: none;
+    }
+
+}  /* @media print */
+
+/* -----------------------------------------------------------------------------------------------
+								Art related elements
+ ----------------------------------------------------------------------------------------------- */
+
+.body_content p.figure-title {
+    margin: 6pt 0 16pt 0;
+    padding: 4pt 8pt 5pt 0;
+    font-weight: bold;
+}
+
+.body_content div.figure-anchor {
+    margin-top: 16pt;
+}
+
+/* -----------------------------------------------------------------------------------------------
+                                                DynamicHelp elements
+ ----------------------------------------------------------------------------------------------- */
+
+.body_content span.AltContentHidden {
+    display: none;
+}
+
+.body_content span.RelatedContentHidden {
+    display: none;
+}
+
+.body_content span.DefaultContentHidden {
+    display: none;
+}
+
+/* -----------------------------------------------------------------------------------------------
+   Workflow tables
+----------------------------------------------------------------------------------------------- */
+
+.body_content table.workflow {
+    text-align: center;
+    border-collapse: collapse;
+    margin: 10pt 10pt 0 0;
+}
+
+.body_content tr.task {
+    vertical-align: middle;
+    height: 1px;
+}
+
+/* set min width of columns */
+.body_content div.task-title-min-width {
+    height: 1px;
+    width: 257px;
+}
+
+.body_content div.task-summary-min-width {
+    width: 300px;
+}
+
+/* task-title column */
+.body_content td.task-title {
+    height: 56px;
+    background-image: url(../images/task-button-middle.png);
+    background-repeat: repeat;
+    padding: 0 17px 10px 10px;
+}
+
+.body_content td.task-title-top {
+    height: 18px;
+    background-image: url(../images/task-button-top.png);
+    background-repeat: no-repeat;
+    padding: 0;
+    font-size: 10pt;
+}
+
+.body_content td.task-title-bottom {
+    height: 25px;
+    background-image: url(../images/task-button-bottom.png);
+    background-repeat: no-repeat;
+    padding: 0;
+    font-size: 10pt;
+}
+
+.body_content td.task-title-last {
+    height: 56px;
+    background-image: url(../images/task-button-middle.png);
+    background-repeat: repeat;
+    padding: 0 17px 10px 10px;
+}
+
+.body_content div.task-title {
+    font-family: helvetica, arial;
+    font-size: 10pt;
+    line-height: 11pt;
+    font-weight: bold;
+    color: #383838;
+}
+
+.body_content div.task-title a,
+.body_content div.task-title-last a {
+    /* div.task-title-last selectors, here and in the next four rules, are    */
+    /* compensating for an xsl defect - delete them when the defect is fixed  */
+    font-weight: bold;
+    display: block;
+}
+
+.body_content div.task-title a:link,
+.body_content div.task-title-last a:link {
+    color: #46a;
+    text-decoration: none;
+}
+
+.body_content div.task-title a:visited,
+.body_content div.task-title-last a:visited {
+    color: #46a;
+    text-decoration: none;
+}
+
+.body_content div.task-title a:hover,
+.body_content div.task-title-last a:hover {
+    text-decoration: underline;
+}
+
+.body_content div.task-title a:active,
+.body_content div.task-title-last a:active {
+        color: #e24;
+text-decoration: none;
+}
+
+/* task-link column */
+.body_content td.task-link {
+    width: 30px;
+}
+
+.body_content td.task-link img {
+    position: relative;
+    top: -1px;
+}
+
+/* task-summary column */
+.body_content td.task-summary {
+    font-family: helvetica, arial;
+    padding: 4pt 10pt;
+    background: #e6eada;
+    text-align: left;
+    width: 100%;
+}
+
+.body_content span.task-summary {
+    font-size: 10pt;
+    line-height: 11pt;
+}
+
+/* task-arrow */
+.body_content tr.task-arrow {
+    font-size: 8pt;
+}
+
+.body_content td.task-arrow-left img {
+    position: relative;
+    left: -2px;
+}
+
+.body_content .hilite {
+    background-color: #ff0;
+}
+
+.body_content .hilite1 {
+    background-color: #f3f;
+}
+
+.body_content div.section p.section_title_h2,
+.body_content div.section p.section_title_h3 {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #990000;
+    margin: 10pt 0 6pt 0;
+}
+
+.body_content div.section div.section h3,
+.body_content div.section div.section h4 {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #990000;
+    margin: 10pt 0 6pt 0;
+}
+
+/* -----------------------------------------------------------------------------------------------
+   Reference Pages
+----------------------------------------------------------------------------------------------- */
+.body_content .qrEntryHeadTitle,
+.body_content .qrEntryTitle,
+.body_content .qrTitle {
+    padding: 3pt 2pt 3pt 2pt;
+    margin: 5pt 0;
+}
+
+.body_content .qrEntryHeadTitle,
+.body_content .qrEntryTitle {
+    font-weight:bold;
+    color:white;
+ }
+
+.body_content .qrEntryHeadTitle,
+.body_content .qrEntryTitle,
+.body_content .qrEntryValue {
+   padding-left: 7pt;
+}
+
+.body_content a.qrItemLink {
+    display: none;
+    color: #333399;
+    text-decoration:none;
+}
+
+.body_content .qrEntryHeadTitle {
+    background-color: #3366AA;
+}
+
+.body_content .qrEntryTitle {
+    background-color: #6699CC;
+}
+
+.body_content .qrTitle {
+    display: none;
+    color:#993333;
+    background-color: #FFAA66;
+    vertical-align: middle;
+    text-align : center;
+}
+
+.body_content div.qrentryheadtitle {
+    background-color: #35a;
+}
+
+.body_content div.qrentrytitle {
+    background-color: transparent;
+    color: #038;
+    font-size: 10pt;
+    padding: 0;
+    margin: 8pt 0 0 0;
+}
+
+.body_content div.qrentryvalue {
+    padding: 0;
+    margin-top: 4pt;
+}
+
+.body_content div.qrentryvalue img.qricon {
+    margin-top: 4px;
+}
+
+.body_content hr.qr-line1 {
+    display: none;
+    height:3px;
+    color:#FFAA66;
+}
+
+.body_content hr.qr-line2 {
+    display: none;
+    height:3px;
+    color:#3366AA;
+}
+
+
+/* -----------------------------------------------------------------------------------------------
+   Workflow links based on content-type="sequence"
+----------------------------------------------------------------------------------------------- */
+
+.body_content div.parentlink {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.body_content div.previouslink {
+    margin-bottom: 5px;
+}
+
+/* Revit OneHelp mockup CSS 11-10-2011 */
+/* Please contact Joshua Ledwell (joshua.ledwell@autodesk.com) with any questions. */
+
+/* classes output to the wiki:                      */
+/* RAC = Revit Architecture                         */
+/* RST = Revit Structure                            */
+/* RME = Revit MEP                                  */
+
+/* RACST = Revit Architecture + Revit Structure     */
+/* RACME = Revit Architecture + Revit MEP		    */
+/* RSTME = Revit Structure + Revit MEP		        */
+/* new badging adding for Revit One Box badging     */
+
+.body_content .revit-legend {
+    background: none repeat scroll 0 0 #DADADA;
+    border: 0 solid #999999;
+    font-size: 80%;
+    line-height: 1;
+    margin: 0 1.5em 0 0;
+    padding: 0;
+}
+
+.body_content .revit-legend ul {
+    list-style-type: none;
+    padding: 0.4em 0;
+}
+
+.body_content .revit-legend li {
+    display: inline;
+    line-height: 1.5;
+    margin: 0 1em 0 0;
+    padding: 0;
+}
+
+.body_content .revit-legend li img {
+    margin: 2px 6px -2px 0;
+}
+
+.body_content .clearfix {
+    margin-top: 1em;
+    width: 100%;
+}
+
+.body_content .clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.body_content .mappings-icon {
+    float: left;
+    margin: 0 0.2em 0 0;
+    width: 18px;
+}
+
+/* updated 9-2-2011 for Revit One Box badging */
+.body_content .RAC,
+.body_content .RME,
+.body_content .RST,
+.body_content .RACME,
+.body_content .RACST,
+.body_content .RSTME,
+.body_content .ROB {
+    display: block;
+    margin: 0 0 0 1.5em;
+    padding-left: 0.2em;
+}
+
+.body_content .RAC {
+    border-left: medium solid #1D52AB;
+}
+
+.body_content .RME {
+    border-left: medium solid #EC6A00;
+}
+
+.body_content .RST {
+    border-left: medium solid #009000;
+}
+
+/* updated 9-2-2011 for Revit One Box badging */
+.body_content .ROB {
+    border-left: medium solid #9955AA;
+}
+
+.body_content .RACME,
+.body_content .RACST,
+.body_content .RSTME {
+    border-left: medium solid #888888;
+}
+
+/* updated 9-2-2011 for Revit One Box badging
+Reversed order with below to solve problem of bullets showing through nested lists 11-10-11*/
+.body_content .RAC * li,
+.body_content .RST * li,
+.body_content .RME * li,
+.body_content .ROB * li,
+.body_content .RACME * li,
+.body_content .RACST * li,
+.body_content .RSTME * li {
+    list-style-position: outside;
+}
+
+/* updated 9-2-2011 for Revit One Box badging */
+.body_content .RAC li,
+.body_content .RST li,
+.body_content .RME li,
+.body_content .ROB li,
+.body_content .RACME li,
+.body_content .RACST li,
+.body_content .RSTME li {
+    list-style-position: inside;
+    margin: 0 !important;
+}
+
+/* updated 9-2-2011 for Revit One Box badging */
+.body_content .RAC p,
+.body_content .RST p,
+.body_content .RME p,
+.body_content .ROB p,
+.body_content .RACME p,
+.body_content .RACST p,
+.body_content .RSTME p {
+    margin: 0 0 1em;
+}
+
+/* updated 9-2-2011 for Revit One Box badging */
+.body_content .RAC div.collapsible,
+.body_content .RST div.collapsible,
+.body_content .RME div.collapsible,
+.body_content .ROB div.collapsible,
+.body_content .RACME div.collapsible,
+.body_content .RACST div.collapsible,
+.body_content .RSTME div.collapsible {
+    margin-top: 0;
+}
+
+/* Details polyfill styles. */
+.no-details .body_content details > * {
+    display: none;
+}
+
+.no-details .body_content details > summary:before {
+    float: left; width: 20px; content: '► ';
+}
+
+.no-details .body_content details.open > summary:before {
+    content: '▼ ';
+}
+
+.no-details .body_content details summary {
+    display: block;
+}
+/* -----------------------------------------------------------------------------------------------
+      M&E Customizations
+ ----------------------------------------------------------------------------------------------- */
+
+#MicrosoftTranslatorWidget #WidgetLauncher { height:100%; }
+#MicrosoftTranslatorWidget #LauncherWithSpan, #MicrosoftTranslatorWidget #LauncherLogoLink { background-color:white; }
+
+#body-content .footer-license-block 
+{
+    position:relative;
+    border-bottom: 1px solid rgb(203, 203, 203);
+    padding: 19px 16px 11px 19px;
+    min-height: 35px;
+    font-size: 12px;
+    line-height: 17px;
+    background: linear-gradient(rgb(255, 255, 255), rgb(235, 235, 235)) repeat scroll 0% 0% transparent;
+}
+#body-content .footer-license-block em
+{
+    position:absolute;
+    left:126px;
+    right:19px;
+    vertical-align: top;
+    font-size: 12px;
+}
+#main-following.icon.following.disabled {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.2;
+}
+#main-parent.icon.parent.disabled {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.2;
+}
+#main-previous.icon.previous.disabled {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.2;
+}
+#body-content div.codeBlock {
+  background-color:transparent;
+  padding:0px;
+}
+td div.codeBlock {
+  *position:relative;
+  *zoom: 1;
+}
+#body-content pre {
+  font-family: Consolas, "Courier New", Courier, "Nimbus Mono L", monospace;
+  overflow:visible;
+  display: -moz-inline-stack;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  background: #F7F7F7;
+  border: 1px solid #888;
+  margin:0px;
+  padding:15px;
+  line-height:1.6;
+  min-width:97%;
+  max-width: inherit;
+}
+#body-content pre * {
+  font-family: Consolas, "Courier New", Courier, "Nimbus Mono L", monospace;
+}
+#body-content a.a_multireflink {
+	font-size:inherit;
+	font-family:inherit;
+}
+#body-content span.code,
+#body-content div.codeBlock,
+#body-content p.codeLine,
+#body-content p.codeComment,
+#body-content span.codeLiteral,
+#body-content code {
+    font-family: Consolas, "Courier New", Courier, "Nimbus Mono L", monospace;
+    font-size: smaller;
+    font-style: normal;
+    font-weight: normal;
+}
+
+#body-content span.code {
+	background-color:#fafafa;
+	border-radius:2px;
+	border-width:1px;
+	border-style:solid;
+	border-color:#e7e7e7;
+	padding:1px 7px 1px 7px;
+}
+#body-content span.code a:hover.a_multireflink {
+	margin:-2px -8px -2px -8px;
+	padding:1px 7px 1px 7px;
+	background-color:#ffffff;
+	border-radius:2px;
+	border-width:1px;
+	border-style:solid;
+	border-color:#00ABE5;
+	text-decoration:none;
+}
+
+
+#topic .content {
+    position: static;
+}
+
+/* fixes for long-form documents. */
+
+.body_content div.section h1 {
+    background-color: transparent;
+    color: rgb(85, 85, 85);
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 4px;
+    margin-top: 30pt;
+    padding: 4px 0 0;
+}
+
+.body_content div.section h2 {
+    background-color: transparent;
+    color: rgb(85, 85, 85);
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 4px;
+    margin-top: 30pt;
+    padding: 4px 0 0;
+}
+
+.body_content div.section h3 {
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(85, 85, 85);
+    margin-bottom: 4px;
+    margin-top: 20pt;
+    padding: 4px 0 0;
+}
+
+.body_content div.section h4 {
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(155, 0, 0);
+    margin-bottom: 0px;
+    margin-top: 10pt;
+    padding: 4px 0 0;
+}
+
+.body_content div.section h5 {
+    background-color: transparent;
+    font-size: 13px;
+    font-style: italic;
+    color: rgb(155, 0, 0);
+    margin-bottom: 0px;
+    margin-top: 10pt;
+    padding: 4px 0 0;
+}
+
+#reflinkdiv {
+	display:none;
+	visibility:hidden;
+	position:absolute;
+	z-index:40001;
+	font-family: 'RobotoRegular', Arial, Tahoma, sans-serif;
+	font-size: 14px;
+	padding:5px 20px;
+	border-style:solid;
+	border-width:1px;
+	border-color:#c0c0c0;
+	border-radius:5px;
+	background-color:#f0f0f0;
+	overflow:visible;
+	box-shadow: 5px 5px 5px #dddddd;
+}
+
+blockquote {
+	padding-left: 25px;
+	border-left: 3px solid #EEE;
+	margin-left: 25px;
+}
+
+div.related-links {
+	margin:0px;
+	padding:0px;
+}
+
+.body_content div.metadata {
+	margin: 25px 12pt 20px 0px;
+	padding: 10px 0px 10px 15px;
+	border-width: 0px 0px 0px 2px;
+	border-style: solid;
+	border-color: #F0F0F0;
+	background-color: #F9F9F9;
+	}
+.body_content div.metadata h4 {
+	margin:0px;
+	padding:7px 0px 0px 0px;
+    color: rgb(85, 85, 85);
+}
+.body_content div.metadata ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 7px;
+}
+.body_content div.metadata ul li {
+	margin: 0px;
+	padding: 0px;
+}
+
+div.figure {
+	margin-top:1em;
+}
+
+dt {
+	font-style:italic;
+	font-weight:bold;
+	color:rgb(127, 127, 127);
+}
+
+dd {
+	margin-left:25px;
+}
+
+img {
+	max-width:100%;
+}

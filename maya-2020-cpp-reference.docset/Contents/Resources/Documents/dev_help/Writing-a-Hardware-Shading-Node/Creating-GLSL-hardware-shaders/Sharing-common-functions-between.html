@@ -1,0 +1,294 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../../scripts/prettify.js"></script><script src="../../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../../scripts/utils/adsk.redirect.js"></script>
+      <title>Sharing common functions between shader stages in OGSFX</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Sharing common functions between shader stages in OGSFX</h1>
+         </div>
+
+<div class='section'><a id="sharing-common-functions-between-shader-stages-in-ogsfx"></a></div>
+<p>As seen in <a href='#!/url=./dev_help/Writing-a-Hardware-Shading-Node/Creating-GLSL-hardware-shaders/Convert-existing-GLSL-shaders-to.html' title=''>Convert existing GLSL shaders to OGSFX format</a>, each shader stage has its own GLSLShader <em>block</em> that contains the function that it uses.</p>
+<p>The following examples demonstrate how to write your code so that two stages can use the same functions.</p>
+<div class='section'><a id="duplicated-functions-in-a-.ogsfx-file"></a><h2 id="duplicated-functions-in-a-.ogsfx-file">Duplicated functions in a .ogsfx file</h2></div>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+};
+ 
+attribute vs_to_ps
+{
+    // None
+};
+ 
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+GLSLShader VS
+{
+    vec4 convertVec3ToVec4(vec3 input)
+    {
+        return vec4(input, 1);
+    }
+ 
+    void main() 
+    {
+        gl_Position = gWVPXf*convertVec3ToVec4(in_position);
+    }
+}
+ 
+GLSLShader PS1
+{
+    vec4 convertVec3ToVec4(vec3 input)
+    {
+        return vec4(input, 1);
+    }
+ 
+    vec4 computeTransparency(vec3 color3)
+    {
+        vec4 color4 = convertVec3ToVec4(color3);
+         
+        float alpha = 1;
+        // ... perform a number of calculations
+        color4.w = alpha;
+ 
+        return color4;
+    }
+ 
+    void main()
+    {
+        out_color = computeTransparency(vec3(1, 0, 0));
+    }
+}
+ 
+GLSLShader PS2
+{
+    vec4 convertVec3ToVec4(vec3 input)
+    {
+        return vec4(input, 1);
+    }
+ 
+    vec4 computeTransparency(vec3 color3)
+    {
+        vec4 color4 = convertVec3ToVec4(color3);
+ 
+        float alpha = 1;
+        // ... perform a number of calculations
+        color4.w = alpha;
+ 
+        return color4;
+    }
+ 
+    void main()
+    {
+        out_color = computeTransparency(vec3(0, 1, 0));
+    }
+}
+  
+technique Main
+{
+    pass p1
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS1;
+    }
+ 
+    pass p2
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS2;
+    }
+}
+</pre></div><div class='section'><a id="implicitly-shared-functions-in-a-.ogsfx-file"></a><h2 id="implicitly-shared-functions-in-a-.ogsfx-file">Implicitly shared functions in a .ogsfx file</h2></div>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+};
+ 
+attribute vs_to_ps
+{
+    // None
+};
+ 
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+// Declare the functions that can be shared among all the shader stages
+GLSLShader Common_Functions
+{
+    vec4 convertVec3ToVec4(vec3 input)
+    {
+        return vec4(input, 1);
+    }
+}
+  
+// Declare the functions that can be shared among the pixel shader stages
+GLSLShader Common_Pixel_Functions
+{
+    vec4 computeTransparency(vec3 color3)
+    {
+        vec4 color4 = convertVec3ToVec4(color3);
+ 
+        float alpha = 1;
+        // ... perform a number of calculations
+        color4.w = alpha;
+ 
+        return color4;
+    }
+}
+ 
+GLSLShader VS
+{
+    void main() 
+    {
+        gl_Position = gWVPXf*convertVec3ToVec4(in_position);
+    }
+}
+ 
+GLSLShader PS1
+{
+    void main()
+    {
+        out_color = computeTransparency(vec3(1, 0, 0));
+    }
+}
+ 
+GLSLShader PS2
+{
+    void main()
+    {
+        out_color = computeTransparency(vec3(0, 1, 0));
+    }
+}
+  
+technique Main
+{
+    pass p1
+    {
+        // Declare the vertex shader stage to include the functions
+        // from the VS GLSLShader block.
+        // The stage will also include all the functions
+        // from blocks that do not contain a main().
+        // The vertex shader stage will then contain functions from
+        // Common_Functions, Common_Pixel_Functions and VS.
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+ 
+        // The pixel shader stage will contain functions from
+        // Common_Functions, Common_Pixel_Functions and PS1.
+        PixelShader (in vs_to_ps, out ps_output) = PS1;
+    }
+ 
+    pass p2
+    {
+        VertexShader (in vs_input, out vs_to_ps) = VS;
+        PixelShader (in vs_to_ps, out ps_output) = PS2;
+    }
+}
+<blockquote>
+</blockquote></pre></div><p><strong>Note:</strong> Implicitly shared blocks may add overhead to the shader compiler: for example, <span class='code'>computeTransparency</span> will be processed by the vertex shader even though it is not used. Also, the compilation may fail because not all GLSL built-in functions/keywords are available for all shader stages; for example, <span class='code'>discard</span> is only available in the pixel shader stage and will fail for a vertex shader. It is, however, possible to only enable a section of code during a specified shader stage by using preprocessor directives. See <a href='#!/url=./dev_help/Writing-a-Hardware-Shading-Node/Creating-GLSL-hardware-shaders/OGSFX-preprocessor-directives.html#defining-shader-stages' title=''>OGSFX preprocessor directives</a>.</p>
+
+<div class='section'><a id="explicitly-shared-functions-in-a-.ogsfx-file"></a><h2 id="explicitly-shared-functions-in-a-.ogsfx-file">Explicitly shared functions in a .ogsfx file</h2></div>
+<div class="codeBlock"><pre class="prettyprint">// World-view-projection transformation.
+uniform mat4 gWVPXf : WorldViewProjection;
+
+attribute vs_input
+{
+    vec3 in_position : POSITION;
+};
+ 
+attribute vs_to_ps
+{
+    // None
+};
+ 
+attribute ps_output 
+{
+    vec4 out_color : COLOR0;
+}
+ 
+// Declare the functions that can be shared among all the stages
+GLSLShader Common_Functions
+{
+    vec4 convertVec3ToVec4(vec3 input)
+    {
+        return vec4(input, 1);
+    }
+}
+ 
+// Declare the functions that can be shared among the pixel shader stages
+GLSLShader Common_Pixel_Functions
+{
+    vec4 computeTransparency(vec3 color3)
+    {
+        vec4 color4 = convertVec3ToVec4(color3);
+ 
+        float alpha = 1;
+        // ... perform a number of calculations
+        color4.w = alpha;
+ 
+        return color4;
+    }
+}
+ 
+GLSLShader VS
+{
+    void main() 
+    {
+        gl_Position = gWVPXf*convertVec3ToVec4(in_position);
+    }
+}
+ 
+GLSLShader PS1
+{
+    void main()
+    {
+        out_color = computeTransparency(vec3(1, 0, 0));
+    }
+}
+ 
+GLSLShader PS2
+{
+    void main()
+    {
+        out_color = computeTransparency(vec3(0, 1, 0));
+    }
+}
+  
+technique Main
+{
+    pass p1
+    {
+        // Declare the vertex shader stage to include ONLY the functions
+        // from the Common_Functions and VS GLSLShader blocks
+        // Note that the order is important as each block will only &#39;know&#39;
+        // the functions that have been included in previous blocks
+        VertexShader (in vs_input, out vs_to_ps) = { Common_Functions, VS };
+ 
+        // Declare the vertex shader stage to include ONLY the functions
+        // from Common_Functions, Common_Pixel_Functions and PS1
+        PixelShader (in vs_to_ps, out ps_output) = { Common_Functions, Common_Pixel_Functions, PS1 };
+    }
+ 
+    pass p2
+    {
+        VertexShader (in vs_input, out vs_to_ps) = { Common_Functions, VS };
+        PixelShader (in vs_to_ps, out ps_output) = { Common_Functions, Common_Pixel_Functions, PS2 };
+    }
+}
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>

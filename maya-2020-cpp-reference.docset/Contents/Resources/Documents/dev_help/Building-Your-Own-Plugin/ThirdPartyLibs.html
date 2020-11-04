@@ -1,0 +1,49 @@
+<!-- saved from url=(0024)http://docs.autodesk.com -->
+<html>
+   <head>
+<link href="../../style/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../scripts/prettify.js"></script><script src="../../scripts/lib/jquery-1.11.1.min.js" type="text/javascript"></script><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Style-Type" content="text/css" /><meta name="generator" content="pandoc" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script type="text/javascript" src="../../scripts/utils/adsk.redirect.js"></script>
+      <title>Adding Third-Party Libraries</title>
+   </head>
+   <body height="100%"><div class="body_content" id="body-content"><style type="text/css">code{white-space: pre;}</style><script>$(document).ready(function() { yepnope.injectJs("./scripts/multireflink.js"); });</script><script>$(document).ready(function () { prettyPrint(); } );</script><script></script><script></script><div id="reflinkdiv"></div>
+      <div>
+         <div class="head">
+            <h1>Adding Third-Party Libraries</h1>
+         </div>
+
+<div class='section'><a id="adding-third-party-libraries"></a></div>
+<p>You can use the <span class='code'>find_package()</span> call to add 3rd-party packages to to your CMake project.</p>
+<p><span class='code'>fnd_package()</span> uses cmake files of the type found under <span class='code'>$DEVKIT_LOCATION/cmake/modules/</span> on Linux and MacOS, and under <span class='code'>%DEVKIT_LOCATION%\cmake\modules</span> on Windows to add 3rd party libraries to your project. They can also be used as guides to create your own cmake package files. If you do create your own files, place them in the <span class='code'>modules</span> directory so they can be found by CMake.</p>
+<blockquote>
+<p><strong>Note:</strong> Before using the cmake files under <span class='code'>modules</span>, make sure you have installed the 3rd party libraries they use, and that you have set any environment variables they require. For example, if you need to include the Arnold for Maya libraries, you will need to <a href='#!/url=./dev_help/Setting-up-your-build/MtoALibs.html' title=''>set the <span class='code'>MTOA_LOCATION</span> environment variable</a></p>
+</blockquote>
+<p>The cmake files in the <span class='code'>modules</span> directory are of the form <span class='code'>Find&lt;package_name&gt;.cmake</span>. To add the libraries pointed to by these files, use <span class='code'>find_package(&lt;package_name&gt;)</span>.</p>
+<p>For example, to add the Arnold for Maya package using the <span class='code'>FindMtoA.cmake</span> file, add the following to your <span class='code'>CMakeLists.txt</span> file:</p>
+<div class="codeBlock"><pre class="prettyprint lang-sh">find_package(MtoA)
+</pre></div><p>For example:</p>
+<div class="codeBlock"><pre class="prettyprint lang-sh">cmake_minimum_required(VERSION 2.8)
+
+include($ENV{DEVKIT_LOCATION}/cmake/pluginEntry.cmake)
+
+set(PROJECT_NAME exampleNode)
+
+set(RESOURCES_FILES myResource.xpm)
+
+set(MEL_FILES 
+    exampleNode.mel
+    )
+
+set(SOURCE_FILES
+    exampleNode.cpp
+    ${MEL_FILES}
+    )
+
+set(LIBRARIES
+    OpenMaya Foundation
+    )
+
+find_package(MtoA)
+build_plugin()
+</pre></div>      <div class="footer-block"><a href="../html/ac.cmtdialog.htm" class="comments-anchor" target="_blank"><span class="comments-link">Please send us your comment about this page</span></a></div></div>
+   </div></body>
+</html>
