@@ -36,7 +36,7 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
 
     # Now start finding items within the class pages to add
     # additional entries for
-    html = open(os.path.join(docs_root, path), encoding='utf8').read()
+    html = open(os.path.join(docs_root, path)).read()
     soup = BeautifulSoup(html, 'html.parser')
 
     for h2 in soup.find_all('h2', {'class': 'groupheader'}):
@@ -80,7 +80,7 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                 method_url = m.a.get('href')
                 # NOTE: For Maya 2017, it seems the URL is
                 # formatted differently
-                if maya_version == '2017':
+                if maya_version in ('2017', '2020'):
                     method_url = method_url.replace('#!/url=./cpp_ref/', '')
                 if method_name and method_url:
                     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
@@ -103,7 +103,7 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                 method_url = m.a.get('href')
                 # NOTE: For Maya 2017, it seems the URL is
                 # formatted differently
-                if maya_version == '2017':
+                if maya_version in ('2017', '2020'):
                     method_url = method_url.replace('#!/url=./cpp_ref/', '')
                 if method_name and method_url:
                     cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path)'
@@ -130,7 +130,7 @@ def write_entry_for_class(cur, class_name, path, docs_root, maya_version):
                                     path=method_url))
 
 
-def write_entries(database_file_path, filenames, docs_root, maya_version='2016', timeout=120.0):
+def write_entries(database_file_path, filenames, docs_root, maya_version='2020', timeout=120.0):
     """This function writes search entries to the database."""
     logger = logging.getLogger(__name__)
     conn = sqlite3.connect(database_file_path, timeout=timeout)
@@ -174,7 +174,7 @@ def write_entries(database_file_path, filenames, docs_root, maya_version='2016',
         conn.close()
 
 
-def main(maya_version='2016'):
+def main(maya_version='2020'):
     """This is the main entry point of the program."""
     logger = logging.getLogger(__name__)
     database_file_path = os.path.join(os.path.dirname(
